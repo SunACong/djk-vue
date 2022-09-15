@@ -42,11 +42,10 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
+    redirect: '/productQuality',
     component: Layout,
-    redirect: '/module',
     children: [{
       path: '/module/productQuality',
       name: 'ProductQuality',
@@ -55,22 +54,22 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/module',
+    path: '/module/healthDegree',
     component: Layout,
-    redirect: '/healthDegree',
+    redirect: '/module',
     children: [{
-      path: 'healthDegree',
+      path: '/module/healthDegree',
       name: 'HealthDegree',
       component: () => import('@/views/module/healthDegree'),
       meta: { title: '设备健康度分析', icon: 'dashboard' }
     }]
   },
   {
-    path: '/module',
+    path: '/module/processMonitor',
     component: Layout,
-    redirect: '/processMonitor',
+    redirect: '/module',
     children: [{
-      path: 'processMonitor',
+      path: '/module/processMonitor',
       name: 'ProcessMonitor',
       component: () => import('@/views/module/processMonitor'),
       meta: { title: '产品流程监控', icon: 'dashboard' }
