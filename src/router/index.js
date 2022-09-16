@@ -44,19 +44,19 @@ export const constantRoutes = [
   },
   {
     path: '/',
-    redirect: '/productQuality',
+    redirect: '/module/productQuality',
     component: Layout,
     children: [{
       path: '/module/productQuality',
       name: 'ProductQuality',
       component: () => import('@/views/module/productQuality'),
-      meta: { title: '产品质量分析', icon: 'dashboard' }
+      meta: { title: '产品合格判定模型', icon: 'dashboard' }
     }]
   },
   {
     path: '/module/healthDegree',
     component: Layout,
-    redirect: '/module',
+    redirect: '/module/healthDegree',
     children: [{
       path: '/module/healthDegree',
       name: 'HealthDegree',
@@ -65,7 +65,7 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/module/processMonitor',
+    path: '/module/processMonitor', 
     component: Layout,
     redirect: '/module',
     children: [{

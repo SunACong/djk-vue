@@ -7,15 +7,12 @@
 <script>
 export default {
   name: 'ProcessMonitor',
-  data() {
-    return {
-    }
+  data () {
+    return {}
   },
-  watch: {
-  },
+  watch: {},
 
-  methods: {
-  }
+  methods: {}
 }
 </script>
 
