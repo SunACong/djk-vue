@@ -62,15 +62,22 @@
         </div>
         <!-- 表格 -->
         <div>
-          <el-table :data="tableData" stripe style="width: 100%">
+          <el-table :data="tableData" stripe style="width: 100%" :border="true" :cell-style="{'text-align':'center','height':'10px'}" :header-cell-style="{'text-align':'center'}">
             <el-table-column prop="date" label="序号" min-width="20%" />
             <el-table-column prop="name" label="样号" min-width="20%" />
             <el-table-column prop="name" label="判定日期" min-width="20%" />
-            <el-table-column prop="name" label="判定结果" min-width="20%" />
-            <el-table-column	prop="address"	label="操作" min-width="20%">
+            <el-table-column label="判定结果" min-width="20%">
+              <template>
+                <el-button
+                  size="medium"
+                  type="text"
+                >合格</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" min-width="20%">
               <template slot-scope="scope">
                 <el-button
-                  size="mini"
+                  size="medium"
                   type="text"
                   @click="handleView(scope.row)"
                 >查看</el-button>
@@ -116,7 +123,7 @@ export default {
             picker.$emit('pick', [start, end])
           }
         }, {
-          text: '最近一个月',
+          text: '最近一月',
           onClick(picker) {
             const end = new Date()
             const start = new Date()
@@ -124,11 +131,12 @@ export default {
             picker.$emit('pick', [start, end])
           }
         }, {
-          text: '最近三个月',
+          text: '本年至今',
           onClick(picker) {
             const end = new Date()
             const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 365)
+            // const start = new Date(new Date().getFullYear(), 0)
             picker.$emit('pick', [start, end])
           }
         }]
@@ -157,7 +165,9 @@ export default {
     }
   },
   watch: {},
-
+  created() {
+    console.log('hahaha')
+  },
   methods: {
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`)
