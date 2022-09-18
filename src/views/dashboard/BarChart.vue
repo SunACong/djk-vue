@@ -7,7 +7,7 @@ import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
-const animationDuration = 6000
+const animationDuration = 1000
 
 export default {
   mixins: [resize],
@@ -76,13 +76,13 @@ export default {
         }],
         series: [{
           name: '合格',
-          type: 'line',
+          type: 'bar',
           barWidth: '10%',
           data: [79, 52, 200, 400, 390, 330, 220],
           animationDuration
         }, {
           name: '不合格',
-          type: 'line',
+          type: 'bar',
           barWidth: '10%',
           data: [79, 52, 200, 334, 390, 330, 220],
           animationDuration

@@ -30,6 +30,7 @@
         <BarChart />
       </el-card>
     </div>
+
     <!-- 报告表格 -->
     <div class="bottom_card">
       <el-card shadow="always">
@@ -55,7 +56,7 @@
             </div>
             <div>
               <el-input v-model="rollNumber" size="small" placeholder="输入冷轧卷号">
-                <el-button slot="append" style="background-color: skyblue;color: white;line-height: 16px;" size="small">查询</el-button>
+                <el-button slot="append" style="background-color: #409EFF;color: white;line-height: 15px;" size="small">查询</el-button>
               </el-input>
             </div>
           </div>
@@ -65,7 +66,7 @@
           <el-table :data="tableData" stripe style="width: 100%" :border="true" :cell-style="{'text-align':'center','height':'10px'}" :header-cell-style="{'text-align':'center'}">
             <el-table-column prop="date" label="序号" min-width="20%" />
             <el-table-column prop="name" label="样号" min-width="20%" />
-            <el-table-column prop="name" label="判定日期" min-width="20%" />
+            <el-table-column prop="address" label="判定日期" min-width="20%" />
             <el-table-column label="判定结果" min-width="20%">
               <template>
                 <el-button
@@ -90,15 +91,33 @@
           <el-pagination
             :current-page="currentPage"
             :page-sizes="[5, 10, 20, 50]"
-            :page-size="100"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="500"
+            :total="total"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           />
         </div>
       </el-card>
     </div>
+
+    <!-- 弹窗 -->
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="活动名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="活动区域" :label-width="formLabelWidth">
+          <el-select v-model="form.region" placeholder="请选择活动区域">
+            <el-option label="区域一" value="shanghai" />
+            <el-option label="区域二" value="beijing" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -113,6 +132,7 @@ export default {
       reportDateRange: '',
       rollNumber: '',
       currentPage: 1,
+      total: 100,
       pickerOptions: {
         shortcuts: [{
           text: '最近一周',
@@ -142,26 +162,15 @@ export default {
         }]
       },
       tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+        date: '001',
+        name: 'ASDF54635',
+        address: '2022.04.16',
+        ssc: 'sadasda'
+      }],
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      form: {},
+      formLabelWidth: '120px'
     }
   },
   watch: {},
@@ -176,7 +185,8 @@ export default {
       console.log(`当前页: ${val}`)
     },
     handleView(row) {
-      console.log('点击了查看')
+      console.log('row: ', row)
+      this.dialogFormVisible = true
     }
   }
 }
