@@ -5,7 +5,7 @@
 <script>
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
-import resize from 'K:\\学习代码\\vue-admin-template\\src\\views\\dashboard\\mixins\\resize.js'
+import resize from './mixins/resize'
 
 const animationDuration = 6000
 
