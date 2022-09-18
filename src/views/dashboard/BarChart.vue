@@ -26,9 +26,7 @@ export default {
     }
   },
   data() {
-    return {
-      chart: null
-    }
+    return { chart: null }
   },
   mounted() {
     this.$nextTick(() => {
@@ -60,39 +58,33 @@ export default {
           bottom: '3%',
           containLabel: true
         },
+        legend: { data: ['合格', '不合格'] },
         xAxis: [{
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          axisTick: {
-            alignWithLabel: true
-          }
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        }, {
+          type: 'category',
+          position: 'bottom',
+          offset: 25,
+          axisTick: { show: false },
+          axisLine: { show: false },
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         }],
         yAxis: [{
           type: 'value',
-          axisTick: {
-            show: false
-          }
+          axisTick: { show: false }
         }],
         series: [{
-          name: 'pageA',
-          type: 'bar',
-          stack: 'vistors',
-          barWidth: '60%',
+          name: '合格',
+          type: 'line',
+          barWidth: '10%',
+          data: [79, 52, 200, 400, 390, 330, 220],
+          animationDuration
+        }, {
+          name: '不合格',
+          type: 'line',
+          barWidth: '10%',
           data: [79, 52, 200, 334, 390, 330, 220],
-          animationDuration
-        }, {
-          name: 'pageB',
-          type: 'bar',
-          stack: 'vistors',
-          barWidth: '60%',
-          data: [80, 52, 200, 334, 390, 330, 220],
-          animationDuration
-        }, {
-          name: 'pageC',
-          type: 'bar',
-          stack: 'vistors',
-          barWidth: '60%',
-          data: [30, 52, 200, 334, 390, 330, 220],
           animationDuration
         }]
       })
