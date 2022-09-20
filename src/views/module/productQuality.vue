@@ -6,7 +6,7 @@
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
             <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-            <span style="line-height: 20px;">产品合格判定汇总</span>
+            <span style="line-height: 40px;">产品合格判定汇总</span>
           </div>
           <div style="display: flex;">
             <el-button style="" type="text"> 本周 </el-button>
@@ -64,10 +64,50 @@
         <!-- 表格 -->
         <div>
           <el-table :data="tableData" stripe style="width: 100%" :border="true" :cell-style="{'text-align':'center','height':'10px'}" :header-cell-style="{'text-align':'center'}">
-            <el-table-column prop="date" label="序号" min-width="20%" />
-            <el-table-column prop="name" label="样号" min-width="20%" />
-            <el-table-column prop="address" label="判定日期" min-width="20%" />
-            <el-table-column label="判定结果" min-width="20%">
+            <el-table-column prop="report_time" label="日期" min-width="20%" />
+            <el-table-column prop="batch_num" label="卷号" min-width="20%" />
+            <el-table-column prop="consumer" label="客户" min-width="20%" />
+            <el-table-column prop="plate_type" label="版型" min-width="20%">
+              <template slot-scope="scope">
+                <el-button
+                  size="medium"
+                  type="text"
+                >{{ scope.row.plate_type?'合格':'不合格' }}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="dimensional_deviation" label="尺寸偏差" min-width="20%">
+              <template slot-scope="scope">
+                <el-button
+                  size="medium"
+                  type="text"
+                >{{ scope.row.dimensional_deviation?'合格':'不合格' }}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="mechanical_property" label="力学性能" min-width="20%">
+              <template slot-scope="scope">
+                <el-button
+                  size="medium"
+                  type="text"
+                >{{ scope.row.mechanical_property?'合格':'不合格' }}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="surface_quality" label="表面质量" min-width="20%">
+              <template slot-scope="scope">
+                <el-button
+                  size="medium"
+                  type="text"
+                >{{ scope.row.surface_quality?'合格':'不合格' }}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="quality_judgment" label="外观质量" min-width="20%">
+              <template slot-scope="scope">
+                <el-button
+                  size="medium"
+                  type="text"
+                >{{ scope.row.quality_judgment?'合格':'不合格' }}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="综合判定" min-width="20%">
               <template>
                 <el-button
                   size="medium"
@@ -75,6 +115,7 @@
                 >合格</el-button>
               </template>
             </el-table-column>
+            <el-table-column prop="consumer" label="备注" min-width="20%">合格A</el-table-column>
             <el-table-column label="操作" min-width="20%">
               <template slot-scope="scope">
                 <el-button
@@ -99,20 +140,158 @@
         </div>
       </el-card>
     </div>
-
+    <div />
     <!-- 弹窗 -->
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-      <el-form :model="form">
-        <el-form-item label="活动名称" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="活动区域" :label-width="formLabelWidth">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai" />
-            <el-option label="区域二" value="beijing" />
-          </el-select>
-        </el-form-item>
-      </el-form>
+    <el-dialog title="" :visible.sync="dialogFormVisible">
+      <!-- 版型 -->
+      <div>
+        <el-descriptions class="margin-top" title="版型" :column="2" border>
+          <el-descriptions-item>
+            <template slot="label">
+              平直度
+            </template>
+            kooriookami
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              中凸度
+            </template>
+            18100000000
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
+
+      <!-- 力学性能 -->
+      <div style="margin-top: 20px;">
+        <el-descriptions class="margin-top" title="力学性能" :column="2" border>
+          <el-descriptions-item>
+            <template slot="label">
+              抗拉强度
+            </template>
+            kooriookami
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              延伸率
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              弯折性能
+            </template>
+            18100000000
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
+
+      <!-- 尺寸偏差 -->
+      <div style="margin-top: 20px;">
+        <el-descriptions class="margin-top" title="尺寸偏差" :column="2" border>
+          <el-descriptions-item>
+            <template slot="label">
+              宽度
+            </template>
+            kooriookami
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              厚度
+            </template>
+            18100000000
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
+
+      <!-- 表面质量 -->
+      <div style="margin-top: 20px;">
+        <el-descriptions class="margin-top" title="表面质量" :column="2" border>
+          <el-descriptions-item>
+            <template slot="label">
+              划痕
+            </template>
+            kooriookami
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              色差
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              条纹
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              油斑
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              腐蚀
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              黑线
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              辊印
+            </template>
+            18100000000
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
+
+      <!-- 外观质量 -->
+      <div style="margin-top: 20px;">
+        <el-descriptions class="margin-top" title="外观质量" :column="2" border>
+          <el-descriptions-item>
+            <template slot="label">
+              串层
+            </template>
+            kooriookami
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              塔形
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              卷径
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              偏移量
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              卷重
+            </template>
+            18100000000
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              管芯
+            </template>
+            18100000000
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
@@ -124,7 +303,7 @@
 <script>
 import BarChart from '@/views/dashboard/BarChart'
 export default {
-  name: 'ProductQuality',
+  batch_num: 'ProductQuality',
   components: { BarChart },
   data() {
     return {
@@ -162,10 +341,14 @@ export default {
         }]
       },
       tableData: [{
-        date: '001',
-        name: 'ASDF54635',
-        address: '2022.04.16',
-        ssc: 'sadasda'
+        report_time: '2022/09/20', // 日期
+        batch_num: 'ASDF54635',		// 卷号
+        consumer: '2022.04.16',		// 客户
+        plate_type: true,					// 版型
+        dimensional_deviation: true, // 尺寸偏差
+        mechanical_property: true,	// 力学性能
+        surface_quality: true,			// 表面质量
+        quality_judgment: true			// 外观质量
       }],
       dialogTableVisible: false,
       dialogFormVisible: false,
@@ -176,6 +359,9 @@ export default {
   watch: {},
   created() {
     console.log('hahaha')
+    for (let i = 0; i < 10; i++) {
+      this.tableData[i] = this.tableData[0]
+    }
   },
   methods: {
     handleSizeChange(val) {

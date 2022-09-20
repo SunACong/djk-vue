@@ -61,7 +61,7 @@ export const constantRoutes = [
       path: '/module/healthDegree',
       name: 'HealthDegree',
       component: () => import('@/views/module/healthDegree'),
-      meta: { title: '设备健康度分析', icon: 'dashboard' }
+      meta: { title: '设备健康分析模型', icon: 'dashboard' }
     }]
   },
   {
@@ -72,7 +72,7 @@ export const constantRoutes = [
       path: '/module/processMonitor',
       name: 'ProcessMonitor',
       component: () => import('@/views/module/processMonitor'),
-      meta: { title: '产品流程监控', icon: 'dashboard' }
+      meta: { title: '产品流程监控模型', icon: 'dashboard' }
     }]
   },
   // 404 page must be placed at the end !!!
