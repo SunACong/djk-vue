@@ -6,11 +6,7 @@
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
             <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-<<<<<<< HEAD
-            <span style="line-height: 20px;">产品合格判定汇总</span>
-=======
             <span style="line-height: 40px;">产品合格判定汇总</span>
->>>>>>> 34a691a79f6c52d4384f1dcab64bf6aad7f37502
           </div>
           <div style="display: flex;">
             <el-button style="" type="text"> 本周 </el-button>
