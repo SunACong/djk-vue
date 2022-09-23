@@ -37,45 +37,53 @@
           <div>
             <div style="display: flex;">
               <span style="flex: 2;line-height: 48px">订单编号001</span>
-              <div style="flex: 8">
-                <el-progress class="el_progress" stroke-width="15" :percentage="50"></el-progress>
+              <div style="flex: 5">
+                <el-progress class="el_progress" :stroke-width="15" :percentage="50"></el-progress>
               </div>
               <span style="flex: 3;line-height: 48px">18天23小时15分</span>
+              <div>
+                <el-button type="text" @click="fengxian = true">查看</el-button>
+              </div>
             </div>
             <div style="display: flex;">
-              <span style="flex: 2;line-height: 48px">订单编号002</span>
-              <div style="flex: 8">
-                <el-progress class="el_progress" stroke-width="15" :percentage="60"></el-progress>
+              <span style="flex: 2;line-height: 48px">订单编号001</span>
+              <div style="flex: 5">
+                <el-progress class="el_progress" :stroke-width="15" :percentage="50"></el-progress>
               </div>
               <span style="flex: 3;line-height: 48px">18天23小时15分</span>
+              <div>
+                <el-button type="text" @click="fengxian = true">查看</el-button>
+              </div>
             </div>
             <div style="display: flex;">
-              <span style="flex: 2;line-height: 48px">订单编号003</span>
-              <div style="flex: 8">
-                <el-progress class="el_progress" stroke-width="15" :percentage="70"></el-progress>
+              <span style="flex: 2;line-height: 48px">订单编号001</span>
+              <div style="flex: 5">
+                <el-progress class="el_progress" :stroke-width="15" :percentage="50"></el-progress>
               </div>
               <span style="flex: 3;line-height: 48px">18天23小时15分</span>
+              <div>
+                <el-button type="text" @click="fengxian = true">查看</el-button>
+              </div>
             </div>
             <div style="display: flex;">
-              <span style="flex: 2;line-height: 48px">订单编号004</span>
-              <div style="flex: 8">
-                <el-progress class="el_progress" stroke-width="15" :percentage="80"></el-progress>
+              <span style="flex: 2;line-height: 48px">订单编号001</span>
+              <div style="flex: 5">
+                <el-progress class="el_progress" :stroke-width="15" :percentage="50"></el-progress>
               </div>
               <span style="flex: 3;line-height: 48px">18天23小时15分</span>
+              <div>
+                <el-button type="text" @click="fengxian = true">查看</el-button>
+              </div>
             </div>
             <div style="display: flex;">
-              <span style="flex: 2;line-height: 48px">订单编号005</span>
-              <div style="flex: 8">
-                <el-progress class="el_progress" stroke-width="15" :percentage="90"></el-progress>
+              <span style="flex: 2;line-height: 48px">订单编号001</span>
+              <div style="flex: 5">
+                <el-progress class="el_progress" :stroke-width="15" :percentage="50"></el-progress>
               </div>
               <span style="flex: 3;line-height: 48px">18天23小时15分</span>
-            </div>
-            <div style="display: flex;">
-              <span style="flex: 2;line-height: 48px">订单编号006</span>
-              <div style="flex: 8">
-                <el-progress class="el_progress" stroke-width="15" :percentage="99"></el-progress>
+              <div>
+                <el-button type="text" @click="fengxian = true">查看</el-button>
               </div>
-              <span style="flex: 3;line-height: 48px">18天23小时15分</span>
             </div>
           </div>
         </el-card>
@@ -101,17 +109,18 @@
           <div>
             <el-table
               :data="tableData"
-              stripe
+              border
               style="width: 100%">
               <el-table-column
+                fixed
                 prop="num"
                 label="序号"
-                width="60">
+                width="100">
               </el-table-column>
               <el-table-column
                 prop="product_num"
                 label="产品编号"
-                width="100">
+                width="120">
               </el-table-column>
               <el-table-column
                 prop="now_process"
@@ -125,15 +134,71 @@
               </el-table-column>
               <el-table-column
                 prop="note"
-                label="备注">
+                label="备注"
+                width="100">
+              </el-table-column>
+              <el-table-column
+                fixed="right"
+                label="操作"
+                width="100">
+                <template slot-scope="scope">
+<!--                  <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
+                  <el-button type="text" @click="handleClick(scope.row)">查看</el-button>
+                </template>
               </el-table-column>
             </el-table>
           </div>
         </el-card>
       </div>
     </div>
+    <el-dialog
+      title="提示"
+      :visible.sync="fengxian"
+      width="30%"
+      :before-close="handleClose">
+      <span>交期风险信息显示</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="fengxian = false">取 消</el-button>
+        <el-button type="primary" @click="fengxian = false">确 定</el-button>
+      </span>
+      <el-form label-width="80px" :model="formLabelAlign" :disabled="true">
+        <el-form-item label="订单编号" >
+          <el-input v-model="formLabelAlign.num"></el-input>
+        </el-form-item>
+        <el-form-item label="剩余时间" >
+          <el-input v-model="formLabelAlign.hang_time"></el-input>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose1">
+      <span>异常流程信息显示</span>
+      <el-form label-width="80px" :model="formLabelAlign" :disabled="true">
+        <el-form-item label="序号" >
+          <el-input v-model="formLabelAlign.num"></el-input>
+        </el-form-item>
+        <el-form-item label="产品编号">
+          <el-input v-model="formLabelAlign.product_num"></el-input>
+        </el-form-item>
+        <el-form-item label="当前流程">
+          <el-input v-model="formLabelAlign.now_process"></el-input>
+        </el-form-item>
+        <el-form-item label="停滞时间">
+          <el-input v-model="formLabelAlign.hang_time"></el-input>
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="formLabelAlign.note"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
-
 </template>
 
 <script>
@@ -143,62 +208,93 @@ export default {
   components: { CustomStep },
   data() {
     return {
-      active: 13,
+      input: '',
+      active: 9,
       value1: '',
       value2: '',
+      dialogVisible: false,
+      fengxian: false,
       stepData: [
-        { title: '1', description: '铸扎生产计划确定' },
-        { title: '2', description: '熔炉生产' },
-        { title: '3', description: '保温' },
-        { title: '4', description: '铸扎生产' },
-        { title: '5', description: '铸扎卷质检' },
-        { title: '6', description: '铸扎卷入库' },
-        { title: '7', description: '冷轧生产计划确定' },
-        { title: '8', description: '冷轧生产' },
-        { title: '9', description: '第1道次轧制' },
-        { title: '10', description: '第2道次轧制' },
-        { title: '11', description: '退火' },
+        { title: '1铸扎生产计划确定', description: '生产时间：2022.04.02生产地点：遵义' },
+        { title: '2熔炉生产', description: '生产时间：2022.04.02生产地点：遵义熔炉状态：正常' },
+        { title: '3保温', description: '保温时间：2022.04.02保温地点：遵义' },
+        { title: '4铸扎生产', description: '生产时间：2022.04.02生产地点：遵义熔炉状态：正常' },
+        { title: '5铸扎卷质检', description: '检查时间：2022.04.02检察地点：遵义检查人：李四' },
+        { title: '6铸扎卷入库', description: '入库时间：2022.04.02入库地点：遵义入库人员：李四' },
+        { title: '7冷轧生产计划确定', description: '确定时间：2022.04.02生产地点：遵义' },
+        { title: '8冷轧生产', description: '生产时间：2022.04.02生产地点：遵义' },
+        { title: '9第1道次轧制', description: '轧制时间：2022.04.02轧制地点：遵义熔炉状态：正常' },
+        { title: '10第2道次轧制', description: '轧制时间：2022.04.02轧制地点：遵义熔炉状态：正常' },
+        { title: '11退火', description: '退火时间：2022.04.02熔炉状态：正常' },
         { title: ' ', description: ' ' },
-        { title: '12', description: '第3道次轧制' },
-        { title: '13', description: '第1次退火' },
-        { title: '14', description: '第4道次轧制' },
-        { title: '15', description: '第2次退火' },
-        { title: '16', description: '第5道次轧制' },
-        { title: '17', description: '第6道次轧制' },
-        { title: '18', description: '冷轧卷成品质检' },
-        { title: '19', description: '冷轧卷成品入库' },
-        { title: '20', description: '重卷中切' },
-        { title: '21', description: '包装检验' }
+        { title: '12第3道次轧制', description: '轧制时间：2022.04.02轧制地点：遵义熔炉状态：正常' },
+        { title: '13第1次退火', description: '退火时间：2022.04.02退火地点：遵义熔炉状态：正常' },
+        { title: '14第4道次轧制', description: '轧制时间：2022.04.02轧制地点：遵义熔炉状态：正常' },
+        { title: '15第2次退火', description: '退火时间：2022.04.02退火地点：遵义熔炉状态：正常' },
+        { title: '16第5道次轧制', description: '轧制时间：2022.04.02轧制地点：遵义熔炉状态：正常' },
+        { title: '17第6道次轧制', description: '轧制时间：2022.04.02轧制地点：遵义熔炉状态：正常)' },
+        { title: '18冷轧卷成品质检', description: '质检时间：2022.04.02质检地点：遵义质检人员：李四' },
+        { title: '19冷轧卷成品入库', description: '入库时间：2022.04.02入库地点：遵义入库人员：李四' },
+        { title: '20重卷中切', description: '时间：2022.04.02地点：遵义熔炉状态：正常' },
+        { title: '21包装检验', description: '检验时间：2022.04.02检验地点：遵义熔炉状态：正常' }
       ],
+      formLabelAlign: {},
       tableData: [{
         num: '001',
         product_num: 'A12034',
-        now_process: '冷轧生产',
-        hang_time: '2022.04.18',
-        note: '无'
+        now_process: '生产',
+        hang_time: '2022.04.15',
+        note: '上海市',
+        zip: 200333
       }, {
         num: '002',
         product_num: 'A12034',
-        now_process: '第6道次轧制',
-        hang_time: '2022.04.18',
-        note: '无'
+        now_process: '轧制',
+        hang_time: '2022.04.15',
+        note: '上海市',
+        zip: 200333
       }, {
         num: '003',
         product_num: 'A12034',
-        now_process: '冷轧生产',
-        hang_time: '2022.04.18',
-        note: '无'
+        now_process: '生产',
+        hang_time: '2022.04.15',
+        note: '上海市',
+        zip: 200333
       }, {
         num: '004',
         product_num: 'A12034',
-        now_process: '第6道次轧制',
-        hang_time: '2022.04.18',
-        note: '无'
+        now_process: '生产',
+        hang_time: '2022.04.15',
+        note: '上海市',
+        zip: 200333
       }]
     }
   },
   watch: {},
   methods: {
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done()
+        })
+        .catch(_ => {})
+    },
+    handleClose1(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done()
+        })
+        .catch(_ => {})
+    },
+    // 异常流程操作
+    handleEdit(index, row) {
+      console.log(index, row)
+    },
+    handleClick(row) {
+      console.log(row)
+      this.dialogVisible = true
+      this.formLabelAlign = row
+    },
     next() {
       if (this.active++ > 2) this.active = 0
     },

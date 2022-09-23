@@ -102,18 +102,18 @@ export default {
 
 <style scoped lang="less">
 .circle {
-  width: 160px;
-  height: 110px;
+  width: 150px;
+  height: 210px;
   margin-top: 10px;
   border: 5px solid #c0c4cc;
-  border-radius: 0 30% 30% 0/50%;
+  border-radius: 0 25% 25% 0/50%;
   border-left: none;
   position: relative;
   .icon {
     position: absolute;
     right: 35px;
     top: 50%;
-    width: 33px;
+    width: 40px;
     height: 11px;
     transform: translate(55%, -50%);
     background-color: #fff;
@@ -134,11 +134,11 @@ export default {
     .tips {
       display: flex;
       position: absolute;
-      right: 30px;
-      font-size: 12px;
+      right: 11px;
+      font-size: 33px;
       color: #00ff00;
-      width: 80px;
-      padding-right: 8px;
+      width: 33px;
+      padding-right: 33px;
       flex-direction: column;
       text-align: center;
       > span:first-child {
