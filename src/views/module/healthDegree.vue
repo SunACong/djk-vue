@@ -1,6 +1,39 @@
 <template>
   <div>
     <div style="display: flex;justify-content: space-between;line-height: 20px;padding: 5px 5px">
+      <div style="flex: 5;text-align: center;box-shadow: 5px 5px 2px #cccccc;padding: 0 5px">
+        <div>铸轧机</div>
+        <div style="display: flex;justify-content: space-between">
+          <div>
+            <i class="el-icon-s-help" si />
+            <div>1#铸轧机</div>
+          </div>
+          <div>
+            <i class="el-icon-s-help" si />
+            <div>2#铸轧机</div>
+          </div>
+          <div>
+            <i class="el-icon-s-help" si />
+            <div>3#铸轧机</div>
+          </div>
+          <div>
+            <i class="el-icon-s-help" si />
+            <div>4#铸轧机</div>
+          </div>
+          <div>
+            <i class="el-icon-s-help" si />
+            <div>5#铸轧机</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex: 1;margin:0px 20px;text-align: center;box-shadow: 5px 5px 2px #cccccc;padding: 0 5px">
+        <div>重卷机</div>
+        <div >
+          <i class="el-icon-s-help" si />
+          <div>1#重卷机</div>
+        </div>
+      </div>
       <div style="flex: 7; box-shadow: 5px 5px 2px #cccccc;padding: 0 5px">
         <div style="text-align: center">退火炉</div>
         <div style="display: flex;justify-content: space-between;text-align: center">
@@ -34,563 +67,8 @@
           </div>
         </div>
       </div>
-
-      <div style="flex: 1;margin:0px 20px;text-align: center;box-shadow: 5px 5px 2px #cccccc;padding: 0 5px">
-        <div>重卷机</div>
-        <div >
-          <i class="el-icon-s-help" si />
-          <div>1#重卷机</div>
-        </div>
-      </div>
-
-      <div style="flex: 5;text-align: center;box-shadow: 5px 5px 2px #cccccc;padding: 0 5px">
-        <div>铸轧机</div>
-        <div style="display: flex;justify-content: space-between">
-          <div>
-            <i class="el-icon-s-help" si />
-            <div>1#铸轧机</div>
-          </div>
-          <div>
-            <i class="el-icon-s-help" si />
-            <div>2#铸轧机</div>
-          </div>
-          <div>
-            <i class="el-icon-s-help" si />
-            <div>3#铸轧机</div>
-          </div>
-          <div>
-            <i class="el-icon-s-help" si />
-            <div>4#铸轧机</div>
-          </div>
-          <div>
-            <i class="el-icon-s-help" si />
-            <div>5#铸轧机</div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- 设备健康分析图表 -->
-
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">1#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1"  stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}" >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-                <template slot-scope="scope">
-                  <div @click="getChart(scope.row)" style="text-align: center">
-                    <AreaChart width="200px" height="63px"></AreaChart>
-                  </div>
-                </template>
-              </el-table-column>
-
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-    </div>
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">2#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-              <template slot-scope="scope">
-                <div @click="getChart(scope.row)" style="text-align: center">
-                  <AreaChart width="200px" height="63px"></AreaChart>
-                </div>
-              </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-
-    </div>
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">3#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-              <template slot-scope="scope">
-                <div @click="getChart(scope.row)" style="text-align: center">
-                  <AreaChart width="200px" height="63px"></AreaChart>
-                </div>
-              </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-
-    </div>
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">4#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-              <template slot-scope="scope">
-                <div @click="getChart(scope.row)" style="text-align: center">
-                  <AreaChart width="200px" height="63px"></AreaChart>
-                </div>
-              </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-
-    </div>
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">5#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-              <template slot-scope="scope">
-                <div @click="getChart(scope.row)" style="text-align: center">
-                  <AreaChart width="200px" height="63px"></AreaChart>
-                </div>
-              </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-
-    </div>
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">6#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-              <template slot-scope="scope">
-                <div @click="getChart(scope.row)" style="text-align: center">
-                  <AreaChart width="200px" height="63px"></AreaChart>
-                </div>
-              </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-
-    </div>
-    <div style="display: flex; margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">7#退火炉</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-              <template slot-scope="scope">
-                <div @click="getChart(scope.row)" style="text-align: center">
-                  <AreaChart width="200px" height="63px"></AreaChart>
-                </div>
-              </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-
-    </div>
-
-    <div style="display: flex;margin-top: 5px;">
-      <div style="width: 54%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">重卷机</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData2" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
-              <el-table-column prop="xuhao" label="序号" min-width="10%" />
-              <el-table-column prop="name" label="指标名称" min-width="20%" />
-              <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
-                <template slot-scope="scope">
-                  <div @click="getChart(scope.row)" >
-                    <AreaChart width="200px" height="63px"></AreaChart>
-                  </div>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 18%">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">当前设备状态</span>
-            </div>
-          </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <i class="el-icon-s-help" si />
-            <div style="font-size: 30px;color: green;">正常</div>
-          </div>
-        </el-card>
-      </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
-          </div>
-          <div>
-            <el-table :data="tableData4" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" />
-              <el-table-column label="判定结果" min-width="15%" >
-                <template>
-                  <el-button
-                    size="mini"
-                    type="text"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
-    </div>
     <div style="display: flex;margin-top: 5px;">
       <div style="width: 54%">
         <el-card shadow="always">
@@ -868,6 +346,525 @@
               <el-table-column prop="tubiao" label="图表" min-width="50%" >
                 <template slot-scope="scope">
                   <div @click="getChart(scope.row)" >
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+
+    </div>
+    <div style="display: flex;margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">重卷机</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData2" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" >
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData4" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">1#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1"  stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}" >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">2#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">3#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">4#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">5#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">6#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
+                    <AreaChart width="200px" height="63px"></AreaChart>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 18%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">当前设备状态</span>
+            </div>
+          </div>
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
+            <i class="el-icon-s-help" si />
+            <div style="font-size: 30px;color: green;">正常</div>
+          </div>
+        </el-card>
+      </div>
+      <div class="health_status" style="width: 40%;height: 300px">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <span style="line-height: 20px;">报警记录表</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+              <el-table-column prop="id" label="序号" min-width="10%" />
+              <el-table-column prop="data" label="日期" min-width="25%" />
+              <el-table-column prop="address" label="编号" min-width="25%" />
+              <el-table-column prop="status" label="状态" min-width="25%" />
+              <el-table-column label="判定结果" min-width="15%" >
+                <template>
+                  <el-button
+                    size="mini"
+                    type="text"
+                  >查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </div>
+
+    </div>
+    <div style="display: flex; margin-top: 5px;">
+      <div style="width: 54%">
+        <el-card shadow="always">
+          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+            <div style="display: flex;">
+              <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
+              <span style="line-height: 20px;">7#退火炉</span>
+            </div>
+          </div>
+          <div>
+            <el-table :data="tableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+              <el-table-column prop="xuhao" label="序号" min-width="10%" />
+              <el-table-column prop="name" label="指标名称" min-width="20%" />
+              <el-table-column prop="value" label="数值" min-width="20%" />
+              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+                <template slot-scope="scope">
+                  <div @click="getChart(scope.row)" style="text-align: center">
                     <AreaChart width="200px" height="63px"></AreaChart>
                   </div>
                 </template>
