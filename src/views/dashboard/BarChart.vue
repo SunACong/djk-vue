@@ -7,7 +7,7 @@ import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
-const animationDuration = 6000
+const animationDuration = 1000
 
 export default {
   mixins: [resize],
@@ -43,7 +43,8 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-
+      const date = new Date()
+      console.log(date.toLocaleDateString())
       this.chart.setOption({
         tooltip: {
           trigger: 'axis',
@@ -52,23 +53,24 @@ export default {
           }
         },
         grid: {
-          top: 10,
           left: '2%',
           right: '2%',
           bottom: '3%',
           containLabel: true
         },
-        legend: { data: ['合格', '不合格'] },
+        legend: {
+          data: ['合格', '不合格']
+        },
         xAxis: [{
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
         }, {
           type: 'category',
           position: 'bottom',
           offset: 25,
           axisTick: { show: false },
           axisLine: { show: false },
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19']
         }],
         yAxis: [{
           type: 'value',
@@ -76,15 +78,15 @@ export default {
         }],
         series: [{
           name: '合格',
-          type: 'line',
+          type: 'bar',
           barWidth: '10%',
           data: [79, 52, 200, 400, 390, 330, 220],
           animationDuration
         }, {
           name: '不合格',
-          type: 'line',
+          type: 'bar',
           barWidth: '10%',
-          data: [79, 52, 200, 334, 390, 330, 220],
+          data: [1, 0, 2, 1, 3, 3, 2],
           animationDuration
         }]
       })
