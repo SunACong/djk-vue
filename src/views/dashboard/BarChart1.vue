@@ -46,7 +46,7 @@ export default {
 
       this.chart.setOption({
         title:{
-          text: '加热器电流'
+          text: ''
         },
         grid:{
           left: '20',
