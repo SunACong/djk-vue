@@ -914,6 +914,24 @@
 
     </div>
     <el-dialog :visible.sync="dialogVisible">
+      <div style="display: flex;">
+        <el-button style="" type="text"> 本周 </el-button>
+        <el-button style="" type="text"> 本月 </el-button>
+        <el-button style="margin-right: 10px;" type="text"> 本年 </el-button>
+        <div>
+          <el-date-picker
+            v-model="qualifyDateRange"
+            size="small"
+            type="daterange"
+            align="left"
+            unlink-panels
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :picker-options="pickerOptions"
+          />
+        </div>
+      </div>
       <div>
         <AreaChart></AreaChart>
       </div>
@@ -927,11 +945,41 @@ import AreaChart from '@/views/dashboard/AreaChart'
 import BarChart1 from '@/views/dashboard/BarChart1'
 import BarChart2 from '@/views/dashboard/BarChart2'
 import BarChart3 from '@/views/dashboard/BarChart3'
+import { getList } from '@/api/rewinder'
 export default {
   components: {AreaChart, BarChart1, BarChart2, BarChart3},
   props: {},
   data() {
     return {
+      qualifyDateRange: '',
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '本年至今',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 365)
+            // const start = new Date(new Date().getFullYear(), 0)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
       tableData: [{
         id: '01',
         data: '2022/04/15 18:00',
@@ -1090,6 +1138,11 @@ export default {
       }],
       dialogVisible: false
     }
+  },
+  created() {
+    getList().then((res) => {
+      console.log(res)
+    })
   },
   methods: {
     getChart: function(row) {

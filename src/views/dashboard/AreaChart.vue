@@ -88,7 +88,7 @@ export default {
         ],
         series: [
           {
-            name: '冷却水',
+            name: '开卷机速度',
             type: 'line',
             stack: 'Total',
             areaStyle: {},

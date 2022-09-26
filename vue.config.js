@@ -29,15 +29,25 @@ module.exports = {
   assetsDir: 'static',
   // lintOnSave: process.env.NODE_ENV === 'development',
   lintOnSave: false,
-  productionSourceMap: false, 
+  productionSourceMap: false,
   devServer: {
-    port: port,
     open: true,
     overlay: {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // before: require('./mock/mock-server.js'),
+    host: 'localhost',
+    port: port, // 这个是自己本地vue项目启动的端口
+    proxy: {
+      '/api': { // '/api'是代理标识，用于告诉node，url前面是/api的就是使用代理的
+        target: 'http://localhost:9527', // 目标地址，一般是指后台服务器地址
+        changeOrigin: true, // 是否跨域
+        pathRewrite: { // pathRewrite 的作用是把实际Request Url中的'/api'用""代替
+          '^/api': ''
+        }
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
