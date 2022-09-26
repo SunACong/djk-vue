@@ -67,7 +67,7 @@
             <el-table-column prop="report_time" label="日期" min-width="20%" />
             <el-table-column prop="batch_num" label="卷号" min-width="20%" />
             <el-table-column prop="consumer" label="客户" min-width="20%" />
-            <el-table-column prop="plate_type" label="版型" min-width="20%">
+            <el-table-column prop="plate_type" label="板型" min-width="20%">
               <template slot-scope="scope">
                 <el-button
                   size="medium"
@@ -107,7 +107,7 @@
                 >{{ scope.row.quality_judgment?'合格':'不合格' }}</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="综合判定" min-width="20%">
+            <el-table-column prop="quality_judgment" label="质量判定" min-width="20%">
               <template>
                 <el-button
                   size="medium"
@@ -140,7 +140,7 @@
         </div>
       </el-card>
     </div>
-    <div />
+
     <!-- 弹窗 -->
     <el-dialog title="" :visible.sync="dialogFormVisible">
       <!-- 版型 -->
@@ -302,6 +302,7 @@
 
 <script>
 import BarChart from '@/views/dashboard/BarChart'
+import { getProductQualityList } from '@/api/productQuality'
 export default {
   batch_num: 'ProductQuality',
   components: { BarChart },
@@ -359,9 +360,9 @@ export default {
   watch: {},
   created() {
     console.log('hahaha')
-    for (let i = 0; i < 10; i++) {
-      this.tableData[i] = this.tableData[0]
-    }
+    getProductQualityList().then((res) => {
+      console.log('res: ', res)
+    })
   },
   methods: {
     handleSizeChange(val) {
