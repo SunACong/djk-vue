@@ -2,7 +2,7 @@
   <div>
     <div class="custom-steps">
       <div class="left-steps">
-        <el-steps align-center>
+        <el-steps align-center >
           <el-step
             v-for="(d, i) in topSteps"
             :key="d.title"
@@ -12,7 +12,7 @@
             :status="active > i ? 'finish' : ''"
           />
         </el-steps>
-        <el-steps align-center>
+        <el-steps align-center >
           <el-step
             v-for="(d, i) in bottomSteps"
             :key="i"
@@ -77,7 +77,7 @@ export default {
       this._setActive()
     },
     _setActive() {
-      console.log(this.active)
+      console.log('this.active:', this.active)
       if (this.active > this.topSteps.length) {
         this.midFlag = true
       }
@@ -91,9 +91,9 @@ export default {
       if (stepsData && stepsData.length > 0) {
         const n = Math.floor(stepsData.length / 2)
         this.midNum = n
-        this.topSteps = stepsData.slice(0, n)
+        this.topSteps = stepsData.slice(0, n - 1)
         this.midSteps = stepsData[n]
-        this.bottomSteps = stepsData.slice(n + 1).reverse()
+        this.bottomSteps = stepsData.slice(n).reverse()
       }
     }
   }
@@ -103,7 +103,7 @@ export default {
 <style scoped lang="less">
 .circle {
   width: 150px;
-  height: 210px;
+  height: 300px;
   margin-top: 10px;
   border: 5px solid #c0c4cc;
   border-radius: 0 25% 25% 0/50%;
@@ -118,7 +118,7 @@ export default {
     transform: translate(55%, -50%);
     background-color: #fff;
     border-radius: 50%;
-    color: #00ff00;
+    color: #000000;
     text-align: center;
     font-size: 11px;
     border: 8px solid #ffffff;
@@ -134,15 +134,15 @@ export default {
     .tips {
       display: flex;
       position: absolute;
-      right: 11px;
-      font-size: 33px;
-      color: #00ff00;
-      width: 33px;
-      padding-right: 33px;
+      right: 0px;
+      font-size: 0px;
+      color: #c0c4cc;
+      width: 11px;
+      padding-right: 11px;
       flex-direction: column;
       text-align: center;
       > span:first-child {
-        font-size: 14px;
+        font-size: 0px;
         font-weight: 100;
       }
     }
@@ -171,7 +171,7 @@ export default {
   }
   .right-steps {
     /*float: right;*/
-    margin-left: -40px;
+    margin-left: -50px;
   }
   /deep/.el-step__icon {
     ///*background: #f6f6f6;
