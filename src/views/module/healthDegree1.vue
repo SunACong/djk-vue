@@ -301,11 +301,8 @@
 
 <script>
 import AreaChart from '@/views/dashboard/AreaChart'
-import BarChart1 from '@/views/dashboard/BarChart1'
-import BarChart2 from '@/views/dashboard/BarChart2'
-import BarChart3 from '@/views/dashboard/BarChart3'
 export default {
-  components: {AreaChart, BarChart1, BarChart2, BarChart3},
+  components: {AreaChart},
   props: {},
   data() {
     return {
