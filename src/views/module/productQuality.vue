@@ -17,7 +17,7 @@
 						<div>
 							<el-date-picker v-model="qualifyDateRange" size="small" type="datetimerange" align="left"
 								format="yyyy-MM-dd HH:mm:ss" value-format="yyyy-MM-dd HH:mm:ss" :picker-options="pickerOptions" range-separator="至"
-								start-placeholder="开始日期" end-placeholder="结束日期" @change="dateRange(qualifyDateRange)">
+								start-placeholder="开始日期" end-placeholder="结束日期" @change="dateRange(qualityDateRange)">
 							</el-date-picker>
 						</div>
 					</div>
@@ -141,8 +141,25 @@
 					</el-descriptions-item>
 				</el-descriptions>
 			</div>
-			<!-- 力学性能 -->
+			<!-- 尺寸偏差 -->
 			<div v-if="showWtich===2 || showWtich===6" style="margin-top: 20px;">
+				<el-descriptions class="margin-top" title="尺寸偏差" :column="2" border>
+					<el-descriptions-item>
+						<template slot="label">
+							宽度
+						</template>
+						{{dailogData.finishedWidth === null?'-':dailogData.finishedWidth}}
+					</el-descriptions-item>
+					<el-descriptions-item>
+						<template slot="label">
+							厚度
+						</template>
+						{{dailogData.finishedThickness === null?'-':dailogData.finishedThickness}}
+					</el-descriptions-item>
+				</el-descriptions>
+			</div>
+			<!-- 力学性能 -->
+			<div v-if="showWtich===3 || showWtich===6" style="margin-top: 20px;">
 				<el-descriptions class="margin-top" title="力学性能" :column="2" border>
 					<el-descriptions-item>
 						<template slot="label">
@@ -164,23 +181,7 @@
 					</el-descriptions-item>
 				</el-descriptions>
 			</div>
-			<!-- 尺寸偏差 -->
-			<div v-if="showWtich===3 || showWtich===6" style="margin-top: 20px;">
-				<el-descriptions class="margin-top" title="尺寸偏差" :column="2" border>
-					<el-descriptions-item>
-						<template slot="label">
-							宽度
-						</template>
-						{{dailogData.finishedWidth === null?'-':dailogData.finishedWidth}}
-					</el-descriptions-item>
-					<el-descriptions-item>
-						<template slot="label">
-							厚度
-						</template>
-						{{dailogData.finishedThickness === null?'-':dailogData.finishedThickness}}
-					</el-descriptions-item>
-				</el-descriptions>
-			</div>
+		
 			<!-- 表面质量 -->
 			<div v-if="showWtich===4 || showWtich===6" style="margin-top: 20px;">
 				<el-descriptions class="margin-top" title="表面质量" :column="2" border>
