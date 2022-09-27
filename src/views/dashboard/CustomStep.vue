@@ -102,13 +102,13 @@ export default {
 
 <style scoped lang="less">
 .circle {
-  width: 150px;
-  height: 300px;
-  margin-top: 10px;
-  border: 5px solid #c0c4cc;
-  border-radius: 0 25% 25% 0/50%;
-  border-left: none;
-  position: relative;
+  // width: 150px;
+  // height: 300px;
+  // margin-top: 10px;
+  // border: 0px solid #c0c4cc;
+  // border-radius: 0 25% 25% 0/50%;
+  // border-left: none;
+  // position: relative;
   .icon {
     position: absolute;
     right: 35px;
