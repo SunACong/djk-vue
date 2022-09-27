@@ -43,8 +43,6 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      const date = new Date()
-      console.log(date.toLocaleDateString())
       this.chart.setOption({
         tooltip: {
           trigger: 'axis',
