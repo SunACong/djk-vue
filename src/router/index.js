@@ -65,7 +65,7 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/module/processMonitor', 
+    path: '/module/processMonitor',
     component: Layout,
     redirect: '/module',
     children: [{

@@ -59,18 +59,19 @@ export default {
             }
           }
         },
-        legend: {
-          data: ['炉膛温度', '炉压']
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
-        },
+        // legend: {
+        //   data: ['炉膛温度', '炉压']
+        // },
+        // toolbox: {
+        //   feature: {
+        //     saveAsImage: {}
+        //   }
+        // },
         grid: {
-          left: '3%',
-          right: '4%',
+          left: '1%',
+          right: '10%',
           bottom: '3%',
+          top: '10%',
           containLabel: true
         },
         xAxis: [
@@ -87,7 +88,7 @@ export default {
         ],
         series: [
           {
-            name: '炉膛温度',
+            name: '开卷机速度',
             type: 'line',
             stack: 'Total',
             areaStyle: {},
@@ -96,16 +97,16 @@ export default {
             },
             data: [120, 132, 101, 134, 90, 230, 210]
           },
-          {
-            name: '炉压',
-            type: 'line',
-            stack: 'Total',
-            areaStyle: {},
-            emphasis: {
-              focus: 'series'
-            },
-            data: [220, 182, 191, 234, 290, 330, 310]
-          },
+          // {
+          //   name: '炉压',
+          //   type: 'line',
+          //   stack: 'Total',
+          //   areaStyle: {},
+          //   emphasis: {
+          //     focus: 'series'
+          //   },
+          //   data: [220, 182, 191, 234, 290, 330, 310]
+          // },
           // {
           //   name: 'Video Ads',
           //   type: 'line',

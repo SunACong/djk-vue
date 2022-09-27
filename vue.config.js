@@ -31,13 +31,21 @@ module.exports = {
   lintOnSave: false,
   productionSourceMap: false, 
   devServer: {
-    port: port,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    before: require('./mock/mock-server.js')
+    host: 'localhost',
+		port: port,
+		open: true,
+		https: false,
+		proxy: {
+				'/api': {
+						target: 'http://localhost:9527',
+						changeOrigin: true,
+						ws: true,
+						pathRewrite: {
+								'^/api': ''
+						}
+				}
+		},
+		disableHostCheck: true
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
