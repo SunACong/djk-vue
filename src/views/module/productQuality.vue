@@ -302,11 +302,11 @@
 
 <script>
 import BarChart from '@/views/dashboard/BarChart'
-import { getProductQualityList } from '@/api/productQuality'
+
 export default {
   batch_num: 'ProductQuality',
   components: { BarChart },
-  data() {
+  data() {r
     return {
       qualifyDateRange: '',
       reportDateRange: '',
@@ -360,9 +360,6 @@ export default {
   watch: {},
   created() {
     console.log('hahaha')
-    getProductQualityList().then((res) => {
-      console.log('res: ', res)
-    })
   },
   methods: {
     handleSizeChange(val) {
