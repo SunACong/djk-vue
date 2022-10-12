@@ -56,14 +56,41 @@ export const constantRoutes = [
   {
     path: '/module/healthDegree',
     component: Layout,
-    redirect: '/module/healthDegree',
+    meta: { title: '设备健康状况分析', icon: 'dashboard' },
+    redirect: '/module/healthDegree/roollingMachine',
     children: [{
-      path: '/module/healthDegree',
-      name: 'HealthDegree',
-      component: () => import('@/views/module/healthDegree'),
-      meta: { title: '设备健康分析模型', icon: 'dashboard' }
+      path: 'roollingMachine',
+      name: 'RoollingMachine',
+      component: () => import('@/views/module/healthDegree/roollingMachine.vue'),
+      meta: { title: '铸扎机', icon: 'dashboard' }
+    },{
+      path: 'recoilingMachine',
+      name: 'RecoilingMachine',
+      component: () => import('@/views/module/healthDegree/recoilingMachine.vue'),
+      meta: { title: '重卷机', icon: 'dashboard' }
+    },{
+      path: 'annealingFurnace',
+      name: 'AnnealingFurance',
+      component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
+      meta: { title: '退火炉', icon: 'dashboard' }
+    },{
+      path: 'test',
+      name: 'Test',
+      component: () => import('@/views/module/healthDegree/test.vue'),
+      meta: { title: '测试', icon: 'dashboard' }
     }]
   },
+  // {
+  //   path: '/module/healthDegree',
+  //   component: Layout,
+  //   redirect: '/module/healthDegree',
+  //   children: [{
+  //     path: '/module/healthDegree',
+  //     name: 'HealthDegree',
+  //     component: () => import('@/views/module/healthDegree'),
+  //     meta: { title: '设备健康分析模型', icon: 'dashboard' }
+  //   }]
+  // },
   {
     path: '/module/processMonitor',
     component: Layout,

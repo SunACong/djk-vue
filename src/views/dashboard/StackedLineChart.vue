@@ -27,34 +27,62 @@ export default {
     },
     yData:{
       type: Array
+    },
+    minData:{
+      type: Number
+    },
+    maxData:{
+      type: Number
+    },
+    rName:{
+      type: String
     }
   },
   data() {
     return {
-      chart: null,
-      xdata: [],
-      ydata:[]
+      chart: null
     }
   },
   watch: {
     xData: {
       handler () {
-
-        // console.log('这是xData', oldValue, newValue)
+        this.initChart()
       },
-      immediate: true,
-      deep: true
+      // immediate: true,
+      // deep: true
     },
     yData: {
       handler () {
         this.initChart()
-        // console.log('这是yData', oldValue, newValue)
       },
-      immediate: true,
-      deep: true
-    }
+      // immediate: true,
+      // deep: true
+    },
+    minData: {
+      handler () {
+        this.initChart()
+      },
+      // immediate: true,
+      // deep: true
+    },
+    maxData: {
+      handler () {
+        this.initChart()
+      },
+      // immediate: true,
+      // deep: true
+    },
+    // rName: {
+    //   handler () {
+    //     this.initChart()
+    //   },
+    //   // immediate: true,
+    //   // deep: true
+    // }
   },
   mounted() {
+    // console.log(this.xData)
+    // console.log(this.yData)
     this.$nextTick(() => {
       this.initChart()
     })
@@ -69,9 +97,9 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOption(this.xData, this.yData)
+      this.setOption(this.xData, this.yData,this.minData,this.maxData,this.rName)
     },
-    setOption(x, y) {
+    setOption(x, y,min,max,name) {
       this.chart.setOption({
         title: {
           text: ''
@@ -110,7 +138,7 @@ export default {
         },
         series: [
           {
-            name: '开卷机速度',
+            name: name,
             type: 'line',
             stack: 'Total',
             data: y
@@ -123,8 +151,8 @@ export default {
           // precision: 1,
           // seriesIndex: 0,
           pieces: [{
-            gt:0,
-            lt: 250 , // 设置最大值<250
+            gt: min,   //设置最小值
+            lt: max , // 设置最大值
             color: '#33bfcc'
           }],
           outOfRange: { color: '#CC3300' // 设置超出部分的颜色
