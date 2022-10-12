@@ -105,7 +105,7 @@ export default {
   width: 150px;
   height: 300px;
   margin-top: 10px;
-  border: 5px solid #c0c4cc;
+  border: 0px solid #c0c4cc;
   border-radius: 0 25% 25% 0/50%;
   border-left: none;
   position: relative;
