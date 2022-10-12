@@ -14,6 +14,7 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+// const port = 9528 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -31,7 +32,7 @@ module.exports = {
   lintOnSave: false,
   productionSourceMap: false, 
   devServer: {
-    host: 'localhost',
+    host: '0.0.0.0',
 		port: port,
 		open: true,
 		https: false,

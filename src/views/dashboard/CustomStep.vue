@@ -77,7 +77,7 @@ export default {
       this._setActive()
     },
     _setActive() {
-      console.log('this.active:', this.active)
+      console.log(this.active)
       if (this.active > this.topSteps.length) {
         this.midFlag = true
       }
@@ -91,7 +91,7 @@ export default {
       if (stepsData && stepsData.length > 0) {
         const n = Math.floor(stepsData.length / 2)
         this.midNum = n
-        this.topSteps = stepsData.slice(0, n - 1)
+        this.topSteps = stepsData.slice(0, n)
         this.midSteps = stepsData[n]
         this.bottomSteps = stepsData.slice(n).reverse()
       }
@@ -102,6 +102,7 @@ export default {
 
 <style scoped lang="less">
 .circle {
+
   width: 150px;
   height: 300px;
   margin-top: 10px;

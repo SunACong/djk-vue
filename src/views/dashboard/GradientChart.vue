@@ -7,7 +7,6 @@ import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
-// const animationDuration = 3000
 
 export default {
   mixins: [resize],
@@ -23,37 +22,11 @@ export default {
     height: {
       type: String,
       default: '300px'
-    },
-    xData: {
-      type: Array,
-      default: ()=>[]
-    },
-    yData:{
-      type: Array,
-      default: ()=>[]
     }
   },
   data() {
     return {
-      chart: null,
-      xdata: [],
-      ydata:[]
-    }
-  },
-  watch: {
-    xData: {
-      handler () {
-        // this.initChart()
-      },
-      immediate: true,
-      deep: true
-    },
-    yData: {
-      handler () {
-        this.initChart()
-      },
-      immediate: true,
-      deep: true
+      chart: null
     }
   },
   mounted() {
@@ -71,13 +44,11 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      // console.log(this.xData, this.yData)
-      this.setOption(this.xData, this.yData)
-    },
-    setOption(x, y) {
+
       this.chart.setOption({
-        title:{
-          text: ''
+        color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
+        title: {
+          // text: ''
         },
         tooltip: {
           trigger: 'axis',
@@ -88,6 +59,14 @@ export default {
             }
           }
         },
+        // legend: {
+        //   data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']
+        // },
+        // toolbox: {
+        //   feature: {
+        //     saveAsImage: {}
+        //   }
+        // },
         grid: {
           left: '1%',
           right: '10%',
@@ -99,7 +78,7 @@ export default {
           {
             type: 'category',
             boundaryGap: false,
-            data: x
+            data: ['2022.9.27 8:47:53', '2022.9.27 8:48:47', '2022.9.27 8:48:55', '2022.9.27 8:49:33', '2022.9.27 8:47:47', '2022.9.27 8:50:47', '2022.9.27 8:51:47','2022.9.27 8:52:53', '2022.9.27 8:53:47', '2022.9.27 8:54:55', '2022.9.27 8:55:33', '2022.9.27 8:56:47', '2022.9.27 8:57:47', '2022.9.27 8:58:47']
           }
         ],
         yAxis: [
@@ -109,15 +88,36 @@ export default {
         ],
         series: [
           {
-            name: '上辊电机电流',
+            name: '金属料温温度',
             type: 'line',
             stack: 'Total',
-            areaStyle: {},
+            smooth: true,
+            lineStyle: {
+              width: 0
+            },
+            showSymbol: false,
+            label: {
+              show: true,
+              position: 'top'
+            },
+            areaStyle: {
+              opacity: 0.8,
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: 'rgb(255, 191, 0)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgb(224, 62, 76)'
+                }
+              ])
+            },
             emphasis: {
               focus: 'series'
             },
-            data: y
-          },
+            data: [220, 365, 111, 234, 89, 290, 150,220, 325, 240, 255, 288, 200, 186]
+          }
         ],
         visualMap: [{
           top: 10,
@@ -127,10 +127,10 @@ export default {
           // seriesIndex: 0,
           pieces: [{
             gt:0,
-            lt: 250 , // 设置最大值<250
+            lt: 300 , // 设置最大值<250
             color: '#33bfcc'
           }],
-          outOfRange: { color: '#CC3300' // 设置超出部分的颜色
+          outOfRange: { color: '#f30b2d' // 设置超出部分的颜色
           }
         },
         ]

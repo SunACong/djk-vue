@@ -12,12 +12,15 @@
 				<el-button type="primary" size="mini">查询</el-button>
 			</el-row>
       <el-input v-model="input_lengzha" style="line-height: 10px; width:200px" size="mini" placeholder="请输入你要查询的冷轧卷号"></el-input>
+
 			<el-row>
 				<el-button type="primary" size="mini">查询</el-button>
 			</el-row>
 		</div>
 		<div align="center">
+
 			<span style="line-height: 90px;" size="mini">当前生产流程： </span>
+
 			<el-button type="primary" size="mini">保温</el-button>
 		</div>
 		<div >
@@ -208,10 +211,10 @@
                 '精炼剂#用量：150L，班组名称：A班'
 
           },
-          {
-            title: '',
-            description: ''
-          },
+          // {
+          //   title: '',
+          //   description: ''
+          // },
 					{
 						title: '步骤9铸扎生产',
 						description: '关联计划ID：plan_id，关联熔次号：smelt_times，铸轧卷号：A123456' +
@@ -345,7 +348,6 @@
 					now_process: '生产',
 					hang_time: '2022.04.15',
 					note: '温度过高'
-
 				}, {
 					num: '002',
 					product_num: 'ACC034',
@@ -418,6 +420,14 @@
 	.top_card {
 		flex: 2;
 		margin: 1% 1%;
+	}
+
+	.bottom_card {
+		margin: 1% 1%;
+	}
+
+	/deep/ .el-card__header {
+		padding: 10px 20px;
 	}
 
 	.bottom_card {

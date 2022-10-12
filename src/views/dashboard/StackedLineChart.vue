@@ -7,8 +7,6 @@ import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
-// const animationDuration = 3000
-
 export default {
   mixins: [resize],
   props: {
@@ -25,12 +23,10 @@ export default {
       default: '300px'
     },
     xData: {
-      type: Array,
-      default: ()=>[]
+      type: Array
     },
     yData:{
-      type: Array,
-      default: ()=>[]
+      type: Array
     }
   },
   data() {
@@ -43,7 +39,8 @@ export default {
   watch: {
     xData: {
       handler () {
-        // this.initChart()
+
+        // console.log('这是xData', oldValue, newValue)
       },
       immediate: true,
       deep: true
@@ -51,6 +48,7 @@ export default {
     yData: {
       handler () {
         this.initChart()
+        // console.log('这是yData', oldValue, newValue)
       },
       immediate: true,
       deep: true
@@ -71,23 +69,25 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      // console.log(this.xData, this.yData)
       this.setOption(this.xData, this.yData)
     },
     setOption(x, y) {
       this.chart.setOption({
-        title:{
+        title: {
           text: ''
         },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
             type: 'cross',
-            label: {
-              backgroundColor: '#6a7985'
-            }
+            // label: {
+            //   backgroundColor: '#6a7985'
+            // }
           }
         },
+        // legend: {
+        //   data: []
+        // },
         grid: {
           left: '1%',
           right: '10%',
@@ -95,29 +95,26 @@ export default {
           top: '10%',
           containLabel: true
         },
-        xAxis: [
-          {
-            type: 'category',
-            boundaryGap: false,
-            data: x
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value'
-          }
-        ],
+        // toolbox: {
+        //   feature: {
+        //     saveAsImage: {}
+        //   }
+        // },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: x
+        },
+        yAxis: {
+          type: 'value'
+        },
         series: [
           {
-            name: '上辊电机电流',
+            name: '开卷机速度',
             type: 'line',
             stack: 'Total',
-            areaStyle: {},
-            emphasis: {
-              focus: 'series'
-            },
             data: y
-          },
+          }
         ],
         visualMap: [{
           top: 10,

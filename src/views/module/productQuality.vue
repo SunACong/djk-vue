@@ -11,13 +11,10 @@
 						<span style="line-height: 40px;">产品合格判定汇总</span>
 					</div>
 					<div style="display: flex;">
-						<el-button style="" type="text">本周</el-button>
-						<el-button style="" type="text">本月</el-button>
-						<el-button style="margin-right: 10px;" type="text">本年</el-button>
 						<div>
 							<el-date-picker v-model="qualifyDateRange" size="small" type="datetimerange" align="left"
 								format="yyyy-MM-dd HH:mm:ss" value-format="yyyy-MM-dd HH:mm:ss" :picker-options="pickerOptions" range-separator="至"
-								start-placeholder="开始日期" end-placeholder="结束日期" @change="dateRange(qualifyDateRange)">
+								start-placeholder="开始日期" end-placeholder="结束日期" @change="dateRange(qualityDateRange)">
 							</el-date-picker>
 						</div>
 					</div>
@@ -58,51 +55,52 @@
 					<el-table :data="tableData" stripe style="width: 100%" :border="true"
 						:cell-style="{'text-align':'center','height':'10px'}"
 						:header-cell-style="{'text-align':'center'}">
-						<el-table-column prop="ts" label="日期" min-width="20%" />
+						<el-table-column prop="lqciTs" label="日期" min-width="20%" />
 						<el-table-column prop="batchNum" label="卷号" min-width="21%" />
 						<el-table-column prop="consumer" label="客户" min-width="20%" />
 						<el-table-column prop="plateType" label="板型" min-width="20%">
 							<template slot-scope="scope">
 								<el-button size="medium" type="text" @click="handleView(1, scope.row)">
-									{{ !scope.row.plateType?'合格':'不合格' }}
+									{{ scope.row.plateType === 1?'合格': (scope.row.plateType === 2?'暂未评定':'不合格') }}
 								</el-button>
 							</template>
 						</el-table-column>
 						<el-table-column prop="sizeDeviation" label="尺寸偏差" min-width="20%">
 							<template slot-scope="scope">
 								<el-button size="medium" type="text" @click="handleView(2, scope.row)">
-									{{ !scope.row.sizeDeviation?'合格':'不合格' }}
+									{{ scope.row.sizeDeviation === 1?'合格': (scope.row.sizeDeviation === 2?'暂未评定':'不合格') }}
 								</el-button>
 							</template>
 						</el-table-column>
 						<el-table-column prop="mechanicalProperties" label="力学性能" min-width="20%">
 							<template slot-scope="scope">
 								<el-button size="medium" type="text" @click="handleView(3, scope.row)">
-									{{ !scope.row.mechanicalProperties?'合格':'不合格' }}
+									{{ scope.row.mechanicalProperties === 1?'合格': (scope.row.mechanicalProperties === 2?'暂未评定':'不合格') }}
 								</el-button>
 							</template>
 						</el-table-column>
 						<el-table-column prop="surfaceQuality" label="表面质量" min-width="20%">
 							<template slot-scope="scope">
 								<el-button size="medium" type="text" @click="handleView(4, scope.row)">
-									{{ !scope.row.surfaceQuality?'合格':'不合格' }}
+									{{ scope.row.surfaceQuality === 1?'合格': (scope.row.surfaceQuality === 2?'暂未评定':'不合格') }}
 								</el-button>
 							</template>
 						</el-table-column>
 						<el-table-column prop="quality_judgment" label="外观质量" min-width="20%">
 							<template slot-scope="scope">
 								<el-button size="medium" type="text" @click="handleView(5, scope.row)">
-									{{ !scope.row.appearanceQuality?'合格':'不合格' }}
+									{{ scope.row.appearanceQuality === 1?'合格': (scope.row.appearanceQuality === 2?'暂未评定':'不合格') }}
 								</el-button>
 							</template>
 						</el-table-column>
-						<el-table-column prop="qualityQudgment" label="质量判定" min-width="20%">
-							<template>
-								<el-tag type="success">合格</el-tag>
+						<el-table-column prop="qualityJudgment" label="质量判定" min-width="20%">
+							<template slot-scope="scope">
+								<el-tag :type="scope.row.qualityJudgment === 1?'success': (scope.row.qualityJudgment === 2?'info':'danger')">
+									{{ scope.row.qualityJudgment === 1?'合格': (scope.row.qualityJudgment === 2?'暂未评定':'不合格') }}
+								</el-tag>
 							</template>
 						</el-table-column>
 						<el-table-column prop="remark" label="备注" min-width="20%">
-							合格A
 						</el-table-column>
 						<el-table-column label="操作" min-width="20%">
 							<template slot-scope="scope">
@@ -123,13 +121,13 @@
 		</div>
 
 		<!-- 弹窗 -->
-		<el-dialog title="" :visible.sync="dialogFormVisible">
+		<el-dialog :title="dailogData.processStandard.processName" :visible.sync="dialogFormVisible">
 			<!-- 版型 -->
 			<div v-if="showWtich===1 || showWtich===6">
 				<el-descriptions class="margin-top" title="版型" :column="2" border>
 					<el-descriptions-item>
 						<template slot="label">
-							平直度
+								平直度
 						</template>
 						{{dailogData.singleStraightness === null?'-':dailogData.singleStraightness}}
 					</el-descriptions-item>
@@ -141,8 +139,26 @@
 					</el-descriptions-item>
 				</el-descriptions>
 			</div>
-			<!-- 力学性能 -->
+			<!-- 尺寸偏差 -->
 			<div v-if="showWtich===2 || showWtich===6" style="margin-top: 20px;">
+				<el-descriptions class="margin-top" title="尺寸偏差" :column="2" border>
+					<el-descriptions-item>
+						<template slot="label">
+								宽度
+						</template>
+						{{dailogData.finishedWidth === null?'-':dailogData.finishedWidth}}
+						
+					</el-descriptions-item>
+					<el-descriptions-item>
+						<template slot="label">
+							厚度
+						</template>
+						{{dailogData.finishedThickness === null?'-':dailogData.finishedThickness}}
+					</el-descriptions-item>
+				</el-descriptions>
+			</div>
+			<!-- 力学性能 -->
+			<div v-if="showWtich===3 || showWtich===6" style="margin-top: 20px;">
 				<el-descriptions class="margin-top" title="力学性能" :column="2" border>
 					<el-descriptions-item>
 						<template slot="label">
@@ -161,23 +177,6 @@
 							弯折性能
 						</template>
 						-
-					</el-descriptions-item>
-				</el-descriptions>
-			</div>
-			<!-- 尺寸偏差 -->
-			<div v-if="showWtich===3 || showWtich===6" style="margin-top: 20px;">
-				<el-descriptions class="margin-top" title="尺寸偏差" :column="2" border>
-					<el-descriptions-item>
-						<template slot="label">
-							宽度
-						</template>
-						{{dailogData.finishedWidth === null?'-':dailogData.finishedWidth}}
-					</el-descriptions-item>
-					<el-descriptions-item>
-						<template slot="label">
-							厚度
-						</template>
-						{{dailogData.finishedThickness === null?'-':dailogData.finishedThickness}}
 					</el-descriptions-item>
 				</el-descriptions>
 			</div>
@@ -233,7 +232,7 @@
 				<el-descriptions class="margin-top" title="外观质量" :column="2" border>
 					<el-descriptions-item>
 						<template slot="label">
-							串层
+							串层 
 						</template>
 						-
 					</el-descriptions-item>
@@ -283,9 +282,7 @@
 
 <script>
 	import BarChart from '@/views/dashboard/BarChart'
-	import {
-		getProductQualityList
-	} from '@/api/productQuality'
+	import {	getProductQualityVoList } from '@/api/productQuality'
 	export default {
 		batch_num: 'ProductQuality',
 		components: {
@@ -318,7 +315,7 @@
 							picker.$emit('pick', [start, end])
 						}
 					}, {
-						text: '本年至今',
+						text: '最近一年',
 						onClick(picker) {
 							const end = new Date()
 							const start = new Date()
@@ -328,9 +325,49 @@
 						}
 					}]
 				},
-				dailogData: {},
+				dailogData: {
+/* 					id: null,
+					batchNum: null,
+					lqciTs: null,
+					lqcmrTs: null,
+					consumer: null,
+					singleStraightness: null,
+					singleMediumConvexity: null,
+					finishedThickness: null,
+					finishedWidth: null,
+					finishedRollDiameter: null,
+					finishedWeight: null,
+					surfaceQualityRemark: null,
+					correctStrength: null,
+					correctExtension: null,
+					plateType: null,
+					sizeDeviation: null,
+					mechanicalProperties: null,
+					surfaceQuality: null,
+					appearanceQuality: null,
+					qualityJudgment: null,
+					remark: null,
+					startDateTime: null,
+					endDateTime: null, */
+					processStandard: {
+							id: null,
+							processName: null,
+							thicknessDiff: null,
+							widthDiff: null,
+							straightness: null,
+							mediumConvexityLow: null,
+							mediumConvexityHigh: null,
+							rollDiameterLow: null,
+							rollDiameterHigh: null,
+							rollWeightLow: null,
+							rollWeightHigh: null,
+							tensileStrengthLow: null,
+							tensileStrengthHigh: null,
+							elongation: null,
+							surface: null
+					}
+				},
 				tableData: [],
-				dialogTableVisible: false,
 				dialogFormVisible: false,
 				// 查询参数
 				queryParams: {
@@ -338,8 +375,9 @@
 					pageSize: null,
 					startDateTime: null,
 					endDateTime: null,
-					batchNum: null
+					batchNum: null,
 				},
+				productStandard: null,
 				/* 			batchNum
 								ts
 								consumer
@@ -378,45 +416,64 @@
 			}
 		},
 		computed: {},
-		created() {
-			this.getList()
+		async created() {
+			await this.getList()
 		},
 		methods: {
+			/**
+			 * 更改pageSize
+			 * @param {Object} val
+			 */
 			handleSizeChange(val) {
-				console.log(`每页 ${val} 条`)
 				this.pageSize = val
 				this.getList()
 			},
+			/**
+			 * 更改当前页码
+			 * @param {Object} val
+			 */
 			handleCurrentChange(val) {
-				console.log(`当前页: ${val}`)
 				this.currentPage = val
 				this.getList()
 			},
+			/**
+			 * 展示对应行的数据弹窗
+			 * @param {Object} index
+			 * @param {Object} row
+			 */
 			handleView(index, row) {
-				console.log('row: ', row)
-				this.showWtich = index
+				this.showWtich = index 
 				this.dailogData = row
 				this.dialogFormVisible = true
 			},
+			/**
+			 * 卷号查询
+			 * @param {Object} val
+			 */
 			query(val) {
 				console.log(val)
 				this.queryParams.batchNum = val
 				this.getList()
 			},
+			/**
+			 * 日期查询
+			 * @param {Object} val
+			 */
 			dateRange(val) {
 				console.log(val);
 				try{
 					this.queryParams.startDateTime =  val[0]
-					console.log(typeof val[0]);
 					this.queryParams.endDateTime = val[1]
 				}catch(e){
 					this.queryParams.startDateTime = null
 					this.queryParams.endDateTime = null
 				}
-				
 			},
+			/**
+			 * 获取表格数据
+			 */
 			getList() {
-				getProductQualityList(this.queryParams).then((res) => {
+				getProductQualityVoList(this.queryParams).then((res) => {
 					console.log('res: ', res)
 					this.tableData = res.data.records
 					this.total = res.data.total
