@@ -7,3 +7,12 @@ export function getProductQualityList(params) {
     params
   })
 }
+
+export function getProductQualityVoList(params) {
+  return request({
+    url: '/productQuality/pageVOList',
+    method: 'get',
+    params
+  })
+}
+
