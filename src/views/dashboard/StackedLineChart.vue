@@ -45,28 +45,28 @@ export default {
   },
   watch: {
     xData: {
-      handler () {
+      handler: function () {
         this.initChart()
       },
       // immediate: true,
       // deep: true
     },
     yData: {
-      handler () {
+      handler: function () {
         this.initChart()
       },
       // immediate: true,
       // deep: true
     },
     minData: {
-      handler () {
+      handler: function () {
         this.initChart()
       },
       // immediate: true,
       // deep: true
     },
     maxData: {
-      handler () {
+      handler: function () {
         this.initChart()
       },
       // immediate: true,

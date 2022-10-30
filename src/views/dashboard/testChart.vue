@@ -32,19 +32,19 @@ export default {
         },
         tooltip: {
           trigger: "axis",
-          formatter: function (params) {
-            params = params[0];
-            var date = new Date(params.name);
-            return (
-                date.getDate() +
-                "/" +
-                (date.getMonth() + 1) +
-                "/" +
-                date.getFullYear() +
-                " : " +
-                params.value[1]
-            );
-          },
+          // formatter: function (params) {
+          //   params = params[0];
+          //   var date = new Date(params.name);
+          //   return (
+          //       date.getDate() +
+          //       "/" +
+          //       (date.getMonth() + 1) +
+          //       "/" +
+          //       date.getFullYear() +
+          //       " : " +
+          //       params.value[1]
+          //   );
+          // },
           axisPointer: {
             animation: false,
           },
@@ -139,7 +139,7 @@ export default {
     // 获取接口返回数据 这里用定时器模拟一秒一个数据
     getData() {
       let that = this;
-      var value = Math.random() * 1000;
+      var value = Math.random() * 1000000000;
       this.timer = setInterval(() => {
         for (var i = 0; i < 1; i++) {
           that.data.shift();

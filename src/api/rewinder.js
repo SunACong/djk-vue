@@ -7,3 +7,10 @@ export function getList(params) {
     params
   })
 }
+export function getListTen(params) {
+  return request({
+    url: '/rewinder/listTen',
+    method: 'get',
+    params
+  })
+}

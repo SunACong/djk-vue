@@ -31,30 +31,53 @@ export default {
     yData:{
       type: Array,
       default: ()=>[]
+    },
+    minData:{
+      type: Number
+    },
+    maxData:{
+      type: Number
+    },
+    rName:{
+      type: String
     }
   },
   data() {
     return {
       chart: null,
-      xdata: [],
-      ydata:[]
+      // xdata: [],
+      // ydata:[]
     }
   },
   watch: {
     xData: {
-      handler () {
-        // this.initChart()
-      },
-      immediate: true,
-      deep: true
-    },
-    yData: {
-      handler () {
+      handler: function () {
         this.initChart()
       },
-      immediate: true,
-      deep: true
-    }
+      // immediate: true,
+      // deep: true
+    },
+    yData: {
+      handler: function () {
+        this.initChart()
+      },
+      // immediate: true,
+      // deep: true
+    },
+    minData: {
+      handler: function () {
+        this.initChart()
+      },
+      // immediate: true,
+      // deep: true
+    },
+    maxData: {
+      handler: function () {
+        this.initChart()
+      },
+      // immediate: true,
+      // deep: true
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -72,9 +95,9 @@ export default {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
       // console.log(this.xData, this.yData)
-      this.setOption(this.xData, this.yData)
+      this.setOption(this.xData, this.yData,this.minData,this.maxData,this.rName)
     },
-    setOption(x, y) {
+    setOption(x, y,min,max,r) {
       this.chart.setOption({
         title:{
           text: ''
@@ -109,7 +132,7 @@ export default {
         ],
         series: [
           {
-            name: '上辊电机电流',
+            name: r,
             type: 'line',
             stack: 'Total',
             areaStyle: {},
@@ -126,8 +149,8 @@ export default {
           // precision: 1,
           // seriesIndex: 0,
           pieces: [{
-            gt:0,
-            lt: 250 , // 设置最大值<250
+            gt:min,
+            lt: max , // 设置最大值<250
             color: '#33bfcc'
           }],
           outOfRange: { color: '#CC3300' // 设置超出部分的颜色

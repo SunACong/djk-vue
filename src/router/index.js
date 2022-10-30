@@ -78,6 +78,28 @@ export const constantRoutes = [
       name: 'Test',
       component: () => import('@/views/module/healthDegree/test.vue'),
       meta: { title: '测试', icon: 'dashboard' }
+    },{
+      path: 'avaluate',
+      name: 'Avaluate',
+      component: () => import('@/views/module/healthDegree/avaluate.vue'),
+      meta: { title: '值域', icon: 'dashboard' }
+    },{
+      path: 'roollingMachineSet',
+      name: 'RoollingMachineSet',
+      component: () => import('@/views/module/healthDegree/roollingMachineSet.vue'),
+      meta: { title: '铸扎机参数设置', icon: 'dashboard' }
+    },{
+      path: 'parameterSet',
+      name: 'ParameterSet',
+      component: () => import('@/views/module/healthDegree/recoillingSet.vue'),
+      meta: { title: '重卷机参数设置', icon: 'dashboard' },
+      // children: [{
+      //   path: 'avaluate',
+      //   name: 'Avaluate',
+      //   component: () => import('@/views/module/healthDegree/parameterSet/avaluate.vue'),
+      //   meta: { title: '铸扎机', icon: 'dashboard' }
+      // }]
+      // redirect: '/module/healthDegree/parameterSet',
     }]
   },
   // {

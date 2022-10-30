@@ -477,6 +477,7 @@
 					console.log('res: ', res)
 					this.tableData = res.data.records
 					this.total = res.data.total
+          console.log("total",this.total)
 				})
 			}
 		}

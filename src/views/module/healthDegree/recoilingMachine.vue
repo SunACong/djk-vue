@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="display: flex;margin-top: 5px;">
-      <div style="width: 54%">
+      <div style="width: 82%">
         <el-card shadow="always">
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
@@ -15,8 +15,8 @@
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%" >
-                <template slot-scope="scope">
-                  <div @click="handleView(1, scope.row)" style="text-align: center">
+                <template slot-scope="scope" >
+                  <div  style="padding: 0 30%" @click="handleView(1, scope.row)" >
                     <StackedLineChart width="200px" height="63px" :x-data="scope.row.chartData.xData" :y-data="scope.row.chartData.yData"  :min-data="scope.row.chartData.minData" :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName"></StackedLineChart>
                   </div>
                 </template>
@@ -32,46 +32,46 @@
               <span style="line-height: 20px;">当前设备状态</span>
             </div>
           </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px auto">
-            <el-button class="el-icon-mytubiao" style="margin-bottom: 10px" />
+          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+            <el-button class="el-icon-mytubiao" style="margin-bottom: 8px"/>
             <div style="font-size: 30px;color: green;">正常</div>
           </div>
         </el-card>
       </div>
-      <div class="health_status" style="width: 40%;height: 300px">
-        <el-card shadow="always">
-          <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-            <div style="display: flex;">
-              <span style="line-height: 20px;">报警记录表</span>
-            </div>
+    </div>
+    <div class="health_status" style="margin-top: 8px">
+      <el-card shadow="always">
+        <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+          <div style="display: flex;">
+            <span style="line-height: 20px;">报警记录表</span>
           </div>
-          <div>
-            <el-table :data="tableData4" stripe style="width: 100%" height="300px" :show-header="false" >
-              <el-table-column prop="id" label="序号" min-width="10%" />
-              <el-table-column prop="data" label="日期" min-width="25%" />
-              <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
-                <template slot-scope="scope">
-                  <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
-                  >{{ scope.row.status }}</el-button>
-                </template>
-              </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
-                <template slot-scope="scope">
-                  <el-button
-                      size="medium"
-                      type="text"
-                      @click="handleView(2, scope.row)"
-                  >查看</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-card>
-      </div>
+        </div>
+        <div>
+          <el-table :data="tableData4" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table-column prop="id" label="序号" min-width="10%" />
+            <el-table-column prop="data" label="日期" min-width="25%" />
+            <el-table-column prop="address" label="编号" min-width="25%" />
+            <el-table-column prop="status" label="状态" min-width="25%" >
+              <template slot-scope="scope">
+                <el-button
+                    size="medium"
+                    type="text"
+                    style="color: red"
+                >{{ scope.row.status }}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="判定结果" min-width="15%" >
+              <template slot-scope="scope">
+                <el-button
+                    size="medium"
+                    type="text"
+                    @click="handleView(2, scope.row)"
+                >查看</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-card>
     </div>
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich===1">
@@ -106,7 +106,7 @@
 
 <script>
 import StackedLineChart from '@/views/dashboard/StackedLineChart'
-import {getList} from "@/api/rewinder";
+import {getListTen} from "@/api/rewinder";
 import {getAvaluateList} from "@/api/avaluate";
 export default {
   components: {StackedLineChart},
@@ -206,13 +206,17 @@ export default {
       dialogVisible: false,
       dataList:{},
       avaluateList:{},
+      avaluateListTen:{},
       minData: null,
       maxData: null,
       rName: null,
       xData : [],
       yData : [],
       timer: null,
-      showWtich:1
+      showWtich:1,
+      parameter: {
+        indicatorName:null
+      }
     }
   },
   async created() {
@@ -246,6 +250,20 @@ export default {
     //     }
     //   })
     // })
+    // this.parameter.indicatorName = '开卷机速度'
+    // await getListTen(this.parameter).then((res) =>{
+    //   // console.log("这是查询的10条数据",res)
+    //   this.avaluateListTen = res.data
+    //   // console.log("时间",res.data[0].produceTime)
+    //   // console.log("值",res.data[0].value)
+    //   this.avaluateListTen.forEach(item =>{
+    //     console.log("时间",item.produceTime)
+    //     this.tableData2[0].chartData.xData.push(item.produceTime)
+    //     this.tableData2[0].chartData.yData.push(item.value)
+    //     this.tableData2[0].chartData.rName= item.indicatorName
+    //   })
+    //
+    // })
     await getAvaluateList().then((res) => {
       this.avaluateList =res.data
       // console.log("上下限：",res.data)
@@ -275,12 +293,6 @@ export default {
   },
 
   methods: {
-    // handleView(index, row) {
-    //   console.log('row: ', row)
-    //   this.showWtich = index
-    //   this.dailogData = row
-    //   this.dialogFormVisible = true
-    // },
     handleView: function(index,row) {
       this.showWtich = index
       if(index ==1){
@@ -289,7 +301,7 @@ export default {
         this.minData = row.chartData.minData
         this.maxData = row.chartData.maxData
         this.rName = "开卷机速度"
-        // console.log("这是name",this.rName)
+        // console.log("这是name",row.chartData.rName)
       }
       this.dialogVisible = true
     },
@@ -297,44 +309,89 @@ export default {
       // this.yData = []
       if(this.timer == null) {
         this.timer = setInterval( () => {
-          // this.handleView();
-          getList().then((res) => {
-            this.dataList = res.data
-            // console.log(this.dataList)
+          getListTen({indicatorName : '开卷机速度'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
             this.tableData2[0].chartData.xData = []
             this.tableData2[0].chartData.yData = []
-            this.tableData2[1].chartData.xData = []
-            this.tableData2[1].chartData.yData = []
-            this.tableData2[2].chartData.xData = []
-            this.tableData2[2].chartData.yData = []
-            this.tableData2[3].chartData.xData = []
-            this.tableData2[3].chartData.yData = []
-            this.dataList.forEach(item => {
-              switch (item.indicatorName){
-                case "开卷机速度":
-                  this.tableData2[0].chartData.xData.push(item.produceTime)
-                  this.tableData2[0].chartData.yData.push(item.value)
-                  this.tableData2[0].chartData.rName= item.indicatorName
-                  break
-                case "开卷机电流":
-                  this.tableData2[1].chartData.xData.push(item.produceTime)
-                  this.tableData2[1].chartData.yData.push(item.value)
-                  this.tableData2[1].chartData.rName= item.indicatorName
-                  break
-                case "卷取机速度":
-                  this.tableData2[2].chartData.xData.push(item.produceTime)
-                  this.tableData2[2].chartData.yData.push(item.value)
-                  this.tableData2[2].chartData.rName= item.indicatorName
-                  break
-                case "卷取机电流":
-                  this.tableData2[3].chartData.xData.push(item.produceTime)
-                  this.tableData2[3].chartData.yData.push(item.value)
-                  this.tableData2[3].chartData.rName= item.indicatorName
-                  break
-              }
+            this.avaluateListTen.forEach(item =>{
+              this.tableData2[0].chartData.xData.push(item.produceTime)
+              this.tableData2[0].chartData.yData.push(item.value)
+              this.tableData2[0].chartData.rName= item.indicatorName
             })
           })
-        }, 3000)
+          // getListTen(this.parameter.indicatorName = '开卷机电流').then((res) =>{
+          getListTen({indicatorName : '开卷机电流'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
+            this.tableData2[1].chartData.xData = []
+            this.tableData2[1].chartData.yData = []
+            this.avaluateListTen.forEach(item =>{
+              this.tableData2[1].chartData.xData.push(item.produceTime)
+              this.tableData2[1].chartData.yData.push(item.value)
+              this.tableData2[1].chartData.rName= item.indicatorName
+            })
+          })
+          getListTen({indicatorName : '卷取机速度'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
+            this.tableData2[2].chartData.xData = []
+            this.tableData2[2].chartData.yData = []
+            this.avaluateListTen.forEach(item =>{
+              this.tableData2[2].chartData.xData.push(item.produceTime)
+              this.tableData2[2].chartData.yData.push(item.value)
+              this.tableData2[2].chartData.rName= item.indicatorName
+            })
+          })
+          getListTen({indicatorName : '卷取机电流'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
+            this.tableData2[3].chartData.xData = []
+            this.tableData2[3].chartData.yData = []
+            this.avaluateListTen.forEach(item =>{
+              this.tableData2[3].chartData.xData.push(item.produceTime)
+              this.tableData2[3].chartData.yData.push(item.value)
+              this.tableData2[3].chartData.rName= item.indicatorName
+            })
+          })
+          // this.handleView();
+          // getList().then((res) => {
+          //   this.dataList = res.data
+          //   // console.log(this.dataList)
+          //   this.tableData2[0].chartData.xData = []
+          //   this.tableData2[0].chartData.yData = []
+          //   this.tableData2[1].chartData.xData = []
+          //   this.tableData2[1].chartData.yData = []
+          //   this.tableData2[2].chartData.xData = []
+          //   this.tableData2[2].chartData.yData = []
+          //   this.tableData2[3].chartData.xData = []
+          //   this.tableData2[3].chartData.yData = []
+          //   this.dataList.forEach(item => {
+          //     switch (item.indicatorName){
+          //       case "开卷机速度":
+          //         this.tableData2[0].chartData.xData.push(item.produceTime)
+          //         this.tableData2[0].chartData.yData.push(item.value)
+          //         this.tableData2[0].chartData.rName= item.indicatorName
+          //         break
+          //       case "开卷机电流":
+          //         this.tableData2[1].chartData.xData.push(item.produceTime)
+          //         this.tableData2[1].chartData.yData.push(item.value)
+          //         this.tableData2[1].chartData.rName= item.indicatorName
+          //         break
+          //       case "卷取机速度":
+          //         this.tableData2[2].chartData.xData.push(item.produceTime)
+          //         this.tableData2[2].chartData.yData.push(item.value)
+          //         this.tableData2[2].chartData.rName= item.indicatorName
+          //         break
+          //       case "卷取机电流":
+          //         this.tableData2[3].chartData.xData.push(item.produceTime)
+          //         this.tableData2[3].chartData.yData.push(item.value)
+          //         this.tableData2[3].chartData.rName= item.indicatorName
+          //         break
+          //     }
+          //   })
+          // })
+        }, 2000)
 
       }
     }
