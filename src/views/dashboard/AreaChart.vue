@@ -26,11 +26,11 @@ export default {
     },
     xData: {
       type: Array,
-      default: ()=>[]
+      // default: ()=>[]
     },
     yData:{
       type: Array,
-      default: ()=>[]
+      // default: ()=>[]
     },
     minData:{
       type: Number
