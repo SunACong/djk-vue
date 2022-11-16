@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
 	<div v-if="!item.hidden">
 		<template
 			v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
@@ -18,8 +18,7 @@
 				:base-path="resolvePath(child.path)" class="nest-menu" />
 		</el-submenu>
 	</div>
-</template> -->
-<!-- 
+</template>
 <script>
 	import path from 'path'
 	import {
@@ -52,8 +51,6 @@
 			}
 		},
 		data() {
-			// To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
-			// TODO: refactor with render function
 			this.onlyOneChild = null
 			return {}
 		},
@@ -97,4 +94,4 @@
 			}
 		}
 	}
-</script> -->
+</script>
