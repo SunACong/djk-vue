@@ -7,7 +7,7 @@ import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
-const animationDuration = 1000
+const animationDuration = 500
 
 export default {
   mixins: [resize],
@@ -23,6 +23,30 @@ export default {
     height: {
       type: String,
       default: '300px'
+    },
+    chartType: {
+      type: String,
+      default: 'bar'
+    },
+    legend: {
+      type: Array,
+      default: null
+    },
+    oneXData: {
+      type: Array,
+      default: null
+    },
+    twoXData: {
+      type: Array,
+      default: null
+    },
+    oneYData: {
+      type: Array,
+      default: null
+    },
+    twoYData: {
+      type: Array,
+      default: null
     }
   },
   data() {
@@ -47,44 +71,47 @@ export default {
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            type: 'line' // 默认为直线，可选为：'line' | 'shadow'
           }
         },
         grid: {
           left: '2%',
           right: '2%',
           bottom: '3%',
+          top: '2%',
           containLabel: true
         },
         legend: {
-          data: ['合格', '不合格']
+          data: this.legend
+          // data: ['合格', '不合格']
         },
         xAxis: [{
           type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: this.oneXData
         }, {
           type: 'category',
           position: 'bottom',
           offset: 25,
           axisTick: { show: false },
           axisLine: { show: false },
-          data: ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19']
+          // data: ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19']
+          data: this.twoXData
         }],
         yAxis: [{
           type: 'value',
           axisTick: { show: false }
         }],
         series: [{
-          name: '合格',
-          type: 'bar',
+          // name: '合格',
+          type: this.chartType,
           barWidth: '10%',
-          data: [79, 52, 200, 400, 390, 330, 220],
+          data: this.oneYData,
           animationDuration
         }, {
-          name: '不合格',
-          type: 'bar',
+          // name: '不合格',
+          type: this.chartType,
           barWidth: '10%',
-          data: [1, 0, 2, 1, 3, 3, 2],
+          data: this.twoYData,
           animationDuration
         }]
       })

@@ -38,5 +38,4 @@ export default {
    width: 1em;
    height: 1em;
  }
-
 </style>
