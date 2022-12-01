@@ -4,7 +4,7 @@
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
+<!--        <navbar />-->
       </div>
       <app-main />
     </div>
@@ -12,13 +12,15 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
+import {
+  // Navbar,
+  Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
   name: 'Layout',
   components: {
-    Navbar,
+    // Navbar,
     Sidebar,
     AppMain
   },

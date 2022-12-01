@@ -40,6 +40,7 @@
       <el-table-column label="单位" align="center" prop="danWei" />
       <el-table-column label="最小值" align="center" prop="minValue" />
       <el-table-column label="最大值" align="center" prop="maxValue" />
+      <el-table-column label="设备号" align="center" prop="deviceId" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -78,6 +79,9 @@
         <el-form-item label="最大值" prop="maxValue">
           <el-input v-model="form.maxValue" placeholder="请输入最大值" />
         </el-form-item>
+        <el-form-item label="设备号" prop="deviceId">
+          <el-input v-model="form.deviceId" placeholder="设备号" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -88,7 +92,7 @@
 </template>
 
 <script>
-import { getAvaluateList, getAvaluate, addAvaluate, updateAvaluate,delAvaluate } from "@/api/avaluate"
+import { getAvaluate, addAvaluate, updateAvaluate,delAvaluate,getpageVOList } from "@/api/avaluate"
 
 export default {
   name: "Avaluate",
@@ -122,8 +126,7 @@ export default {
         danWei: null,
         minValue: null,
         maxValue: null,
-        deviceId: null
-
+        deviceId: "铸轧机"
       },
       // 表单参数
       form: {},
@@ -131,6 +134,22 @@ export default {
       rules: {
       }
     };
+  },
+  watch: {
+    currentPage: {
+      handler: function() {
+        this.queryParams.currentPage = this.currentPage
+      },
+      deep: true,
+      immediate: true
+    },
+    pageSize: {
+      handler: function() {
+        this.queryParams.pageSize = this.pageSize
+      },
+      deep: true,
+      immediate: true
+    }
   },
   created() {
     this.getList();
@@ -155,11 +174,11 @@ export default {
     /** 查询值域列表 */
     getList() {
       this.loading = true;
-      getAvaluateList({deviceId: 2}).then((res) => {
+      getpageVOList(this.queryParams).then((res) => {
         console.log("res",res)
-        this.avaluateList = res.data;
+        this.avaluateList = res.data.records;
         console.log(this.avaluateList)
-        this.total = res.data.length;
+        this.total = res.data.total;
         console.log(this.total)
         this.loading = false;
       });

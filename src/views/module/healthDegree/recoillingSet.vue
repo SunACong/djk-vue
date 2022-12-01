@@ -155,7 +155,7 @@ export default {
     /** 查询值域列表 */
     getList() {
       this.loading = true;
-      getAvaluateList({deviceId: 1}).then((res) => {
+      getAvaluateList({deviceId: "重卷机1#"}).then((res) => {
         console.log("res",res)
         this.avaluateList = res.data;
         console.log(this.avaluateList)

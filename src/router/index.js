@@ -57,12 +57,37 @@ export const constantRoutes = [
     path: '/module/healthDegree',
     component: Layout,
     meta: { title: '设备健康状况分析', icon: 'dashboard' },
-    redirect: '/module/healthDegree/roollingMachine',
+    redirect: '/module/healthDegree/rollingMachine',
     children: [{
-      path: 'roollingMachine',
-      name: 'RoollingMachine',
-      component: () => import('@/views/module/healthDegree/roollingMachine.vue'),
+      path: 'rollingMachine',
+      name: 'RollingMachine',
+      component: () => import('@/views/module/healthDegree/rollingMachine.vue'),
       meta: { title: '铸扎机', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine1',
+      name: 'RollingMachine1',
+      component: () => import('@/views/module/healthDegree/rollingMachine1.vue'),
+      meta: { title: '1#铸扎机', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine2',
+      name: 'RollingMachine2',
+      component: () => import('@/views/module/healthDegree/rollingMachine2.vue'),
+      meta: { title: '2#铸扎机', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine3',
+      name: 'RollingMachine3',
+      component: () => import('@/views/module/healthDegree/rollingMachine3.vue'),
+      meta: { title: '3#铸扎机', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine4',
+      name: 'RollingMachine4',
+      component: () => import('@/views/module/healthDegree/rollingMachine4.vue'),
+      meta: { title: '4#铸扎机', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine5',
+      name: 'RollingMachine5',
+      component: () => import('@/views/module/healthDegree/rollingMachine5.vue'),
+      meta: { title: '5#铸扎机', icon: 'dashboard' }
     },{
       path: 'recoilingMachine',
       name: 'RecoilingMachine',
@@ -84,13 +109,13 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/avaluate.vue'),
       meta: { title: '值域', icon: 'dashboard' }
     },{
-      path: 'roollingMachineSet',
-      name: 'RoollingMachineSet',
-      component: () => import('@/views/module/healthDegree/roollingMachineSet.vue'),
+      path: 'rollingMachineSet',
+      name: 'RollingMachineSet',
+      component: () => import('@/views/module/healthDegree/rollingMachineSet.vue'),
       meta: { title: '铸扎机参数设置', icon: 'dashboard' }
     },{
-      path: 'parameterSet',
-      name: 'ParameterSet',
+      path: 'recoillingSet',
+      name: 'RecoillingSet',
       component: () => import('@/views/module/healthDegree/recoillingSet.vue'),
       meta: { title: '重卷机参数设置', icon: 'dashboard' },
       // children: [{
