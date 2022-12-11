@@ -99,11 +99,6 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
       meta: { title: '退火炉', icon: 'dashboard' }
     },{
-      path: 'test',
-      name: 'Test',
-      component: () => import('@/views/module/healthDegree/test.vue'),
-      meta: { title: '测试', icon: 'dashboard' }
-    },{
       path: 'avaluate',
       name: 'Avaluate',
       component: () => import('@/views/module/healthDegree/avaluate.vue'),
