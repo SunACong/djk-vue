@@ -25,28 +25,28 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/',
+  publicPath: '/model',
   outputDir: 'dist',
   assetsDir: 'static',
   // lintOnSave: process.env.NODE_ENV === 'development',
   lintOnSave: false,
-  productionSourceMap: false, 
+  productionSourceMap: false,
   devServer: {
     host: '0.0.0.0',
-		port: port,
-		open: true,
-		https: false,
-		proxy: {
-				'/api': {
-						target: 'http://localhost:9527',
-						changeOrigin: true,
-						ws: true,
-						pathRewrite: {
-								'^/api': ''
-						}
-				}
-		},
-		disableHostCheck: true
+    port: port,
+    open: true,
+    https: false,
+    proxy: {
+      '/model/api': {
+        target: 'http://localhost:9527',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/model/api': ''
+        }
+      }
+    },
+    disableHostCheck: true
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

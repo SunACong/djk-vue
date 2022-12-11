@@ -31,11 +31,11 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
+  // {
+  //   path: '/login',
+  //   component: () => import('@/views/login/index'),
+  //   hidden: true
+  // },
 
   {
     path: '/404',
@@ -57,93 +57,78 @@ export const constantRoutes = [
     path: '/module/healthDegree',
     component: Layout,
     meta: { title: '设备健康状况分析', icon: 'dashboard' },
-    redirect: '/module/healthDegree/rollingMachine',
+    redirect: '/module/healthDegree/roollingMachine',
     children: [{
-      path: 'rollingMachine',
-      name: 'RollingMachine',
-      component: () => import('@/views/module/healthDegree/rollingMachine.vue'),
+      path: 'roollingMachine',
+      name: 'RoollingMachine',
+      component: () => import('@/views/module/healthDegree/roollingMachine.vue'),
       meta: { title: '铸扎机', icon: 'dashboard' }
-    },{
-      path: 'rollingMachine1',
-      name: 'RollingMachine1',
-      component: () => import('@/views/module/healthDegree/rollingMachine1.vue'),
-      meta: { title: '1#铸扎机', icon: 'dashboard' }
-    },{
-      path: 'rollingMachine2',
-      name: 'RollingMachine2',
-      component: () => import('@/views/module/healthDegree/rollingMachine2.vue'),
-      meta: { title: '2#铸扎机', icon: 'dashboard' }
-    },{
-      path: 'rollingMachine3',
-      name: 'RollingMachine3',
-      component: () => import('@/views/module/healthDegree/rollingMachine3.vue'),
-      meta: { title: '3#铸扎机', icon: 'dashboard' }
-    },{
-      path: 'rollingMachine4',
-      name: 'RollingMachine4',
-      component: () => import('@/views/module/healthDegree/rollingMachine4.vue'),
-      meta: { title: '4#铸扎机', icon: 'dashboard' }
-    },{
-      path: 'rollingMachine5',
-      name: 'RollingMachine5',
-      component: () => import('@/views/module/healthDegree/rollingMachine5.vue'),
-      meta: { title: '5#铸扎机', icon: 'dashboard' }
-    },{
+    }, {
       path: 'recoilingMachine',
       name: 'RecoilingMachine',
       component: () => import('@/views/module/healthDegree/recoilingMachine.vue'),
       meta: { title: '重卷机', icon: 'dashboard' }
-    },{
+    }, {
       path: 'annealingFurnace',
       name: 'AnnealingFurance',
       component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
       meta: { title: '退火炉', icon: 'dashboard' }
-    },{
+    }, {
+      path: 'test',
+      name: 'Test',
+      component: () => import('@/views/module/healthDegree/test.vue'),
+      meta: { title: '测试', icon: 'dashboard' }
+    }, {
       path: 'avaluate',
       name: 'Avaluate',
       component: () => import('@/views/module/healthDegree/avaluate.vue'),
       meta: { title: '值域', icon: 'dashboard' }
-    },{
-      path: 'rollingMachineSet',
-      name: 'RollingMachineSet',
-      component: () => import('@/views/module/healthDegree/rollingMachineSet.vue'),
+    }, {
+      path: 'roollingMachineSet',
+      name: 'RoollingMachineSet',
+      component: () => import('@/views/module/healthDegree/roollingMachineSet.vue'),
       meta: { title: '铸扎机参数设置', icon: 'dashboard' }
-    },{
-      path: 'recoillingSet',
-      name: 'RecoillingSet',
+    }, {
+      path: 'parameterSet',
+      name: 'ParameterSet',
       component: () => import('@/views/module/healthDegree/recoillingSet.vue'),
-      meta: { title: '重卷机参数设置', icon: 'dashboard' },
-      // children: [{
-      //   path: 'avaluate',
-      //   name: 'Avaluate',
-      //   component: () => import('@/views/module/healthDegree/parameterSet/avaluate.vue'),
-      //   meta: { title: '铸扎机', icon: 'dashboard' }
-      // }]
-      // redirect: '/module/healthDegree/parameterSet',
+      meta: { title: '重卷机参数设置', icon: 'dashboard' }
+    }, {
+      path: 'searchRollingMachine',
+      name: 'SearchRollingMachine',
+      component: () => import('@/views/module/healthDegree/searchRollingMachine.vue'),
+      meta: { title: '产品生产记录', icon: 'dashboard' }
     }]
   },
-  // {
-  //   path: '/module/healthDegree',
-  //   component: Layout,
-  //   redirect: '/module/healthDegree',
-  //   children: [{
-  //     path: '/module/healthDegree',
-  //     name: 'HealthDegree',
-  //     component: () => import('@/views/module/healthDegree'),
-  //     meta: { title: '设备健康分析模型', icon: 'dashboard' }
-  //   }]
-  // },
+
   {
     path: '/module/processMonitor',
     component: Layout,
-    redirect: '/module',
+    meta: { title: '产品流程监控模型', icon: 'dashboard' },
+    redirect: '/module/processMonitor',
     children: [{
-      path: '/module/processMonitor',
+      path: '/processMonitor',
       name: 'ProcessMonitor',
       component: () => import('@/views/module/processMonitor'),
       meta: { title: '产品流程监控模型', icon: 'dashboard' }
+    },{
+      path: '/computeIndex',
+      name: 'ComputeIndex',
+      component: () => import('@/views/module/computeIndex'),
+      meta: { title: '生产周期计算', icon: 'dashboard' }
+    },{
+      path: '/predictIndex',
+      name: 'PredictIndex',
+      component: () => import('@/views/module/predictIndex'),
+      meta: { title: '交期风险预判', icon: 'dashboard' }
+    },{
+      path: '/processIndex',
+      name: 'ProcessIndex',
+      component: () => import('@/views/module/processIndex'),
+      meta: { title: '异常流程显示', icon: 'dashboard' }
     }]
   },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

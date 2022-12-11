@@ -1,6 +1,12 @@
-export { default as Navbar } from './Navbar'
-export { default as Sidebar } from './Sidebar'
 export {
-	default as AppMain
+  default as Navbar
 }
-from './AppMain'
+  from './Navbar'
+export {
+  default as Sidebar
+}
+  from './Sidebar'
+export {
+  default as AppMain
+}
+  from './AppMain'

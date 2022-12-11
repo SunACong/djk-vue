@@ -9,8 +9,3 @@
 		name: 'App'
 	}
 </script>
-<style>
-	#app .hideSidebar .main-container {
-		margin-left: 0px;
-	}
-</style>

@@ -10,15 +10,15 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5"  stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}" >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
-<!--                   <testChart width="200px" height="63px"></testChart>-->
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
+                    <!--                   <testChart width="200px" height="63px"></testChart>-->
                   </div>
                 </template>
               </el-table-column>
@@ -48,24 +48,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -84,14 +84,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
                   </div>
                 </template>
               </el-table-column>
@@ -120,24 +120,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -157,14 +157,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
                   </div>
                 </template>
               </el-table-column>
@@ -193,24 +193,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -230,14 +230,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
                   </div>
                 </template>
               </el-table-column>
@@ -266,24 +266,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -303,14 +303,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
                   </div>
                 </template>
               </el-table-column>
@@ -339,24 +339,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -376,14 +376,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
                   </div>
                 </template>
               </el-table-column>
@@ -412,24 +412,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column   prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -449,14 +449,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}"  >
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
-              <el-table-column prop="tubiao" label="图表" min-width="50%" >
+              <el-table-column prop="tubiao" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getChart2(scope.row)" style="text-align: center">
-                    <GradientChart width="200px" height="63px" ></GradientChart>
+                  <div style="text-align: center" @click="getChart2(scope.row)">
+                    <GradientChart width="200px" height="63px" />
                   </div>
                 </template>
               </el-table-column>
@@ -485,24 +485,24 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table :data="tableData" stripe style="width: 100%" height="300px" :show-header="false">
               <el-table-column prop="id" label="序号" min-width="10%" />
               <el-table-column prop="data" label="日期" min-width="25%" />
               <el-table-column prop="address" label="编号" min-width="25%" />
-              <el-table-column prop="status" label="状态" min-width="25%" >
+              <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
                   <el-button
-                      size="medium"
-                      type="text"
-                      style="color: red"
+                    size="medium"
+                    type="text"
+                    style="color: red"
                   >{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
-              <el-table-column label="判定结果" min-width="15%" >
+              <el-table-column label="判定结果" min-width="15%">
                 <template>
                   <el-button
-                      size="medium"
-                      type="text"
+                    size="medium"
+                    type="text"
                   >查看</el-button>
                 </template>
               </el-table-column>
@@ -511,28 +511,28 @@
         </el-card>
       </div>
     </div>
-      <el-dialog :visible.sync="dialogVisible2">
+    <el-dialog :visible.sync="dialogVisible2">
       <div style="display: flex;">
         <el-button style="" type="text"> 本周 </el-button>
         <el-button style="" type="text"> 本月 </el-button>
         <el-button style="margin-right: 10px;" type="text"> 本年 </el-button>
         <div>
           <el-date-picker
-              v-model="qualifyDateRange"
-              size="small"
-              type="daterange"
-              align="left"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions"
+            v-model="qualifyDateRange"
+            size="small"
+            type="daterange"
+            align="left"
+            unlink-panels
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :picker-options="pickerOptions"
           />
         </div>
       </div>
       <div>
-        <GradientChart ></GradientChart>
-<!--        <testChart width="200px" height="63px"></testChart>-->
+        <GradientChart />
+        <!--        <testChart width="200px" height="63px"></testChart>-->
       </div>
     </el-dialog>
   </div>
@@ -542,7 +542,7 @@
 import GradientChart from '@/views/dashboard/GradientChart'
 // import testChart from '@/views/dashboard/testChart'
 export default {
-  components: {GradientChart},
+  components: { GradientChart },
   props: {},
   data() {
     return {
@@ -642,7 +642,7 @@ export default {
       }],
       // dialogVisible: false,
       // dialogVisible1: false,
-      dialogVisible2: false,
+      dialogVisible2: false
       // dataList:{},
       // xData: [],
       // yData: []
