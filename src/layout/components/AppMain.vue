@@ -1,20 +1,27 @@
+<!--
+ * @Description:
+ * @Author: 孙少聪
+ * @Date: 2022-09-19 09:55:35
+ * @LastEditTime: 2022-12-12 09:34:29
+ * @LastEditors: 孙少聪
+-->
 <template>
-	<section class="app-main">
-		<transition name="fade-transform" mode="out-in">
-			<router-view :key="key" />
-		</transition>
-	</section>
+  <section class="app-main">
+    <transition name="fade-transform" mode="out-in">
+      <router-view :key="key" />
+    </transition>
+  </section>
 </template>
 
 <script>
-	export default {
-		name: 'AppMain',
-		computed: {
-			key() {
-				return this.$route.path
-			}
-		}
-	}
+export default {
+  name: 'AppMain',
+  computed: {
+    key() {
+      return this.$route.path
+    }
+  }
+}
 </script>
 
 <style scoped>

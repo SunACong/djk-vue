@@ -353,29 +353,6 @@ export default {
         }]
       },
       dailogData: {
-        /* 					id: null,
-					batchNum: null,
-					lqciTs: null,
-					lqcmrTs: null,
-					consumer: null,
-					singleStraightness: null,
-					singleMediumConvexity: null,
-					finishedThickness: null,
-					finishedWidth: null,
-					finishedRollDiameter: null,
-					finishedWeight: null,
-					surfaceQualityRemark: null,
-					correctStrength: null,
-					correctExtension: null,
-					plateType: null,
-					sizeDeviation: null,
-					mechanicalProperties: null,
-					surfaceQuality: null,
-					appearanceQuality: null,
-					qualityJudgment: null,
-					remark: null,
-					startDateTime: null,
-					endDateTime: null, */
         processStandard: {
           id: null,
           processName: null,
@@ -405,25 +382,6 @@ export default {
         batchNum: null
       },
       productStandard: null
-      /* 			batchNum
-								ts
-								consumer
-								singleStraightness;
-								singleMediumConvexity;
-								finishedThickness;
-								finishedWidth;
-								finishedRollDiameter;
-								finishedWeight;
-								surfaceQualityRemark;
-								correctStrength;
-								correctExtension;
-								plateType;
-								sizeDeviation;
-								mechanicalProperties;
-								surfaceQuality;
-								appearanceQuality;
-								qualityJudgment;
-				 */
     }
   },
   computed: {},

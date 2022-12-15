@@ -77,41 +77,44 @@ export default {
         grid: {
           left: '2%',
           right: '2%',
-          bottom: '3%',
-          top: '2%',
+          bottom: '1%',
+          top: '8%',
           containLabel: true
         },
         legend: {
-          data: this.legend
-          // data: ['合格', '不合格']
+          // data: this.legend
+          data: ['合格', '不合格']
         },
         xAxis: [{
           type: 'category',
-          data: this.oneXData
+          // data: this.oneXData
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
         }, {
           type: 'category',
           position: 'bottom',
           offset: 25,
           axisTick: { show: false },
           axisLine: { show: false },
-          // data: ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19']
-          data: this.twoXData
+          data: ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19']
+          // data: this.twoXData
         }],
         yAxis: [{
           type: 'value',
           axisTick: { show: false }
         }],
         series: [{
-          // name: '合格',
+          name: '合格',
           type: this.chartType,
           barWidth: '10%',
-          data: this.oneYData,
+          // data: this.oneYData,
+          data: [15, 20, 19, 10, 23, 11, 10],
           animationDuration
         }, {
-          // name: '不合格',
+          name: '不合格',
           type: this.chartType,
           barWidth: '10%',
-          data: this.twoYData,
+          // data: this.twoYData,
+          data: [0, 1, 2, 1, 0, 1, 1],
           animationDuration
         }]
       })

@@ -3,9 +3,9 @@
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
+      <!-- <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-      </div>
+      </div> -->
       <app-main />
     </div>
   </div>
@@ -22,7 +22,7 @@ import ResizeMixin from './mixin/ResizeHandler'
 export default {
   name: 'Layout',
   components: {
-    Navbar,
+    // Navbar,
     Sidebar,
     AppMain
   },
@@ -42,9 +42,9 @@ export default {
         hideSidebar: !this.sidebar.opened,
         // hideSidebar: false,
         openSidebar: this.sidebar.opened,
-        // openSidebar: true,
+        // openSidebar: false,
         withoutAnimation: this.sidebar.withoutAnimation,
-        // withoutAnimation: true,
+        // withoutAnimation: false,
         mobile: this.device === 'mobile'
       }
     }
