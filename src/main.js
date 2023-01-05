@@ -11,8 +11,10 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-import '@/icons' // icon
-
+import '@/icons'
+// 挂载插件
+import plugins from './plugins'
+Vue.use(plugins)
 // 全局方法挂载
 import { resetForm } from '@/utils/utils'
 Vue.prototype.resetForm = resetForm

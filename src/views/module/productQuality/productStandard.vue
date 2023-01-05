@@ -129,7 +129,7 @@
           @click="handleAdd"
         >新增</el-button>
       </el-col>
-      <el-col :span="1.5">
+      <!-- <el-col :span="1.5">
         <el-button
           type="success"
           plain
@@ -157,7 +157,7 @@
           size="mini"
           @click="handleExport"
         >导出</el-button>
-      </el-col>
+      </el-col> -->
       <right-toolbar :show-search.sync="showSearch" @queryTable="getList" />
     </el-row>
 
@@ -388,6 +388,7 @@ export default {
         if (valid) {
           if (this.form.id != null) {
             updateStandard(this.form).then(response => {
+              console.log('hahah')
               this.$modal.msgSuccess('修改成功')
               this.open = false
               this.getList()
