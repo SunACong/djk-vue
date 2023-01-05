@@ -30,9 +30,7 @@ export default {
     },
     legend: {
       type: Array,
-      default: function() {
-        return ['合格', '不合格']
-      }
+      default: null
     },
     oneXData: {
       type: Array,
@@ -83,9 +81,6 @@ export default {
           top: '8%',
           containLabel: true
         },
-        legend: {
-          data: this.legend
-        },
         xAxis: [{
           type: 'category',
           data: this.oneXData
@@ -102,13 +97,13 @@ export default {
           axisTick: { show: false }
         }],
         series: [{
-          name: this.legend[0],
+          // symbol: 'none',
+          // smooth: false,
           type: this.chartType,
           barWidth: '10%',
           data: this.oneYData,
           animationDuration
         }, {
-          name: this.legend[1],
           type: this.chartType,
           barWidth: '10%',
           data: this.twoYData,

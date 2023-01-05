@@ -2,7 +2,7 @@
  * @Description:
  * @Author: 孙少聪
  * @Date: 2022-09-19 09:55:35
- * @LastEditTime: 2022-11-25 14:59:48
+ * @LastEditTime: 2023-01-02 10:50:59
  * @LastEditors: 孙少聪
  */
 import axios from 'axios'
@@ -11,7 +11,7 @@ import { Message } from 'element-ui'
 // create an axios instance
 const service = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  baseURL: '/model/api', // url = base url + request url
+  baseURL: '/modelApi', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 60000 // request timeout
 })

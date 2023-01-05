@@ -2,7 +2,7 @@
  * @Description:
  * @Author: 孙少聪
  * @Date: 2022-11-16 16:35:11
- * @LastEditTime: 2022-11-18 15:30:48
+ * @LastEditTime: 2023-01-02 10:18:23
  * @LastEditors: 孙少聪
 -->
 <template>
@@ -22,7 +22,7 @@
               <span>{{ item[0].deviceParam }}</span>
               <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
             </div>
-            <BarChart :key="key" chart-type="line" :one-x-data="item[2]" :one-y-data="item[1]" />
+            <RecordBarChart :key="key" chart-type="line" :one-x-data="item[2]" :one-y-data="item[1]" />
           </el-card>
         </div>
       </div>
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import BarChart from '@/views/dashboard/BarChart.vue'
 import { getCastProduceList } from '@/api/lmdpCastProduce'
 import { getHistoryList } from '@/api/rollingMachine'
 import { newHashMap } from '@/store/hashMap'
+import RecordBarChart from '@/views/dashboard/RecordBarChart.vue'
 export default {
   name: 'SearchRollingMachine',
-  components: { BarChart },
+  components: { RecordBarChart },
 
   data() {
     return {
@@ -95,7 +95,7 @@ export default {
         })
         return
       }
-
+      console.log(reelNum.charAt(0), res[0].procUpperTime, res[0].procLowerRemoveTime)
       this.getHistoryData(reelNum.charAt(0), res[0].procUpperTime, res[0].procLowerRemoveTime)
       this.showChart = false
     },
@@ -116,6 +116,7 @@ export default {
       const yData = Array.from(Array(13), () => new Array(0))
       // const { data: res1 } = await getHistoryList({ deviceId: reelNum.charAt(0), startDateTime: res[0].procUpperTime, endDateTime: res[0].procLowerRemoveTime })
       const { data: res1 } = await getHistoryList({ deviceId, startDateTime, endDateTime })
+      console.log(res1)
       for (let i = 0; i < res1.length; i++) {
         xData[this.map.get(res1[i].rollingName)].push(res1[i].rollingValue)
         yData[this.map.get(res1[i].rollingName)].push(res1[i].rollingProduceTime)

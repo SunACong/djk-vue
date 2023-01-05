@@ -38,13 +38,19 @@ export const constantRoutes = [
   },
   {
     path: '*',
-    redirect: '/productQuality',
     component: Layout,
+    meta: { title: '产品合格判定模型', icon: 'dashboard' },
+    redirect: '/module/productQuality/productQuality',
     children: [{
-      path: '/productQuality',
+      path: 'productQuality',
       name: 'ProductQuality',
-      component: () => import('@/views/module/productQuality'),
-      meta: { title: '产品合格判定模型', icon: 'dashboard' }
+      component: () => import('@/views/module/productQuality/productQuality'),
+      meta: { title: '合格判定', icon: 'dashboard' }
+    }, {
+      path: 'productStandard',
+      name: 'ProductStandard',
+      component: () => import('@/views/module/productQuality/productStandard'),
+      meta: { title: '判定标准', icon: 'dashboard' }
     }]
   },
   {
@@ -150,7 +156,7 @@ export const constantRoutes = [
 
 const createRouter = () => new Router({
   mode: 'history', // require service support
-  base: 'model',
+  base: 'model/api',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

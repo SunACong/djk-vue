@@ -25,16 +25,16 @@ export default {
     xData: {
       type: Array
     },
-    yData:{
+    yData: {
       type: Array
     },
-    minData:{
+    minData: {
       type: Number
     },
-    maxData:{
+    maxData: {
       type: Number
     },
-    rName:{
+    rName: {
       type: String
     }
   },
@@ -45,33 +45,33 @@ export default {
   },
   watch: {
     xData: {
-      handler: function () {
+      handler: function() {
         this.initChart()
-      },
+      }
       // immediate: true,
       // deep: true
     },
     yData: {
-      handler: function () {
+      handler: function() {
         this.initChart()
-      },
+      }
       // immediate: true,
       // deep: true
     },
     minData: {
-      handler: function () {
+      handler: function() {
         this.initChart()
-      },
+      }
       // immediate: true,
       // deep: true
     },
     maxData: {
-      handler: function () {
+      handler: function() {
         this.initChart()
-      },
+      }
       // immediate: true,
       // deep: true
-    },
+    }
     // rName: {
     //   handler () {
     //     this.initChart()
@@ -97,9 +97,9 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOption(this.xData, this.yData,this.minData,this.maxData,this.rName)
+      this.setOption(this.xData, this.yData, this.minData, this.maxData, this.rName)
     },
-    setOption(x, y,min,max,name) {
+    setOption(x, y, min, max, name) {
       this.chart.setOption({
         title: {
           text: ''
@@ -107,7 +107,7 @@ export default {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            type: 'cross',
+            type: 'cross'
             // label: {
             //   backgroundColor: '#6a7985'
             // }
@@ -151,13 +151,13 @@ export default {
           // precision: 1,
           // seriesIndex: 0,
           pieces: [{
-            gt: min,   //设置最小值
-            lt: max , // 设置最大值
+            gt: min, // 设置最小值
+            lt: max, // 设置最大值
             color: '#33bfcc'
           }],
           outOfRange: { color: '#CC3300' // 设置超出部分的颜色
           }
-        },
+        }
         ]
       })
     }

@@ -13,7 +13,7 @@
 
 <script>
 import {
-  Navbar,
+  // Navbar,
   Sidebar,
   AppMain
 } from './components'
@@ -39,12 +39,12 @@ export default {
     },
     classObj() {
       return {
-        hideSidebar: !this.sidebar.opened,
-        // hideSidebar: false,
-        openSidebar: this.sidebar.opened,
-        // openSidebar: false,
-        withoutAnimation: this.sidebar.withoutAnimation,
-        // withoutAnimation: false,
+        // hideSidebar: !this.sidebar.opened,
+        hideSidebar: true,
+        // openSidebar: this.sidebar.opened,
+        openSidebar: false,
+        // withoutAnimation: this.sidebar.withoutAnimation,
+        withoutAnimation: false,
         mobile: this.device === 'mobile'
       }
     }

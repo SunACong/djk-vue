@@ -37,12 +37,12 @@ module.exports = {
     open: true,
     https: false,
     proxy: {
-      '/model/api': {
+      '/modelApi': {
         target: 'http://localhost:9527',
         changeOrigin: true,
         ws: true,
         pathRewrite: {
-          '^/model/api': ''
+          '^/modelApi': ''
         }
       }
     },

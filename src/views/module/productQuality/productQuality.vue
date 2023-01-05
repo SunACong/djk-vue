@@ -28,7 +28,8 @@
             </div>
           </div>
         </div>
-        <BarChart />
+        <!-- <BarChart :key="key" chart-type="bar" :one-x-data="item[2]" :one-y-data="item[1]" /> -->
+        <BarChart key chart-type="bar" :one-x-data="barData[0]" :one-y-data="barData[1]" :two-x-data="barData1[0]" :two-y-data="barData1[1]" />
       </el-card>
     </div>
 
@@ -317,6 +318,14 @@ export default {
   },
   data() {
     return {
+      barData: [
+        ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        [15, 20, 19, 10, 23, 11, 10]
+      ],
+      barData1: [
+        ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19'],
+        [0, 1, 2, 1, 0, 1, 1]
+      ],
       showWtich: 1,
       qualifyDateRange: '',
       reportDateRange: '',
