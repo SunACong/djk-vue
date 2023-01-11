@@ -1,10 +1,3 @@
-<!--
- * @Description:
- * @Author: 孙少聪
- * @Date: 2022-11-16 16:35:11
- * @LastEditTime: 2023-01-02 10:18:23
- * @LastEditors: 孙少聪
--->
 <template>
   <div>
     <!-- head -->
@@ -14,13 +7,13 @@
       </el-input>
     </div>
     <!-- chart -->
-    <div v-loading="showChart" style="display: flex;flex-wrap: wrap;justify-content: space-around;">
-      <div v-for="(item, index) in charData" :key="index" style="width: 32%;margin: 1% auto;">
+    <div v-loading="loading" style="display: flex;flex-wrap: wrap;justify-content: space-around;">
+      <div v-for="(item, index) in charData" :key="index" style="width: 48%;margin: 1% auto;">
         <div>
           <el-card>
             <div slot="header" class="clearfix">
               <span>{{ item[0].deviceParam }}</span>
-              <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+              <el-button style="float: right; padding: 3px 0" type="text">查看</el-button>
             </div>
             <RecordBarChart :key="key" chart-type="line" :one-x-data="item[2]" :one-y-data="item[1]" />
           </el-card>
@@ -41,11 +34,15 @@ export default {
 
   data() {
     return {
-      showChart: false,
+      showCard: true,
+      loading: false,
+      // 为了更新echarts
       key: null,
+      // 第一位代表设备号
       reelNum: null,
       map: newHashMap(),
-      charData: Array.from(Array(13), () => new Array(0))
+      charData: Array.from(Array(13), () => new Array(0)),
+      isDisplay: [false, true, true, true, true, true, true, true, true, true, true, true, true]
     }
   },
   created() {
@@ -83,21 +80,21 @@ export default {
         })
         return
       }
-      this.showChart = true
+      this.loading = true
       // 通过驻扎卷号获取
       const { data: res } = await getCastProduceList({ reelNum })
       console.log(res)
       if (res.length === 0 || res[0].procUpperTime == null || res[0].procLowerRemoveTime == null) {
         this.$message({
           showClose: true,
-          message: '请检查铸轧卷号和是否已完成铸轧程序！！！',
+          message: '该卷未完成铸轧程序！！！',
           type: 'error'
         })
         return
       }
       console.log(reelNum.charAt(0), res[0].procUpperTime, res[0].procLowerRemoveTime)
       this.getHistoryData(reelNum.charAt(0), res[0].procUpperTime, res[0].procLowerRemoveTime)
-      this.showChart = false
+      this.loading = false
     },
 
     /**
@@ -114,7 +111,6 @@ export default {
     async getHistoryData(deviceId, startDateTime, endDateTime) {
       const xData = Array.from(Array(13), () => new Array(0))
       const yData = Array.from(Array(13), () => new Array(0))
-      // const { data: res1 } = await getHistoryList({ deviceId: reelNum.charAt(0), startDateTime: res[0].procUpperTime, endDateTime: res[0].procLowerRemoveTime })
       const { data: res1 } = await getHistoryList({ deviceId, startDateTime, endDateTime })
       console.log(res1)
       for (let i = 0; i < res1.length; i++) {
@@ -122,11 +118,14 @@ export default {
         yData[this.map.get(res1[i].rollingName)].push(res1[i].rollingProduceTime)
       }
       for (let i = 0; i < 13; i++) {
-        this.charData[i].push(xData[i])
-        this.charData[i].push(yData[i])
+        if (this.charData[i][0].show !== false) {
+          this.charData[i].push(xData[i])
+          this.charData[i].push(yData[i])
+        }
       }
+      this.charData = this.charData.filter(item => item.length === 3)
       this.key = new Date().getTime()
-      console.log(this.charData)
+      console.log('this.charData', this.charData)
     }
   }
 }
@@ -136,14 +135,13 @@ export default {
 
 .headBox{
   text-align: center;
-  // padding-top: 20%;
   .el-input {
     width: 30% ;
   }
-
-  .headButton {
+  .headButton{
     background-color: #409EFF;
     color: black;
   }
 }
+
 </style>

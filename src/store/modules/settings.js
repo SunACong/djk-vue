@@ -1,10 +1,3 @@
-/*
- * @Description: 设置
- * @Author: 孙少聪
- * @Date: 2022-09-26 14:34:23
- * @LastEditTime: 2022-11-25 15:27:29
- * @LastEditors: 孙少聪
- */
 import defaultSettings from '@/settings'
 
 const { showSettings, fixedHeader, sidebarLogo } = defaultSettings

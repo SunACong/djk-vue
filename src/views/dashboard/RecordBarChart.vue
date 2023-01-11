@@ -81,9 +81,19 @@ export default {
           top: '8%',
           containLabel: true
         },
-        xAxis: [{
+        dataZoom: { // 放大和缩放
+          type: 'inside'
+        },
+        xAxis: [{ 
           type: 'category',
-          data: this.oneXData
+          data: this.oneXData,
+          axisLabel: {
+            interval: 0,
+            rotate: 70,
+            textStyle: {
+              fontSize: 10
+            }
+          }
         }, {
           type: 'category',
           position: 'bottom',

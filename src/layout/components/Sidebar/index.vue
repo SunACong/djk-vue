@@ -1,10 +1,3 @@
-<!--
- * @Description:
- * @Author: 孙少聪
- * @Date: 2022-09-19 09:55:35
- * @LastEditTime: 2023-01-02 10:24:08
- * @LastEditors: 孙少聪
--->
 <template>
   <div :class="{'has-logo':showLogo}">
     <logo v-if="showLogo" :collapse="isCollapse" />
@@ -64,7 +57,7 @@ export default {
       return variables
     },
     isCollapse() {
-      return !this.sidebar.opened
+      return false
     }
   }
 }

@@ -42,7 +42,8 @@
             <div style="font-size: 20px;color: blue;margin-right: 3px;">
               <i class="el-icon-s-help" si />
             </div>
-            <span style="">冷轧卷报告单判定</span>
+            <span >冷轧卷报告单判定</span>
+            <el-button @click="getList" type="primary" :loading="loading" size="small" style="height: 33px;width: 80px;margin: 5px 0 0 10px;" >{{loading? "判定中":"判定"}}</el-button>
           </div>
           <div style="display: flex;">
             <div>
@@ -72,6 +73,7 @@
         <!-- 表格 -->
         <div>
           <el-table
+            v-loading="loading"
             :data="tableData"
             stripe
             style="width: 100%"
@@ -137,8 +139,8 @@
         <!-- 分页插件 -->
         <div style="margin: 30px 20px 20px;float: right;font-size: 20px;">
           <el-pagination
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20, 50]"
+            :current-page="pageNum"
+            :page-sizes="[10, 20, 30, 50]"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
             @size-change="handleSizeChange"
@@ -152,75 +154,69 @@
     <el-dialog :title="dailogData.processStandard.processName" :visible.sync="dialogFormVisible">
       <!-- 版型 -->
       <div v-if="showWtich===1 || showWtich===6">
-        <el-descriptions class="margin-top" title="版型" :column="2" border>
-          <el-descriptions-item>
-            <template slot="label">
-              平直度
-            </template>
+        <el-descriptions class="margin-top" title="版型" :column="2" border :size="size">
+          <el-descriptions-item label="平直度">
             {{ dailogData.singleStraightness === null?'-':dailogData.singleStraightness }}
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              中凸度
-            </template>
+          <el-descriptions-item label="平直度标准">
+            {{ dailogData.processStandard.straightness === null?'-':dailogData.processStandard.straightness }}
+          </el-descriptions-item>
+          <el-descriptions-item label="中凸度">
             {{ dailogData.singleMediumConvexity === null?'-':dailogData.singleMediumConvexity }}
+          </el-descriptions-item>
+          <el-descriptions-item label="中凸度标准">
+            {{ dailogData.processStandard.mediumConvexityLow === null?'-':dailogData.processStandard.mediumConvexityLow }}
+            ~
+            {{ dailogData.processStandard.mediumConvexityHigh === null?'-':dailogData.processStandard.mediumConvexityHigh }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 尺寸偏差 -->
-      <div v-if="showWtich===2 || showWtich===6" style="margin-top: 20px;">
-        <el-descriptions class="margin-top" title="尺寸偏差" :column="2" border>
-          <el-descriptions-item>
-            <template slot="label">
-              宽度
-            </template>
+      <div v-if="showWtich===2 || showWtich===6" class="my-margin">
+        <el-descriptions class="margin-top" title="尺寸偏差" :column="2" border :size="size">
+          <el-descriptions-item label="宽度差">
             {{ dailogData.finishedWidth === null?'-':dailogData.finishedWidth }}
-
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              厚度
-            </template>
+          <el-descriptions-item label="宽度差标准">
+            ±{{ dailogData.processStandard.widthDiff === null?'-': dailogData.processStandard.widthDiff }}
+          </el-descriptions-item>
+          <el-descriptions-item label="厚度差">
             {{ dailogData.finishedThickness === null?'-':dailogData.finishedThickness }}
+          </el-descriptions-item>
+          <el-descriptions-item label="厚度差标准">
+            ±{{ dailogData.processStandard.thicknessDiff === null?'-':dailogData.processStandard.thicknessDiff }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 力学性能 -->
-      <div v-if="showWtich===3 || showWtich===6" style="margin-top: 20px;">
-        <el-descriptions class="margin-top" title="力学性能" :column="2" border>
-          <el-descriptions-item>
-            <template slot="label">
-              抗拉强度
-            </template>
+      <div v-if="showWtich===3 || showWtich===6" class="my-margin">
+        <el-descriptions class="margin-top" title="力学性能" :column="2" border :size="size">
+          <el-descriptions-item label="抗拉强度">
             {{ dailogData.correctStrength === null?'-':dailogData.correctStrength }}
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              延伸率
-            </template>
+          <el-descriptions-item label="抗拉强度标准">
+            {{ dailogData.processStandard.tensileStrengthLow === null?'-':dailogData.processStandard.tensileStrengthLow }}
+            ~
+            {{ dailogData.processStandard.tensileStrengthHigh === null?'-':dailogData.processStandard.tensileStrengthHigh }}
+          </el-descriptions-item>
+          <el-descriptions-item label="延伸率">
             {{ dailogData.correctExtension === null?'-':dailogData.correctExtension }}
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              弯折性能
-            </template>
+          <el-descriptions-item label="延伸率标准">
+            ≥{{ dailogData.processStandard.elongation === null?'-':dailogData.processStandard.elongation }}
+          </el-descriptions-item>
+          <el-descriptions-item label="弯折性能">
+            -
+          </el-descriptions-item>
+          <el-descriptions-item label="弯折性能表标准">
             -
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 表面质量 -->
-      <div v-if="showWtich===4 || showWtich===6" style="margin-top: 20px;">
-        <el-descriptions class="margin-top" title="表面质量" :column="2" border>
-          <el-descriptions-item>
-            <template slot="label">
-              划痕
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              色差
-            </template>
+      <div v-if="showWtich===4 || showWtich===6" class="my-margin">
+        <el-descriptions class="margin-top" title="表面质量" :column="2" border :size="size">
+          <el-descriptions-item label="划痕">
             -
           </el-descriptions-item>
           <el-descriptions-item>
@@ -256,8 +252,8 @@
         </el-descriptions>
       </div>
       <!-- 外观质量 -->
-      <div v-if="showWtich===5 || showWtich===6" style="margin-top: 20px;">
-        <el-descriptions class="margin-top" title="外观质量" :column="2" border>
+      <div v-if="showWtich===5 || showWtich===6" class="my-margin">
+        <el-descriptions class="margin-top" title="外观质量" :column="2" border :size="size">
           <el-descriptions-item>
             <template slot="label">
               串层
@@ -318,19 +314,36 @@ export default {
   },
   data() {
     return {
+      labelStyle:{
+        background: '#8a1065',
+      },
+      // 遮罩层
+      loading: false,
       barData: [
-        ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        ['周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{a}'),
+          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 5, '{a}'),
+          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 4, '{a}'),
+          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 3, '{a}'),
+          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 2, '{a}'),
+          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 1, '{a}'),
+          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 0, '{a}')],
         [15, 20, 19, 10, 23, 11, 10]
       ],
       barData1: [
-        ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18', '9/19'],
+        [this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{y}-{m}-{d}'),
+          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 5, '{y}-{m}-{d}'),
+          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 4, '{y}-{m}-{d}'),
+          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 3, '{y}-{m}-{d}'),
+          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 2, '{y}-{m}-{d}'),
+          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 1, '{y}-{m}-{d}'),
+          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 0, '{y}-{m}-{d}')],
         [0, 1, 2, 1, 0, 1, 1]
       ],
       showWtich: 1,
       qualifyDateRange: '',
       reportDateRange: '',
       rollNumber: '',
-      currentPage: 1,
+      pageNum: 1,
       pageSize: 10,
       total: 100,
       pickerOptions: {
@@ -382,22 +395,24 @@ export default {
       },
       tableData: [],
       dialogFormVisible: false,
+      size: 'small',
       // 查询参数
       queryParams: {
-        currentPage: null,
+        pageNum: null,
         pageSize: null,
         startDateTime: null,
         endDateTime: null,
-        batchNum: null
+        batchNum: null,
+        isDecision: 1
       },
       productStandard: null
     }
   },
   computed: {},
   watch: {
-    currentPage: {
+    pageNum: {
       handler: function() {
-        this.queryParams.currentPage = this.currentPage
+        this.queryParams.pageNum = this.pageNum
       },
       deep: true,
       immediate: true
@@ -427,7 +442,7 @@ export default {
 			 * @param {Object} val
 			 */
     handleCurrentChange(val) {
-      this.currentPage = val
+      this.pageNum = val
       this.getList()
     },
     /**
@@ -450,9 +465,9 @@ export default {
       this.getList()
     },
     /**
-			 * 日期查询
-			 * @param {Object} val
-			 */
+     * 日期查询
+     * @param {Object} val
+     */
     dateRange(val) {
       console.log(val)
       try {
@@ -464,13 +479,22 @@ export default {
       }
     },
     /**
+     * 立马判断
+    */
+    getSoon() {
+      this.queryParams.isDecision = 1
+      this.getList()
+    },
+    /**
 			 * 获取表格数据
 			 */
     getList() {
+      this.loading = true
       getProductQualityVoList(this.queryParams).then((res) => {
         console.log('res: ', res)
         this.tableData = res.data.records
         this.total = res.data.total
+        this.loading = false
         console.log('total', this.total)
       })
     }
@@ -479,6 +503,10 @@ export default {
 </script>
 
 <style scoped="sass">
+  .my-margin {
+    margin-top: 20px;
+  }
+
 	.top_card {
 		margin: 1% 1%;
 	}
@@ -487,7 +515,7 @@ export default {
 		margin: 1% 1%;
 	}
 
-	/deep/ .el-card__header {
+  /deep/ .el-card__header {
 		padding: 10px 20px;
 	}
 </style>

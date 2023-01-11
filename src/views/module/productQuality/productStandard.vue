@@ -119,7 +119,7 @@
       </el-form-item>
     </el-form>
 
-    <el-row :gutter="10" class="mb8">
+    <!-- <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
           type="primary"
@@ -129,7 +129,7 @@
           @click="handleAdd"
         >新增</el-button>
       </el-col>
-      <!-- <el-col :span="1.5">
+      <el-col :span="1.5">
         <el-button
           type="success"
           plain
@@ -157,14 +157,14 @@
           size="mini"
           @click="handleExport"
         >导出</el-button>
-      </el-col> -->
+      </el-col>
       <right-toolbar :show-search.sync="showSearch" @queryTable="getList" />
-    </el-row>
+    </el-row> -->
 
-    <el-table v-loading="loading" :data="standardList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
+    <el-table v-loading="loading" highlight-current-row border :data="standardList" @selection-change="handleSelectionChange">
+      <!-- <el-table-column type="selection" width="55" align="center" /> -->
       <!-- <el-table-column label="主键" align="center" prop="id" /> -->
-      <el-table-column label="标准名称" align="center" prop="processName" />
+      <el-table-column label="标准名称" align="center" prop="processName" width="100%" />
       <el-table-column label="厚差" align="center" prop="thicknessDiff" />
       <el-table-column label="宽差" align="center" prop="widthDiff" />
       <el-table-column label="平直度" align="center" prop="straightness" />
@@ -178,7 +178,7 @@
       <el-table-column label="抗拉强度高" align="center" prop="tensileStrengthHigh" />
       <el-table-column label="延伸率" align="center" prop="elongation" />
       <el-table-column label="表面质量" align="center" prop="surface" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <!-- <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -193,7 +193,7 @@
             @click="handleDelete(scope.row)"
           >删除</el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
 
     <div style="margin: 0px 20px 20px;float: right;font-size: 20px;">

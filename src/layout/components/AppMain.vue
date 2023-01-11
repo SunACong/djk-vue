@@ -1,10 +1,3 @@
-<!--
- * @Description:
- * @Author: 孙少聪
- * @Date: 2022-09-19 09:55:35
- * @LastEditTime: 2022-12-12 09:34:29
- * @LastEditors: 孙少聪
--->
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">

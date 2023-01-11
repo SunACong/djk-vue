@@ -37,9 +37,9 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '*',
+    path: '/module/productQuality',
     component: Layout,
-    meta: { title: '产品合格判定模型', icon: 'dashboard' },
+    meta: { title: '产品合格判定模型', icon: 'el-icon-aim' },
     redirect: '/module/productQuality/productQuality',
     children: [{
       path: 'productQuality',
@@ -51,12 +51,22 @@ export const constantRoutes = [
       name: 'ProductStandard',
       component: () => import('@/views/module/productQuality/productStandard'),
       meta: { title: '判定标准', icon: 'dashboard' }
+    }, {
+      path: 'productLqcmr',
+      name: 'ProductLqcmr',
+      component: () => import('@/views/module/productQuality/productLqcmr'),
+      meta: { title: '力学性能指标', icon: 'dashboard' }
+    }, {
+      path: 'productLqci',
+      name: 'ProductLqci',
+      component: () => import('@/views/module/productQuality/productLqci'),
+      meta: { title: '产品随行卡指标', icon: 'dashboard' }
     }]
   },
   {
     path: '/healthDegree',
     component: Layout,
-    meta: { title: '设备健康状况分析', icon: 'dashboard' },
+    meta: { title: '设备健康状况分析', icon: 'el-icon-odometer' },
     redirect: '/module/healthDegree/roollingMachine',
     children: [{
       path: 'rollingMachine1',
@@ -124,7 +134,7 @@ export const constantRoutes = [
   {
     path: '/processMonitor',
     component: Layout,
-    meta: { title: '产品流程监控模型', icon: 'dashboard' },
+    meta: { title: '产品流程监控模型', icon: 'el-icon-finished' },
     redirect: '/processMonitor',
     children: [{
       path: '/processMonitor/processMonitor',
@@ -150,8 +160,8 @@ export const constantRoutes = [
   },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
-  // { path: '*', redirect: '/productQuality', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/module/productQuality', hidden: true }
 ]
 
 const createRouter = () => new Router({

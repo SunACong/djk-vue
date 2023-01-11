@@ -10,9 +10,9 @@ import { Message } from 'element-ui'
 
 // create an axios instance
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   baseURL: '/modelApi', // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
+  // baseURL: 'http://localhost:9528/modelApi', // url = base url + request url
+  // baseURL: 'https://www.hengzhong.xyz:9528/modelApi', // url = base url + request url
   timeout: 60000 // request timeout
 })
 
@@ -48,49 +48,21 @@ service.interceptors.request.use(
  * @return {*}
  * @Author: 孙少聪
  * @Date: 2022-11-25 14:59:37
- * @LastEditTime: Do not edit
  * @LastEditors: 孙少聪
  */
 service.interceptors.response.use(
-  /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
-  */
-
-  /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
-   */
   response => {
     const res = response.data
-
-    // if the custom code is not 20000, it is judged as an error.
-    /*    if (res.code !== 20000) {
+    if (res.code !== 200) {
       Message({
-        message: res.message || 'Error',
+        message: response.msg || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
-
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
-      }
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.message || '响应错误'))
     } else {
       return res
-    } */
-    return res
+    }
   },
   error => {
     console.log('err' + error) // for debug

@@ -86,6 +86,9 @@ export default {
         legend: {
           data: this.legend
         },
+        dataZoom: { // 放大和缩放
+          type: 'inside'
+        },
         xAxis: [{
           type: 'category',
           data: this.oneXData

@@ -16,8 +16,9 @@ import '@/icons'
 import plugins from './plugins'
 Vue.use(plugins)
 // 全局方法挂载
-import { resetForm } from '@/utils/utils'
+import { resetForm, parseTime } from '@/utils/utils'
 Vue.prototype.resetForm = resetForm
+Vue.prototype.parseTime = parseTime
 
 // 全局组件注册
 // 分页组件
@@ -27,9 +28,9 @@ import RightToolbar from '@/components/RightToolbar'
 Vue.component('Pagination', Pagination)
 Vue.component('RightToolbar', RightToolbar)
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+// Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
