@@ -47,20 +47,20 @@
           </div>
         </div>
         <div>
-          <el-table :data="tableData4" stripe style="width: 100%" height="300px" :show-header="false" >
-            <el-table-column prop="id" label="序号" min-width="10%" />
-            <el-table-column prop="data" label="日期" min-width="25%" />
-            <el-table-column prop="address" label="编号" min-width="25%" />
-            <el-table-column prop="status" label="状态" min-width="25%" >
+          <el-table :data="warnTable" stripe style="width: 100%" height="300px" :show-header="false" >
+            <el-table-column prop="produceTime" label="日期" min-width="25%" />
+            <el-table-column prop="indicatorName" label="指标名称" min-width="25%" />
+            <el-table-column prop="value" label="数值" min-width="20%" />
+            <el-table-column prop="status" label="状态" min-width="20%" >
               <template slot-scope="scope">
                 <el-button
                     size="medium"
                     type="text"
                     style="color: red"
-                >{{ scope.row.status }}</el-button>
+                >异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果" min-width="15%" >
+            <el-table-column label="判定结果" min-width="10%" >
               <template slot-scope="scope">
                 <el-button
                     size="medium"
@@ -98,7 +98,9 @@
         </div>
       </div>
       <div v-if="showWtich===2">
-        <span>这是一段信息</span>
+        <div>
+          <StackedLineChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName"></StackedLineChart>
+        </div>
       </div>
     </el-dialog>
   </div>
@@ -106,7 +108,7 @@
 
 <script>
 import StackedLineChart from '@/views/dashboard/StackedLineChart'
-import {getListTen} from "@/api/rewinder";
+import {getListTen,getListSpecial} from "@/api/rewinder";
 import {getAvaluateList} from "@/api/avaluate";
 export default {
   components: {StackedLineChart},
@@ -182,30 +184,11 @@ export default {
           maxData:null
         }
       }],
-      tableData4: [{
-        id: '01',
-        data: '2022/04/15 18:00',
-        address: '编号ADGH12435',
-        status: '速度过快'
-      }, {
-        id: '02',
-        data: '2022/04/15 18:00',
-        address: '编号ADGH12435',
-        status: '电流过高'
-      }, {
-        id: '03',
-        data: '2022/04/15 18:00',
-        address: '编号ADGH12435',
-        status: '速度过快'
-      }, {
-        id: '04',
-        data: '2022/04/15 18:00',
-        address: '编号ADGH12435',
-        status: '电流过高'
-      }],
+      warnTable: [],
       dialogVisible: false,
       dataList:{},
       avaluateList:{},
+      listSpecial:{},
       avaluateListTen:{},
       minData: null,
       maxData: null,
@@ -216,7 +199,8 @@ export default {
       showWtich:1,
       parameter: {
         indicatorName:null
-      }
+      },
+      dyTime:["1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00"]
     }
   },
   async created() {
@@ -302,9 +286,39 @@ export default {
         this.maxData = row.chartData.maxData
         this.rName = "开卷机速度"
         // console.log("这是name",row.chartData.rName)
+      }else if(index == 2){
+        getListSpecial({indicatorName: row.indicatorName, produceTime: row.produceTime}).then((res) =>{
+          console.log("特殊值列表", res.data)
+          this.listSpecial = res.data
+          this.xData = []
+          this.yData = []
+          this.listSpecial.forEach(item =>{
+            this.xData.push(item.produceTime)
+            this.yData.push(item.value)
+            this.rName = item.indicatorName
+            if(this.rName == "开卷机速度"){
+              this.minData = this.tableData2[0].chartData.minData
+              this.maxData =  this.tableData2[0].chartData.maxData
+            }else if(this.rName == "开卷机电流"){
+              this.minData = this.tableData2[1].chartData.minData
+              this.maxData =  this.tableData2[1].chartData.maxData
+            }else if(this.rName == "卷取机速度"){
+              this.minData = this.tableData2[2].chartData.minData
+              this.maxData =  this.tableData2[2].chartData.maxData
+            }else if(this.rName == "卷取机电流"){
+              this.minData = this.tableData2[3].chartData.minData
+              this.maxData =  this.tableData2[3].chartData.maxData
+            }
+          })
+
+        })
       }
+
       this.dialogVisible = true
     },
+
+    //定时查询重卷机数据
+
     setTimer() {
       // this.yData = []
       if(this.timer == null) {
@@ -315,6 +329,13 @@ export default {
             this.tableData2[0].chartData.xData = []
             this.tableData2[0].chartData.yData = []
             this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[0].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[0] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[0] = item.produceTime
+                }
+                // console.log(typeof this.warnTable[this.warnTable.length-1].produceTime)
+              }
               this.tableData2[0].chartData.xData.push(item.produceTime)
               this.tableData2[0].chartData.yData.push(item.value)
               this.tableData2[0].chartData.rName= item.indicatorName
@@ -327,6 +348,12 @@ export default {
             this.tableData2[1].chartData.xData = []
             this.tableData2[1].chartData.yData = []
             this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[1].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[1] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[1] = item.produceTime
+                }
+              }
               this.tableData2[1].chartData.xData.push(item.produceTime)
               this.tableData2[1].chartData.yData.push(item.value)
               this.tableData2[1].chartData.rName= item.indicatorName
@@ -338,6 +365,12 @@ export default {
             this.tableData2[2].chartData.xData = []
             this.tableData2[2].chartData.yData = []
             this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[2].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[2] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[2] = item.produceTime
+                }
+              }
               this.tableData2[2].chartData.xData.push(item.produceTime)
               this.tableData2[2].chartData.yData.push(item.value)
               this.tableData2[2].chartData.rName= item.indicatorName
@@ -349,6 +382,12 @@ export default {
             this.tableData2[3].chartData.xData = []
             this.tableData2[3].chartData.yData = []
             this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[3].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[3] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[3] = item.produceTime
+                }
+              }
               this.tableData2[3].chartData.xData.push(item.produceTime)
               this.tableData2[3].chartData.yData.push(item.value)
               this.tableData2[3].chartData.rName= item.indicatorName

@@ -30,9 +30,7 @@ export default {
     },
     legend: {
       type: Array,
-      default: function() {
-        return ['合格', '不合格']
-      }
+      default: null
     },
     oneXData: {
       type: Array,
@@ -83,15 +81,19 @@ export default {
           top: '8%',
           containLabel: true
         },
-        legend: {
-          data: this.legend
-        },
         dataZoom: { // 放大和缩放
           type: 'inside'
         },
-        xAxis: [{
+        xAxis: [{ 
           type: 'category',
-          data: this.oneXData
+          data: this.oneXData,
+          axisLabel: {
+            interval: 0,
+            rotate: 70,
+            textStyle: {
+              fontSize: 10
+            }
+          }
         }, {
           type: 'category',
           position: 'bottom',
@@ -105,13 +107,13 @@ export default {
           axisTick: { show: false }
         }],
         series: [{
-          name: this.legend[0],
+          // symbol: 'none',
+          // smooth: false,
           type: this.chartType,
           barWidth: '10%',
           data: this.oneYData,
           animationDuration
         }, {
-          name: this.legend[1],
           type: this.chartType,
           barWidth: '10%',
           data: this.twoYData,

@@ -25,10 +25,9 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/model',
+  publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  // lintOnSave: process.env.NODE_ENV === 'development',
   lintOnSave: false,
   productionSourceMap: false,
   devServer: {
@@ -37,12 +36,12 @@ module.exports = {
     open: true,
     https: false,
     proxy: {
-      '/model/api': {
+      '/modelApi': {
         target: 'http://localhost:9527',
         changeOrigin: true,
         ws: true,
         pathRewrite: {
-          '^/model/api': ''
+          '^/modelApi': ''
         }
       }
     },
@@ -63,8 +62,6 @@ module.exports = {
     config.plugin('preload').tap(() => [
       {
         rel: 'preload',
-        // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
         fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
         include: 'initial'
       }

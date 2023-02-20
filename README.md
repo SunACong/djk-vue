@@ -1,21 +1,25 @@
+<!--
+ * @Description: readme
+ * @Author: 孙少聪
+ * @Date: 2022-09-19 09:55:35
+ * @LastEditTime: 2022-11-25 15:34:08
+ * @LastEditors: 孙少聪
+-->
 # djk-vue
 
 > 已经包含了 Element UI & axios & iconfont & permission control & lint 技术栈
+> 本项目借鉴于
 
 [线上地址](http://panjiachen.github.io/vue-admin-template)
-
-[国内访问](https://panjiachen.gitee.io/vue-admin-template)https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
-
-https://segmentfault.com/a/1190000009090836)
 
 ## Build Setup
 
 ```bash
 # 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone https://github.com/ACongSun/djk-vue
 
 # 进入项目目录
-cd vue-admin-template
+cd djk-vue
 
 # 安装依赖
 npm install

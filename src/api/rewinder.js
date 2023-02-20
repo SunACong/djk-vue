@@ -14,3 +14,10 @@ export function getListTen(params) {
     params
   })
 }
+export function getListSpecial(params) {
+  return request({
+    url: '/rewinder/listSpecial',
+    method: 'get',
+    params
+  })
+}

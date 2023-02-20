@@ -1,7 +1,14 @@
+/*
+ * @Description:
+ * @Author: 孙少聪
+ * @Date: 2022-09-19 09:55:35
+ * @LastEditTime: 2023-01-06 09:02:06
+ * @LastEditors: 孙少聪
+ */
 import store from '@/store'
 
 const { body } = document
-const WIDTH = 992 // refer to Bootstrap's responsive design
+const WIDTH = 992 // refer to Bootstrap's responsive design  before 992
 
 export default {
   watch: {

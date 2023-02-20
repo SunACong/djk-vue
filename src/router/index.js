@@ -31,38 +31,68 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login/index'),
-  //   hidden: true
-  // },
-
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
   {
-    path: '/',
-    redirect: '/module/productQuality',
+    path: '/module/productQuality',
     component: Layout,
+    meta: { title: '产品合格判定模型', icon: 'el-icon-aim' },
+    redirect: '/module/productQuality/productQuality',
     children: [{
-      path: '/module/productQuality',
+      path: 'productQuality',
       name: 'ProductQuality',
-      component: () => import('@/views/module/productQuality'),
-      meta: { title: '产品合格判定模型', icon: 'dashboard' }
+      component: () => import('@/views/module/productQuality/productQuality'),
+      meta: { title: '合格判定', icon: 'dashboard' }
+    }, {
+      path: 'productStandard',
+      name: 'ProductStandard',
+      component: () => import('@/views/module/productQuality/productStandard'),
+      meta: { title: '判定标准', icon: 'dashboard' }
+    }, {
+      path: 'productLqcmr',
+      name: 'ProductLqcmr',
+      component: () => import('@/views/module/productQuality/productLqcmr'),
+      meta: { title: '力学性能指标', icon: 'dashboard' }
+    }, {
+      path: 'productLqci',
+      name: 'ProductLqci',
+      component: () => import('@/views/module/productQuality/productLqci'),
+      meta: { title: '产品随行卡指标', icon: 'dashboard' }
     }]
   },
   {
-    path: '/module/healthDegree',
+    path: '/healthDegree',
     component: Layout,
-    meta: { title: '设备健康状况分析', icon: 'dashboard' },
+    meta: { title: '设备健康状况分析', icon: 'el-icon-odometer' },
     redirect: '/module/healthDegree/roollingMachine',
     children: [{
-      path: 'roollingMachine',
-      name: 'RoollingMachine',
-      component: () => import('@/views/module/healthDegree/roollingMachine.vue'),
-      meta: { title: '铸扎机', icon: 'dashboard' }
+      path: 'rollingMachine1',
+      name: 'RollingMachine1',
+      component: () => import('@/views/module/healthDegree/rollingMachine1.vue'),
+      meta: { title: '铸扎机1#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine2',
+      name: 'RollingMachine2',
+      component: () => import('@/views/module/healthDegree/rollingMachine2.vue'),
+      meta: { title: '铸扎机2#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine3',
+      name: 'RollingMachine3',
+      component: () => import('@/views/module/healthDegree/rollingMachine3.vue'),
+      meta: { title: '铸扎机3#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine4',
+      name: 'RollingMachine4',
+      component: () => import('@/views/module/healthDegree/rollingMachine4.vue'),
+      meta: { title: '铸扎机4#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine5',
+      name: 'RollingMachine5',
+      component: () => import('@/views/module/healthDegree/rollingMachine5.vue'),
+      meta: { title: '铸扎机5#', icon: 'dashboard' }
     }, {
       path: 'recoilingMachine',
       name: 'RecoilingMachine',
@@ -84,9 +114,9 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/avaluate.vue'),
       meta: { title: '值域', icon: 'dashboard' }
     }, {
-      path: 'roollingMachineSet',
-      name: 'RoollingMachineSet',
-      component: () => import('@/views/module/healthDegree/roollingMachineSet.vue'),
+      path: 'rollingMachineSet',
+      name: 'RollingMachineSet',
+      component: () => import('@/views/module/healthDegree/rollingMachineSet.vue'),
       meta: { title: '铸扎机参数设置', icon: 'dashboard' }
     }, {
       path: 'parameterSet',
@@ -102,14 +132,15 @@ export const constantRoutes = [
   },
 
   {
-    path: '/module/processMonitor',
+    path: '/processMonitor',
     component: Layout,
-    meta: { title: '产品流程监控模型', icon: 'dashboard' },
-    redirect: '/module/processMonitor',
+    meta: { title: '产品流程监控模型', icon: 'el-icon-finished' },
+    redirect: '/processMonitor',
     children: [{
-      path: '/processMonitor',
+      path: '/processMonitor/processMonitor',
       name: 'ProcessMonitor',
       component: () => import('@/views/module/processMonitor'),
+<<<<<<< HEAD
       meta: { title: '整体生产流程', icon: 'dashboard' }
     },
     //   {
@@ -135,16 +166,21 @@ export const constantRoutes = [
       meta: { title: '冷退冷重冷生产流程', icon: 'dashboard' }
     },{
       path: '/computeIndex',
+=======
+      meta: { title: '产品流程监控模型', icon: 'dashboard' }
+    }, {
+      path: '/processMonitor/computeIndex',
+>>>>>>> 4b32e5547ef29427287f3dcf7e69f2164150a1a8
       name: 'ComputeIndex',
       component: () => import('@/views/module/computeIndex'),
       meta: { title: '生产周期计算', icon: 'dashboard' }
-    },{
-      path: '/predictIndex',
+    }, {
+      path: '/processMonitor/predictIndex',
       name: 'PredictIndex',
       component: () => import('@/views/module/predictIndex'),
       meta: { title: '交期风险预判', icon: 'dashboard' }
-    },{
-      path: '/processIndex',
+    }, {
+      path: '/processMonitor/processIndex',
       name: 'ProcessIndex',
       component: () => import('@/views/module/processIndex'),
       meta: { title: '异常流程显示', icon: 'dashboard' }
@@ -152,11 +188,13 @@ export const constantRoutes = [
   },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/module/productQuality', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
+  base: 'model/api',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
