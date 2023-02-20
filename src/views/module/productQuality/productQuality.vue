@@ -152,9 +152,9 @@
 
     <!-- 弹窗 -->
     <el-dialog :title="dailogData.processStandard.processName" :visible.sync="dialogFormVisible">
-      <!-- 版型 -->
+      <!-- 板型 -->
       <div v-if="showWtich===1 || showWtich===6">
-        <el-descriptions class="margin-top" title="版型" :column="2" border :size="size">
+        <el-descriptions class="margin-top" title="板型" :column="2" border :size="size">
           <el-descriptions-item label="平直度">
             {{ dailogData.singleStraightness === null?'-':dailogData.singleStraightness }}
           </el-descriptions-item>
@@ -512,7 +512,8 @@ export default {
 	}
 
 	.bottom_card {
-		margin: 1% 1%;
+    overflow: hidden;
+    margin: 1% 1.1%;
 	}
 
   /deep/ .el-card__header {
