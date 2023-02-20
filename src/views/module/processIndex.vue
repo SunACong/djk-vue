@@ -1,7 +1,10 @@
 <template>
   <div>
+    <div style="font-size: 15px;color: black;margin-right: 3px;">
+      模块功能说明：这是查询异常流程的功能模块，该模块主要显示异常流程，在下方点击刷新，即可查看异常流程。
+    </div>
     <div class="top_card">
-      <el-card shadow="always" style="height: 500px">
+      <el-card shadow="always" >
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
             <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si />
@@ -16,8 +19,9 @@
           <!--          </div>-->
         </div>
         <el-button style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query">刷新</el-button>
+        <process-bar-chart :period-data="processData" />
         <div>
-          <el-table :data="tableData" border>
+          <el-table :data="yichangData" border>
             <el-table-column fixed prop="number" label="序号" />
             <el-table-column prop="productNum" label="产品编号" />
             <el-table-column prop="nowProduce" label="当前流程" />
@@ -64,15 +68,18 @@
 
 <script>
 import { getProcess } from '@/api/process'
+import ProcessBarChart from '@/views/dashboard/ProcessBarChart'
 
 export default {
   name: 'ProcessIndex',
+  components: { ProcessBarChart },
   data() {
     return {
       value: '',
+      processData: [50, 30, 110, 78],
       yichangVisible: false,
       yichangAlign: {},
-      tableData: [{
+      yichangData: [{
         number: '001',
         productNum: 'A12034',
         nowProduce: '生产',
@@ -112,7 +119,13 @@ export default {
     query() {
       getProcess().then(response => {
         console.log('这是异常流程数据 ', response)
-        this.tableData = response.data
+        this.processData = [
+          response.data[0].productNum,
+          response.data[1].productNum,
+          response.data[2].productNum,
+          response.data[3].productNum
+        ]
+        this.yichangData = response.data
       })
     }
 

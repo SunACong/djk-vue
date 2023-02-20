@@ -74,16 +74,16 @@ export default {
           containLabel: true
         },
         legend: {
-          data: ['平均生产天数']
+          data: ['剩余时间']
         },
         xAxis: [{
-          name: '名称',
+          name: '订单号',
           nameGap: 1,
           type: 'category',
           nameTextStyle: {
-            fontSize: '13'
+            fontSize: '4'
           },
-          data: ['铸轧计划', '熔炉生产', '保温', '保温（精练一）', '保温（精练二）', '保温（精练三）', '保温（精练四）', '保温（精练五）', '铸轧生产', '铸轧卷质检', '冷轧生产计划', '冷轧工序 ', '退火', '冷轧卷成品质检', '重卷中切', '冷轧卷入库', '包装检验']
+          data: ['订单一', '订单二', '订单三', '订单四']
         }, {
           type: 'category',
           position: 'bottom',
@@ -94,13 +94,13 @@ export default {
         }
         ],
         yAxis: [{
-          name: '生产时间',
+          name: '进度',
           show: true,
           type: 'value',
           axisTick: { show: false }
         }],
         series: [{
-          name: '平均生产天数',
+          name: '剩余时间',
           type: 'bar',
           barWidth: '30%',
           data: this.periodData,

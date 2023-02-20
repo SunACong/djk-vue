@@ -1,21 +1,23 @@
 <template>
   <div>
+    <div style="font-size: 15px;color: black;margin-right: 3px;">
+      模块功能说明：这是计算交期风险预判功能模块，该模块主要计算交期风险，判断剩余时间，在下方点击刷新，即可计算剩余时间。
+    </div>
     <div class="top_card">
-      <el-card shadow="always" style="height: 500px">
+      <el-card shadow="always" >
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
             <div style="font-size: 20px;color: blue;margin-right: 10px;"><i class="el-icon-s-help" />
             </div>
             <span style="line-height: 40px;display: flex">交期风险预判</span>
           </div>
-          <!--        <div>-->
-          <!--          <el-date-picker v-model="value" type="daterange" start-placeholder="开始日期"-->
-          <!--                          end-placeholder="结束日期" :default-time="['00:00:00', '23:59:59']">-->
-          <!--          </el-date-picker>-->
-          <!--        </div>-->
         </div>
         <el-button style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query">刷新</el-button>
         <div>
+          <predict-bar-chart :period-data="predictData" />
+        </div>
+        <div>
+
           <el-table :data="fengxianData" border>
             <el-table-column fixed prop="orderNumber" label="订单号" />
             <el-table-column prop="progress" label="进度">
@@ -56,12 +58,15 @@
 
 <script>
 import { getPredict } from '@/api/predict'
+import PredictBarChart from '@/views/dashboard/PredictBarChart'
 
 export default {
   name: 'PredictIndex',
+  components: { PredictBarChart },
   data() {
     return {
       value: '',
+      predictData: [110, 0, 10, 0, 0],
       fengxianVisible: false,
       fengxianAlign: {},
       fengxianData: [{
@@ -97,6 +102,12 @@ export default {
     query() {
       getPredict().then(response => {
         console.log('这是交期风险数据 ', response)
+        this.predictData = [
+          response.data[0].orderNumber,
+          response.data[1].orderNumber,
+          response.data[2].orderNumber,
+          response.data[3].orderNumber
+        ]
         this.fengxianData = response.data
       })
     }

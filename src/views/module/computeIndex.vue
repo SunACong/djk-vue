@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div style="font-size: 15px;color: black;margin-right: 3px;">
+      模块功能说明：这是计算平均生产天数功能模块，该模块主要计算每个流程的平均生产天数，在下方点击计算平均生产天数，即可计算所有步骤的平均生产天数。
+    </div>
     <div>
       <el-button style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query">计算平均生产天数</el-button>
       <period-bar-chart :period-data="periodData" />
@@ -46,7 +49,7 @@ export default {
   data() {
     return {
       jihuaCreateTime: [],
-      periodData: [679, 1000, 200, 400, 390, 330, 220, 111, 212, 313, 414, 515, 616, 717, 818, 919, 123],
+      periodData: [0, 0, 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // queryParams: {},
       tableData: [
         {
@@ -167,6 +170,7 @@ export default {
     // 查询参数
     query() {
       getCompute().then(response => {
+        console.log('这个 我也不知道',response)
         this.periodData = [
           response.data[0].castplan,
           response.data[0].smelthold,
