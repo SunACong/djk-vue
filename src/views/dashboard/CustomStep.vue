@@ -103,8 +103,8 @@ export default {
 <style scoped lang="less">
 .circle {
 
-  width: 150px;
-  height: 300px;
+  width: 100px;
+  height: 200px;
   margin-top: 10px;
   border: 0px solid #c0c4cc;
   border-radius: 0 25% 25% 0/50%;
@@ -115,10 +115,10 @@ export default {
     right: 35px;
     top: 50%;
     width: 40px;
-    height: 11px;
+    height: 22px;
     transform: translate(55%, -50%);
     background-color: #fff;
-    border-radius: 50%;
+    border-radius: 70%;
     color: #000000;
     text-align: center;
     font-size: 11px;

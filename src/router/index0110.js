@@ -110,29 +110,7 @@ export const constantRoutes = [
       path: '/processMonitor',
       name: 'ProcessMonitor',
       component: () => import('@/views/module/processMonitor'),
-      meta: { title: '整体生产流程', icon: 'dashboard' }
-    },
-    //   {
-    //   path: '/test',
-    //   name: 'test',
-    //   component: () => import('@/views/module/test'),
-    //   meta: { title: '测试', icon: 'dashboard' }
-    // },
-      {
-      path: '/LTLTprocess',
-      name: 'LTLTprocess',
-      component: () => import('@/views/module/LTLTprocess'),
-      meta: { title: '冷退冷退生产流程', icon: 'dashboard' }
-    },{
-      path: '/LTLprocess',
-      name: 'LTLprocess',
-      component: () => import('@/views/module/LTLprocess'),
-      meta: { title: '冷退冷生产流程', icon: 'dashboard' }
-    },{
-      path: '/LTLZLprocess',
-      name: 'LTLZLprocess',
-      component: () => import('@/views/module/LTLZLprocess'),
-      meta: { title: '冷退冷重冷生产流程', icon: 'dashboard' }
+      meta: { title: '产品流程监控模型', icon: 'dashboard' }
     },{
       path: '/computeIndex',
       name: 'ComputeIndex',
