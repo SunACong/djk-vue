@@ -47,7 +47,11 @@ export default {
     twoYData: {
       type: Array,
       default: null
-    }
+    },
+    dataZoomType: {
+      type: String,
+      default: 'slider'
+    },
   },
   data() {
     return { chart: null }
@@ -82,7 +86,7 @@ export default {
           containLabel: true
         },
         dataZoom: { // 放大和缩放
-          type: 'inside'
+          type: this.dataZoomType,
         },
         xAxis: [{ 
           type: 'category',

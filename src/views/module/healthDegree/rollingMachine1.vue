@@ -39,7 +39,7 @@
         </el-card>
       </div>
     </div>
-    <div class="health_status" style="margin-top: 8px">
+    <div class="health_status" style="margin-top: 8px;">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
