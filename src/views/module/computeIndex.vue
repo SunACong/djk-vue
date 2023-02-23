@@ -10,13 +10,25 @@
     <div>
       <div class="st-table">
         <el-table :data="tableData" border style="width: 100%">
-          <el-table-column prop="steps" label="生产工序" width="180">
+          <el-table-column prop="num" label="工序步骤" width="180">
+            <template slot-scope="scope">
+              <input v-show="scope.row.iseditor" v-model="scope.row.num" type="text">
+              <span v-show="!scope.row.iseditor">{{ scope.row.num }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="steps" label="生产工序名称" width="180">
             <template slot-scope="scope">
               <input v-show="scope.row.iseditor" v-model="scope.row.steps" type="text">
               <span v-show="!scope.row.iseditor">{{ scope.row.steps }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="date" label="平均生产天数" width="180">
+          <el-table-column prop="date" label="近一年平均生产天数" width="180">
+            <template slot-scope="scope">
+              <input v-show="scope.row.iseditor" v-model="scope.row.date" type="text">
+              <span v-show="!scope.row.iseditor">{{ scope.row.date }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="date" label="最近一次生产耗时（天）" width="180">
             <template slot-scope="scope">
               <input v-show="scope.row.iseditor" v-model="scope.row.date" type="text">
               <span v-show="!scope.row.iseditor">{{ scope.row.date }}</span>
@@ -49,107 +61,124 @@ export default {
   data() {
     return {
       jihuaCreateTime: [],
-      periodData: [0, 0, 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      periodData: [0, 10, 0, 0, 10, 0, 0, 110, 0, 0, 0, 10, 0, 10, 0, 10, 0],
       // queryParams: {},
       tableData: [
         {
+          num: '工序1 ',
           steps: '铸轧生产计划',
           date: '11',
           note: '无',
           iseditor: false
         },
         {
-          steps: '熔炉生产',
+          num: '工序2 ',
+          steps: '熔炼工序',
           date: '22',
           note: '无',
           iseditor: false
         },
         {
-          steps: '保温',
+          num: '工序3',
+          steps: '保温工序',
           date: '33',
           note: '无',
           iseditor: false
         },
         {
-          steps: '保温（第一次精炼）',
+          num: '工序4',
+          steps: '铸轧工序',
           date: '44',
           note: '无',
           iseditor: false
         },
         {
-          steps: '保温（第二次精炼）',
+          num: '工序5 ',
+          steps: '出入库记录（铸轧）',
           date: '55',
           note: '无',
           iseditor: false
         },
         {
-          steps: '保温（第三次精炼）',
+          num: '工序6',
+          steps: '铸轧卷质检记录',
           date: '66',
           note: '无',
           iseditor: false
         },
         {
-          steps: '保温（第四次精炼）',
+          num: '工序7',
+          steps: '铸卷质检报告',
           date: '77',
           note: '无',
           iseditor: false
         },
         {
-          steps: '保温（第五次精炼）',
+          num: '工序8 ',
+          steps: '冷轧生产计划',
           date: '88',
           note: '无',
           iseditor: false
         },
         {
-          steps: '铸轧生产',
+          num: '工序9 ',
+          steps: '冷轧工序',
           date: '99',
           note: '无',
           iseditor: false
         },
         {
-          steps: '铸轧卷质检',
+          num: '工序10',
+          steps: '退火工序',
           date: '88',
           note: '无',
           iseditor: false
         },
         {
-          steps: '冷轧生产计划',
+          num: '工序11',
+          steps: '重卷工序',
           date: '77',
           note: '无',
           iseditor: false
         },
         {
-          steps: '冷轧工序',
+          num: '工序12',
+          steps: '出入库记录（冷轧）',
           date: '66',
           note: '无',
           iseditor: false
         },
         {
-          steps: '退火',
+          num: '工序13',
+          steps: '冷轧工序质量巡检',
           date: '55',
           note: '无',
           iseditor: false
         },
         {
-          steps: '冷轧卷成品质检',
+          num: '工序14',
+          steps: '冷轧卷质检报告',
           date: '44',
           note: '无',
           iseditor: false
         },
         {
-          steps: '重卷中切',
+          num: '工序15 ',
+          steps: '投诉及处理信息',
           date: '33',
           note: '无',
           iseditor: false
         },
         {
-          steps: '冷轧卷入库',
+          num: '工序16',
+          steps: '工序16',
           date: '22',
           note: '无',
           iseditor: false
         },
         {
-          steps: '包装检验',
+          num: '工序17 ',
+          steps: '工序17',
           date: '11',
           note: '无',
           iseditor: false

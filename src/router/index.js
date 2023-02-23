@@ -140,7 +140,6 @@ export const constantRoutes = [
       path: '/processMonitor/processMonitor',
       name: 'ProcessMonitor',
       component: () => import('@/views/module/processMonitor'),
-<<<<<<< HEAD
       meta: { title: '整体生产流程', icon: 'dashboard' }
     },
     //   {
@@ -153,24 +152,21 @@ export const constantRoutes = [
       path: '/LTLTprocess',
       name: 'LTLTprocess',
       component: () => import('@/views/module/LTLTprocess'),
-      meta: { title: '冷退冷退生产流程', icon: 'dashboard' }
-    },{
+      meta: { title: '铸轧生产流程', icon: 'dashboard' }
+    }, {
       path: '/LTLprocess',
       name: 'LTLprocess',
       component: () => import('@/views/module/LTLprocess'),
-      meta: { title: '冷退冷生产流程', icon: 'dashboard' }
-    },{
-      path: '/LTLZLprocess',
-      name: 'LTLZLprocess',
-      component: () => import('@/views/module/LTLZLprocess'),
-      meta: { title: '冷退冷重冷生产流程', icon: 'dashboard' }
-    },{
+      meta: { title: '冷轧生产流程', icon: 'dashboard' }
+    },
+    //   {
+    //   path: '/LTLZLprocess',
+    //   name: 'LTLZLprocess',
+    //   component: () => import('@/views/module/LTLZLprocess'),
+    //   meta: { title: '冷退冷重冷生产流程', icon: 'dashboard' }
+    // },
+      {
       path: '/computeIndex',
-=======
-      meta: { title: '产品流程监控模型', icon: 'dashboard' }
-    }, {
-      path: '/processMonitor/computeIndex',
->>>>>>> 4b32e5547ef29427287f3dcf7e69f2164150a1a8
       name: 'ComputeIndex',
       component: () => import('@/views/module/computeIndex'),
       meta: { title: '生产周期计算', icon: 'dashboard' }

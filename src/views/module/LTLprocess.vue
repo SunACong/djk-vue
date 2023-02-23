@@ -1,23 +1,29 @@
 <template xmlns:display="http://www.w3.org/1999/xhtml">
-  <div>
-    <div style="font-size: 15px;color: black;margin-right: 3px;">模块功能说明：这是三步骤的冷轧与退火的功能模块，该模块主要显示冷轧退火的详细信息。</div>
+  <div >
+    <div style="background-color: #46b9b9;padding: 10px 10px">
+      模块功能说明：这是冷轧工序的功能模块，该模块主要查询显示冷轧退火的详细信息。在下方输入框输入对应的计划单号、熔次号或者冷轧卷号即可查询冷轧生产的流程信息。样例可输入冷轧卷号（4002D122、1002A122）
+    </div>
     <div style="background-color: white;padding: 20px 10px">
-      <el-input v-model="queryParams.reelNum" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true" >
-        <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query(queryParams.reelNum)">
+      <el-input v-model="queryParams.batchNum" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true" >
+        <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query(queryParams.batchNum)">
           查询
         </el-button>
       </el-input>
+      <div align="center" >
+        <span style="line-height: 50px;" size="mini">当前生产流程：{{ nowProduct }} </span>
+      </div>
+
     </div>
 
     <div style="background-color: white;padding: 10px 10px">
       <el-steps :active="active" align-center>
-        <el-step title="冷轧" description=" "></el-step>
-        <el-step title="退火" description=" "></el-step>
-        <el-step title="冷轧" description=" "></el-step>
-        <el-step title="重卷剪切" description=" "></el-step>
+        <el-step title="冷轧工序" description=" "></el-step>
+        <el-step title="退火工序" description=" "></el-step>
+        <el-step title="重卷工序" description=" "></el-step>
+        <el-step title="出入库记录" description=" "></el-step>
       </el-steps>
     </div>
-    <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧工序工序详细信息</div>
+    <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
           :data="lenzhagongxuData"
@@ -383,100 +389,188 @@
           style="width: 100%"
           height="250">
         <el-table-column
-            fixed
-            prop="annealDate"
-            label="退火日期"
+            prop="ts"
+            label="ts"
             width="150">
         </el-table-column>
         <el-table-column
-            fixed
-            prop="alloy"
-            label="合金"
+            prop="creatorId"
+            label="创建人"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="anneal"
-            label="退火厚度"
+            prop="createTime"
+            label="创建时间"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="rollNum"
-            label="卷数(个)"
+            prop="batchNum"
+            label="卷号"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="totalAmount"
-            label="装炉总量"
+            prop="recordDate"
+            label="退火日期"
             width="120">
         </el-table-column>
         <el-table-column
             prop="furnaceNum"
-            label="装炉炉号"
+            label="退火炉号"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="furnaceLocation"
+            prop="startTime"
+            label="退火开始时间"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="endTime"
+            label="退火结束时间"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="totalTime"
+            label="单条退火记录时间"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="gasTemperature1"
+            label="炉气温度(℃)Ⅰ区"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="gasTemperature2"
+            label="炉气温度(℃)Ⅱ区"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="gasTemperature3"
+            label="炉气温度(℃)Ⅲ区"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="materialTemperature1"
+            label="料温(℃)1"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="materialTemperature2"
+            label="料温(℃)2"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="hydraulicPressure"
+            label="水压MPa"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="gasPressure"
+            label="气压MPa"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="intakeFanTemperature"
+            label="进风风机轴承温度℃"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="exhaustFanTemperature"
+            label="排烟风机轴承温度℃"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="cycleFanTemperature1"
+            label="循环风机轴承温度(℃)Ⅰ区"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="cycleFanTemperature2"
+            label="循环风机轴承温度(℃)Ⅱ区"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="cycleFanTemperature3"
+            label="循环风机轴承温度(℃)Ⅲ区"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="remark"
+            label="备注"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="operator"
+            label="操作手"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="annealingThick"
+            label="退火厚度（mm）"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="furnaceCardNumber"
+            label="退火工艺卡编号"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="brand"
+            label="合金"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="rollNum"
+            label="卷数（个）"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="furnaceTotal"
+            label="装炉总量（t）"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="furnacePosition"
             label="装炉位置"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="furnaceTime"
-            label="装炉时间"
-            width="120">
-        </el-table-column>
-        <el-table-column
-            prop="annealTime"
-            label="退火总用时"
-            width="120">
-        </el-table-column>
-        <el-table-column
-            prop="furnaceStaff"
+            prop="furnaceOperator1"
             label="装炉人员"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="outStaff"
+            prop="furnaceOperator2"
             label="出炉人员"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="furnaceTemperature"
-            label="装炉料温"
-            width="120">
-        </el-table-column>
-        <el-table-column
-            prop="outTemperature"
-            label="出炉料温"
-            width="120">
-        </el-table-column>
-        <el-table-column
-            prop="temperatureContro"
+            prop="tempPowerControl"
             label="料温控制/炉气控制"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="startCharge"
-            label="起始电量（Kw.h）"
+            prop="powerBefore"
+            label="起始电量（kw.h）"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="endCharge"
-            label="终止电量（Kw.h）"
+            prop="powerAfter"
+            label="终止电量（kw.h）"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="runningTime"
+            prop="runningDuring"
             label="运行时长"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="electricity"
-            label="本炉电耗（Kw.h）"
+            prop="powerLoss"
+            label="本炉电耗（kw.h）"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="tonElectricity"
-            label="吨电耗（Kw.h）/t"
+            prop="perPowerLoss"
+            label="吨电耗（kw.h/t）"
             width="120">
         </el-table-column>
 
@@ -489,90 +583,287 @@
           style="width: 100%"
           height="250">
         <el-table-column
-            fixed
-            prop="produceNum"
-            label="生产批号"
+            prop="ts"
+            label="ts"
             width="150">
         </el-table-column>
         <el-table-column
-            fixed
-            prop="cutTime"
-            label="切边时间"
+            prop="creatorId"
+            label="创建人"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="mainExercise"
-            label="主操"
+            prop="mainOperator"
+            label="主操手"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="sailings"
+            prop="assistantOperator"
+            label="辅助工"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="workShift"
             label="班次"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="productOrder"
-            label="生产顺序"
+            prop="recordDate"
+            label="日期"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="incomingWidth"
-            label="来料宽度"
+            prop="createTime"
+            label="创建时间"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="cutWidth"
-            label="成品切边宽度"
+            prop="brand"
+            label="合金状态"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="cutTension"
-            label="剪切张力"
+            prop="productName"
+            label="产品名称"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="cutSpeed"
-            label="剪切速度"
+            prop="reelNum"
+            label="来料卷号(铸轧卷号)"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="originRegular"
+            label="来料规格mm"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="batchNum"
+            label="加工后冷轧卷号"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="processedRegular"
+            label="加工后规格mm"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="machineSpeed"
+            label="运行参数#机列速度m/min"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="reelingTensileStress"
+            label="运行参数#卷取张应力N/M2"
             width="120">
         </el-table-column>
         <el-table-column
             prop="knifeGap"
-            label="刀缝间隙"
+            label="运行参数#刀缝间隙MM"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="rewindWeight"
-            label="重卷成品重量"
+            prop="originWeight"
+            label="金属平衡#投料量Kg"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="head"
-            label="头料M"
+            prop="processedWeight"
+            label="金属平衡#成品量Kg"
+            width="150">
+        </el-table-column>
+        <el-table-column
+            prop="wasteMaterialHead"
+            label="金属平衡#废料量#头料M"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="causeHead"
-            label="甩除原因"
+            prop="wasteMaterialTail"
+            label="金属平衡#废料量#尾料M"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="tail"
-            label="尾料M"
-            width="120">
-        </el-table-column>
-        <el-table-column
-            prop="causeTail"
-            label="甩除原因"
+            prop="wasteMaterialElse"
+            label="金属平衡#废料量#其它Kg"
             width="120">
         </el-table-column>
         <el-table-column
             prop="quality"
-            label="整卷质量情况"
+            label="质量状况#质量情况"
             width="120">
         </el-table-column>
         <el-table-column
-            prop="sleeve"
+            prop="result"
+            label="质量状况#判定结果"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="confirmer"
+            label="质量状况#确认人"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="recordNum"
+            label="道次"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="headTailWasteMeters"
+            label="头尾料甩除米数"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="abnormalWasteReason"
+            label="异常甩除原因"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="surfaceQualityDesc"
+            label="板面质量描述"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="wasteTrimmingWeight"
+            label="其他废料量#切边重量kg"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="wasteOffLineWeight"
+            label="其他废料量#下线重量kg"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="wasteProductWeight"
+            label="其他废料量#成品重量kg"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="trimmingTime"
+            label="切边时间"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="produceOrder"
+            label="生产顺序"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="originWidth"
+            label="来料宽度（mm）"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="rereelerFinishedWeight"
+            label="重卷成品重量（kg）"
+            width="150">
+        </el-table-column>
+        <el-table-column
+            prop="headRejectReason"
+            label="头料甩除原因 字典：throw_reason"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="tailRejectReason"
+            label="尾料甩除原因 字典：throw_reason"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="sleeveSpecification"
             label="套筒规格"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="operateType"
+            label="操作类型  字典：operate_type"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="workGroup"
+            label="班组  字典：work_group_cn"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="rereelerCardNumber"
+            label="重卷工艺卡编号"
+            width="120">
+        </el-table-column>
+
+      </el-table>
+    </div>
+    <div style="background-color: #c0c4cc;padding: 10px 10px">出入库记录详细信息</div>
+    <div style="background-color: white;padding: 10px 10px">
+      <el-table
+          :data="lenzharukuData"
+          style="width: 100%"
+          height="250">
+        <el-table-column
+            prop="area"
+            label="库位区域"
+            width="150">
+        </el-table-column>
+        <el-table-column
+            prop="shelves"
+            label="货架号"
+            width="150">
+        </el-table-column>
+        <el-table-column
+            prop="reelNum"
+            label="冷轧卷号"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="brand"
+            label="牌号"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="weight"
+            label="重量"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="plateCut"
+            label="板型情况"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="productUse"
+            label="用途"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="consumerName"
+            label="客户名称"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="storerId"
+            label="入库人"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="storageTime"
+            label="入库时间"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="creatorId"
+            label="创建人"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="createTime"
+            label="创建时间"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="ts"
+            label="ts"
+            width="120">
+        </el-table-column>
+        <el-table-column
+            prop="productType"
+            label="产品类型：成品、在制品"
             width="120">
         </el-table-column>
 
@@ -618,6 +909,8 @@ import { getPredict } from '@/api/predict'
 import { getColdProduceList } from '@/api/ImdpColdProduce'
 import { getCastPlanList } from '@/api/ImdpCastPlan'
 import { getColdFurnaceRecordList } from '@/api/ImdpColdFurnaceRecord'
+import { getColdRereelerRecordList } from '@/api/ImdpColdRereelerRecord'
+import { getColdStoreRecordList } from '@/api/ImdpColdStoreRecord'
 
 let lineDefaultOpt = {
   tooltip: {
@@ -678,6 +971,8 @@ export default {
       queryParams: {
         produceId: ''
       },
+      nowProduct: null,
+      produceTitle: ['冷轧工序', '退火工序', '重卷工序', '出入库记录'],
       // 料温温度折线图
       doubleLineOption: lineDefaultOpt,
       selectGatheringTime: [],
@@ -757,44 +1052,104 @@ export default {
         ts: ' '
       }],
       tuihuoData: [{
-        annealDate: '2222-05-03',
-        alloy: 'SDG89FD',
-        anneal: '15CM',
-        rollNum: '15个',
-        totalAmount: '111个',
-        furnaceNum: 200333,
-        furnaceLocation: '无',
-        furnaceTime: '2022年3月3号',
-        annealTime: '11小时35分钟',
-        furnaceStaff: '张三',
-        outStaff: '李四',
-        furnaceTemperature: '110度',
-        outTemperature: '110度',
-        temperatureContro: '110度',
-        startCharge: '111伏',
-        endCharge: '119伏',
-        runningTime: '11小时',
-        electricity: '11',
-        tonElectricity: '11'
+        ts: ' ',
+        creatorId: ' ',
+        createTime: ' ',
+        batchNum: ' ',
+        furnaceNum: ' ',
+        startTime: '',
+        endTime: ' ',
+        totalTime: ' ',
+        gasTemperature1: ' ',
+        gasTemperature2: ' ',
+        gasTemperature3: ' ',
+        materialTemperature1: ' ',
+        materialTemperature2: '',
+        hydraulicPressure: ' ',
+        gasPressure: ' ',
+        intakeFanTemperature: ' ',
+        exhaustFanTemperature: ' ',
+        cycleFanTemperature1: ' ',
+        cycleFanTemperature2: ' ',
+        cycleFanTemperature3: '',
+        remark: ' ',
+        operator: ' ',
+        annealingThick: ' ',
+        furnaceCardNumber: ' ',
+        brand: ' ',
+        rollNum: ' ',
+        furnaceTotal: '',
+        furnacePosition: ' ',
+        furnaceOperator1: ' ',
+        furnaceOperator2: ' ',
+        tempPowerControl: ' ',
+        powerBefore: ' ',
+        powerAfter: ' ',
+        runningDuring: '',
+        powerLoss: ' ',
+        perPowerLoss: ' '
       }],
       rewindData: [{
-        produceNum: 'SDG89Q',
-        cutTime: '2222-05-03',
-        mainExercise: '张三',
-        sailings: 'SDG87',
-        productOrder: '正常',
-        incomingWidth: '20CM',
-        cutWidth: '12CM',
-        cutTension: '11',
-        cutSpeed: '11岶',
-        knifeGap: '11CM',
-        rewindWeight: '12吨',
-        head: '11吨',
-        causeHead: '不合格',
-        tail: '11吨',
-        causeTail: '不合格',
-        quality: '11',
-        sleeve: '11'
+        ts: ' ',
+        creatorId: ' ',
+        mainOperator: ' ',
+        assistantOperator: ' ',
+        workShift: '',
+        recordDate: ' ',
+        createTime: ' ',
+        brand: ' ',
+        productName: ' ',
+        reelNum: ' ',
+        originRegular: ' ',
+        batchNum: '',
+        processedRegular: ' ',
+        machineSpeed: ' ',
+        reelingTensileStress: ' ',
+        knifeGap: ' ',
+        originWeight: ' ',
+        processedWeight: ' ',
+        wasteMaterialHead: '',
+        wasteMaterialTail: ' ',
+        wasteMaterialElse: ' ',
+        quality: ' ',
+        result: ' ',
+        confirmer: ' ',
+        recordNum: ' ',
+        headTailWasteMeters: '',
+        abnormalWasteReason: ' ',
+        surfaceQualityDesc: ' ',
+        wasteTrimmingWeight: ' ',
+        wasteOffLineWeight: ' ',
+        wasteProductWeight: ' ',
+        trimmingTime: ' ',
+        produceOrder: '',
+        originWidth: ' ',
+        finishedTrimmingWidth: ' ',
+        shearTension: ' ',
+        shearSpeed: '',
+        rereelerFinishedWeight: ' ',
+        headRejectReason: ' ',
+        tailRejectReason: ' ',
+        sleeveSpecification: ' ',
+        operateType: '',
+        workGroup: ' ',
+        rereelerCardNumber: ' '
+      }],
+      lenzharukuData: [{
+        area: ' ',
+        shelves: ' ',
+        reelNum: ' ',
+        brand: ' ',
+        weight: '',
+        plateCut: ' ',
+        productUse: ' ',
+        consumerName: ' ',
+        storerId: ' ',
+        storageTime: ' ',
+        creatorId: ' ',
+        createTime: '',
+        ts: ' ',
+        productType: ' '
       }]
     }
   },
@@ -817,10 +1172,6 @@ export default {
     // 查询功能
     query() {
       this.getList()
-      // getColdProduceList().then(response => {
-      //   console.log('这是冷轧数据 ', response)
-      //   this.lenzhagongxuData = response.data
-      // })
     },
     /**
      * 获取表格数据
@@ -834,13 +1185,30 @@ export default {
       this.monitorData.push(lmdpColdProduce[0])
       this.lenzhagongxuData = lmdpColdProduce
       this.active = 1
+      this.nowProduct = this.produceTitle[0]
 
       // 退火
-      const { data: lmdpCFRL } = await getColdFurnaceRecordList({ batchNum: lmdpColdProduce[0].reelNum })
+      const { data: lmdpCFRL } = await getColdFurnaceRecordList({ batchNum: lmdpColdProduce[0].batchNum })
       this.monitorData.push(lmdpCFRL[0])
       // this.stepData[12].description = '创建时间:' + this.monitorData[12].createTime + '冷轧卷号:' + this.monitorData[12].batchNum + '退火日期:' + this.monitorData[12].recordDate + '退火炉号:' + this.monitorData[12].furnaceNum + '退火开始时间:' + this.monitorData[12].startTime + '退火结束时间:' + this.monitorData[12].endTime + '炉气温度(℃)Ⅰ区:' + this.monitorData[12].gasTemperature1 + '炉气温度(℃)ⅠI区:' + this.monitorData[12].gasTemperature2 + '炉气温度(℃)ⅠII区:' + this.monitorData[12].gasTemperature3 + '水压MPa:' + this.monitorData[12].hydraulicPressure + '气压MPa:' + this.monitorData[12].gasPressure
       this.tuihuoData = lmdpCFRL
       this.active = 2
+      this.nowProduct = this.produceTitle[1]
+
+      // 重卷工序
+      const { data: lmdpQRRecord } = await getColdRereelerRecordList({ batchNum: lmdpColdProduce[0].batchNum })
+      this.monitorData.push(lmdpQRRecord[0])
+      // this.stepData[12].description = '创建时间:' + this.monitorData[12].createTime + '冷轧卷号:' + this.monitorData[12].batchNum + '退火日期:' + this.monitorData[12].recordDate + '退火炉号:' + this.monitorData[12].furnaceNum + '退火开始时间:' + this.monitorData[12].startTime + '退火结束时间:' + this.monitorData[12].endTime + '炉气温度(℃)Ⅰ区:' + this.monitorData[12].gasTemperature1 + '炉气温度(℃)ⅠI区:' + this.monitorData[12].gasTemperature2 + '炉气温度(℃)ⅠII区:' + this.monitorData[12].gasTemperature3 + '水压MPa:' + this.monitorData[12].hydraulicPressure + '气压MPa:' + this.monitorData[12].gasPressure
+      this.rewindData = lmdpQRRecord
+      this.active = 3
+      this.nowProduct = this.produceTitle[2]
+
+      // 出入库记录（冷轧）
+      const { data: lmdpCSRL } = await getColdStoreRecordList({ reelNum: lmdpQRRecord[0].batchNum })
+      this.monitorData.push(lmdpCSRL[0])
+      this.lenzharukuData = lmdpCSRL
+      this.nowProduct = this.produceTitle[3]
+      this.active = 3
     },
     // 获取折线数据
     getDoubleLineData() {
