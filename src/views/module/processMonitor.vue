@@ -1,7 +1,7 @@
 <template>
   <div class="app-container" style="background-color: white">
-    <div style="font-size: 15px;color: black;margin-right: 3px;">
-      模块功能说明：这是整体生产流程功能模块，该模块主要查询整个生产流程步骤的状态，流程步骤下方是每个流程的详细信息，在下方输入框输入计划单号/熔次号/冷轧卷号可以查询整个生产流程的状态。
+    <div style="background-color: #409EFF;padding: 10px 10px">
+      模块功能说明：这是整体生产流程功能模块，该模块主要查询整个生产流程步骤的状态，流程步骤下方是每个流程的详细信息，在下方输入框输入计划单号/熔次号/冷轧卷号可以查询整个生产流程的状态。样例可输入冷轧卷号（ZZ2205-005）
     </div>
     <div style="background-color: white;padding: 20px 20px">
       <div style="display: flex;">
@@ -25,12 +25,13 @@
       </div>
     </div>
     <div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">铸轧计划工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px" >铸轧生产计划详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhaData"
             style="width: 100%"
-            height="350">
+            height="350"
+        >
           <el-table-column
               prop="planId"
               label="主键"
@@ -343,7 +344,7 @@
           </el-table-column>
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">熔炉生产工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">熔炼工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="rongluData"
@@ -1142,7 +1143,7 @@
           </el-table-column>
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">保温工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">保温工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="baowenData"
@@ -1623,15 +1624,6 @@
               label="倒炉前保温炉参数-余量吨数"
               width="120">
           </el-table-column>
-
-        </el-table>
-      </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">保温（第一次精炼）工序详细信息</div>
-      <div style="background-color: white;padding: 10px 10px">
-        <el-table
-            :data="baowen1Data"
-            style="width: 100%"
-            height="250">
           <el-table-column
               prop="holdRefine1BeginTime"
               label="开始时间"
@@ -1707,15 +1699,6 @@
               label="取样温度"
               width="120">
           </el-table-column>
-
-        </el-table>
-      </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">保温(第二次精炼)工序详细信息</div>
-      <div style="background-color: white;padding: 10px 10px">
-        <el-table
-            :data="baowen2Data"
-            style="width: 100%"
-            height="250">
           <el-table-column
               prop="holdRefine2BeginTime"
               label="开始时间"
@@ -1791,15 +1774,6 @@
               label="取样温度"
               width="120">
           </el-table-column>
-
-        </el-table>
-      </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">保温(第三次精炼)工序详细信息</div>
-      <div style="background-color: white;padding: 10px 10px">
-        <el-table
-            :data="baowen3Data"
-            style="width: 100%"
-            height="250">
           <el-table-column
               prop="holdRefine3BeginTime"
               label="开始时间"
@@ -1875,15 +1849,6 @@
               label="取样温度"
               width="120">
           </el-table-column>
-
-        </el-table>
-      </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">保温(第四次精炼)工序详细信息</div>
-      <div style="background-color: white;padding: 10px 10px">
-        <el-table
-            :data="baowen4Data"
-            style="width: 100%"
-            height="250">
           <el-table-column
               prop="holdRefine4BeginTime"
               label="开始时间"
@@ -1959,15 +1924,6 @@
               label="取样温度"
               width="120">
           </el-table-column>
-
-        </el-table>
-      </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">保温(第五次精炼)工序详细信息</div>
-      <div style="background-color: white;padding: 10px 10px">
-        <el-table
-            :data="baowen5Data"
-            style="width: 100%"
-            height="250">
           <el-table-column
               prop="holdRefine5BeginTime"
               label="开始时间"
@@ -2046,7 +2002,7 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">铸轧生产工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">铸轧工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhascData"
@@ -2580,7 +2536,131 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">铸轧卷质检工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">出入库记录（铸轧）工序详细信息</div>
+      <div style="background-color: white;padding: 10px 10px">
+        <el-table
+            :data="zhuzhaChuRu"
+            style="width: 100%"
+            height="250">
+          <el-table-column
+              prop="area"
+              label="区域"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="shelves"
+              label="货架号"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="status"
+              label="状态，字典：转入、转出"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="reelNum"
+              label="卷号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="brand"
+              label="牌号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="model"
+              label="规格"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="rollDiameter"
+              label="卷径"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="productUse"
+              label="用途"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="storerId"
+              label="入库人ID"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="storerName"
+              label="入库人姓名"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="storageTime"
+              label="入库时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="deliveryId"
+              label="出库人ID"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="deliveryName"
+              label="出库人名称"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="deliveryTime"
+              label="出库时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="consumerName"
+              label="客户名称"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="deleteFlag"
+              label="逻辑删除，是否删除 :0、未删除；1、删除"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="creatorId"
+              label="创建人ID"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="creatorName"
+              label="创建人姓名"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="reviserId"
+              label="修改人id"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="createTime"
+              label="创建时间"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="ts"
+              label="修改时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="transferTime"
+              label="转运时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="inspectionDecisionInformation"
+              label="质检判定信息"
+              width="120">
+          </el-table-column>
+
+        </el-table>
+      </div>
+      <div style="background-color: #409EFF;padding: 10px 10px">铸轧卷质检报告序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhajuanzjData"
@@ -2789,7 +2869,7 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧生产计划工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">冷轧生产计划工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzhascjhData"
@@ -3063,7 +3143,7 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧工序工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">冷轧工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzhagongxuData"
@@ -3422,7 +3502,7 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">退火工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">退火工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="tuihuoData"
@@ -3616,216 +3696,7 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧卷成品质检工序详细信息</div>
-      <div style="background-color: white;padding: 10px 10px">
-        <el-table
-            :data="lenzhajuanzjData"
-            style="width: 100%"
-            height="250">
-          <el-table-column
-              prop="createTime"
-              label="创建时间"
-              width="150">
-          </el-table-column>
-          <el-table-column
-              prop="ts"
-              label="ts"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="sortOrder"
-              label="创建人"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="rollNum"
-              label="序号"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="consumer"
-              label="客户名称"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="batchNum"
-              label="冷轧卷号"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="thickness"
-              label="厚度"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="width"
-              label="宽度"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="rollDiameter"
-              label="卷径"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="brand"
-              label="合金牌号"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="status"
-              label="状态"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="weight"
-              label="重量"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="shapeQc"
-              label="板形质量"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="dimensionalDeviation"
-              label="尺寸偏差"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="mechanicalProperty"
-              label="力学性能"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="surfaceQc"
-              label="表面质量"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="facadeQc"
-              label="外观质量"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="sampleLevel"
-              label="晶粒度"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="executiveStandard"
-              label="执行标准"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="judgeResult"
-              label="综合判定"
-              width="150">
-          </el-table-column>
-          <el-table-column
-              prop="handleAdvice"
-              label="不合格处理意见"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="inspector"
-              label="质检员"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="monitor"
-              label="班长"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="reportTime"
-              label="日期时间"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="advise"
-              label="处理意见"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="coldDate"
-              label="冷轧日期"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="hydrogenContent"
-              label="氢含量"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="productType"
-              label="产品类型"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="singleConvexity"
-              label="中凸度%"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="wedgeRate"
-              label="楔形率%"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="weighingThickness"
-              label="厚度#称重法（mm）"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="weighingConvexity"
-              label="中凸度#称重法%"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="roughness"
-              label="粗糙度（μm）"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="shapeQcRemark"
-              label="板形质量备注"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="dimensionalDeviationRemark"
-              label="尺寸偏差备注"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="mechanicalPropertyRemark"
-              label="力学性能备注"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="surfaceQcRemark"
-              label="表面质量备注"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="facadeQcRemark"
-              label="外观质量备注"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="sampleLevelRemark"
-              label="晶粒度备注"
-              width="120">
-          </el-table-column>
-          <el-table-column
-              prop="reviewAdvice"
-              label="发评审建议"
-              width="120">
-          </el-table-column>
-
-        </el-table>
-      </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">重卷剪切工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">重卷工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="rewindData"
@@ -4039,7 +3910,7 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧卷入库工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">出入库记录（冷轧）工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzharukuData"
@@ -4053,10 +3924,10 @@
           <el-table-column
               prop="shelves"
               label="货架号"
-              width="120">
+              width="150">
           </el-table-column>
           <el-table-column
-              prop="mainExercise"
+              prop="reelNum"
               label="冷轧卷号"
               width="120">
           </el-table-column>
@@ -4118,20 +3989,18 @@
 
         </el-table>
       </div>
-      <div style="background-color: #c0c4cc;padding: 10px 10px">包装检验工序详细信息</div>
+      <div style="background-color: #409EFF;padding: 10px 10px">冷轧工序质量巡检详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
-            :data="baozhuangData"
+            :data="lenzhaxunjuanData"
             style="width: 100%"
             height="250">
           <el-table-column
-              fixed
               prop="createTime"
               label="创建时间"
               width="150">
           </el-table-column>
           <el-table-column
-              fixed
               prop="ts"
               label="ts"
               width="120">
@@ -4142,73 +4011,1111 @@
               width="120">
           </el-table-column>
           <el-table-column
+              prop="planNum"
+              label="计划编号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="consumer"
+              label="客户名称"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="batchNum"
+              label="批号（冷轧卷号）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="brand"
+              label="合金牌号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="status"
+              label="成品状态"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="model"
+              label="成品规格"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="rollDiameter"
+              label="成品卷径"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="splitFlag"
+              label="是否剖分卷（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold1ThickIn"
+              label="入口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold1ThickOut"
+              label="出口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold1Remark"
+              label="备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold1Picture"
+              label="抽查照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold1Inspector"
+              label="质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold1Time"
+              label="轧制时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold2ThickIn"
+              label="入口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold2ThickOut"
+              label="出口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold2Remark"
+              label="备注"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="cold2Picture"
+              label="抽查照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold2Inspector"
+              label="质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold2Time"
+              label="轧制时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3ThickIn"
+              label="入口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3ThickOut"
+              label="出口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3Remark"
+              label="备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3Picture"
+              label="抽查照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3Inspector"
+              label="质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3Time"
+              label="轧制时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4ThickIn"
+              label="入口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4ThickOut"
+              label="出口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4Remark"
+              label="备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4Picture"
+              label="抽查照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4Inspector"
+              label="质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4Time"
+              label="轧制时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5ThickIn"
+              label="入口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5ThickOut"
+              label="出口厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5Remark"
+              label="备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5Picture"
+              label="抽查照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5Inspector"
+              label="质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5Time"
+              label="轧制时间"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="annealing1Workmanship"
+              label="第1次退火#工艺符合性"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing2Workmanship"
+              label="第2次退火#工艺符合性"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing3Workmanship"
+              label="第3次退火#工艺符合性"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="reelNum"
+              label="来料信息#卷号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="thickness"
+              label="第1次切边#厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="originWidth"
+              label="第1次切边#来料宽度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="width"
+              label="第1次切边#切后宽度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="headStock"
+              label="第1次切边#头料"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="headRejectReason"
+              label="第1次切边#甩除原因"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="tailStock"
+              label="第1次切边#尾料"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="tailRejectReason"
+              label="第1次切边#甩除原因"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="outerRemove"
+              label="第1次切边#外圈扒除"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="removeReason"
+              label="第1次切边#扒除原因"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cutWeight"
+              label="第1次切边#切后重量（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="transverseThickness"
+              label="第1次切边#横向厚度（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cutInspector"
+              label="第1次切边#纵向厚度（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cutTime"
+              label="第1次切边#时间（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cutPicture"
+              label="第1次切边#观察照片（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleHeight"
+              label="单项质检记录#厚度（mm)"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="singleWidth"
+              label="单项质检记录#宽度（mm)"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleMediumConvexity"
+              label="单项质检记录#中凸度(%)"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleStraightness"
+              label="单项质检记录#平直度(I)"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleStrength"
+              label="单项质检记录#抗拉强度(Rm/MPa)"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleExtension"
+              label="单项质检记录#延伸率(%)"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleGrainSize"
+              label="单项质检记录#晶粒度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleRoughness"
+              label="单项质检记录#粗糙度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="surfaceQuality"
+              label="单项质检记录#表面质量是否合格"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="surfaceQualityRemark"
+              label="单项质检记录#表面质量描述"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="appearanceQuality"
+              label="单项质检记录#外观质量是否合格"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="appearanceQualityRemark"
+              label="单项质检记录#外观质量描述"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="accountOriginThickness"
+              label="记事#坯料厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="accountOriginWidth"
+              label="记事#坯料宽度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="accountOriginWeight"
+              label="记事#坯料重量"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedThickness"
+              label="冷轧成品#厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedWidth"
+              label="冷轧成品#宽度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedRollDiameter"
+              label="冷轧成品#卷径"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedWeight"
+              label="冷轧成品#重量"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedOuterRemove"
+              label="冷轧成品#外圈扒除"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedRemoveReason"
+              label="冷轧成品#扒除原因"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedTransverseThickness"
+              label="冷轧成品#横向厚度"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="finishedLongitudinalThickness"
+              label="冷轧成品#纵向厚度"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedThicknessDifference"
+              label="冷轧成品#厚差记录"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="endwiseHeight"
+              label="冷轧计划厚度(mm)（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="warpWidth"
+              label="冷轧计划宽度(mm)（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="convexRate"
+              label="冷轧计划中凸度（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="flatness"
+              label="冷轧计划平直度（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="tensileStrength"
+              label="冷轧计划抗拉强度ob/Mpa（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="elongation"
+              label="冷轧计划延伸率（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="grain"
+              label="冷轧计划晶粒度（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="roughness"
+              label="冷轧计划坯料表面粗糙度（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedThicknessDifferencePicture"
+              label="冷轧成品#厚差曲线图"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6ThickIn"
+              label="入口厚度（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6ThickOut"
+              label="出口厚度（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6Remark"
+              label="备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6Picture"
+              label="抽查照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6Inspector"
+              label="质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6Time"
+              label="轧制时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="castAbnormalInfo"
+              label="铸坯异常信息（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="rollPlan"
+              label="后续轧制工作安排（废弃）"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="cold1DailyQcSituation"
+              label="每日生产和质量异常#第一道冷轧工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold2DailyQcSituation"
+              label="每日生产和质量异常#第二道冷轧工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold3DailyQcSituation"
+              label="每日生产和质量异常#第三道冷轧工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold4DailyQcSituation"
+              label="每日生产和质量异常#第四道冷轧工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold5DailyQcSituation"
+              label="每日生产和质量异常#第五道冷轧工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="cold6DailyQcSituation"
+              label="每日生产和质量异常#第六道冷轧工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="furnace1DailyQcSituation"
+              label="每日生产和质量异常#第一次退火工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="furnace2DailyQcSituation"
+              label="每日生产和质量异常#第二次退火工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="furnace3DailyQcSituation"
+              label="每日生产和质量异常#第三次退火工序"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="reelerDailyQcSituation"
+              label="每日生产和质量异常#重卷工序（废弃）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing1Inspector"
+              label="第1次退火#质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing2Inspector"
+              label="第2次退火#质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing3Inspector"
+              label="第3次退火#质检员"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing1Thick"
+              label="第1次退火#退火厚度（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing2Thick"
+              label="第2次退火#退火厚度（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing3Thick"
+              label="第3次退火#退火厚度（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="furnaceNum"
+              label="退火炉号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="rollweightRequirements"
+              label="卷重要求"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="originRollDiameter"
+              label="来料信息#卷径（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="originAbnormalInformation"
+              label="来料信息#异常信息"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="originDisposalRequirements"
+              label="来料信息#处置要求"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="annealing1Entrytime"
+              label="第1次退火#入炉时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing1Exittime"
+              label="第1次退火#出炉时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing2Entrytime"
+              label="第2次退火#入炉时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing2Exittime"
+              label="第2次退火#出炉时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing3Entrytime"
+              label="第3次退火#入炉时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="annealing3Exittime"
+              label="第3次退火#出炉时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="accountUnqualifiedFact"
+              label="记事#不合格事实描述"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="accountUnqualifiedReview"
+              label="记事#不合格评审意见"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="finishedFullbandLength"
+              label="冷轧成品#全带长（m）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleRollDiameter"
+              label="单项质检记录#卷径"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleRollWeight"
+              label="单项质检记录#卷重"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleWedgeRatio"
+              label="单项质检记录#楔形率"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="stripType"
+              label="力学测定#带材种类  字典：带材种类"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleStrengthRe"
+              label="力学测定#抗拉强度复检（Rm/MPa）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleExtensionRe"
+              label="力学测定#延伸率复检（%）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="bendingPerformanceRequirements"
+              label="力学测定#90°折弯性能要求  字典：bending_requirements"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="bendingPerformanceRe"
+              label="力学测定#90°折弯性能复检  字典：bending_requirements"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="mechanicalMeasureReview"
+              label="力学测定#评审意见"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="headAbnormalRejectPicture"
+              label="重卷工序#头料异常甩除照片"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="headAbnormalRejectVedio"
+              label="重卷工序#头料异常甩除视频"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="tailAbnormalRejectPicture"
+              label="重卷工序#尾料异常甩除照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="tailAbnormalRejectVedio"
+              label="重卷工序#尾料异常甩除视频"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="outerAbnormalRejectPicture"
+              label="重卷工序#外圈扒除异常甩除照片"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="weighingThickness"
+              label="优箔信息#厚度（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="weighingConvexity"
+              label="优箔信息#中凸度（%）"
+              width="120">
+          </el-table-column>
+
+        </el-table>
+      </div>
+      <div style="background-color: #409EFF;padding: 10px 10px">冷轧卷质检报告工序详细信息</div>
+      <div style="background-color: white;padding: 10px 10px">
+        <el-table
+            :data="lenzhajuanzjData"
+            style="width: 100%"
+            height="250">
+          <el-table-column
+              prop="createTime"
+              label="创建时间"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="ts"
+              label="ts"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="sortOrder"
+              label="创建人"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="rollNum"
+              label="序号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="consumer"
+              label="客户名称"
+              width="120">
+          </el-table-column>
+          <el-table-column
               prop="batchNum"
               label="冷轧卷号"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="model"
-              label="规格"
+              prop="thickness"
+              label="厚度"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="alloyStatus"
-              label="合金状态"
+              prop="width"
+              label="宽度"
               width="120">
           </el-table-column>
           <el-table-column
               prop="rollDiameter"
-              label="卷径Φ"
+              label="卷径"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="brand"
+              label="合金牌号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="status"
+              label="状态"
               width="120">
           </el-table-column>
           <el-table-column
               prop="weight"
-              label="重量（t）"
+              label="重量"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="sample"
-              label="随卷试样"
+              prop="shapeQc"
+              label="板形质量"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="cert"
-              label="合格证"
+              prop="dimensionalDeviation"
+              label="尺寸偏差"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="productCcie"
-              label="产品证书"
+              prop="mechanicalProperty"
+              label="力学性能"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="packageQc"
-              label="包装质量"
+              prop="surfaceQc"
+              label="表面质量"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="outerLabel"
-              label="外标签"
+              prop="facadeQc"
+              label="外观质量"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="packageTime"
-              label="包装日期"
+              prop="sampleLevel"
+              label="晶粒度"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="inspectorId"
+              prop="executiveStandard"
+              label="执行标准"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="judgeResult"
+              label="综合判定"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="handleAdvice"
+              label="不合格处理意见"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="inspector"
               label="质检员"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="reportTime"
-              label="报告时间"
+              prop="monitor"
+              label="班长"
               width="120">
           </el-table-column>
           <el-table-column
-              prop="remark"
-              label="备 注"
+              prop="reportTime"
+              label="日期时间"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="advise"
+              label="处理意见"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="coldDate"
+              label="冷轧日期"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="hydrogenContent"
+              label="氢含量"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="productType"
+              label="产品类型"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="singleConvexity"
+              label="中凸度%"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="wedgeRate"
+              label="楔形率%"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="weighingThickness"
+              label="厚度#称重法（mm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="weighingConvexity"
+              label="中凸度#称重法%"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="roughness"
+              label="粗糙度（μm）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="shapeQcRemark"
+              label="板形质量备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="dimensionalDeviationRemark"
+              label="尺寸偏差备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="mechanicalPropertyRemark"
+              label="力学性能备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="surfaceQcRemark"
+              label="表面质量备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="facadeQcRemark"
+              label="外观质量备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="sampleLevelRemark"
+              label="晶粒度备注"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="reviewAdvice"
+              label="发评审建议"
+              width="120">
+          </el-table-column>
+
+        </el-table>
+      </div>
+      <div style="background-color: #409EFF;padding: 10px 10px">投诉及处理信息详细信息</div>
+      <div style="background-color: white;padding: 10px 10px">
+        <el-table
+            :data="complaintData"
+            style="width: 100%"
+            height="250">
+          <el-table-column
+              prop="createTime"
+              label="创建时间"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="ts"
+              label="ts"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="creatorId"
+              label="创建人"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="complaintTime"
+              label="投诉日期"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="batchNum"
+              label="投诉卷号"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="castDate"
+              label="铸轧日期"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="coldDate"
+              label="冷轧日期"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="castModel"
+              label="铸轧规格"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="coldModel"
+              label="冷轧规格"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="brand"
+              label="合金"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="status"
+              label="状态"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="weight"
+              label="重量"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="hydrogenContent"
+              label="氢含量"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="productType"
+              label="产品类别"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="complaintDesc"
+              label="投诉问题"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="scrapWeight"
+              label="投诉重量（kg）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="demotionWeight"
+              label="降级重量（kg）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="scrapWeight"
+              label="报废重量（kg）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="castWeight"
+              label="铸轧责任重量（kg）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="coldWeight"
+              label="冷轧责任重量（kg）"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="alPrice"
+              label="当时铝价（元）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="managerId"
+              label="管理人员id"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="managerName"
+              label="管理人员姓名"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="chargeId"
+              label="分管负责人id"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="chargeName"
+              label="分管负责人姓名"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="directorId"
+              label="主管负责人id"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="directorName"
+              label="主管负责人姓名"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="totalLossAmount"
+              label="总损失金额（元）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="managerPunishAmount"
+              label="管理人员处罚金额（元）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="chargePunishAmount"
+              label="分管负责人处罚金额（元）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="directorPunishAmount"
+              label="主管负责人处罚金额（元）"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="complaintReport"
+              label="投诉报告"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="castInspectDescription"
+              label="铸轧卷质检说明"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="coldInspectDescription"
+              label="冷轧卷质检说明"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="customer"
+              label="客户名称"
               width="120">
           </el-table-column>
 
@@ -4223,11 +5130,6 @@ import CustomStep from '@/views/dashboard/CustomStep'
 import { getCastPlanList } from '@/api/ImdpCastPlan'
 import { getCastSmeltHoldList } from '@/api/ImdpCastSmeltHold'
 import { getCastHoldingFurnaceList } from '@/api/lmdpCastHoldingFurnace'
-import { getFirstConciseList } from '@/api/ImdpFirstConcise'
-import { getSecondConciseList } from '@/api/ImdpSecondConcise'
-import { getThirdConciseList } from '@/api/ImdpThirdConcise'
-import { getFourthConciseList } from '@/api/ImdpFourthConcise'
-import { getFifthConciseList } from '@/api/ImdpFifthConcise'
 import { getCastProduceList } from '@/api/ImdpCastProduce'
 import { getQcCastReelList } from '@/api/ImdpQcCastReel'
 import { getColdPlanList } from '@/api/ImdpColdPlan'
@@ -4236,7 +5138,9 @@ import { getColdFurnaceRecordList } from '@/api/ImdpColdFurnaceRecord'
 import { getQcColdReelReportList } from '@/api/ImdpQcColdReelReport'
 import { getColdRereelerRecordList } from '@/api/ImdpColdRereelerRecord'
 import { getColdStoreRecordList } from '@/api/ImdpColdStoreRecord'
-import { getQcPackList } from '@/api/ImdpQcPack'
+import { getCastReelStoreRecordList } from '@/api/lmdpCastReelStoreRecord'
+import { getQcColdInspectList } from '@/api/lmdpQcColdInspect'
+import { getQcComplaintDetailList } from '@/api/lmdpQcComplaintDetail'
 export default {
   name: 'ProcessMonitor',
   components: {
@@ -4248,7 +5152,7 @@ export default {
       queryParams: {
         produceId: ''
       },
-      produceTitle: ['铸轧计划', '熔炉生产', '保温', '保温（第一次精炼）', '保温（第二次精炼）', '保温（第三次精炼）', '保温（第四次精炼）', '保温（第五次精炼）', '铸轧生产', '铸轧卷质检', '冷轧生产计划确定', '冷轧工序', '退火', '冷轧卷成品质检', '重卷中切', '冷轧卷成品入库', '包装检验'],
+      produceTitle: ['铸轧生产计划', '熔炼工序', '保温工序', '铸轧工序', '出入库记录（铸轧）', '铸轧卷质检报告', '冷轧生产计划', '冷轧工序', '退火工序', '重卷工序', '出入库记录', '冷轧工序质量巡检', '冷轧卷质检报告', '投诉及处理信息'],
       nowProduct: null,
       // 显示搜索条件
       showSearch: true,
@@ -4260,73 +5164,64 @@ export default {
       active: 0,
       fengxian: false,
       stepData: [{
-        title: '工序1：铸轧生产计划确定'
+        title: '工序1：铸轧生产计划'
         // description: ' ' +' ' +' '
       },
       {
-        title: '工序2：熔炉生产'
+        title: '工序2：熔炼工序'
         // description: '关联计划ID: ' +'熔次号: ' +'牌号: ' +'创建时间: ' +'修改时间: '
       },
       {
-        title: '工序3：保温'
+        title: '工序3：保温工序'
         // description: '熔次号：' +                '牌号：' +                '创建时间:' +                '修改时间: '
       },
       {
-        title: '工序4：保温（第一次精炼）'
+        title: '工序4：铸轧工序'
         // description: '开始时间: ' +                '结束时间:' +                '精炼剂#介质: ' +                '精炼剂#用量：' +                '班组名称： '
       },
       {
-        title: '工序5：保温（第二次精炼）'
+        title: '工序5：出入库记录（铸轧）'
         // description: '开始时间: ' +                '结束时间:' +                '精炼剂#介质: ' +                '精炼剂#用量： ' +                '班组名称： '
       },
+      // {
+      //   title: '工序6：铸轧质检记录'
+      //   // description: '开始时间: ' +                '结束时间: ' +                '精炼剂#介质: ' +                '精炼剂#用量： ' +                '班组名称： '
+      // },
       {
-        title: '工序6：保温（第三次精炼）'
-        // description: '开始时间: ' +                '结束时间: ' +                '精炼剂#介质: ' +                '精炼剂#用量： ' +                '班组名称： '
-      },
-      {
-        title: '工序7：保温（第四次精炼）'
+        title: '工序6：铸轧卷质检报告'
         // description: '开始时间: ' +                '结束时间: ' +                '精炼剂#介质:' +                '精炼剂#用量：' +                '班组名称： '
       },
       {
-        title: '工序8：保温（第五次精炼）'
+        title: '工序7：冷轧生产计划'
         // description: '开始时间: ' +                '结束时间: ' +                '精炼剂#介质:' +                '精炼剂#用量：' +                '班组名称： '
 
       },
       {
-        title: '工序9：铸轧生产'
+        title: '工序8：冷轧工序'
         // description: '关联计划ID：' +                '关联熔次号：' +                '铸轧卷号： ' +                '创建时间: '
       },
       {
-        title: '工序10：铸轧卷质检'
+        title: '工序9：退火工序'
         // description: '创建时间：' +                '修改时间：' +                '批号(铸轧卷号)：   ' +                '下卷时间：  '
       },
       {
-        title: '工序11：冷轧生产计划确定'
+        title: '工序10：重卷工序'
         // description: '冷轧带材计划编号：' +                '创建时间：' +                '客户名称：'
       },
       {
-        title: '工序12：冷轧工序'
+        title: '工序11：出入库记录'
         // description: '计划id：' +                '(铸轧卷号)来料卷号：   ' +                '冷轧卷号：   ' +                '合金牌号：  '
       },
       {
-        title: '工序13：退火'
+        title: '工序12：冷轧工序质量巡检'
         // description: '创建时间：  ' +                '冷轧卷号：   ' +                '退火日期：  '
       },
       {
-        title: '工序14：冷轧卷成品质检'
+        title: '工序13：冷轧卷质检报告'
         // description: '创建时间：' +                '修改时间：  ' +                '冷轧卷号：   ' +                '日期时间：  '
       },
       {
-        title: '工序15：重卷剪切'
-        // description: '创建时间： ' +                '来料卷号(铸轧卷号)：   ' +                '质量状况#判定结果：     '
-      },
-      {
-        title: '工序16：冷轧卷成品入库'
-        // description: '库位区域: ' +                '货架号：   ' +                '冷轧卷号：   ' +                '牌号：   ' +                '创建时间：  ' +                '修改时间：  '
-      },
-      {
-        title: '工序17：包装检验'
-        // description: '创建时间：  ' +                '修改时间：  ' +                '冷轧卷号：   ' +                '包装日期：  ' +                '报告时间：  '
+        title: '工序14：投诉及处理信息'
       }],
       monitorData: [],
       zhuzhaData: [{
@@ -4648,91 +5543,6 @@ export default {
         inspectionReplace: ' ',
         turndownBeforeRemainingWeight: ' '
       }],
-      baowen1Data: [{
-        holdRefine1BeginTime: ' ',
-        holdRefine1EndTime: ' ',
-        holdRefine1Duration: ' ',
-        holdRefine1Temp: ' ',
-        holdRefine1Medium: ' ',
-        holdRefine1Dose: ' ',
-        holdRefine1ColdStuffDose: ' ',
-        holdRefine1GroupId: ' ',
-        holdRefine1GroupName: ' ',
-        holdRefine1CasterId: '',
-        holdRefine1CasterName: ' ',
-        holdRefine1SmelterId: ' ',
-        holdRefine1SmelterName: ' ',
-        holdRefine1SamplingTime: ' ',
-        holdRefine1SamplingTemp: ' '
-      }],
-      baowen2Data: [{
-        holdRefine2BeginTime: ' ',
-        holdRefine2EndTime: ' ',
-        holdRefine2Duration: ' ',
-        holdRefine2Temp: ' ',
-        holdRefine2Medium: ' ',
-        holdRefine2Dose: ' ',
-        holdRefine2ColdStuffDose: ' ',
-        holdRefine2GroupId: ' ',
-        holdRefine2GroupName: ' ',
-        holdRefine2CasterId: '',
-        holdRefine2CasterName: ' ',
-        holdRefine2SmelterId: ' ',
-        holdRefine2SmelterName: ' ',
-        holdRefine2SamplingTime: ' ',
-        holdRefine2SamplingTemp: ' '
-      }],
-      baowen3Data: [{
-        holdRefine3BeginTime: ' ',
-        holdRefine3EndTime: ' ',
-        holdRefine3Duration: ' ',
-        holdRefine3Temp: ' ',
-        holdRefine3Medium: ' ',
-        holdRefine3Dose: ' ',
-        holdRefine3ColdStuffDose: ' ',
-        holdRefine3GroupId: ' ',
-        holdRefine3GroupName: ' ',
-        holdRefine3CasterId: '',
-        holdRefine3CasterName: ' ',
-        holdRefine3SmelterId: ' ',
-        holdRefine3SmelterName: ' ',
-        holdRefine3SamplingTime: ' ',
-        holdRefine3SamplingTemp: ' '
-      }],
-      baowen4Data: [{
-        holdRefine4BeginTime: ' ',
-        holdRefine4EndTime: ' ',
-        holdRefine4Duration: ' ',
-        holdRefine4Temp: ' ',
-        holdRefine4Medium: ' ',
-        holdRefine4Dose: ' ',
-        holdRefine4ColdStuffDose: ' ',
-        holdRefine4GroupId: ' ',
-        holdRefine4GroupName: ' ',
-        holdRefine4CasterId: '',
-        holdRefine4CasterName: ' ',
-        holdRefine4SmelterId: ' ',
-        holdRefine4SmelterName: ' ',
-        holdRefine4SamplingTime: ' ',
-        holdRefine4SamplingTemp: ' '
-      }],
-      baowen5Data: [{
-        holdRefine5BeginTime: ' ',
-        holdRefine5EndTime: ' ',
-        holdRefine5Duration: ' ',
-        holdRefine5Temp: ' ',
-        holdRefine5Medium: ' ',
-        holdRefine5Dose: ' ',
-        holdRefine5ColdStuffDose: ' ',
-        holdRefine5GroupId: ' ',
-        holdRefine5GroupName: ' ',
-        holdRefine5CasterId: '',
-        holdRefine5CasterName: ' ',
-        holdRefine5SmelterId: ' ',
-        holdRefine5SmelterName: ' ',
-        holdRefine5SamplingTime: ' ',
-        holdRefine5SamplingTemp: ' '
-      }],
       zhuzhascData: [{
         planId: ' ',
         smeltTimes: ' ',
@@ -4840,6 +5650,31 @@ export default {
         degasserTempSet: '',
         filterAlTempSet: ' '
 
+      }],
+      zhuzhaChuRu: [{
+        area: ' ',
+        shelves: ' ',
+        status: ' ',
+        reelNum: ' ',
+        brand: ' ',
+        model: ' ',
+        rollDiameter: ' ',
+        productUse: ' ',
+        storerId: ' ',
+        storerName: '',
+        storageTime: ' ',
+        deliveryId: ' ',
+        deliveryName: ' ',
+        deliveryTime: ' ',
+        consumerName: ' ',
+        deleteFlag: ' ',
+        creatorId: ' ',
+        creatorName: ' ',
+        reviserId: ' ',
+        createTime: ' ',
+        ts: '',
+        transferTime: ' ',
+        inspectionDecisionInformation: ' '
       }],
       zhuzhajuanzjData: [{
         createTime: ' ',
@@ -5050,48 +5885,6 @@ export default {
         powerLoss: ' ',
         perPowerLoss: ' '
       }],
-      lenzhajuanzjData: [{
-        createTime: ' ',
-        ts: ' ',
-        creatorId: ' ',
-        sortOrder: ' ',
-        consumer: ' ',
-        batchNum: '',
-        thickness: ' ',
-        width: ' ',
-        rollDiameter: ' ',
-        brand: ' ',
-        status: ' ',
-        weight: ' ',
-        shapeQc: '',
-        dimensionalDeviation: ' ',
-        mechanicalProperty: ' ',
-        surfaceQc: ' ',
-        facadeQc: ' ',
-        sampleLevel: ' ',
-        executiveStandard: ' ',
-        judgeResult: '',
-        handleAdvice: ' ',
-        inspector: ' ',
-        monitor: ' ',
-        reportTime: ' ',
-        advise: ' ',
-        coldDate: ' ',
-        hydrogenContent: '',
-        productType: ' ',
-        singleConvexity: ' ',
-        wedgeRate: ' ',
-        weighingThickness: ' ',
-        weighingConvexity: ' ',
-        roughness: ' ',
-        shapeQcRemark: '',
-        dimensionalDeviationRemark: ' ',
-        mechanicalPropertyRemark: ' ',
-        surfaceQcRemark: ' ',
-        facadeQcRemark: '',
-        sampleLevelRemark: ' ',
-        reviewAdvice: ' '
-      }],
       rewindData: [{
         ts: ' ',
         creatorId: ' ',
@@ -5154,24 +5947,234 @@ export default {
         ts: ' ',
         productType: ' '
       }],
-      baozhuangData: [{
+      lenzhaxunjuanData: [{
         createTime: ' ',
         ts: ' ',
         creatorId: ' ',
+        planNum: ' ',
+        consumer: ' ',
+        productUse: ' ',
         batchNum: ' ',
+        brand: ' ',
+        status: ' ',
         model: '',
-        alloyStatus: ' ',
         rollDiameter: ' ',
+        splitFlag: ' ',
+        cold1ThickIn: ' ',
+        cold1ThickOut: ' ',
+        cold1Remark: ' ',
+        cold1Picture: ' ',
+        cold1Inspector: ' ',
+        cold1Time: ' ',
+        cold2ThickIn: ' ',
+        cold2ThickOut: ' ',
+        cold2Remark: ' ',
+        cold2Picture: ' ',
+        cold2Inspector: ' ',
+        cold2Time: ' ',
+        cold3ThickIn: '',
+        cold3ThickOut: ' ',
+        cold3Remark: ' ',
+        cold3Picture: ' ',
+        cold3Inspector: ' ',
+        cold3Time: ' ',
+        cold4ThickIn: '',
+        cold4ThickOut: ' ',
+        cold4Remark: ' ',
+        cold4Picture: ' ',
+        cold4Inspector: ' ',
+        cold4Time: ' ',
+        cold5ThickIn: '',
+        cold5ThickOut: ' ',
+        cold5Remark: ' ',
+        cold5Picture: ' ',
+        cold5Inspector: ' ',
+        cold5Time: ' ',
+        annealing1Workmanship: ' ',
+        annealing2Workmanship: ' ',
+        annealing3Workmanship: ' ',
+        reelNum: ' ',
+        thickness: ' ',
+        originWidth: ' ',
+        width: ' ',
+        headStock: ' ',
+        headRejectReason: ' ',
+        tailStock: '',
+        tailRejectReason: ' ',
+        outerRemove: ' ',
+        removeReason: ' ',
+        cutWeight: ' ',
+        transverseThickness: ' ',
+        longitudinalThickness: ' ',
+        cutInspector: ' ',
+        cutTime: ' ',
+        cutPicture: ' ',
+        singleHeight: ' ',
+        singleWidth: ' ',
+        singleMediumConvexity: ' ',
+        singleStraightness: ' ',
+        singleStrength: ' ',
+        singleExtension: '',
+        singleGrainSize: ' ',
+        singleRoughness: ' ',
+        surfaceQuality: ' ',
+        surfaceQualityRemark: ' ',
+        appearanceQuality: ' ',
+        appearanceQualityRemark: '',
+        accountOriginThickness: ' ',
+        accountOriginWidth: ' ',
+        accountOriginWeight: ' ',
+        finishedThickness: ' ',
+        finishedWidth: ' ',
+        finishedRollDiameter: '',
+        finishedWeight: ' ',
+        finishedOuterRemove: ' ',
+        finishedRemoveReason: ' ',
+        finishedTransverseThickness: ' ',
+        finishedLongitudinalThickness: ' ',
+        finishedThicknessDifference: ' ',
+        endwiseHeight: ' ',
+        warpWidth: ' ',
+        convexRate: ' ',
+        flatness: ' ',
+        tensileStrength: ' ',
+        elongation: ' ',
+        grain: ' ',
+        roughness: ' ',
+        finishedThicknessDifferencePicture: '',
+        cold6ThickIn: ' ',
+        cold6ThickOut: ' ',
+        cold6Remark: ' ',
+        cold6Picture: ' ',
+        cold6Inspector: ' ',
+        cold6Time: ' ',
+        castAbnormalInfo: ' ',
+        rollPlan: ' ',
+        cold1DailyQcSituation: ' ',
+        cold2DailyQcSituation: ' ',
+        cold3DailyQcSituation: ' ',
+        cold4DailyQcSituation: ' ',
+        cold5DailyQcSituation: ' ',
+        cold6DailyQcSituation: ' ',
+        furnace1DailyQcSituation: '',
+        furnace2DailyQcSituation: ' ',
+        furnace3DailyQcSituation: ' ',
+        reelerDailyQcSituation: ' ',
+        annealing1Inspector: ' ',
+        annealing2Inspector: ' ',
+        annealing3Inspector: '',
+        annealing1Thick: ' ',
+        annealing2Thick: ' ',
+        annealing3Thick: ' ',
+        furnaceNum: ' ',
+        rollweightRequirements: ' ',
+        originRollDiameter: ' ',
+        originAbnormalInformation: ' ',
+        originDisposalRequirements: '',
+        annealing1Entrytime: ' ',
+        annealing1Exittime: ' ',
+        annealing2Entrytime: ' ',
+        annealing2Exittime: ' ',
+        annealing3Entrytime: ' ',
+        annealing3Exittime: ' ',
+        accountUnqualifiedFact: ' ',
+        accountUnqualifiedReview: ' ',
+        finishedFullbandLength: ' ',
+        singleRollDiameter: ' ',
+        singleRollWeight: ' ',
+        singleWedgeRatio: ' ',
+        stripType: ' ',
+        singleStrengthRe: ' ',
+        singleExtensionRe: '',
+        bendingPerformanceRequirements: ' ',
+        bendingPerformanceRe: ' ',
+        mechanicalMeasureReview: ' ',
+        headAbnormalRejectPicture: ' ',
+        headAbnormalRejectVedio: ' ',
+        tailAbnormalRejectPicture: ' ',
+        tailAbnormalRejectVedio: ' ',
+        outerAbnormalRejectPicture: ' ',
+        weighingThickness: ' ',
+        weighingConvexity: ' '
+      }],
+      lenzhajuanzjData: [{
+        createTime: ' ',
+        ts: ' ',
+        creatorId: ' ',
+        sortOrder: ' ',
+        consumer: ' ',
+        batchNum: '',
+        thickness: ' ',
+        width: ' ',
+        rollDiameter: ' ',
+        brand: ' ',
+        status: ' ',
         weight: ' ',
-        sample: ' ',
-        cert: ' ',
-        productCcie: ' ',
-        packageQc: '',
-        outerLabel: ' ',
-        packageTime: ' ',
-        inspectorId: '',
+        shapeQc: '',
+        dimensionalDeviation: ' ',
+        mechanicalProperty: ' ',
+        surfaceQc: ' ',
+        facadeQc: ' ',
+        sampleLevel: ' ',
+        executiveStandard: ' ',
+        judgeResult: '',
+        handleAdvice: ' ',
+        inspector: ' ',
+        monitor: ' ',
         reportTime: ' ',
-        remark: ' '
+        advise: ' ',
+        coldDate: ' ',
+        hydrogenContent: '',
+        productType: ' ',
+        singleConvexity: ' ',
+        wedgeRate: ' ',
+        weighingThickness: ' ',
+        weighingConvexity: ' ',
+        roughness: ' ',
+        shapeQcRemark: '',
+        dimensionalDeviationRemark: ' ',
+        mechanicalPropertyRemark: ' ',
+        surfaceQcRemark: ' ',
+        facadeQcRemark: '',
+        sampleLevelRemark: ' ',
+        reviewAdvice: ' '
+      }],
+      complaintData: [{
+        createTime: ' ',
+        ts: ' ',
+        creatorId: ' ',
+        complaintTime: ' ',
+        batchNum: '',
+        castDate: ' ',
+        coldDate: ' ',
+        castModel: ' ',
+        coldModel: ' ',
+        brand: ' ',
+        status: ' ',
+        weight: '',
+        hydrogenContent: ' ',
+        productType: ' ',
+        complaintDesc: '',
+        complaintWeight: ' ',
+        scrapWeight: ' ',
+        demotionWeight: ' ',
+        castWeight: ' ',
+        coldWeight: ' ',
+        alPrice: ' ',
+        managerId: '',
+        managerName: ' ',
+        chargeId: ' ',
+        chargeName: ' ',
+        directorId: ' ',
+        directorName: ' ',
+        totalLossAmount: ' ',
+        managerPunishAmount: '',
+        chargePunishAmount: ' ',
+        directorPunishAmount: ' ',
+        complaintReport: '',
+        castInspectDescription: ' ',
+        coldInspectDescription: ' ',
+        customer: ''
       }]
     }
   },
@@ -5195,169 +6198,105 @@ export default {
     async getList() {
       this.monitorData = []
 
-      // // 数据初始化
-      // this.stepData[1].description = '关联计划ID: ' + '熔次号: ' + '牌号: ' + '装炉时间: ' + '喷粉精炼#开始时间: ,' + '喷粉精炼#结束时间: ' + '取样时间: ' + '配比班组id: ' + '配比班组名称:' + '精炼开始时间: ' + '精炼结束时间: ' + '倒炉作业#开始时间: ' + '倒炉作业#结束时间:' + '创建时间: ' + '修改时间: '
-      // this.stepData[2].description = '熔次号：' + '牌号：' + '创建时间:' + '修改时间: '
-      // this.stepData[3].description = '开始时间: ' + '结束时间:' + '精炼剂#介质: ' + '精炼剂#用量：' + '班组名称： '
-      // this.stepData[4].description = '开始时间: ' + '结束时间:' + '精炼剂#介质: ' + '精炼剂#用量： ' + '班组名称： '
-      // this.stepData[5].description = '开始时间: ' + '结束时间:' + '精炼剂#介质: ' + '精炼剂#用量： ' + '班组名称： '
-      // this.stepData[6].description = '开始时间: ' + '结束时间:' + '精炼剂#介质: ' + '精炼剂#用量： ' + '班组名称： '
-      // this.stepData[7].description = '开始时间: ' + '结束时间:' + '精炼剂#介质: ' + '精炼剂#用量： ' + '班组名称： '
-      // this.stepData[8].description = '关联计划ID：' + '关联熔次号：' + '铸轧卷号： ' + '牌号： ' + '客户信息： ' + '板厚： ' + '规格宽度' + '上卷信息#上卷时间: ' + '上卷信息#交班壁厚： ' + '上卷信息#交班卷重：' + '下卷信息#库位号: ' + '下卷信息#当班卷重： ' + '下卷信息#卸卷时间: ' + '下卷信息#卷径±2mm：' + '倒炉作业#时间: ' + '倒炉作业#熔次号：' + '创建时间: '
-      // this.stepData[9].description = '创建时间：' + '修改时间：' + '批号(铸轧卷号)：   ' + '规格： ' + '牌号：   ' + '重量：' + '厚度(mm)：   ' + '宽度(mm)：    ' + '表面质量：    ' + '外观质量：    ' + '评审结果:     ' + '综合判定： ' + '下卷时间：  '
-      // this.stepData[10].description = '冷轧带材计划编号：' + '创建时间：' + '客户名称：' + '交货日期A2：  ' + '交货日期B：' + '来料规格：    ' + '成品规格：' + '抗拉强度ob/Mpa： ' + '延伸率： ' + '折弯性能： ' + '纵向厚度偏差mm： ' + '宽度偏差mm： ' + '凸面率%： ' + '产品外观质量及轧制要求：' + '合金牌号：   ' + '平直度： '
-      // this.stepData[11].description = '计划id：' + '(铸轧卷号)来料卷号：   ' + '冷轧卷号：   ' + '合金牌号：  ' + '预定交货日期：  ' + '成品厚度：    ' + '成品宽度：  ' + '开坯时间：  ' + '中轧时间： ' + '精轧时间：  ' + '冷轧成品重量：  ' + '切边时间：' + '生产状态： ' + '入库时间：  ' + '入库重量：' + '创建时间： ' + '修改时间：  '
-      // this.stepData[12].description = '创建时间：  ' + '冷轧卷号：   ' + '退火日期：  ' + '退火炉号：   ' + '退火开始时间：  ' + '退火结束时间：  ' + '炉气温度(℃)Ⅰ区：  ' + '炉气温度(℃)Ⅱ区：  ' + '炉气温度(℃)Ⅲ区：  ' + '水压MPa：   ' + '气压MPa：   '
-      // this.stepData[13].description = '创建时间：' + '修改时间：  ' + '客户名称 ' + '冷轧卷号：   ' + '厚度：    ' + '宽度：    ' + '卷径：    ' + '合金牌号：   ' + '状态: ' + '重量： ' + '板形质量： ' + '尺寸偏差：    ' + '力学性能: ' + '表面质量: ' + '外观质量: ' + '晶粒度：    ' + '执行标准：   ' + '综合判定:     ' + '不合格处理意见： ' + '日期时间：  '
-      // this.stepData[14].description = '创建时间： ' + '合金状态： ' + '产品名称：  ' + '来料卷号(铸轧卷号)：   ' + '来料规格mm：    ' + '加工后冷轧卷号：   ' + '加工后规格mm:    ' + '质量状况#质量情况: ' + '质量状况#判定结果：     '
-      // this.stepData[15].description = '库位区域: ' + '货架号：   ' + '冷轧卷号：   ' + '牌号：   ' + '重量: ' + '板型情况: ' + '用途： ' + '客户名称： ' + '入库人： ' + '入库时间：  ' + '创建人： ' + '创建时间：  ' + '修改时间：  '
-      // this.stepData[16].description = '创建时间：  ' + '修改时间：  ' + '冷轧卷号：   ' + '规格：    ' + '合金状态: ' + '卷径Φ：    ' + '重量（t）: ' + '包装日期：  ' + '报告时间：  '
-
-      // 铸轧计划确定
+      // 铸轧生产计划
       const { data: lmdpCP } = await getCastPlanList(this.queryParams)
       this.monitorData.push(lmdpCP[0])
-      // this.stepData[0].description = '创建时间:' + this.monitorData[0].createTime + '最后修改时间:' + this.monitorData[0].lastmodifyTime + '厚度偏差mm:' + this.monitorData[0].thicknessDev + '宽度偏差mm:' + this.monitorData[0].widthDev + '中凸度%:' + this.monitorData[0].convexity + '平均中凸度%:' + this.monitorData[0].convexityAvg + '客户名称:' + this.monitorData[0].client + '内径/管芯材质:' + this.monitorData[0].inside + '卷径范围（mm）:' + this.monitorData[0].scope + '单卷重量（吨):' + this.monitorData[0].weight + '卷数:' + this.monitorData[0].count + '合金牌号:' + this.monitorData[0].alloyNumber
       this.zhuzhaData = lmdpCP
       this.active = 0
       this.nowProduct = this.produceTitle[0]
 
-      // 熔炉生产
+      // 熔炼工序
       const { data: lmdpCSH } = await getCastSmeltHoldList({ planId: lmdpCP[0].produceId })
       this.monitorData.push(lmdpCSH[0])
-      // this.stepData[1].description = '关联计划ID:' + this.monitorData[1].planId + '熔次号:' + this.monitorData[1].smeltTimes + '牌号:' + this.monitorData[1].brand + '装炉时间:' + this.monitorData[1].feedTime + '喷粉精炼#开始时间: ' + this.monitorData[1].mimRefine1BeginTime + '喷粉精炼#结束时间:' + this.monitorData[1].mimRefine1EndTime + '取样时间:' + this.monitorData[1].refine1SamplingTime + '配比班组id:' + this.monitorData[1].refine1RatioGroupId + ' 配比班组名称:' + this.monitorData[1].refine1RatioGroupName + ':精炼开始时间::' + this.monitorData[1].grainRefine1BeginTime + ' 精炼结束时间:' + this.monitorData[1].grainRefine1EndTime + '倒炉作业#开始时间:' + this.monitorData[1].turndownBeginTime + '倒炉作业#结束时间:' + this.monitorData[1].turndownEndTime + '创建时间:' + this.monitorData[1].createTime + '修改时间:' + this.monitorData[1].ts
       console.log(lmdpCSH)
       this.rongluData = lmdpCSH
       this.nowProduct = this.produceTitle[1]
       this.active = 1
 
-      // 保温
+      // 保温工序
       const { data: lmdpCHF } = await getCastHoldingFurnaceList({ smeltTimes: lmdpCSH[0].planId })
       this.monitorData.push(lmdpCHF[0])
-      // this.stepData[2].description = '熔次号:' + this.monitorData[2].smeltTimes + '牌号:' + this.monitorData[2].brand + '创建时间:' + this.monitorData[2].createTime + '修改时间:' + this.monitorData[2].ts
-      // this.nowProduct = '保温'
-      // console.log('保温数据',lmdpCHF)
       this.baowenData = lmdpCHF
       this.nowProduct = this.produceTitle[2]
-      this.active = this.monitorData.length
+      this.active = 2
 
-      // 保温(第一次)
-      const { data: lmdpFirstC } = await getFirstConciseList({ holdRefine1GroupName: lmdpCSH[0].smeltTimes })
-      this.monitorData.push(lmdpFirstC[0])
-      // this.stepData[3].description = '开始时间:' + this.monitorData[3].holdRefine1BeginTime + '结束时间:' + this.monitorData[3].holdRefine1EndTime + '精炼剂#介质:' + this.monitorData[3].holdRefine1Medium + '精炼剂#用量:' + this.monitorData[3].holdRefine1Dose + '班组名称:' + this.monitorData[3].holdRefine1GroupName
-      // this.stepData[3].description = '开始时间:' + this.monitorData[3].holdRefine1BeginTime + '结束时间:' + this.monitorData[3].holdRefine1EndTime   + '班组名称:' + this.monitorData[3].holdRefine1GroupName
-      this.baowen1Data = lmdpFirstC
-      this.nowProduct = this.produceTitle[3]
-      this.active = this.monitorData.length
-
-      // 保温(第二次)
-      const { data: lmdpSecondC } = await getSecondConciseList({ holdRefine2GroupName: lmdpFirstC[0].holdRefine1GroupName })
-      this.monitorData.push(lmdpSecondC[0])
-      // this.stepData[4].description = '开始时间:' + this.monitorData[4].holdRefine2BeginTime + '结束时间:' + this.monitorData[4].holdRefine2EndTime + '精炼剂#介质:' + this.monitorData[4].holdRefine2Medium + '精炼剂#用量:' + this.monitorData[4].holdRefine2Dose + '班组名称:' + this.monitorData[4].holdRefine2GroupName
-      // this.stepData[4].description = '开始时间:' + this.monitorData[4].holdRefine2BeginTime + '结束时间:' + this.monitorData[4].holdRefine2EndTime +   '班组名称:' + this.monitorData[4].holdRefine2GroupName
-      this.baowen2Data = lmdpSecondC
-      this.nowProduct = this.produceTitle[4]
-      this.active = this.monitorData.length
-
-      // 保温(第三次)
-      const { data: lmdpThirdC } = await getThirdConciseList({ holdRefine3GroupName: lmdpSecondC[0].holdRefine2GroupName })
-      this.monitorData.push(lmdpThirdC[0])
-      // this.stepData[5].description = '开始时间:' + this.monitorData[5].holdRefine3BeginTime + '结束时间:' + this.monitorData[5].holdRefine3EndTime + '精炼剂#介质:' + this.monitorData[5].holdRefine3Medium + '精炼剂#用量:' + this.monitorData[5].holdRefine3Dose + '班组名称:' + this.monitorData[5].holdRefine3GroupName
-      // this.stepData[5].description = '开始时间:' + this.monitorData[5].holdRefine3BeginTime + '结束时间:' + this.monitorData[5].holdRefine3EndTime  + '班组名称:' + this.monitorData[5].holdRefine3GroupName
-      this.baowen3Data = lmdpThirdC
-      this.nowProduct = this.produceTitle[5]
-      this.active = this.monitorData.length
-
-      // 保温(第四次)
-      const { data: lmdpFourthC } = await getFourthConciseList({ holdRefine4GroupName: lmdpThirdC[0].holdRefine3GroupName })
-      this.monitorData.push(lmdpFourthC[0])
-      // this.stepData[6].description = '开始时间:' + this.monitorData[6].holdRefine4BeginTime + '结束时间:' + this.monitorData[6].holdRefine4EndTime + '精炼剂#介质:' + this.monitorData[6].holdRefine4Medium + '精炼剂#用量:' + this.monitorData[6].holdRefine4Dose + '班组名称:' + this.monitorData[6].holdRefine4GroupName
-      // this.stepData[6].description = '开始时间:' + this.monitorData[6].holdRefine4BeginTime + '结束时间:' + this.monitorData[6].holdRefine4EndTime   + '班组名称:' + this.monitorData[6].holdRefine4GroupName
-      this.baowen4Data = lmdpFourthC
-      this.nowProduct = this.produceTitle[6]
-      this.active = this.monitorData.length
-
-      // 保温(第五次)
-      const { data: lmdpFifthC } = await getFifthConciseList({ holdRefine5GroupName: lmdpFourthC[0].holdRefine4GroupName })
-      this.monitorData.push(lmdpFifthC[0])
-      // this.stepData[7].description = '开始时间:' + this.monitorData[7].holdRefine5BeginTime + '结束时间:' + this.monitorData[7].holdRefine5EndTime + '精炼剂#介质:' + this.monitorData[7].holdRefine5Medium + '精炼剂#用量:' + this.monitorData[7].holdRefine5Dose + '班组名称:' + this.monitorData[7].holdRefine5GroupName
-      // this.stepData[7].description = '开始时间:' + this.monitorData[7].holdRefine5BeginTime + '结束时间:' + this.monitorData[7].holdRefine5EndTime   + '班组名称:' + this.monitorData[7].holdRefine5GroupName
-      this.baowen5Data = lmdpFifthC
-      this.nowProduct = this.produceTitle[7]
-      this.active = this.monitorData.length
-
-      // 铸轧生产
-      const { data: lmdpCastPL } = await getCastProduceList({ smeltTimes: lmdpFifthC[0].holdRefine5GroupName })
+      // 铸轧工序
+      const { data: lmdpCastPL } = await getCastProduceList({ planId: lmdpCHF[0].smeltTimes })
       this.monitorData.push(lmdpCastPL[0])
-      // this.stepData[8].description = '关联计划ID:' + this.monitorData[8].planId + '关联熔次号:' + this.monitorData[8].smeltTimes + '铸轧卷号:' + this.monitorData[8].reelNum + ' 牌号:' + this.monitorData[8].brand + '客户信息:' + this.monitorData[8].customer + '板厚:' + this.monitorData[8].thick + '规格宽度:' + this.monitorData[8].width + '上卷信息#上卷时间:' + this.monitorData[8].procUpperTime + ' 上卷信息#交班壁厚:' + this.monitorData[8].procUpperShiftTthick + '上卷信息#交班卷重:' + this.monitorData[8].procUpperShiftTweight + '下卷信息#库位号:' + this.monitorData[8].procLowerLocationNum + '下卷信息#当班卷重:' + this.monitorData[8].procLowerDutyWeight + '下卷信息#卸卷时间:' + this.monitorData[8].procLowerRemoveTime + '下卷信息#卷径±2mm:' + this.monitorData[8].procLowerRollDiameter + '倒炉作业#时间:' + this.monitorData[8].qtfhTurndownTime + '倒炉作业#熔次号:' + this.monitorData[8].qtfhTurndownSmeltNum + '创建时间:' + this.monitorData[8].createTime
-      // this.stepData[8].description = '关联计划ID:' + this.monitorData[8].planId + '关联熔次号:' + this.monitorData[8].smeltTimes + '铸轧卷号:' + this.monitorData[8].reelNum + ' 牌号:'  + '创建时间:' + this.monitorData[8].createTime
       this.zhuzhascData = lmdpCastPL
-      this.nowProduct = this.produceTitle[8]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[3]
+      this.active = 3
 
-      // 铸轧卷质检
-      const { data: lmdpQCRL } = await getQcCastReelList({ reelNum: lmdpCastPL[0].smeltTimes })
+      // 出入库记录（铸轧）
+      const { data: lmdpCRSR } = await getCastReelStoreRecordList({ reelNum: lmdpCastPL[0].planId })
+      this.monitorData.push(lmdpCRSR[0])
+      this.zhuzhaChuRu = lmdpCRSR
+      this.nowProduct = this.produceTitle[4]
+      this.active = 4
+
+      // 铸轧卷质检报告
+      const { data: lmdpQCRL } = await getQcCastReelList({ reelNum: lmdpCRSR[0].reelNum })
       this.monitorData.push(lmdpQCRL[0])
-      // this.stepData[9].description = '创建时间:' + this.monitorData[9].createTime + '修改时间:' + this.monitorData[9].ts + '(批号)铸轧卷号:' + this.monitorData[9].reelNum + ' 牌号:' + this.monitorData[9].brand + '规格:' + this.monitorData[9].model + '重量:' + this.monitorData[9].weight + '厚度:' + this.monitorData[9].thickness + '宽度mm:' + this.monitorData[9].width + '表面质量:' + this.monitorData[9].surfaceQc + ' 外观质量:' + this.monitorData[9].facadeQc + '评审结果:' + this.monitorData[9].judgeResult + '综合判定:' + this.monitorData[9].judgeReamrk + '下卷时间:' + this.monitorData[9].nextReelTime
-      // this.stepData[9].description = '创建时间:' + this.monitorData[9].createTime + '修改时间:' + this.monitorData[9].ts + '(批号)铸轧卷号:' + this.monitorData[9].reelNum + ' 牌号:' + this.monitorData[9].brand
       this.zhuzhajuanzjData = lmdpQCRL
-      this.nowProduct = this.produceTitle[9]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[5]
+      this.active = 5
 
       // 冷轧生产计划确定
       const { data: lmdpColdP } = await getColdPlanList({ coldreductionstripNum: lmdpQCRL[0].reelNum })
       this.monitorData.push(lmdpColdP[0])
-      // this.stepData[10].description = '冷轧带材计划编号:' + this.monitorData[10].coldreductionstripNum + '创建时间:' + this.monitorData[10].createTime + '客户名称:' + this.monitorData[10].client + '交货日期A2:' + this.monitorData[10].deliveredTimeA2 + '交货日期B2:' + this.monitorData[10].deliveredTimeB2 + '来料规格:' + this.monitorData[10].comeSpec + '成品规格:' + this.monitorData[10].productSpec + '抗拉强度ob/Mpa:' + this.monitorData[10].tensileStrength + '延伸率:' + this.monitorData[10].elongation + '折弯性能:' + this.monitorData[10].bendingPerformance + '纵向厚度偏差mm:' + this.monitorData[10].warpWidth + '宽度偏差mm:' + this.monitorData[10].warpWidth + '凸面率%:' + this.monitorData[10].convexRate + '产品外观质量及轧制要求:' + this.monitorData[10].appearanceReq + '合金牌号:' + this.monitorData[10].alloyNumber + '平直度:' + this.monitorData[10].flatness
       this.lenzhascjhData = lmdpColdP
-      this.nowProduct = this.produceTitle[10]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[6]
+      this.active = 6
 
       // 冷轧工序
-      const { data: lmdpColdProduce } = await getColdProduceList({ reelNum: lmdpColdP[0].coldreductionstripNum })
+      const { data: lmdpColdProduce } = await getColdProduceList({ batchNum: lmdpColdP[0].coldreductionstripNum })
       this.monitorData.push(lmdpColdProduce[0])
-      // this.stepData[11].description = '计划ID:' + this.monitorData[11].planId + '(铸轧卷号)来料卷号:' + this.monitorData[11].reelNum + '冷轧卷号:' + this.monitorData[11].batchNum + '合金牌号:' + this.monitorData[11].brand + '预定交货日期:' + this.monitorData[11].deliveryDate + '成品厚度:' + this.monitorData[11].productThick + '成品宽度:' + this.monitorData[11].productWidth + '开坯时间:' + this.monitorData[11].coggingTime + '中轧时间:' + this.monitorData[11].midRollTime + '精轧时间:' + this.monitorData[11].planishTime + '冷轧成品重量:' + this.monitorData[11].coldProductWeight + '切边时间:' + this.monitorData[11].cutTime + '生产状态:' + this.monitorData[11].produceStatus + '入库时间:' + this.monitorData[11].storageInTime + '入库重量:' + this.monitorData[11].storageInWeight + '创建时间:' + this.monitorData[11].createTime + '修改时间:' + this.monitorData[11].ts
       this.lenzhagongxuData = lmdpColdProduce
-      this.nowProduct = this.produceTitle[11]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[7]
+      this.active = 7
 
       // 退火
-      const { data: lmdpCFRL } = await getColdFurnaceRecordList({ batchNum: lmdpColdProduce[0].reelNum })
+      const { data: lmdpCFRL } = await getColdFurnaceRecordList({ batchNum: lmdpColdProduce[0].batchNum })
       this.monitorData.push(lmdpCFRL[0])
-      // this.stepData[12].description = '创建时间:' + this.monitorData[12].createTime + '冷轧卷号:' + this.monitorData[12].batchNum + '退火日期:' + this.monitorData[12].recordDate + '退火炉号:' + this.monitorData[12].furnaceNum + '退火开始时间:' + this.monitorData[12].startTime + '退火结束时间:' + this.monitorData[12].endTime + '炉气温度(℃)Ⅰ区:' + this.monitorData[12].gasTemperature1 + '炉气温度(℃)ⅠI区:' + this.monitorData[12].gasTemperature2 + '炉气温度(℃)ⅠII区:' + this.monitorData[12].gasTemperature3 + '水压MPa:' + this.monitorData[12].hydraulicPressure + '气压MPa:' + this.monitorData[12].gasPressure
       this.tuihuoData = lmdpCFRL
-      this.nowProduct = this.produceTitle[12]
-      this.active = this.monitorData.length
-
-      // 冷轧卷成品质检
-      const { data: lmdpQCCRR } = await getQcColdReelReportList({ batchNum: lmdpCFRL[0].batchNum })
-      this.monitorData.push(lmdpQCCRR[0])
-      // this.stepData[13].description = '创建时间:' + this.monitorData[13].createTime + '修改时间:' + this.monitorData[13].ts + '客户名称:' + this.monitorData[13].consumer + '冷轧卷号:' + this.monitorData[13].batchNum + '厚度:' + this.monitorData[13].thickness + '宽度mm:' + this.monitorData[13].width + '卷径:' + this.monitorData[13].rollDiameter + '合金牌号:' + this.monitorData[13].brand + '状态:' + this.monitorData[13].status + '重量:' + this.monitorData[13].weight + '板形质量:' + this.monitorData[13].shapeQc + '尺寸偏差:' + this.monitorData[13].dimensionalDeviation + '力学性能:' + this.monitorData[13].mechanicalProperty + '表面质量:' + this.monitorData[13].surfaceQc + '外观质量:' + this.monitorData[13].facadeQc + '晶粒度:' + this.monitorData[13].sampleLevel + '执行标准:' + this.monitorData[13].executiveStandard + '综合判定:' + this.monitorData[13].judgeResult + ' 不合格处理意见:' + this.monitorData[13].handleAdvice + '日期时间:' + this.monitorData[13].reporTtime
-      this.lenzhajuanzjData = lmdpQCCRR
-      this.nowProduct = this.produceTitle[13]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[8]
+      this.active = 8
 
       // 重卷中切
-      const { data: lmdpQRRecord } = await getColdRereelerRecordList({ reelNum: lmdpQCCRR[0].batchNum })
+      const { data: lmdpQRRecord } = await getColdRereelerRecordList({ batchNum: lmdpCFRL[0].batchNum })
       this.monitorData.push(lmdpQRRecord[0])
-      // this.stepData[14].description = '创建时间:' + this.monitorData[14].createTime + '合金状态:' + this.monitorData[14].brand + '产品名称:' + this.monitorData[14].productName + '来料卷号(铸轧卷号):' + this.monitorData[14].reelNum + '来料规格mm:' + this.monitorData[14].originRegular + '加工后冷轧卷号:' + this.monitorData[14].batchNum + '加工后规格mm:' + this.monitorData[14].processedRegular + '质量状况#质量情况:' + this.monitorData[14].quality + '质量状况#判定结果:' + this.monitorData[14].result
       this.rewindData = lmdpQRRecord
-      this.nowProduct = this.produceTitle[14]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[9]
+      this.active = 9
 
-      // 冷轧卷成品入库
-      const { data: lmdpCSRL } = await getColdStoreRecordList({ reelNum: lmdpQRRecord[0].reelNum })
+      // 出入库记录（冷轧）
+      const { data: lmdpCSRL } = await getColdStoreRecordList({ reelNum: lmdpQRRecord[0].batchNum })
       this.monitorData.push(lmdpCSRL[0])
-      // this.stepData[15].description = '库位区域:' + this.monitorData[15].area + '货架号:' + this.monitorData[15].shelves + '冷轧卷号:' + this.monitorData[15].reelNum + ' 牌号:' + this.monitorData[15].brand + '重量:' + this.monitorData[15].weight + '板型情况:' + this.monitorData[15].plateCut + '客户名称:' + this.monitorData[15].consumerName + '入库时间:' + this.monitorData[15].storageTime + '创建时间:' + this.monitorData[15].createTime + '修改时间:' + this.monitorData[15].ts
       this.lenzharukuData = lmdpCSRL
-      this.nowProduct = this.produceTitle[15]
-      this.active = this.monitorData.length
+      this.nowProduct = this.produceTitle[10]
+      this.active = 10
 
-      // 包装检验
-      const { data: lmdpQcPack } = await getQcPackList({ batchNum: lmdpCSRL[0].reelNum })
-      this.monitorData.push(lmdpQcPack[0])
-      // this.stepData[16].description = '创建时间:' + this.monitorData[16].createTime + '修改时间:' + this.monitorData[16].ts + '冷轧卷号:' + this.monitorData[16].batchNum + '规格:' + this.monitorData[16].model + '合金状态:' + this.monitorData[16].alloyStatus + '卷径Φ:' + this.monitorData[16].rollDiameter + '重量（t）:' + this.monitorData[16].weight + '包装日期:' + this.monitorData[16].packageTime + '报告时间:' + this.monitorData[16].reportTime
-      this.baozhuangData = lmdpQcPack
-      this.nowProduct = this.produceTitle[16]
-      this.active = this.monitorData.length
+      // 冷轧工序质量巡检
+      const { data: lmdpQcInspect } = await getQcColdInspectList({ batchNum: lmdpCSRL[0].reelNum })
+      this.monitorData.push(lmdpQcInspect[0])
+      this.lenzhaxunjuanData = lmdpQcInspect
+      this.nowProduct = this.produceTitle[11]
+      this.active = 11
+
+      // 冷轧卷质检报告
+      const { data: lmdpQCCRR } = await getQcColdReelReportList({ batchNum: lmdpQcInspect[0].batchNum })
+      this.monitorData.push(lmdpQCCRR[0])
+      this.lenzhajuanzjData = lmdpQCCRR
+      this.nowProduct = this.produceTitle[12]
+      this.active = 12
+
+      // 投诉及处理信息
+      const { data: lmdpQCD } = await getQcComplaintDetailList({ batchNum: lmdpQCCRR[0].batchNum })
+      this.monitorData.push(lmdpQCD[0])
+      this.complaintData = lmdpQCD
+      this.nowProduct = this.produceTitle[13]
+      this.active = 13
+
     },
     // 取消按钮
     cancel() {
