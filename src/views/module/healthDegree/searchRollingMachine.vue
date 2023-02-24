@@ -161,5 +161,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/productQuality/searchRollingMachine.scss';
+@import '@/styles/productQuality/searchRollingMachine.scss';
 </style>
