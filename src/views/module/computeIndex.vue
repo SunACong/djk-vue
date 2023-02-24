@@ -170,7 +170,7 @@ export default {
     // 查询参数
     query() {
       getCompute().then(response => {
-        console.log('这个 我也不知道',response)
+        console.log('这个 我也不知道', response)
         this.periodData = [
           response.data[0].castplan,
           response.data[0].smelthold,
