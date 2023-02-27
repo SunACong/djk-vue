@@ -3,15 +3,15 @@
     <div style="background-color: #46b9b9;padding: 10px 10px">模块功能说明：这是铸轧的功能模块，该模块主要查询显示铸轧工序的详细信息。在下方输入框输入对应的计划单号、熔次号或者冷轧卷号即可查询冷轧生产的流程信息。样例可输入熔次号号（5-002）</div>
     <div style="background-color: white;padding: 20px 10px">
       <el-input v-model="input" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true">
-        <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small">
+        <el-button slot="append" @click="query()"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small">
           查询
         </el-button>
       </el-input>
       <div align="center" >
         <span style="line-height: 50px;" size="mini">当前生产流程：{{ nowProduct }} </span>
       </div>
-    </div>
-
+    </div> 
+ 
     <div style="background-color: white;padding: 10px 10px">
       <el-steps :active="active" align-center>
         <el-step title="熔炼工序" description=" "></el-step>
@@ -22,22 +22,9 @@
     </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">熔炼工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
-      <el-table
-          :data="rongluData"
-          style="width: 100%"
-          height="250">
-        <el-table-column
-
-            prop="planId"
-            label="关联计划ID"
-            width="150">
-        </el-table-column>
-        <el-table-column
-
-            prop="smeltTimes"
-            label="熔次号"
-            width="120">
-        </el-table-column>
+      <el-table :data="rongluData" style="width: 100%" height="250">
+        <el-table-column prop="planId" label="关联计划ID"  width="150"></el-table-column>
+        <el-table-column prop="smeltTimes" label="熔次号"  width="120"></el-table-column>
         <el-table-column
             prop="heatNum"
             label="生产线号"
@@ -1302,15 +1289,6 @@
         </el-table-column>
       </el-table>
     </div>
-    <div style="background-color: white;padding: 10px 10px">
-      <el-steps :active="2" align-center>
-        <el-step title="冷轧" description="订货单位：生产批号：合金牌号：坯料重量:" />
-        <el-step title="退火" description="退火日期：合金：卷数：装炉炉号：" />
-        <el-step title="冷轧" description="订货单位：生产批号：合金牌号：坯料重量:" />
-        <el-step title="退火" description="退火日期：合金：卷数：装炉炉号：" />
-        <el-step title="重卷剪切" description="生产批号：切边时间：主操：" />
-      </el-steps>
-    </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">铸轧工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
@@ -1433,7 +1411,7 @@
         />
       </el-table>
     </div>
-    <div style="background-color: #c0c4cc;padding: 10px 10px">退火工序详细信息</div>
+    <div style="background-color: #46b9b9;padding: 10px 10px">退火工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
         :data="tuihuoData"
@@ -1642,8 +1620,8 @@
       <div class="graph-doubleLine-warp">
         <el-row :gutter="20">
           <el-col :span="16">
-            <div class="selection-box" style="background-color: #c0c4cc;padding: 10px 10px">
-              料温温度曲线图:
+            <div class="selection-box" style="background-color: #46b9b9;padding: 10px 10px">
+              料温温度曲线图: 
             </div>
           </el-col>
           <el-col :span="8">

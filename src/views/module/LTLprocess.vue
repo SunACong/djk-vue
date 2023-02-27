@@ -23,7 +23,7 @@
         <el-step title="重卷剪切" description=" " />
       </el-steps>
     </div>
-    <div style="background-color: #c0c4cc;padding: 10px 10px">冷轧工序详细信息</div>
+    <div style="background-color: #46b9b9;padding: 10px 10px">冷轧工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
         :data="lenzhagongxuData"
@@ -383,7 +383,7 @@
 
       </el-table>
     </div>
-    <div style="background-color: #c0c4cc;padding: 10px 10px">退火工序详细信息</div>
+    <div style="background-color: #46b9b9;padding: 10px 10px">退火工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
         :data="tuihuoData"
@@ -489,7 +489,7 @@
         />
       </el-table>
     </div>
-    <div style="background-color: #c0c4cc;padding: 10px 10px">重卷工序详细信息</div>
+    <div style="background-color: #46b9b9;padding: 10px 10px">重卷工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
         :data="rewindData"
@@ -592,7 +592,7 @@
       <div class="graph-doubleLine-warp">
         <el-row :gutter="20">
           <el-col :span="16">
-            <div class="selection-box" style="background-color: #c0c4cc;padding: 10px 10px">
+            <div class="selection-box" style="background-color: #46b9b9;padding: 10px 10px">
               料温温度曲线图:
             </div>
           </el-col>
