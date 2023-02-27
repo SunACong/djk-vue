@@ -217,11 +217,7 @@ export default {
     // 查询参数
     query() {
       getCompute().then(response => {
-<<<<<<< HEAD
         console.log('这是整体的数据', response)
-=======
-        console.log('这个 我也不知道', response)
->>>>>>> 7e788d51959331464e4491ba6cf6cbdb0328d5da
         this.periodData = [
           response.data[0].castplan,
           response.data[0].smelthold,

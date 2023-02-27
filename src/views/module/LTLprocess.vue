@@ -4,13 +4,8 @@
       模块功能说明：这是冷轧工序的功能模块，该模块主要查询显示冷轧退火的详细信息。在下方输入框输入对应的计划单号、熔次号或者冷轧卷号即可查询冷轧生产的流程信息。样例可输入冷轧卷号（4002D122、1002A122）
     </div>
     <div style="background-color: white;padding: 20px 10px">
-<<<<<<< HEAD
       <el-input v-model="queryParams.batchNum" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true" >
         <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query(queryParams.batchNum)">
-=======
-      <el-input v-model="queryParams.reelNum" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true">
-        <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query(queryParams.reelNum)">
->>>>>>> 7e788d51959331464e4491ba6cf6cbdb0328d5da
           查询
         </el-button>
       </el-input>
@@ -22,17 +17,10 @@
 
     <div style="background-color: white;padding: 10px 10px">
       <el-steps :active="active" align-center>
-<<<<<<< HEAD
         <el-step title="冷轧工序" description=" "></el-step>
         <el-step title="退火工序" description=" "></el-step>
         <el-step title="重卷工序" description=" "></el-step>
         <el-step title="出入库记录" description=" "></el-step>
-=======
-        <el-step title="冷轧" description=" " />
-        <el-step title="退火" description=" " />
-        <el-step title="冷轧" description=" " />
-        <el-step title="重卷剪切" description=" " />
->>>>>>> 7e788d51959331464e4491ba6cf6cbdb0328d5da
       </el-steps>
     </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">冷轧工序详细信息</div>
@@ -326,7 +314,6 @@
     <div style="background-color: #46b9b9;padding: 10px 10px">退火工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
-<<<<<<< HEAD
           :data="tuihuoData"
           style="width: 100%">
         <el-table-column
@@ -514,115 +501,11 @@
             label="吨电耗（kw.h/t）"
             width="120">
         </el-table-column>
-=======
-        :data="tuihuoData"
-        style="width: 100%"
-        height="250"
-      >
-        <el-table-column
-          fixed
-          prop="annealDate"
-          label="退火日期"
-          width="150"
-        />
-        <el-table-column
-          fixed
-          prop="alloy"
-          label="合金"
-          width="120"
-        />
-        <el-table-column
-          prop="anneal"
-          label="退火厚度"
-          width="120"
-        />
-        <el-table-column
-          prop="rollNum"
-          label="卷数(个)"
-          width="120"
-        />
-        <el-table-column
-          prop="totalAmount"
-          label="装炉总量"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceNum"
-          label="装炉炉号"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceLocation"
-          label="装炉位置"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceTime"
-          label="装炉时间"
-          width="120"
-        />
-        <el-table-column
-          prop="annealTime"
-          label="退火总用时"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceStaff"
-          label="装炉人员"
-          width="120"
-        />
-        <el-table-column
-          prop="outStaff"
-          label="出炉人员"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceTemperature"
-          label="装炉料温"
-          width="120"
-        />
-        <el-table-column
-          prop="outTemperature"
-          label="出炉料温"
-          width="120"
-        />
-        <el-table-column
-          prop="temperatureContro"
-          label="料温控制/炉气控制"
-          width="120"
-        />
-        <el-table-column
-          prop="startCharge"
-          label="起始电量（Kw.h）"
-          width="120"
-        />
-        <el-table-column
-          prop="endCharge"
-          label="终止电量（Kw.h）"
-          width="120"
-        />
-        <el-table-column
-          prop="runningTime"
-          label="运行时长"
-          width="120"
-        />
-        <el-table-column
-          prop="electricity"
-          label="本炉电耗（Kw.h）"
-          width="120"
-        />
-        <el-table-column
-          prop="tonElectricity"
-          label="吨电耗（Kw.h）/t"
-          width="120"
-        />
->>>>>>> 7e788d51959331464e4491ba6cf6cbdb0328d5da
       </el-table>
     </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">重卷工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
-<<<<<<< HEAD
           :data="rewindData"
           style="width: 100%">
         <el-table-column
@@ -837,10 +720,6 @@
     <div style="background-color: white;padding: 10px 10px">
       <el-table
           :data="lenzharukuData"
-          row-key="id"
-          :expand-row-keys="expands"
-          stripe
-          @row-click="clickRowHandle"
           style="width: 100%">
           <el-table-column
               prop="id"
@@ -917,100 +796,6 @@
               label="产品类型：成品、在制品"
               width="120">
           </el-table-column>
-=======
-        :data="rewindData"
-        style="width: 100%"
-        height="250"
-      >
-        <el-table-column
-          fixed
-          prop="produceNum"
-          label="生产批号"
-          width="150"
-        />
-        <el-table-column
-          fixed
-          prop="cutTime"
-          label="切边时间"
-          width="120"
-        />
-        <el-table-column
-          prop="mainExercise"
-          label="主操"
-          width="120"
-        />
-        <el-table-column
-          prop="sailings"
-          label="班次"
-          width="120"
-        />
-        <el-table-column
-          prop="productOrder"
-          label="生产顺序"
-          width="120"
-        />
-        <el-table-column
-          prop="incomingWidth"
-          label="来料宽度"
-          width="120"
-        />
-        <el-table-column
-          prop="cutWidth"
-          label="成品切边宽度"
-          width="120"
-        />
-        <el-table-column
-          prop="cutTension"
-          label="剪切张力"
-          width="120"
-        />
-        <el-table-column
-          prop="cutSpeed"
-          label="剪切速度"
-          width="120"
-        />
-        <el-table-column
-          prop="knifeGap"
-          label="刀缝间隙"
-          width="120"
-        />
-        <el-table-column
-          prop="rewindWeight"
-          label="重卷成品重量"
-          width="120"
-        />
-        <el-table-column
-          prop="head"
-          label="头料M"
-          width="120"
-        />
-        <el-table-column
-          prop="causeHead"
-          label="甩除原因"
-          width="120"
-        />
-        <el-table-column
-          prop="tail"
-          label="尾料M"
-          width="120"
-        />
-        <el-table-column
-          prop="causeTail"
-          label="甩除原因"
-          width="120"
-        />
-        <el-table-column
-          prop="quality"
-          label="整卷质量情况"
-          width="120"
-        />
-        <el-table-column
-          prop="sleeve"
-          label="套筒规格"
-          width="120"
-        />
-
->>>>>>> 7e788d51959331464e4491ba6cf6cbdb0328d5da
       </el-table>
     </div>
 
@@ -1113,8 +898,7 @@ export default {
       getRowKeys(row) {
         return row.id
       },
-      // 要展开的行，数值的元素是row的key值
-      expands: [],
+
       // 查询参数
       queryParams: {
         produceId: ''
@@ -1307,13 +1091,6 @@ export default {
     this.getDoubleLineData()// 收款折线数据
   },
   methods: {
-    clickRowHandle(row, column, event) {
-      if (this.expands.includes(row.id)) {
-        this.expands = this.expands.filter(val => val !== row.id)
-      } else {
-        this.expands.push(row.id)
-      }
-    },
     /**
      * eChart初始化 params:
      * domId :传入DomId
