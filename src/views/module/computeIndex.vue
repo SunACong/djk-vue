@@ -28,10 +28,10 @@
               <span v-show="!scope.row.iseditor">{{ scope.row.date }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="date" label="最近一次生产耗时（天）" width="180">
+          <el-table-column prop="newDate" label="最近一次生产耗时（天）" width="180">
             <template slot-scope="scope">
-              <input v-show="scope.row.iseditor" v-model="scope.row.date" type="text">
-              <span v-show="!scope.row.iseditor">{{ scope.row.date }}</span>
+              <input v-show="scope.row.iseditor" v-model="scope.row.newDate" type="text">
+              <span v-show="!scope.row.iseditor">{{ scope.row.newDate }}</span>
             </template>
           </el-table-column>
           <el-table-column prop="note" label="备注">
@@ -55,6 +55,7 @@
 <script>
 import PeriodBarChart from '@/views/dashboard/PeriodBarChart'
 import { getCompute } from '@/api/compute'
+import { getNewCompute } from '@/api/compute'
 export default {
   name: 'ComputeIndex',
   components: { PeriodBarChart },
@@ -68,6 +69,7 @@ export default {
           num: '工序1 ',
           steps: '铸轧生产计划',
           date: '11',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -75,6 +77,7 @@ export default {
           num: '工序2 ',
           steps: '熔炼工序',
           date: '22',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -82,6 +85,7 @@ export default {
           num: '工序3',
           steps: '保温工序',
           date: '33',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -89,6 +93,7 @@ export default {
           num: '工序4',
           steps: '铸轧工序',
           date: '44',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -96,6 +101,7 @@ export default {
           num: '工序5 ',
           steps: '出入库记录（铸轧）',
           date: '55',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -103,6 +109,7 @@ export default {
           num: '工序6',
           steps: '铸轧卷质检记录',
           date: '66',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -110,6 +117,7 @@ export default {
           num: '工序7',
           steps: '铸卷质检报告',
           date: '77',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -117,6 +125,7 @@ export default {
           num: '工序8 ',
           steps: '冷轧生产计划',
           date: '88',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -124,6 +133,7 @@ export default {
           num: '工序9 ',
           steps: '冷轧工序',
           date: '99',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -131,6 +141,7 @@ export default {
           num: '工序10',
           steps: '退火工序',
           date: '88',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -138,6 +149,7 @@ export default {
           num: '工序11',
           steps: '重卷工序',
           date: '77',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -145,6 +157,7 @@ export default {
           num: '工序12',
           steps: '出入库记录（冷轧）',
           date: '66',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -152,6 +165,7 @@ export default {
           num: '工序13',
           steps: '冷轧工序质量巡检',
           date: '55',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -159,6 +173,7 @@ export default {
           num: '工序14',
           steps: '冷轧卷质检报告',
           date: '44',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -166,6 +181,7 @@ export default {
           num: '工序15 ',
           steps: '投诉及处理信息',
           date: '33',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -173,6 +189,7 @@ export default {
           num: '工序16',
           steps: '工序16',
           date: '22',
+          newDate: '001',
           note: '无',
           iseditor: false
         },
@@ -180,6 +197,7 @@ export default {
           num: '工序17 ',
           steps: '工序17',
           date: '11',
+          newDate: '001',
           note: '无',
           iseditor: false
         }
@@ -199,7 +217,7 @@ export default {
     // 查询参数
     query() {
       getCompute().then(response => {
-        console.log('这个 我也不知道',response)
+        console.log('这是整体的数据', response)
         this.periodData = [
           response.data[0].castplan,
           response.data[0].smelthold,
@@ -226,8 +244,28 @@ export default {
           i++
         }
       })
+      getNewCompute().then(response => {
+        console.log('这是新的数据', response)
+        // 表格数据填充
+        this.tableData[0].newDate = response.data[0].castplanNew
+        this.tableData[1].newDate = response.data[0].smeltholdNew
+        this.tableData[2].newDate = response.data[0].baowenNew
+        this.tableData[3].newDate = response.data[0].baowen1New
+        this.tableData[4].newDate = response.data[0].baowen2New
+        this.tableData[5].newDate = response.data[0].baowen3New
+        this.tableData[6].newDate = response.data[0].baowen4New
+        this.tableData[7].newDate = response.data[0].baowen5New
+        this.tableData[8].newDate = response.data[0].castproNew
+        this.tableData[9].newDate = response.data[0].castreelNew
+        this.tableData[10].newDate = response.data[0].coldplanNew
+        this.tableData[11].newDate = response.data[0].coldproduceNew
+        this.tableData[12].newDate = response.data[0].furnaceNew
+        this.tableData[13].newDate = response.data[0].reelreportNew
+        this.tableData[14].newDate = response.data[0].rereelerNew
+        this.tableData[15].newDate = response.data[0].storeNew
+        this.tableData[16].newDate = response.data[0].packageNew
+      })
     }
-
   }
 }
 </script>

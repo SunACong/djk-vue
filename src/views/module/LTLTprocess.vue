@@ -2,13 +2,8 @@
   <div>
     <div style="background-color: #46b9b9;padding: 10px 10px">模块功能说明：这是铸轧的功能模块，该模块主要查询显示铸轧工序的详细信息。在下方输入框输入对应的计划单号、熔次号或者冷轧卷号即可查询冷轧生产的流程信息。样例可输入熔次号号（5-002）</div>
     <div style="background-color: white;padding: 20px 10px">
-<<<<<<< HEAD
       <el-input v-model="queryParams.smeltTimes" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true" >
         <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query(queryParams.smeltTimes)">
-=======
-      <el-input v-model="input" size="small" placeholder="请输入计划单号/请输入熔次号/请输入冷轧卷号" :clearable="true">
-        <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small">
->>>>>>> 05bf3bb66a7813e7bf34760538bc88e0134ef555
           查询
         </el-button>
       </el-input>
@@ -26,19 +21,16 @@
       </el-steps>
     </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">熔炼工序详细信息</div>
-    <div style="background-color: white;padding: 10px 10px">
+    <div style="background-color: white;padding: 10px 10px" >
       <el-table
           :data="rongluData"
-          style="width: 100%"
-          height="250">
+          style="width: 100%">
         <el-table-column
-
             prop="planId"
             label="关联计划ID"
             width="150">
         </el-table-column>
         <el-table-column
-
             prop="smeltTimes"
             label="熔次号"
             width="120">
@@ -828,8 +820,7 @@
     <div style="background-color: white;padding: 10px 10px">
       <el-table
           :data="baowenData"
-          style="width: 100%"
-          height="250">
+          style="width: 100%">
         <el-table-column
             prop="smeltTimes"
             label="熔次号"
@@ -1306,26 +1297,13 @@
             width="120">
         </el-table-column>
 
-<<<<<<< HEAD
       </el-table>
-=======
-    <div style="background-color: white;padding: 10px 10px">
-      <el-steps :active="2" align-center>
-        <el-step title="冷轧" description="订货单位：生产批号：合金牌号：坯料重量:" />
-        <el-step title="退火" description="退火日期：合金：卷数：装炉炉号：" />
-        <el-step title="冷轧" description="订货单位：生产批号：合金牌号：坯料重量:" />
-        <el-step title="退火" description="退火日期：合金：卷数：装炉炉号：" />
-        <el-step title="重卷剪切" description="生产批号：切边时间：主操：" />
-      </el-steps>
->>>>>>> 05bf3bb66a7813e7bf34760538bc88e0134ef555
     </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">铸轧工序详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
-<<<<<<< HEAD
           :data="zhuzhascData"
-          style="width: 100%"
-          height="250">
+          style="width: 100%">
         <el-table-column
             prop="planId"
             label="关联计划ID"
@@ -1851,241 +1829,13 @@
             label="过滤箱设定值#铝液温度℃"
             width="120">
         </el-table-column>
-=======
-        :data="lenzhaData"
-        style="width: 100%"
-        height="250"
-      >
-        <el-table-column
-          fixed
-          prop="orderUnit"
-          label="订货单位"
-          width="150"
-        />
-        <el-table-column
-          fixed
-          prop="productNum"
-          label="生产批号"
-          width="120"
-        />
-        <el-table-column
-          fixed
-          prop="alloyNum"
-          label="合金牌号"
-          width="120"
-        />
-        <el-table-column
-          prop="blankWeight"
-          label="坯料重量"
-          width="120"
-        />
-        <el-table-column
-          prop="mainExercise"
-          label="主操"
-          width="120"
-        />
-        <el-table-column
-          prop="shift"
-          label="班次"
-          width="120"
-        />
-        <el-table-column
-          prop="productNumber"
-          label="生产顺序"
-          width="120"
-        />
-        <el-table-column
-          prop="inletThickness"
-          label="入口厚度"
-          width="120"
-        />
-        <el-table-column
-          prop="outThickness"
-          label="出口厚度"
-          width="120"
-        />
-        <el-table-column
-          prop="width"
-          label="宽度"
-          width="120"
-        />
-        <el-table-column
-          prop="unwinding"
-          label="开卷张力"
-          width="120"
-        />
-        <el-table-column
-          prop="coiling"
-          label="卷取张力"
-          width="120"
-        />
-        <el-table-column
-          prop="zhazhiSpeed"
-          label="轧制速度"
-          width="120"
-        />
-        <el-table-column
-          prop="zhazhiTemperature"
-          label="轧制油温度"
-          width="120"
-        />
-        <el-table-column
-          prop="zhazhiFlow"
-          label="轧制油流量"
-          width="120"
-        />
-        <el-table-column
-          prop="airTemperature"
-          label="压缩空气温度"
-          width="120"
-        />
-        <el-table-column
-          prop="pressure"
-          label="气源压力"
-          width="120"
-        />
-        <el-table-column
-          prop="AFC"
-          label="AFC曲线"
-          width="120"
-        />
-        <el-table-column
-          prop="rolling"
-          label="轧制力"
-          width="120"
-        />
-        <el-table-column
-          prop="inletWeight"
-          label="入口重量"
-          width="120"
-        />
-        <el-table-column
-          prop="outWeight"
-          label="出口重量"
-          width="120"
-        />
-        <el-table-column
-          prop="zhaNum"
-          label="轧辊辊号"
-          width="120"
-        />
-      </el-table>
-    </div>
-    <div style="background-color: #c0c4cc;padding: 10px 10px">退火工序详细信息</div>
-    <div style="background-color: white;padding: 10px 10px">
-      <el-table
-        :data="tuihuoData"
-        style="width: 100%"
-        height="250"
-      >
-        <el-table-column
-          fixed
-          prop="annealDate"
-          label="退火日期"
-          width="150"
-        />
-        <el-table-column
-          fixed
-          prop="alloy"
-          label="合金"
-          width="120"
-        />
-        <el-table-column
-          prop="anneal"
-          label="退火厚度"
-          width="120"
-        />
-        <el-table-column
-          prop="rollNum"
-          label="卷数(个)"
-          width="120"
-        />
-        <el-table-column
-          prop="totalAmount"
-          label="装炉总量"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceNum"
-          label="装炉炉号"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceLocation"
-          label="装炉位置"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceTime"
-          label="装炉时间"
-          width="120"
-        />
-        <el-table-column
-          prop="annealTime"
-          label="退火总用时"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceStaff"
-          label="装炉人员"
-          width="120"
-        />
-        <el-table-column
-          prop="outStaff"
-          label="出炉人员"
-          width="120"
-        />
-        <el-table-column
-          prop="furnaceTemperature"
-          label="装炉料温"
-          width="120"
-        />
-        <el-table-column
-          prop="outTemperature"
-          label="出炉料温"
-          width="120"
-        />
-        <el-table-column
-          prop="temperatureContro"
-          label="料温控制/炉气控制"
-          width="120"
-        />
-        <el-table-column
-          prop="startCharge"
-          label="起始电量（Kw.h）"
-          width="120"
-        />
-        <el-table-column
-          prop="endCharge"
-          label="终止电量（Kw.h）"
-          width="120"
-        />
-        <el-table-column
-          prop="runningTime"
-          label="运行时长"
-          width="120"
-        />
-        <el-table-column
-          prop="electricity"
-          label="本炉电耗（Kw.h）"
-          width="120"
-        />
-        <el-table-column
-          prop="tonElectricity"
-          label="吨电耗（Kw.h）/t"
-          width="120"
-        />
->>>>>>> 05bf3bb66a7813e7bf34760538bc88e0134ef555
-
       </el-table>
     </div>
     <div style="background-color: #46b9b9;padding: 10px 10px">出入库记录详细信息</div>
     <div style="background-color: white;padding: 10px 10px">
       <el-table
-<<<<<<< HEAD
           :data="zhuzhaChuRu"
-          style="width: 100%"
-          height="250">
+          style="width: 100%">
         <el-table-column
             prop="area"
             label="区域"
@@ -2201,19 +1951,16 @@
             label="质检判定信息"
             width="120">
         </el-table-column>
-=======
         :data="rewindData"
         style="width: 100%"
         height="250"
       >
         <el-table-column
-          fixed
           prop="produceNum"
           label="生产批号"
           width="150"
         />
         <el-table-column
-          fixed
           prop="cutTime"
           label="切边时间"
           width="120"
@@ -2404,6 +2151,8 @@ export default {
       selectGatheringTime: [],
       input: '',
       lineData: [679],
+
+      // 流程步骤数据
       rongluData: [{
         planId: ' ',
         smeltTimes: ' ',
@@ -2823,7 +2572,6 @@ export default {
 
       // 熔炼工序
       const { data: lmdpCSH } = await getCastSmeltHoldList(this.queryParams)
-      console.log('熔炼生产的数据', lmdpCSH)
       this.monitorData.push(lmdpCSH[0])
       this.rongluData = lmdpCSH
       this.nowProduct = this.produceTitle[0]
@@ -2833,6 +2581,7 @@ export default {
       const { data: lmdpCHF } = await getCastHoldingFurnaceList({ smeltTimes: lmdpCSH[0].smeltTimes })
       this.monitorData.push(lmdpCHF[0])
       this.baowenData = lmdpCHF
+      console.log('这是保温的数据', lmdpCHF)
       this.nowProduct = this.produceTitle[1]
       this.active = 1
 
@@ -2848,7 +2597,7 @@ export default {
       this.monitorData.push(lmdpCRSR[0])
       this.zhuzhaChuRu = lmdpCRSR
       this.nowProduct = this.produceTitle[3]
-      this.active = 4
+      this.active = 3
     },
     // 获取折线数据
     getDoubleLineData() {

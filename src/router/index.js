@@ -152,34 +152,14 @@ export const constantRoutes = [
       path: '/LTLTprocess',
       name: 'LTLTprocess',
       component: () => import('@/views/module/LTLTprocess'),
-<<<<<<< HEAD
       meta: { title: '铸轧生产流程', icon: 'dashboard' }
-=======
-      meta: { title: '冷退冷退生产流程', icon: 'dashboard' }
->>>>>>> 05bf3bb66a7813e7bf34760538bc88e0134ef555
+
     }, {
       path: '/LTLprocess',
       name: 'LTLprocess',
       component: () => import('@/views/module/LTLprocess'),
-<<<<<<< HEAD
       meta: { title: '冷轧生产流程', icon: 'dashboard' }
-    },
-    //   {
-    //   path: '/LTLZLprocess',
-    //   name: 'LTLZLprocess',
-    //   component: () => import('@/views/module/LTLZLprocess'),
-    //   meta: { title: '冷退冷重冷生产流程', icon: 'dashboard' }
-    // },
-      {
-=======
-      meta: { title: '冷退冷生产流程', icon: 'dashboard' }
     }, {
-      path: '/LTLZLprocess',
-      name: 'LTLZLprocess',
-      component: () => import('@/views/module/LTLZLprocess'),
-      meta: { title: '冷退冷重冷生产流程', icon: 'dashboard' }
-    }, {
->>>>>>> 05bf3bb66a7813e7bf34760538bc88e0134ef555
       path: '/computeIndex',
       name: 'ComputeIndex',
       component: () => import('@/views/module/computeIndex'),

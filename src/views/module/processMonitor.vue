@@ -1,6 +1,6 @@
 <template>
   <div class="app-container" style="background-color: white">
-    <div style="background-color: #409EFF;padding: 10px 10px">
+    <div style="background-color: #46b9b9;padding: 10px 10px">
       模块功能说明：这是整体生产流程功能模块，该模块主要查询整个生产流程步骤的状态，流程步骤下方是每个流程的详细信息，在下方输入框输入计划单号/熔次号/冷轧卷号可以查询整个生产流程的状态。样例可输入冷轧卷号（ZZ2205-005）
     </div>
     <div style="background-color: white;padding: 20px 20px">
@@ -9,7 +9,7 @@
         <span style="line-height: 20px; width:200px">生产流程监视</span>
         <div>
           <el-input v-model="queryParams.produceId" size="small" placeholder="计划单号/熔次号/冷轧卷号" :clearable="true">
-            <el-button slot="append"	style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query(queryParams.produceId)">
+            <el-button slot="append"	style="background-color: #46b9b9;color: white;line-height: 15px;" size="small" @click="query(queryParams.produceId)">
               查询
             </el-button>
           </el-input>
@@ -25,13 +25,11 @@
       </div>
     </div>
     <div>
-      <div style="background-color: #409EFF;padding: 10px 10px" >铸轧生产计划详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px" >铸轧生产计划详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhaData"
-            style="width: 100%"
-            height="350"
-        >
+            style="width: 100%"        >
           <el-table-column
               prop="planId"
               label="主键"
@@ -180,17 +178,17 @@
           <el-table-column
               prop="presentationQuality"
               label="铸轧坯料外观质量"
-              width="120">
+              width="520">
           </el-table-column>
           <el-table-column
               prop="insideQuality"
               label="铸轧坯料内在质量"
-              width="120">
+              width="420">
           </el-table-column>
           <el-table-column
               prop="qualityProject"
               label="质检项目"
-              width="120">
+              width="420">
           </el-table-column>
           <el-table-column
               prop="otherDemand"
@@ -344,12 +342,11 @@
           </el-table-column>
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">熔炼工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">熔炼工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="rongluData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
 
               prop="planId"
@@ -1143,12 +1140,11 @@
           </el-table-column>
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">保温工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">保温工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="baowenData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="smeltTimes"
               label="熔次号"
@@ -2002,12 +1998,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">铸轧工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">铸轧工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhascData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="planId"
               label="关联计划ID"
@@ -2536,12 +2531,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">出入库记录（铸轧）工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">出入库记录（铸轧）工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhaChuRu"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="area"
               label="区域"
@@ -2660,12 +2654,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">铸轧卷质检报告序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">铸轧卷质检报告序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="zhuzhajuanzjData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="createTime"
               label="创建时间"
@@ -2869,12 +2862,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">冷轧生产计划工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">冷轧生产计划工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzhascjhData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="coldreductionstripId"
               label="主键"
@@ -3053,12 +3045,12 @@
           <el-table-column
               prop="appearanceReq"
               label="产品外观质量及轧制要求"
-              width="120">
+              width="520">
           </el-table-column>
           <el-table-column
               prop="productCheck"
               label="产品质检"
-              width="120">
+              width="320">
           </el-table-column>
           <el-table-column
               prop="type"
@@ -3143,12 +3135,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">冷轧工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">冷轧工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzhagongxuData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="planId"
               label="计划id"
@@ -3502,12 +3493,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">退火工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">退火工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="tuihuoData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="ts"
               label="ts"
@@ -3696,12 +3686,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">重卷工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">重卷工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="rewindData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="ts"
               label="ts"
@@ -3910,12 +3899,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">出入库记录（冷轧）工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">出入库记录（冷轧）工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzharukuData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="area"
               label="库位区域"
@@ -3989,12 +3977,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">冷轧工序质量巡检详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">冷轧工序质量巡检详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzhaxunjuanData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="createTime"
               label="创建时间"
@@ -4728,12 +4715,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">冷轧卷质检报告工序详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">冷轧卷质检报告工序详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="lenzhajuanzjData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="createTime"
               label="创建时间"
@@ -4937,12 +4923,11 @@
 
         </el-table>
       </div>
-      <div style="background-color: #409EFF;padding: 10px 10px">投诉及处理信息详细信息</div>
+      <div style="background-color: #46b9b9;padding: 10px 10px">投诉及处理信息详细信息</div>
       <div style="background-color: white;padding: 10px 10px">
         <el-table
             :data="complaintData"
-            style="width: 100%"
-            height="250">
+            style="width: 100%">
           <el-table-column
               prop="createTime"
               label="创建时间"
@@ -5224,6 +5209,8 @@ export default {
         title: '工序14：投诉及处理信息'
       }],
       monitorData: [],
+
+      // 流程步骤数据
       zhuzhaData: [{
         planId: '',
         deleteFlag: '',
@@ -6296,7 +6283,6 @@ export default {
       this.complaintData = lmdpQCD
       this.nowProduct = this.produceTitle[13]
       this.active = 13
-
     },
     // 取消按钮
     cancel() {
