@@ -4,7 +4,7 @@
       模块功能说明：这是查询异常流程的功能模块，该模块主要显示异常流程，在下方点击刷新，即可查看异常流程。
     </div>
     <div class="top_card">
-      <el-card shadow="always" >
+      <el-card shadow="always">
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
             <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si />

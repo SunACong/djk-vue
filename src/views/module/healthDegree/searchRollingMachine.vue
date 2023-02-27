@@ -1,19 +1,19 @@
 <template>
-  <div style="padding-top: 20px;">
+  <div class="layout-main" style="">
     <!-- head -->
-    <div key="search" class="headBox">
-      <el-input v-model="reelNum" placeholder="请输入铸轧卷号" clearable class="input-with-select">
-        <el-button slot="append" class="headButton" icon="el-icon-search" @click="getInfo(reelNum)" />
+    <div class="layout-head">
+      <el-input v-model="reelNum" class="module-input" placeholder="请输入铸轧卷号" clearable>
+        <el-button slot="append" class="module-input-button" icon="el-icon-search" @click="getInfo(reelNum)" />
       </el-input>
     </div>
     <!-- chart -->
-    <div v-loading="loading" style="display: flex;flex-wrap: wrap;justify-content: space-around;">
-      <div v-for="(item, index) in charData" :key="index" style="width: 33%;margin: 1% auto;">
+    <div v-loading="loading" class="layout-chart">
+      <div v-for="(item, index) in charData" :key="index" class="module-chart">
         <div>
           <el-card>
-            <div slot="header" class="clearfix">
+            <div slot="header">
               <span>{{ item[0].deviceParam }}</span>
-              <el-button style="float: right; padding: 3px 0" type="text" @click="expandDailog(item[0].deviceParam, item[2], item[1])">查看</el-button>
+              <el-button class="module-chart-button" type="text" @click="expandDailog(item[0].deviceParam, item[2], item[1])">查看</el-button>
             </div>
             <RecordBarChart :key="key" chart-type="line" :one-x-data="item[2]" :one-y-data="item[1]" />
           </el-card>
@@ -117,6 +117,7 @@ export default {
           message: '该卷未完成铸轧程序！！！',
           type: 'error'
         })
+        this.loading = false
         return
       }
 
@@ -159,20 +160,6 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-
-.headBox{
-
-  text-align: center;
-
-  .el-input {
-    width: 30% ;
-  }
-
-  .headButton{
-    background-color: #409EFF;
-    color: black;
-  }
-}
-
+<style lang="scss" scoped>
+@import '@/styles/productQuality/searchRollingMachine.scss';
 </style>

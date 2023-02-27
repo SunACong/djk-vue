@@ -4,7 +4,7 @@
       模块功能说明：这是计算交期风险预判功能模块，该模块主要计算交期风险，判断剩余时间，在下方点击刷新，即可计算剩余时间。
     </div>
     <div class="top_card">
-      <el-card shadow="always" >
+      <el-card shadow="always">
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
             <div style="font-size: 20px;color: blue;margin-right: 10px;"><i class="el-icon-s-help" />

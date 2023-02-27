@@ -1,0 +1,35 @@
+.layout-main {
+  padding-top: 20px;
+  
+  // 页面上部搜索框
+  .layout-head{
+
+    text-align: center;
+  
+    .module-input {
+      width: 30% ;
+
+      .module-input-button{
+        background-color: #409EFF;
+        color: black;
+      }
+    }
+  }
+  // 下面是图标部分
+  .layout-chart{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+
+    .module-chart{
+      width: 33%;
+      margin: 1% auto;
+
+      .module-chart-button{
+        float: right;
+        padding: 3px 0;
+      }
+    }
+  }
+}
+
