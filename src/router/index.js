@@ -146,8 +146,7 @@ export const constantRoutes = [
       path: '/LTLTprocess',
       name: 'LTLTprocess',
       component: () => import('@/views/module/LTLTprocess'),
-      meta: { title: '铸轧生产流程', icon: 'dashboard' }
-  
+      meta: { title: '冷退冷退生产流程', icon: 'dashboard' }
     }, {
       path: '/LTLprocess',
       name: 'LTLprocess',
