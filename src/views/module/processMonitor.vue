@@ -28,12 +28,12 @@
           <div style="background-color: white;padding: 10px 10px">
             <el-table
                 :data="zhuzhaData"
-                style="width: 100%"        >
+                style="width: 100%">
               <el-table-column
                   prop="planId"
                   label="主键"
                   width="150">
-              </el-table-column>
+              </el-table-column> 
               <el-table-column
                   prop="deleteFlag"
                   label="逻辑删除"

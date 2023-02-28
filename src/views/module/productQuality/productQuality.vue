@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="layout-body">
+    <!-- 顶部说明 -->
+    <div class="top-text">本页面是产品质量判定模型，</div>
     <!-- 合格率图表 -->
-    <div class="top_card">
+    <div class="top-card">
       <el-card shadow="always">
-        <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
-          <div style="display: flex;">
-            <div style="font-size: 20px;color: blue;margin-right: 3px;">
-              <i class="el-icon-s-help" si />
+        <div slot="header" class="top-card">
+          <div class="top-card-header">
+            <div class="top-card-header-left">
+              <i class="el-icon-s-help" />
+              <span class="top-card-header-left-text">产品合格判定汇总表格</span>
             </div>
-            <span style="line-height: 40px;">产品合格判定汇总</span>
-          </div>
-          <div style="display: flex;">
             <div>
               <el-date-picker
                 v-model="qualifyDateRange"
@@ -27,9 +27,8 @@
               />
             </div>
           </div>
+          <BarChart key chart-type="bar" :one-x-data="barData[0]" :one-y-data="barData[1]" :two-x-data="barData1[0]" :two-y-data="barData1[1]" />
         </div>
-        <!-- <BarChart :key="key" chart-type="bar" :one-x-data="item[2]" :one-y-data="item[1]" /> -->
-        <BarChart key chart-type="bar" :one-x-data="barData[0]" :one-y-data="barData[1]" :two-x-data="barData1[0]" :two-y-data="barData1[1]" />
       </el-card>
     </div>
 
@@ -42,8 +41,8 @@
             <div style="font-size: 20px;color: blue;margin-right: 3px;">
               <i class="el-icon-s-help" si />
             </div>
-            <span >冷轧卷报告单判定</span>
-            <el-button @click="getList" type="primary" :loading="loading" size="small" style="height: 33px;width: 80px;margin: 5px 0 0 10px;" >{{loading? "判定中":"判定"}}</el-button>
+            <span>冷轧卷报告单判定</span>
+            <el-button type="primary" :loading="loading" size="small" style="height: 33px;width: 80px;margin: 5px 0 0 10px;" @click="getList">{{ loading? "判定中":"判定" }}</el-button>
           </div>
           <div style="display: flex;">
             <div>
@@ -154,7 +153,7 @@
     <el-dialog :title="dailogData.processStandard.processName" :visible.sync="dialogFormVisible">
       <!-- 板型 -->
       <div v-if="showWtich===1 || showWtich===6">
-        <el-descriptions class="margin-top" title="板型" :column="2" border :size="size">
+        <el-descriptions title="板型" :column="2" border :size="size">
           <el-descriptions-item label="平直度">
             {{ dailogData.singleStraightness === null?'-':dailogData.singleStraightness }}
           </el-descriptions-item>
@@ -172,8 +171,8 @@
         </el-descriptions>
       </div>
       <!-- 尺寸偏差 -->
-      <div v-if="showWtich===2 || showWtich===6" class="my-margin">
-        <el-descriptions class="margin-top" title="尺寸偏差" :column="2" border :size="size">
+      <div v-if="showWtich===2 || showWtich===6" class="dialog-item">
+        <el-descriptions title="尺寸偏差" :column="2" border :size="size">
           <el-descriptions-item label="宽度差">
             {{ dailogData.finishedWidth === null?'-':dailogData.finishedWidth }}
           </el-descriptions-item>
@@ -189,8 +188,8 @@
         </el-descriptions>
       </div>
       <!-- 力学性能 -->
-      <div v-if="showWtich===3 || showWtich===6" class="my-margin">
-        <el-descriptions class="margin-top" title="力学性能" :column="2" border :size="size">
+      <div v-if="showWtich===3 || showWtich===6" class="dialog-item">
+        <el-descriptions title="力学性能" :column="2" border :size="size">
           <el-descriptions-item label="抗拉强度">
             {{ dailogData.correctStrength === null?'-':dailogData.correctStrength }}
           </el-descriptions-item>
@@ -214,8 +213,8 @@
         </el-descriptions>
       </div>
       <!-- 表面质量 -->
-      <div v-if="showWtich===4 || showWtich===6" class="my-margin">
-        <el-descriptions class="margin-top" title="表面质量" :column="2" border :size="size">
+      <div v-if="showWtich===4 || showWtich===6" class="dialog-item">
+        <el-descriptions title="表面质量" :column="2" border :size="size">
           <el-descriptions-item label="划痕">
             -
           </el-descriptions-item>
@@ -252,8 +251,8 @@
         </el-descriptions>
       </div>
       <!-- 外观质量 -->
-      <div v-if="showWtich===5 || showWtich===6" class="my-margin">
-        <el-descriptions class="margin-top" title="外观质量" :column="2" border :size="size">
+      <div v-if="showWtich===5 || showWtich===6" class="dialog-item">
+        <el-descriptions title="外观质量" :column="2" border :size="size">
           <el-descriptions-item>
             <template slot="label">
               串层
@@ -314,8 +313,8 @@ export default {
   },
   data() {
     return {
-      labelStyle:{
-        background: '#8a1065',
+      labelStyle: {
+        background: '#8a1065'
       },
       // 遮罩层
       loading: false,
@@ -502,21 +501,6 @@ export default {
 }
 </script>
 
-<style scoped="sass">
-  .my-margin {
-    margin-top: 20px;
-  }
-
-	.top_card {
-		margin: 1% 1%;
-	}
-
-	.bottom_card {
-    overflow: hidden;
-    margin: 1% 1.1%;
-	}
-
-  /deep/ .el-card__header {
-		padding: 10px 20px;
-	}
+<style lang="scss" scoped>
+  @import '@/styles/productQuality/productQuality.scss';
 </style>
