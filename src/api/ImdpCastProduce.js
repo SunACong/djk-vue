@@ -7,3 +7,12 @@ export function getCastProduceList(params) {
     params
   })
 }
+
+// * 查询铸轧生产时间
+export function getZhuzhaTimeList(params) {
+  return request({
+    url: '/system/castProduce/selectZhuzhaTimeList',
+    method: 'get',
+    params
+  })
+}

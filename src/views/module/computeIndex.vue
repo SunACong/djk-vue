@@ -245,7 +245,7 @@ export default {
         }
       })
       getNewCompute().then(response => {
-        console.log('这是新的数据', response)
+        // console.log('这是新的数据', response)
         // 表格数据填充
         this.tableData[0].newDate = response.data[0].castplanNew
         this.tableData[1].newDate = response.data[0].smeltholdNew

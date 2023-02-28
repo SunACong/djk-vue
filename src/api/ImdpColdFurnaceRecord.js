@@ -7,3 +7,12 @@ export function getColdFurnaceRecordList(params) {
     params
   })
 }
+
+// * 查询冷轧生产时间
+export function getLenzhaTimeList(params) {
+  return request({
+    url: '/system/furnaceRecord/selectLenzhaTimeList',
+    method: 'get',
+    params
+  })
+}
