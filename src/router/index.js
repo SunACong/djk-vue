@@ -148,7 +148,7 @@ export const constantRoutes = [
       component: () => import('@/views/module/LTLTprocess'),
       meta: { title: '铸轧生产流程', icon: 'dashboard' }
     }, {
-      path: '/LTLprocess',
+      path: '/LTLprocess', 
       name: 'LTLprocess',
       component: () => import('@/views/module/LTLprocess'),
       meta: { title: '冷轧生产流程', icon: 'dashboard' }
@@ -169,7 +169,6 @@ export const constantRoutes = [
       meta: { title: '异常流程显示', icon: 'dashboard' }
     }]
   },
-
   // 404 page must be placed at the end !!!
   // { path: '*', redirect: '/404', hidden: true }
   { path: '*', redirect: '/module/productQuality', hidden: true }

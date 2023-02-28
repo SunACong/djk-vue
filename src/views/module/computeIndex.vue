@@ -252,7 +252,7 @@ export default {
         this.tableData[2].newDate = response.data[0].baowenNew
         this.tableData[3].newDate = response.data[0].baowen1New
         this.tableData[4].newDate = response.data[0].baowen2New
-        this.tableData[5].newDate = response.data[0].baowen3New
+        this.tableData[5].newDate = response.data[0].baowen3New 
         this.tableData[6].newDate = response.data[0].baowen4New
         this.tableData[7].newDate = response.data[0].baowen5New
         this.tableData[8].newDate = response.data[0].castproNew
