@@ -63,3 +63,8 @@ div:focus {
 .app-container {
   padding: 20px;
 }
+.layout-body{
+  padding: 20px 20px;
+  overflow-y:scroll;
+  margin-right: calc(100% - 86vw);
+}

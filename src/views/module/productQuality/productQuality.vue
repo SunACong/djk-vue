@@ -1,7 +1,9 @@
 <template>
   <div class="layout-body">
     <!-- 顶部说明 -->
-    <div class="top-text">本页面是产品质量判定模型，</div>
+    <div class="top-text">本页面是产品质量判定模型，上半部分是产品质量合格判定表格，可以根据时间段查询该范围内的所有合格的卷数和不合格的卷数。下半部分
+      是产品质量判定表格，可以根据时间段和冷轧卷号联合查询，共五项判定，状态包括暂未评定（代表产品该项检验某指标未完成），不合格（五项指标中有某一项指标不合格），合格（五项指标全部合格）。
+    </div>
     <!-- 合格率图表 -->
     <div class="top-card">
       <el-card shadow="always">
@@ -15,10 +17,10 @@
               <el-date-picker
                 v-model="qualifyDateRange"
                 size="small"
-                type="datetimerange"
+                type="daterange"
                 align="left"
-                format="yyyy-MM-dd HH:mm:ss"
-                value-format="yyyy-MM-dd HH:mm:ss"
+                format="yyyy-MM-dd"
+                value-format="yyyy-MM-dd"
                 :picker-options="pickerOptions"
                 range-separator="至"
                 start-placeholder="开始日期"
