@@ -812,7 +812,7 @@
       <!--料温温度折线趋势图-->
       <div class="graph-doubleLine-warp">
         <el-row :gutter="20">
-          <div class="selection-box" style="background-color: white;padding: 10px 10px">铸轧生产料温温度曲线图</div>
+          <div class="selection-box" style="background-color: white;padding: 10px 10px">冷轧生产料温温度曲线图</div>
           <el-col :span="8">
 <!--            <div class="selection-box">-->
 <!--              <el-date-picker-->
