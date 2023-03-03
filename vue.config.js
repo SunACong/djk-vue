@@ -45,7 +45,8 @@ module.exports = {
         }
       }
     },
-    disableHostCheck: true
+    disableHostCheck: true,
+    hot: true
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

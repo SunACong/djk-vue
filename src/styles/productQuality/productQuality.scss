@@ -1,0 +1,32 @@
+.layout-body{
+  
+  .top-text{
+    background-color: #ccc;
+    border-radius:  5px;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+  }
+
+	.top-card {
+    margin-bottom: 20px;
+
+    .top-card-header{
+      display: flex;
+      line-height: 30px;
+      justify-content: space-between;
+
+      .top-card-header-left{
+        color: blue;
+
+        .top-card-header-left-text{
+          font-size: 16px;
+          color: #333;
+        }
+      }
+    }
+	}
+
+  .dialog-item{
+    margin-top: 20px;
+  }
+}
