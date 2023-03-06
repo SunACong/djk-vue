@@ -6,7 +6,7 @@
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">重卷机设备参数</span>
+              <span style="line-height: 20px;">重卷机工艺参数</span>
             </div>
           </div>
           <div>
@@ -145,7 +145,7 @@ export default {
       },
       tableData2: [{
         xuhao: '01',
-        name: '开卷机速度曲线',
+        name: '卷取张力',
         value: '83',
         chartData:{
           xData: [],
@@ -155,7 +155,7 @@ export default {
         }
       }, {
         xuhao: '02',
-        name: '开卷机电流曲线',
+        name: '卷取侧卷径',
         value: '83',
         chartData:{
           xData: [],
@@ -165,7 +165,7 @@ export default {
         }
       }, {
         xuhao: '03',
-        name: '卷取机速度曲线',
+        name: '卷取侧重量',
         value: '83',
         chartData:{
           xData: [],
@@ -175,7 +175,37 @@ export default {
         }
       }, {
         xuhao: '04',
-        name: '卷取机电流曲线',
+        name: '带材长度',
+        value: '83',
+        chartData:{
+          xData: [],
+          yData: [],
+          minData:null,
+          maxData:null
+        }
+      },{
+        xuhao: '05',
+        name: '剪切速度',
+        value: '83',
+        chartData:{
+          xData: [],
+          yData: [],
+          minData:null,
+          maxData:null
+        }
+      },{
+        xuhao: '06',
+        name: '张力曲线',
+        value: '83',
+        chartData:{
+          xData: [],
+          yData: [],
+          minData:null,
+          maxData:null
+        }
+      },{
+        xuhao: '07',
+        name: '速度曲线',
         value: '83',
         chartData:{
           xData: [],
@@ -200,7 +230,7 @@ export default {
       parameter: {
         indicatorName:null
       },
-      dyTime:["1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00"]
+      dyTime:["1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00"]
     }
   },
   async created() {
@@ -253,21 +283,33 @@ export default {
       // console.log("上下限：",res.data)
       this.avaluateList.forEach(item => {
         switch (item.name){
-          case "开卷机速度曲线":
+          case "卷取张力":
             this.tableData2[0].chartData.minData=item.minValue
             this.tableData2[0].chartData.maxData=item.maxValue
             break
-          case "开卷机电流曲线":
+          case "卷取侧卷径":
             this.tableData2[1].chartData.minData=item.minValue
             this.tableData2[1].chartData.maxData=item.maxValue
             break
-          case "卷取机速度曲线":
+          case "卷取侧重量":
             this.tableData2[2].chartData.minData=item.minValue
             this.tableData2[2].chartData.maxData=item.maxValue
             break
-          case "卷取机电流曲线":
+          case "带材长度":
             this.tableData2[3].chartData.minData=item.minValue
             this.tableData2[3].chartData.maxData=item.maxValue
+            break
+          case "剪切速度":
+            this.tableData2[4].chartData.minData=item.minValue
+            this.tableData2[4].chartData.maxData=item.maxValue
+            break
+          case "张力曲线":
+            this.tableData2[5].chartData.minData=item.minValue
+            this.tableData2[5].chartData.maxData=item.maxValue
+            break
+          case "速度曲线":
+            this.tableData2[6].chartData.minData=item.minValue
+            this.tableData2[6].chartData.maxData=item.maxValue
             break
         }
 
@@ -296,18 +338,28 @@ export default {
             this.xData.push(item.produceTime)
             this.yData.push(item.value)
             this.rName = item.indicatorName
-            if(this.rName == "开卷机速度"){
+            if(this.rName == "卷取张力"){
               this.minData = this.tableData2[0].chartData.minData
               this.maxData =  this.tableData2[0].chartData.maxData
-            }else if(this.rName == "开卷机电流"){
+            }else if(this.rName == "卷取侧卷径"){
               this.minData = this.tableData2[1].chartData.minData
               this.maxData =  this.tableData2[1].chartData.maxData
-            }else if(this.rName == "卷取机速度"){
+            }else if(this.rName == "卷取侧重量"){
               this.minData = this.tableData2[2].chartData.minData
               this.maxData =  this.tableData2[2].chartData.maxData
-            }else if(this.rName == "卷取机电流"){
+            }else if(this.rName == "带材长度"){
               this.minData = this.tableData2[3].chartData.minData
               this.maxData =  this.tableData2[3].chartData.maxData
+            }
+            else if(this.rName == "剪切速度"){
+              this.minData = this.tableData2[4].chartData.minData
+              this.maxData =  this.tableData2[4].chartData.maxData
+            }else if(this.rName == "张力曲线"){
+              this.minData = this.tableData2[5].chartData.minData
+              this.maxData =  this.tableData2[5].chartData.maxData
+            }else if(this.rName == "速度曲线"){
+              this.minData = this.tableData2[6].chartData.minData
+              this.maxData =  this.tableData2[6].chartData.maxData
             }
           })
 
@@ -323,7 +375,7 @@ export default {
       // this.yData = []
       if(this.timer == null) {
         this.timer = setInterval( () => {
-          getListTen({indicatorName : '开卷机速度'}).then((res) =>{
+          getListTen({indicatorName : '卷取张力'}).then((res) =>{
             // console.log("这是查询的10条数据",res)
             this.avaluateListTen = res.data
             this.tableData2[0].chartData.xData = []
@@ -342,7 +394,7 @@ export default {
             })
           })
           // getListTen(this.parameter.indicatorName = '开卷机电流').then((res) =>{
-          getListTen({indicatorName : '开卷机电流'}).then((res) =>{
+          getListTen({indicatorName : '卷取侧卷径'}).then((res) =>{
             // console.log("这是查询的10条数据",res)
             this.avaluateListTen = res.data
             this.tableData2[1].chartData.xData = []
@@ -359,7 +411,7 @@ export default {
               this.tableData2[1].chartData.rName= item.indicatorName
             })
           })
-          getListTen({indicatorName : '卷取机速度'}).then((res) =>{
+          getListTen({indicatorName : '卷取侧重量'}).then((res) =>{
             // console.log("这是查询的10条数据",res)
             this.avaluateListTen = res.data
             this.tableData2[2].chartData.xData = []
@@ -376,7 +428,7 @@ export default {
               this.tableData2[2].chartData.rName= item.indicatorName
             })
           })
-          getListTen({indicatorName : '卷取机电流'}).then((res) =>{
+          getListTen({indicatorName : '带材长度'}).then((res) =>{
             // console.log("这是查询的10条数据",res)
             this.avaluateListTen = res.data
             this.tableData2[3].chartData.xData = []
@@ -391,6 +443,57 @@ export default {
               this.tableData2[3].chartData.xData.push(item.produceTime)
               this.tableData2[3].chartData.yData.push(item.value)
               this.tableData2[3].chartData.rName= item.indicatorName
+            })
+          })
+          getListTen({indicatorName : '剪切速度'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
+            this.tableData2[4].chartData.xData = []
+            this.tableData2[4].chartData.yData = []
+            this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[4].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[4] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[4] = item.produceTime
+                }
+              }
+              this.tableData2[4].chartData.xData.push(item.produceTime)
+              this.tableData2[4].chartData.yData.push(item.value)
+              this.tableData2[4].chartData.rName= item.indicatorName
+            })
+          })
+          getListTen({indicatorName : '张力曲线'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
+            this.tableData2[5].chartData.xData = []
+            this.tableData2[5].chartData.yData = []
+            this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[5].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[5] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[5] = item.produceTime
+                }
+              }
+              this.tableData2[5].chartData.xData.push(item.produceTime)
+              this.tableData2[5].chartData.yData.push(item.value)
+              this.tableData2[5].chartData.rName= item.indicatorName
+            })
+          })
+          getListTen({indicatorName : '速度曲线'}).then((res) =>{
+            // console.log("这是查询的10条数据",res)
+            this.avaluateListTen = res.data
+            this.tableData2[6].chartData.xData = []
+            this.tableData2[6].chartData.yData = []
+            this.avaluateListTen.forEach(item =>{
+              if(item.value>this.tableData2[6].chartData.maxData){
+                if(this.warnTable.length == 0 || this.dyTime[6] < item.produceTime){
+                  this.warnTable.push(item);
+                  this.dyTime[6] = item.produceTime
+                }
+              }
+              this.tableData2[6].chartData.xData.push(item.produceTime)
+              this.tableData2[6].chartData.yData.push(item.value)
+              this.tableData2[6].chartData.rName= item.indicatorName
             })
           })
           // this.handleView();

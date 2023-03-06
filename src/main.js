@@ -13,7 +13,10 @@ import store from './store'
 import router from './router'
 
 import '@/icons' // icon
-// import '@/permission' // permission control
+// 全局方法挂载
+import { resetForm, parseTime } from '@/utils/utils'
+Vue.prototype.resetForm = resetForm
+Vue.prototype.parseTime = parseTime
 
 /**
  * If you don't want to use mock-server

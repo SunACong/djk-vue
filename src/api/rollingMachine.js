@@ -21,6 +21,13 @@ export function getListSpecial(params) {
         params
     })
 }
+export function getListDuringData(params) {
+    return request({
+        url: '/rollingMachine/listDuringData',
+        method: 'get',
+        params
+    })
+}
 
 export let rollingTableData1 = [{
         xuhao: '01',
@@ -153,7 +160,57 @@ export let rollingTableData1 = [{
             maxData:null
         }
     }]
-
+export let rollingTableData11 = [{
+    xuhao: '01',
+    name: '上辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '02',
+    name: '下辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '03',
+    name: '主水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '04',
+    name: '备用水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '05',
+    name: '卷取电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}]
 export let rollingTableData2 = [{
         xuhao: '01',
         name: '上辊电机电流',
@@ -285,7 +342,57 @@ export let rollingTableData2 = [{
             maxData:null
         }
 }]
-
+export let rollingTableData22 = [{
+    xuhao: '01',
+    name: '上辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '02',
+    name: '下辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '03',
+    name: '主水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '04',
+    name: '备用水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '05',
+    name: '卷取电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}]
 export let rollingTableData3 = [{
     xuhao: '01',
     name: '上辊电机电流',
@@ -417,7 +524,57 @@ export let rollingTableData3 = [{
         maxData:null
     }
 }]
-
+export let rollingTableData33 = [{
+    xuhao: '01',
+    name: '上辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '02',
+    name: '下辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '03',
+    name: '主水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '04',
+    name: '备用水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '05',
+    name: '卷取电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}]
 export let rollingTableData4 = [{
     xuhao: '01',
     name: '上辊电机电流',
@@ -549,6 +706,57 @@ export let rollingTableData4 = [{
         maxData:null
     }
 }]
+export let rollingTableData44 = [{
+    xuhao: '01',
+    name: '上辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '02',
+    name: '下辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '03',
+    name: '主水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '04',
+    name: '备用水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '05',
+    name: '卷取电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}]
 export let rollingTableData5 = [{
     xuhao: '01',
     name: '上辊电机电流',
@@ -672,6 +880,57 @@ export let rollingTableData5 = [{
 }, {
     xuhao: '13',
     name: '传动侧预载力',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}]
+export let rollingTableData55 = [{
+    xuhao: '01',
+    name: '上辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '02',
+    name: '下辊电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '03',
+    name: '主水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '04',
+    name: '备用水泵电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '05',
+    name: '卷取电机速度',
     value: '83',
     chartData:{
         xData: [],

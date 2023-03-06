@@ -102,7 +102,7 @@
             <el-select v-model="value" style="margin-bottom: 10px" size="medium" @change="getIndicatorName($event)" placeholder="请选择">
               <el-option
                   size="mini"
-                  v-for="item in options"
+                  v-for="item in rollingOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -150,24 +150,6 @@
     </div>
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich===1">
-        <div  style="display: flex;">
-          <el-button style="" type="text"> 本周 </el-button>
-          <el-button style="" type="text"> 本月 </el-button>
-          <el-button style="margin-right: 10px;" type="text"> 本年 </el-button>
-          <div>
-            <el-date-picker
-                v-model="qualifyDateRange"
-                size="small"
-                type="daterange"
-                align="left"
-                unlink-panels
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                :picker-options="pickerOptions"
-            />
-          </div>
-        </div>
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName"></AreaChart>
         </div>
@@ -183,54 +165,14 @@
 
 <script>
 import AreaChart from '@/views/dashboard/AreaChart'
-import {getListInfo,getListSpecial,getListDuringData,rollingTableData1} from "@/api/rollingMachine";
 import {getAvaluateList} from "@/api/avaluate";
+import {getListNewData,getListSpecial,rollingOptions,rollingTableData1} from "@/api/oneCastroll";
+import {getListWarnNewData,getListWarnHistoryData,getListDuringWarnData} from "@/api/warnTable";
 import {parseTime} from "@/utils/utils";
-import item from "@/layout/components/Sidebar/Item";
 export default {
   components: {AreaChart},
   data() {
     return {
-      options: [{
-        value: '上辊电机电流',
-        lable:'上辊电机电流',
-      }, {
-        value: '下辊电机电流',
-        lable:'下辊电机电流',
-      }, {
-        value: '主水泵电机电流',
-        lable:'主水泵电机电流',
-      }, {
-        value: '备用水泵电机电流',
-        lable:'主水泵电机电流',
-      }, {
-        value: '卷取电机电流',
-        lable:'卷取电机电流',
-      }, {
-        value: '上辊水压',
-        lable:'上辊水压',
-      }, {
-        value: '下辊水压',
-        lable:'下辊水压',
-      }, {
-        value: '上辊水温',
-        lable:'上辊水温',
-      }, {
-        value: '下辊水温',
-        lable:'上辊水温',
-      }, {
-        value: '上辊流量',
-        lable:'上辊流量',
-      }, {
-        value: '下辊流量',
-        lable:'下辊流量',
-      }, {
-        value: '操作侧预载力',
-        lable:'操作侧预载力',
-      }, {
-        value: '传动侧预载力',
-        lable:'传动侧预载力',
-      }],
       value: '',
       ListDuringData:{},
       indicatorName:null,
@@ -265,15 +207,15 @@ export default {
           }
         }]
       },
-      myvisible:false,
+      rollingOptions,
       rollingTableData1,
+      myvisible:false,
       currentWarnTable: [],
       historyWarnTable: [],
       dialogVisible: false,
       dataList:{},
       avaluateList:{},
       listSpecial:{},
-      // avaluateListTen:{},
       minData: null,
       maxData: null,
       rName: null,
@@ -281,15 +223,22 @@ export default {
       yData : [],
       timer: null,
       showWtich:1,
-
-      dyTime:["1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00","1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00","1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00", "1970-01-01 00:00:00"]
-    }
+     }
   },
   async created() {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
     this.setTimer()
+    /**
+     * 获取一号铸轧机报警历史记录（30条）
+     */
+    await getListWarnHistoryData({rollingDeviceNumber:"铸轧机1#"}).then((res) =>{
+      this.historyWarnTable = res.data
+    })
+    /**
+     * 获取上下限阈值
+     */
     await getAvaluateList().then((res) => {
       this.avaluateList =res.data
       // console.log("上下限：",res.data)
@@ -356,6 +305,9 @@ export default {
   },
 
   methods: {
+    /**
+     * 获取当点击时间空间以及单选框时，得到的指标名称和时间
+     */
     getIndicatorName:function (event){
       console.log(event);
       this.indicatorName=this.value
@@ -367,43 +319,19 @@ export default {
       console.log("开始时间", parseTime(this.qualifyDateRange[0]))
       console.log("结束时间", parseTime(this.qualifyDateRange[1]))
     },
+    /**
+     * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
+     */
     getMyHistoryData:function(){
       this.historyWarnTable=[]
-      getListDuringData({rollingDeviceId:1,rollingName:this.indicatorName,begin:this.begin,end:this.end}).then((res) =>{
-        console.log("特定时间范围内的数据", res.data)
-        this.ListDuringData=res.data
-        this.ListDuringData.forEach(item =>{
-          if(item.rollingName == "上辊电机电流" && item.rollingValue>this.rollingTableData1[0].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }
-          else if(item.rollingName == "下辊电机电流" && item.rollingValue>this.rollingTableData1[1].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "主水泵电机电流" && item.rollingValue>this.rollingTableData1[2].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "备用水泵电机电流" && item.rollingValue>this.rollingTableData1[3].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "卷取电机电流" && item.rollingValue>this.rollingTableData1[4].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "上辊水压" && item.rollingValue>this.rollingTableData1[5].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "下辊水压" && item.rollingValue>this.rollingTableData1[6].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "上辊水温" && item.rollingValue>this.rollingTableData1[7].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "下辊水温" && item.rollingValue>this.rollingTableData1[8].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "上辊流量" && item.rollingValue>this.rollingTableData1[9].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "下辊流量" && item.rollingValue>this.rollingTableData1[10].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "操作侧预载力" && item.rollingValue>this.rollingTableData1[11].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }else if(item.rollingName == "传动侧预载力" && item.rollingValue>this.rollingTableData1[12].chartData.maxData){
-            this.historyWarnTable.push(item)
-          }
-        })
+      getListDuringWarnData({rollingDeviceNumber:"铸轧机1#",rollingName:this.indicatorName,begin:this.begin,end:this.end}).then((res) =>{
+        // console.log("特定时间范围内的数据", res)
+        this.historyWarnTable=res.data
       })
     },
+    /**
+     * 当电机页面中的图表和报警记录表中的查询按钮时，触发
+     */
     getMyData: function(index,row) {
       this.showWtich = index
       if(index ==1){
@@ -413,10 +341,14 @@ export default {
         this.maxData = row.chartData.maxData
         this.rName = row.chartData.rName
         // console.log("这是name",row.chartData.rName)
-      }else if(index == 2){
-        getListSpecial({rollingName: row.rollingName, creatTime: row.rollingProduceTime}).then((res) =>{
+      }
+      /**
+       * 查看报警数据前后的数据，并以图表形式展示
+       */
+      else if(index == 2){
+        getListSpecial({rollingName: row.rollingName, createTime: row.rollingProduceTime}).then((res) =>{
           console.log("报警数据前后的数据", res.data)
-          this.myvisible=true
+          this.myvisible=false
           this.listSpecial = res.data
           this.xData = []
           this.yData = []
@@ -468,7 +400,7 @@ export default {
 
         })
       }
-
+      //为true则显示弹窗
       this.dialogVisible = true
     },
 
@@ -480,214 +412,80 @@ export default {
 
           //1号铸轧机数据
 
-          getListInfo({rollingName : '上辊电机电流',rollingDeviceId:1}).then((res) =>{
+          getListNewData().then((res) =>{
             this.dataList = res.data
-            // console.log(this.dataList)
+            // console.log("这是拿到的数据"+res)
             this.rollingTableData1[0].chartData.xData = []
             this.rollingTableData1[0].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[0].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[0] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[0] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[0].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[0].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[0].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '下辊电机电流',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[1].chartData.xData = []
             this.rollingTableData1[1].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[1].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[1] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[1] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[1].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[1].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[1].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '主水泵电机电流',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[2].chartData.xData = []
             this.rollingTableData1[2].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[2].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[2] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[2] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[2].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[2].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[2].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '备用水泵电机电流',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[3].chartData.xData = []
             this.rollingTableData1[3].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[3].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[3] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[3] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[3].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[3].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[3].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '卷取电机电流',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[4].chartData.xData = []
             this.rollingTableData1[4].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[4].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[4] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[4] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[4].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[4].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[4].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '上辊水压',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[5].chartData.xData = []
             this.rollingTableData1[5].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[5].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[5] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[5] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[5].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[5].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[5].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '下辊水压',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[6].chartData.xData = []
             this.rollingTableData1[6].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[6].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[6] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[6] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[6].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[6].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[6].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '上辊水温',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[7].chartData.xData = []
             this.rollingTableData1[7].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[7].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[7] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[7] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[7].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[7].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[7].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '下辊水温',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[8].chartData.xData = []
             this.rollingTableData1[8].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[8].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[8] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[8] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[8].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[8].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[8].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '上辊流量',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[9].chartData.xData = []
             this.rollingTableData1[9].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[9].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[9] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[9] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[9].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[9].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[9].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '下辊流量',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[10].chartData.xData = []
             this.rollingTableData1[10].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[10].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[10] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[10] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[10].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[10].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[10].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '操作侧预载力',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[11].chartData.xData = []
             this.rollingTableData1[11].chartData.yData = []
-            this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[11].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[11] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[11] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[11].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[11].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[11].chartData.rName= item.rollingName
-            })
-          })
-          getListInfo({rollingName : '传动侧预载力',rollingDeviceId:1}).then((res) =>{
-            this.dataList = res.data
             this.rollingTableData1[12].chartData.xData = []
             this.rollingTableData1[12].chartData.yData = []
             this.dataList.forEach(item =>{
-              if(item.rollingValue>this.rollingTableData1[12].chartData.maxData){
-                if(this.currentWarnTable.length == 0 || this.dyTime[12] < item.rollingProduceTime){
-                  this.currentWarnTable.push(item);
-                  this.dyTime[12] = item.rollingProduceTime
-                }
-              }
-              this.rollingTableData1[12].chartData.xData.push(item.rollingProduceTime)
-              this.rollingTableData1[12].chartData.yData.push(item.rollingValue)
-              this.rollingTableData1[12].chartData.rName= item.rollingName
+              this.rollingTableData1[0].chartData.xData.push(item.createTime)
+              this.rollingTableData1[0].chartData.yData.push(item.upRollMontorA)
+              this.rollingTableData1[0].chartData.rName= "上辊电机电流"
+              this.rollingTableData1[1].chartData.xData.push(item.createTime)
+              this.rollingTableData1[1].chartData.yData.push(item.downRollMontorA)
+              this.rollingTableData1[1].chartData.rName= "下辊电机电流"
+              this.rollingTableData1[2].chartData.xData.push(item.createTime)
+              this.rollingTableData1[2].chartData.yData.push(item.upRollMontorA)
+              this.rollingTableData1[2].chartData.rName= "主水泵电机电流"
+              this.rollingTableData1[3].chartData.xData.push(item.createTime)
+              this.rollingTableData1[3].chartData.yData.push(item.upRollMontorA)
+              this.rollingTableData1[3].chartData.rName= "备用水泵电机电流"
+              this.rollingTableData1[4].chartData.xData.push(item.createTime)
+              this.rollingTableData1[4].chartData.yData.push(item.rollA)
+              this.rollingTableData1[4].chartData.rName= "卷取电机电流"
+              this.rollingTableData1[5].chartData.xData.push(item.createTime)
+              this.rollingTableData1[5].chartData.yData.push(item.upRollWaterFn)
+              this.rollingTableData1[5].chartData.rName= "上辊水压"
+              this.rollingTableData1[6].chartData.xData.push(item.createTime)
+              this.rollingTableData1[6].chartData.yData.push(item.downRollWaterFn)
+              this.rollingTableData1[6].chartData.rName= "下辊水压"
+              this.rollingTableData1[7].chartData.xData.push(item.createTime)
+              this.rollingTableData1[7].chartData.yData.push(item.upRollWaterT)
+              this.rollingTableData1[7].chartData.rName= "上辊水温"
+              this.rollingTableData1[8].chartData.xData.push(item.createTime)
+              this.rollingTableData1[8].chartData.yData.push(item.downRollWaterT)
+              this.rollingTableData1[8].chartData.rName= "下辊水温"
+              this.rollingTableData1[9].chartData.xData.push(item.createTime)
+              this.rollingTableData1[9].chartData.yData.push(item.upRollFlow)
+              this.rollingTableData1[9].chartData.rName= "上辊流量"
+              this.rollingTableData1[10].chartData.xData.push(item.createTime)
+              this.rollingTableData1[10].chartData.yData.push(item.downRollFlow)
+              this.rollingTableData1[10].chartData.rName= "下辊流量"
+              this.rollingTableData1[11].chartData.xData.push(item.createTime)
+              this.rollingTableData1[11].chartData.yData.push(item.operationPreloadForce)
+              this.rollingTableData1[11].chartData.rName= "操作侧预载力"
+              this.rollingTableData1[12].chartData.xData.push(item.createTime)
+              this.rollingTableData1[12].chartData.yData.push(item.transPreloadForce)
+              this.rollingTableData1[12].chartData.rName= "传动侧预载力"
             })
+          })
+          //定时查询铸轧机最新20条报警记录
+          getListWarnNewData({rollingDeviceNumber:"铸轧机1#"}).then((res)=>{
+            this.currentWarnTable=res.data
           })
         }, 2000)
 

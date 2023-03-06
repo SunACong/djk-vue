@@ -31,11 +31,6 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login/index'),
-  //   hidden: true
-  // },
 
   {
     path: '/404',
@@ -59,35 +54,80 @@ export const constantRoutes = [
     meta: { title: '设备健康状况分析', icon: 'dashboard' },
     redirect: '/module/healthDegree/roollingMachine',
     children: [{
-      path: 'roollingMachine',
-      name: 'RoollingMachine',
-      component: () => import('@/views/module/healthDegree/roollingMachine.vue'),
-      meta: { title: '铸扎机', icon: 'dashboard' }
+      path: 'oneCastroll',
+      name: 'OneCastroll',
+      component: () => import('@/views/module/healthDegree/oneCastroll.vue'),
+      meta: { title: '1#铸轧机真实数据', icon: 'dashboard' }
+    },{
+      path: 'twoCastroll',
+      name: 'TwoCastroll',
+      component: () => import('@/views/module/healthDegree/twoCastroll.vue'),
+      meta: { title: '2#铸轧机真实数据', icon: 'dashboard' }
+    },{
+      path: 'threeCastroll',
+      name: 'ThreeCastroll',
+      component: () => import('@/views/module/healthDegree/threeCastroll.vue'),
+      meta: { title: '3#铸轧机真实数据', icon: 'dashboard' }
+    },{
+      path: 'fourCastroll',
+      name: 'FourCastroll',
+      component: () => import('@/views/module/healthDegree/fourCastroll.vue'),
+      meta: { title: '4#铸轧机真实数据', icon: 'dashboard' }
+    },{
+      path: 'fiveCastroll',
+      name: 'FiveCastroll',
+      component: () => import('@/views/module/healthDegree/fiveCastroll.vue'),
+      meta: { title: '5#铸轧机真实数据', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine11',
+      name: 'RollingMachine11',
+      component: () => import('@/views/module/healthDegree/rollingMachine11.vue'),
+      meta: { title: '铸轧机工艺参数1#', icon: 'dashboard' }
+    },{
+      path: 'rollingMachine22',
+      name: 'RollingMachine22',
+      component: () => import('@/views/module/healthDegree/rollingMachine22.vue'),
+      meta: { title: '铸轧机工艺参数2#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine33',
+      name: 'RollingMachine33',
+      component: () => import('@/views/module/healthDegree/rollingMachine33.vue'),
+      meta: { title: '铸轧机工艺参数3#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine44',
+      name: 'RollingMachine44',
+      component: () => import('@/views/module/healthDegree/rollingMachine44.vue'),
+      meta: { title: '铸轧机工艺参数4#', icon: 'dashboard' }
+    }, {
+      path: 'rollingMachine55',
+      name: 'RollingMachine55',
+      component: () => import('@/views/module/healthDegree/rollingMachine55.vue'),
+      meta: { title: '铸轧机工艺参数5#', icon: 'dashboard' }
     }, {
       path: 'recoilingMachine',
       name: 'RecoilingMachine',
       component: () => import('@/views/module/healthDegree/recoilingMachine.vue'),
-      meta: { title: '重卷机', icon: 'dashboard' }
+      meta: { title: '重卷机设备参数', icon: 'dashboard' }
+    },{
+      path: 'recoilingMachineGong',
+      name: 'RecoilingMachineGong',
+      component: () => import('@/views/module/healthDegree/recoilingMachineGong.vue'),
+      meta: { title: '重卷机工艺参数', icon: 'dashboard' }
     }, {
       path: 'annealingFurnace',
       name: 'AnnealingFurance',
       component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
       meta: { title: '退火炉', icon: 'dashboard' }
-    }, {
-      path: 'test',
-      name: 'Test',
-      component: () => import('@/views/module/healthDegree/test.vue'),
-      meta: { title: '测试', icon: 'dashboard' }
-    }, {
+    },{
       path: 'avaluate',
       name: 'Avaluate',
       component: () => import('@/views/module/healthDegree/avaluate.vue'),
       meta: { title: '值域', icon: 'dashboard' }
     }, {
-      path: 'roollingMachineSet',
-      name: 'RoollingMachineSet',
-      component: () => import('@/views/module/healthDegree/roollingMachineSet.vue'),
-      meta: { title: '铸扎机参数设置', icon: 'dashboard' }
+      path: 'rollingMachineSet',
+      name: 'RollingMachineSet',
+      component: () => import('@/views/module/healthDegree/rollingMachineSet.vue'),
+      meta: { title: '铸轧机参数设置', icon: 'dashboard' }
     }, {
       path: 'parameterSet',
       name: 'ParameterSet',
