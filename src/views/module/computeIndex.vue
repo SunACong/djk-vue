@@ -107,7 +107,7 @@ export default {
         },
         {
           num: '工序6',
-          steps: '铸轧卷质检记录',
+          steps: '铸轧卷质检报告',
           date: '66',
           newDate: '001',
           note: '无',
@@ -115,7 +115,7 @@ export default {
         },
         {
           num: '工序7',
-          steps: '铸卷质检报告',
+          steps: '冷轧生产计划',
           date: '77',
           newDate: '001',
           note: '无',
@@ -123,7 +123,7 @@ export default {
         },
         {
           num: '工序8 ',
-          steps: '冷轧生产计划',
+          steps: '冷轧工序',
           date: '88',
           newDate: '001',
           note: '无',
@@ -131,7 +131,7 @@ export default {
         },
         {
           num: '工序9 ',
-          steps: '冷轧工序',
+          steps: '退火工序',
           date: '99',
           newDate: '001',
           note: '无',
@@ -139,7 +139,7 @@ export default {
         },
         {
           num: '工序10',
-          steps: '退火工序',
+          steps: '重卷工序',
           date: '88',
           newDate: '001',
           note: '无',
@@ -147,7 +147,7 @@ export default {
         },
         {
           num: '工序11',
-          steps: '重卷工序',
+          steps: '出入库记录（冷轧）',
           date: '77',
           newDate: '001',
           note: '无',
@@ -155,7 +155,7 @@ export default {
         },
         {
           num: '工序12',
-          steps: '出入库记录（冷轧）',
+          steps: '冷轧工序质量巡检',
           date: '66',
           newDate: '001',
           note: '无',
@@ -163,7 +163,7 @@ export default {
         },
         {
           num: '工序13',
-          steps: '冷轧工序质量巡检',
+          steps: '冷轧卷质检报告',
           date: '55',
           newDate: '001',
           note: '无',
@@ -171,7 +171,7 @@ export default {
         },
         {
           num: '工序14',
-          steps: '冷轧卷质检报告',
+          steps: '投诉及处理信息',
           date: '44',
           newDate: '001',
           note: '无',
@@ -179,7 +179,7 @@ export default {
         },
         {
           num: '工序15 ',
-          steps: '投诉及处理信息',
+          steps: '工序15',
           date: '33',
           newDate: '001',
           note: '无',
@@ -252,7 +252,7 @@ export default {
         this.tableData[2].newDate = response.data[0].baowenNew
         this.tableData[3].newDate = response.data[0].baowen1New
         this.tableData[4].newDate = response.data[0].baowen2New
-        this.tableData[5].newDate = response.data[0].baowen3New 
+        this.tableData[5].newDate = response.data[0].baowen3New
         this.tableData[6].newDate = response.data[0].baowen4New
         this.tableData[7].newDate = response.data[0].baowen5New
         this.tableData[8].newDate = response.data[0].castproNew
