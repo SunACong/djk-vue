@@ -1,21 +1,18 @@
 <template>
   <div>
-    <el-table :data="tableData" style="width: 100%;margin-bottom: 20px;" :row-class-name="getRowClassName" @row-click="rowClick" :row-key="rowKey" :expand-row-keys="nowExpand">
+    <el-table :data="tableData" style="width: 100%;margin-bottom: 20px;" :row-class-name="getRowClassName" :row-key="rowKey" :expand-row-keys="nowExpand" @row-click="rowClick">
       <el-table-column type="expand">
-        <template slot-scope="props" v-if="props.row.children">
+        <template v-if="props.row.children" slot-scope="props">
           <el-form style="width: 100%;">
             <el-form-item>
               <el-table style="width: 100%;background: none" :data="props.row.children">
-                <el-table-column label="日期" prop="date" align="center">
-                </el-table-column>
-                <el-table-column label="姓名" prop="name" align="center">
-                </el-table-column>
-                <el-table-column label="地址" prop="address" align="center">
-                </el-table-column>
+                <el-table-column label="日期" prop="date" align="center" />
+                <el-table-column label="姓名" prop="name" align="center" />
+                <el-table-column label="地址" prop="address" align="center" />
                 <el-table-column label="操作" align="center">
                   <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" type="primary" plain>详情</el-button>
-                    <el-button size="mini" type="success" @click="handleDelete(scope.$index, scope.row)" plain>录入</el-button>
+                    <el-button size="mini" type="primary" plain @click="handleEdit(scope.$index, scope.row)">详情</el-button>
+                    <el-button size="mini" type="success" plain @click="handleDelete(scope.$index, scope.row)">录入</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -24,12 +21,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="date" label="日期" align="center">
-      </el-table-column>
-      <el-table-column prop="name" label="姓名" align="center">
-      </el-table-column>
-      <el-table-column prop="address" label="地址" align="center">
-      </el-table-column>
+      <el-table-column prop="date" label="日期" align="center" />
+      <el-table-column prop="name" label="姓名" align="center" />
+      <el-table-column prop="address" label="地址" align="center" />
 
     </el-table>
 
@@ -39,7 +33,7 @@
 <script>
 import ECharts from 'echarts'
 // 折线图
-let lineDefaultOpt = {
+const lineDefaultOpt = {
   tooltip: {
     trigger: 'axis'
   },
@@ -94,7 +88,7 @@ let lineDefaultOpt = {
 
 export default {
   data() {
-    return{
+    return {
       // 当前展开行
       nowExpand: [], // 表格数据
       tableData: [{
@@ -128,7 +122,7 @@ export default {
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
-      }],}
+      }] }
   },
   mounted() {
     this.getDoubleLineData()// 收款折线数据
@@ -141,7 +135,7 @@ export default {
     // 点击该行就添加到显示数组中
     rowClick(row, event, column) {
       if (row.children != null) {
-        let index = this.nowExpand.indexOf(row.id)
+        const index = this.nowExpand.indexOf(row.id)
         if (index == -1) {
           this.nowExpand.push(row.id)
         } else {
@@ -152,7 +146,7 @@ export default {
     // 设置没行的样式名称  是否显示下拉箭头
     getRowClassName({ row, rowIndex }) { // 有children就显示箭头
       if (!row.children) {
-        return 'row-expand-cover';
+        return 'row-expand-cover'
       } else {
         return 'row-expand-show'
       }

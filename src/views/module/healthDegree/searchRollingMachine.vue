@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-body" style="">
+  <div class="layout-body">
     <div class="top-text">本页面是查询产品生产记录并且将铸轧生产中各项指标通过曲线图的形式展示
       出来，输入框中可以输入铸轧卷号，点击搜索按钮，将会展示出该卷号的生产记录。（样例卷号：xxx）
     </div>
@@ -65,7 +65,6 @@ export default {
       // 为了更新echarts 的标志位key
       key: 0,
       keyDailog: 0,
-      isDisplay: [false, true, true, true, true, true, true, true, true, true, true, true, true],
       // 复选框
       checkAll: false,
       checkedBoxs: ['主水泵电机电流', '备用水泵电机电流', '卷取电机电流'],

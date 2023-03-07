@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form v-show="showSearch" ref="queryForm" :model="queryParams" size="small" :inline="true" label-width="68px">
       <el-form-item label="卷号" prop="batchNum">
         <el-input
           v-model="queryParams.batchNum"
@@ -24,14 +24,14 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8" style="display: flex;">
-        <el-button
-          style="margin: 0 10px 0 5px;"
-          type="primary"
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-        >新增</el-button>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <el-button
+        style="margin: 0 10px 0 5px;"
+        type="primary"
+        icon="el-icon-plus"
+        size="mini"
+        @click="handleAdd"
+      >新增</el-button>
+      <right-toolbar :show-search.sync="showSearch" @queryTable="getList" />
     </el-row>
 
     <el-table v-loading="loading" highlight-current-row border :data="lqciList" @selection-change="handleSelectionChange">
@@ -67,7 +67,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <div style="margin: 0px 20px 20px;float: right;font-size: 20px;">
       <pagination
         v-show="total>0"
@@ -82,15 +82,15 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="卷号" prop="batchNum">
-          <el-input v-model="form.batchNum" placeholder="请输入卷号" :readonly="readOnly"/>
+          <el-input v-model="form.batchNum" placeholder="请输入卷号" :readonly="readOnly" />
         </el-form-item>
         <el-form-item label="更新时间" prop="lqciTs">
           <el-date-picker
-            readonly
             v-model="form.lqciTs"
+            readonly
             type="datetime"
-            placeholder="该项自动添加">
-          </el-date-picker>
+            placeholder="该项自动添加"
+          />
         </el-form-item>
         <el-form-item label="客户" prop="consumer">
           <el-input v-model="form.consumer" placeholder="请输入客户" />
@@ -126,10 +126,10 @@
 </template>
 
 <script>
-import { listLqci, getLqci, delLqci, addLqci, updateLqci } from "@/api/lqci";
+import { listLqci, getLqci, delLqci, addLqci, updateLqci } from '@/api/lqci'
 
 export default {
-  name: "Lqci",
+  name: 'Lqci',
   data() {
     return {
       // 遮罩层
@@ -147,7 +147,7 @@ export default {
       // 【请填写功能名称】表格数据
       lqciList: [],
       // 弹出层标题
-      title: "",
+      title: '',
       // 是否显示弹出层
       open: false,
       // 是否可以更改卷号
@@ -172,28 +172,28 @@ export default {
       // 表单校验
       rules: {
       }
-    };
+    }
   },
   created() {
-    this.getList();
+    this.getList()
   },
   methods: {
-    haha(){
-      console.log("dsasdsa");
+    haha() {
+      console.log('dsasdsa')
     },
     /** 查询【请填写功能名称】列表 */
     getList() {
-      this.loading = true;
+      this.loading = true
       listLqci(this.queryParams).then(response => {
         this.lqciList = response.data.records
-        this.total =  response.data.total
-        this.loading = false;
-      });
+        this.total = response.data.total
+        this.loading = false
+      })
     },
     // 取消按钮
     cancel() {
-      this.open = false;
-      this.reset();
+      this.open = false
+      this.reset()
     },
     // 表单重置
     reset() {
@@ -209,73 +209,73 @@ export default {
         finishedRollDiameter: null,
         finishedWeight: null,
         surfaceQualityRemark: null
-      };
-      this.resetForm("form");
+      }
+      this.resetForm('form')
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1;
-      this.getList();
+      this.queryParams.pageNum = 1
+      this.getList()
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.resetForm('queryForm')
+      this.handleQuery()
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
       this.ids = selection.map(item => item.id)
-      this.single = selection.length!==1
+      this.single = selection.length !== 1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.reset();
-      console.log("添加");
+      this.reset()
+      console.log('添加')
       this.readOnly = false
-      this.open = true;
-      this.title = "添加产品参数";
+      this.open = true
+      this.title = '添加产品参数'
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-      this.reset();
+      this.reset()
       this.readOnly = true
       const id = row.id || this.ids
       getLqci(id).then(response => {
-        this.form = response.data;
-        this.open = true;
-        this.title = "修改产品随行卡参数";
-      });
+        this.form = response.data
+        this.open = true
+        this.title = '修改产品随行卡参数'
+      })
     },
     /** 提交按钮 */
     submitForm() {
-      this.$refs["form"].validate(valid => {
+      this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.id != null) {
             updateLqci(this.form).then(response => {
-              this.$modal.msgSuccess("修改成功");
-              this.open = false;
-              this.getList();
-            });
+              this.$modal.msgSuccess('修改成功')
+              this.open = false
+              this.getList()
+            })
           } else {
             addLqci(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
+              this.$modal.msgSuccess('新增成功')
+              this.open = false
+              this.getList()
+            })
           }
         }
-      });
+      })
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const ids = row.id || this.ids;
+      const ids = row.id || this.ids
       this.$modal.confirm('是否确认删除【请填写功能名称】编号为"' + ids + '"的数据项？').then(function() {
-        return delLqci(ids);
+        return delLqci(ids)
       }).then(() => {
-        this.getList();
-        this.$modal.msgSuccess("删除成功");
-      }).catch(() => {});
+        this.getList()
+        this.$modal.msgSuccess('删除成功')
+      }).catch(() => {})
     },
     /** 导出按钮操作 */
     handleExport() {
@@ -284,5 +284,5 @@ export default {
       }, `lqci_${new Date().getTime()}.xlsx`)
     }
   }
-};
+}
 </script>
