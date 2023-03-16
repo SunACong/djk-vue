@@ -57,27 +57,27 @@ export const constantRoutes = [
       path: 'oneCastroll',
       name: 'OneCastroll',
       component: () => import('@/views/module/healthDegree/oneCastroll.vue'),
-      meta: { title: '1#铸轧机真实数据', icon: 'dashboard' }
+      meta: { title: '铸轧机设备参数1#', icon: 'dashboard' }
     },{
       path: 'twoCastroll',
       name: 'TwoCastroll',
       component: () => import('@/views/module/healthDegree/twoCastroll.vue'),
-      meta: { title: '2#铸轧机真实数据', icon: 'dashboard' }
+      meta: { title: '铸轧机设备参数2#', icon: 'dashboard' }
     },{
       path: 'threeCastroll',
       name: 'ThreeCastroll',
       component: () => import('@/views/module/healthDegree/threeCastroll.vue'),
-      meta: { title: '3#铸轧机真实数据', icon: 'dashboard' }
+      meta: { title: '铸轧机设备参数3#', icon: 'dashboard' }
     },{
       path: 'fourCastroll',
       name: 'FourCastroll',
       component: () => import('@/views/module/healthDegree/fourCastroll.vue'),
-      meta: { title: '4#铸轧机真实数据', icon: 'dashboard' }
+      meta: { title: '铸轧机设备参数4#', icon: 'dashboard' }
     },{
       path: 'fiveCastroll',
       name: 'FiveCastroll',
       component: () => import('@/views/module/healthDegree/fiveCastroll.vue'),
-      meta: { title: '5#铸轧机真实数据', icon: 'dashboard' }
+      meta: { title: '铸轧机设备参数5#', icon: 'dashboard' }
     },{
       path: 'rollingMachine11',
       name: 'RollingMachine11',

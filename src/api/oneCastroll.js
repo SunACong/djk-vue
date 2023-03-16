@@ -78,7 +78,7 @@ export let rollingTableData1 = [{
     }
 }, {
     xuhao: '03',
-    name: '主水泵电机电流',
+    name: '主水泵电机电流(暂无数据)',
     value: '83',
     chartData:{
         xData: [],
@@ -88,7 +88,7 @@ export let rollingTableData1 = [{
     }
 }, {
     xuhao: '04',
-    name: '备用水泵电机电流',
+    name: '备用水泵电机电流(暂无数据)',
     value: '83',
     chartData:{
         xData: [],
@@ -209,7 +209,7 @@ export let rollingTableData11 = [{
     }
 }, {
     xuhao: '03',
-    name: '主水泵电机速度',
+    name: '主水泵电机速度(暂无数据)',
     value: '83',
     chartData:{
         xData: [],
@@ -219,7 +219,7 @@ export let rollingTableData11 = [{
     }
 }, {
     xuhao: '04',
-    name: '备用水泵电机速度',
+    name: '备用水泵电机速度(暂无数据)',
     value: '83',
     chartData:{
         xData: [],
