@@ -42,10 +42,15 @@ export const constantRoutes = [
     meta: { title: '产品合格判定模型', icon: 'el-icon-aim' },
     redirect: '/module/productQuality/productQuality',
     children: [{
+      path: 'planAndInspect',
+      name: 'PlanAndInspect',
+      component: () => import('@/views/module/productQuality/planAndInspect'),
+      meta: { title: '合格判定', icon: 'dashboard' }
+    }, {
       path: 'productQuality',
       name: 'ProductQuality',
       component: () => import('@/views/module/productQuality/productQuality'),
-      meta: { title: '合格判定', icon: 'dashboard' }
+      meta: { title: '合格判定1', icon: 'dashboard' }
     }, {
       path: 'productStandard',
       name: 'ProductStandard',
@@ -148,7 +153,7 @@ export const constantRoutes = [
       component: () => import('@/views/module/LTLTprocess'),
       meta: { title: '铸轧生产流程', icon: 'dashboard' }
     }, {
-      path: '/LTLprocess', 
+      path: '/LTLprocess',
       name: 'LTLprocess',
       component: () => import('@/views/module/LTLprocess'),
       meta: { title: '冷轧生产流程', icon: 'dashboard' }
