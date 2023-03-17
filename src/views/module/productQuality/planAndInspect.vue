@@ -170,7 +170,7 @@
           </el-descriptions-item>
           <el-descriptions-item label="宽度差标准">
             ±{{ dailogData.processStandard.widthDiff === null?'-': dailogData.processStandard.widthDiff }}
-          </el-descriptions-item>
+          </el-descriptions-item> 
           <el-descriptions-item label="厚度差">
             {{ dailogData.finishedThickness === null?'-':dailogData.finishedThickness }}
           </el-descriptions-item>
