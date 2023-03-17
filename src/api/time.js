@@ -8,5 +8,3 @@ export function updateTime(data) {
     data: data
   })
 }
-
-

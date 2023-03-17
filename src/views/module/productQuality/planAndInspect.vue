@@ -144,24 +144,22 @@
     </div>
 
     <!-- 弹窗 -->
-    <el-dialog :title="dailogData.planNum" :visible.sync="dialogFormVisible">
+    <el-dialog ref="dailog" :title="dailogData.planNum" :visible.sync="dialogFormVisible">
       <!-- 板型 -->
       <div v-if="showWtich===1 || showWtich===6">
         <el-descriptions title="板型" :column="2" border :size="size">
           <el-descriptions-item label="平直度">
             {{ dailogData.lmdpQcColdInspect.singleStraightness === null?'-':dailogData.lmdpQcColdInspect.singleStraightness }}
           </el-descriptions-item>
-          <!-- <el-descriptions-item label="平直度标准">
-            {{ dailogData.processStandard.straightness === null?'-':dailogData.processStandard.straightness }}
-          </el-descriptions-item> -->
+          <el-descriptions-item label="平直度标准">
+            {{ dailogData.lmdpQcColdInspect.singleStraightness === null?'-':dailogData.lmdpQcColdInspect.singleStraightness }}
+          </el-descriptions-item>
           <el-descriptions-item label="中凸度">
             {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null?'-':dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
-          <!-- <el-descriptions-item label="中凸度标准">
-            {{ dailogData.processStandard.mediumConvexityLow === null?'-':dailogData.processStandard.mediumConvexityLow }}
-            ~
-            {{ dailogData.processStandard.mediumConvexityHigh === null?'-':dailogData.processStandard.mediumConvexityHigh }}
-          </el-descriptions-item> -->
+          <el-descriptions-item label="中凸度标准">
+            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null?'-':dailogData.lmdpQcColdInspect.singleMediumConvexity }}
+          </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 尺寸偏差 -->
@@ -367,23 +365,21 @@ export default {
           }
         }]
       },
+      // 为了初始化描述列表中的数据
       dailogData: {
-        processStandard: {
-          id: null,
-          processName: null,
-          thicknessDiff: null,
-          widthDiff: null,
-          straightness: null,
-          mediumConvexityLow: null,
-          mediumConvexityHigh: null,
-          rollDiameterLow: null,
-          rollDiameterHigh: null,
-          rollWeightLow: null,
-          rollWeightHigh: null,
-          tensileStrengthLow: null,
-          tensileStrengthHigh: null,
-          elongation: null,
-          surface: null
+        batchNum: null,
+        planNum: null,
+        inspectCreateTime: null,
+        plateTypeDetermination: null,
+        mechanicalPropertiesDetermination: null,
+        dimensionalDeviationDetermination: null,
+        surfaceQualityDetermination: null,
+        appearanceQualityDetermination: null,
+        allDetermination: null,
+        remark: null,
+        lmdpQcColdInspect: {
+          singleStraightness: null,
+          singleMediumConvexity: null
         }
       },
       tableData: [],
@@ -445,6 +441,7 @@ export default {
 			 */
     handleView(index, row) {
       this.showWtich = index
+      // this.$refs.dailog.dailogData = row
       this.dailogData = row
       this.dialogFormVisible = true
     },

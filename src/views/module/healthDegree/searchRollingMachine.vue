@@ -47,7 +47,7 @@
 
 <script>
 import { getCastProduceList } from '@/api/lmdpCastProduce'
-import { getHistoryList } from '@/api/rollingMachine'
+// import { getHistoryList } from '@/api/rollingMachine'
 import RecordBarChart from '@/views/dashboard/RecordBarChart.vue'
 const deviceName = ['操作侧预载力', '备用水泵电机电流',
   '卷取电机电流', '传动侧预载力',
