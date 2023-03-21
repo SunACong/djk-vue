@@ -40,7 +40,7 @@ export const constantRoutes = [
     path: '/module/productQuality',
     component: Layout,
     meta: { title: '产品合格判定模型', icon: 'el-icon-aim' },
-    redirect: '/module/productQuality/productQuality',
+    redirect: '/module/productQuality/planAndInspect',
     children: [{
       path: 'planAndInspect',
       name: 'PlanAndInspect',

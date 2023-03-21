@@ -13,6 +13,35 @@
               <i class="el-icon-s-help" />
               <span class="top-card-header-left-text">产品合格判定汇总表格</span>
             </div>
+            <div class="">
+              <el-descriptions class="" title="" :column="5" border :size="size" :label-style="labelStyle">
+                <el-descriptions-item label="合格数">
+                  <el-tag type="success" size="mini">
+                    {{ rangeQualifyRate.qualified }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="合格率">
+                  <el-tag type="success" size="mini">
+                    {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.qualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="暂未判定">
+                  <el-tag type="info" size="mini">
+                    {{ rangeQualifyRate.tentative }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="不合格数">
+                  <el-tag type="danger" size="mini">
+                    {{ rangeQualifyRate.noQualified }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="不合格率">
+                  <el-tag type="danger" size="mini">
+                    {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.noQualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+              </el-descriptions>
+            </div>
             <div>
               <el-date-picker
                 v-model="qualifyDateRange"
@@ -25,11 +54,12 @@
                 range-separator="至"
                 start-placeholder="开始日期"
                 end-placeholder="结束日期"
-                @change="dateRange(qualityDateRange)"
+                :clearable="false"
+                @change="dateRangeQuality(qualifyDateRange)"
               />
             </div>
           </div>
-          <BarChart key chart-type="bar" :one-x-data="barData[0]" :one-y-data="barData[1]" :two-x-data="barData1[0]" :two-y-data="barData1[1]" />
+          <BarChart :key="key" chart-type="line" :xydata="everyQualifyRate" />
         </div>
       </el-card>
     </div>
@@ -119,7 +149,7 @@
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="remark" label="备注" min-width="20%" />
+            <!-- <el-table-column prop="remark" label="备注" min-width="20%" /> -->
             <el-table-column label="操作" min-width="20%">
               <template slot-scope="scope">
                 <el-button size="medium" type="text" @click="handleView(6, scope.row)">
@@ -152,30 +182,36 @@
             {{ dailogData.lmdpQcColdInspect.singleStraightness === null?'-':dailogData.lmdpQcColdInspect.singleStraightness }}
           </el-descriptions-item>
           <el-descriptions-item label="平直度标准">
-            {{ dailogData.lmdpQcColdInspect.singleStraightness === null?'-':dailogData.lmdpQcColdInspect.singleStraightness }}
+            -
           </el-descriptions-item>
           <el-descriptions-item label="中凸度">
             {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null?'-':dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度标准">
-            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null?'-':dailogData.lmdpQcColdInspect.singleMediumConvexity }}
+            -
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 尺寸偏差 -->
       <div v-if="showWtich===2 || showWtich===6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size">
-          <el-descriptions-item label="宽度差">
-            {{ dailogData.finishedWidth === null?'-':dailogData.finishedWidth }}
-          </el-descriptions-item>
-          <el-descriptions-item label="宽度差标准">
-            ±{{ dailogData.processStandard.widthDiff === null?'-': dailogData.processStandard.widthDiff }}
-          </el-descriptions-item> 
-          <el-descriptions-item label="厚度差">
-            {{ dailogData.finishedThickness === null?'-':dailogData.finishedThickness }}
+          <el-descriptions-item label="厚度">
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
-            ±{{ dailogData.processStandard.thicknessDiff === null?'-':dailogData.processStandard.thicknessDiff }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.endwiseHeight === null?'-':dailogData.slaveErpPlanColdreductionstrip.endwiseHeight }}
+          </el-descriptions-item>
+          <el-descriptions-item label="宽度">
+            {{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
+          </el-descriptions-item>
+          <el-descriptions-item label="宽度差标准">
+            {{ dailogData.slaveErpPlanColdreductionstrip.warpWidth === null?'-':dailogData.slaveErpPlanColdreductionstrip.warpWidth }}
+          </el-descriptions-item>
+          <el-descriptions-item label="成品规格">
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}*{{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
+          </el-descriptions-item>
+          <el-descriptions-item label="成品规格要求">
+            {{ dailogData.lmdpQcColdInspect.model === null?'-':dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -183,30 +219,31 @@
       <div v-if="showWtich===3 || showWtich===6" class="dialog-item">
         <el-descriptions title="力学性能" :column="2" border :size="size">
           <el-descriptions-item label="抗拉强度">
-            {{ dailogData.correctStrength === null?'-':dailogData.correctStrength }}
+            {{ dailogData.lmdpQcColdInspect.singleStrengthRe === null?'-':dailogData.lmdpQcColdInspect.singleStrengthRe }}
           </el-descriptions-item>
           <el-descriptions-item label="抗拉强度标准">
-            {{ dailogData.processStandard.tensileStrengthLow === null?'-':dailogData.processStandard.tensileStrengthLow }}
-            ~
-            {{ dailogData.processStandard.tensileStrengthHigh === null?'-':dailogData.processStandard.tensileStrengthHigh }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.tensileStrength === null?'-':dailogData.slaveErpPlanColdreductionstrip.tensileStrength }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率">
-            {{ dailogData.correctExtension === null?'-':dailogData.correctExtension }}
+            {{ dailogData.lmdpQcColdInspect.singleExtensionRe === null?'-':dailogData.lmdpQcColdInspect.singleExtensionRe }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率标准">
-            ≥{{ dailogData.processStandard.elongation === null?'-':dailogData.processStandard.elongation }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.elongation === null?'-':dailogData.slaveErpPlanColdreductionstrip.elongation }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能">
-            -
+            {{ dailogData.lmdpQcColdInspect.bendingPerformanceRe === null?'-':dailogData.lmdpQcColdInspect.bendingPerformanceRe }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能表标准">
-            -
+            {{ dailogData.lmdpQcColdInspect.bendingPerformanceRequirements === null?'-':dailogData.lmdpQcColdInspect.bendingPerformanceRequirements }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 表面质量 -->
       <div v-if="showWtich===4 || showWtich===6" class="dialog-item">
         <el-descriptions title="表面质量" :column="2" border :size="size">
+          <el-descriptions-item label="划痕">
+            -
+          </el-descriptions-item>
           <el-descriptions-item label="划痕">
             -
           </el-descriptions-item>
@@ -261,19 +298,31 @@
             <template slot="label">
               卷径
             </template>
-            {{ dailogData.finishedRollDiameter === null?'-':dailogData.finishedRollDiameter }}
+            {{ dailogData.lmdpQcColdInspect.finishedRollDiameter === null?'-':dailogData.lmdpQcColdInspect.finishedRollDiameter }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              卷径标准
+            </template>
+            {{ dailogData.slaveErpPlanColdreductionstrip.productArea === null?'-':dailogData.slaveErpPlanColdreductionstrip.productArea }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              卷重
+            </template>
+            {{ dailogData.lmdpQcColdInspect.finishedWeight === null?'-':dailogData.lmdpQcColdInspect.finishedWeight }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              卷重标准
+            </template>
+            {{ dailogData.slaveErpPlanColdreductionstrip.singleHeight === null?'-':dailogData.slaveErpPlanColdreductionstrip.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item>
             <template slot="label">
               偏移量
             </template>
             -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              卷重
-            </template>
-            {{ dailogData.finishedWeight === null?'-':dailogData.finishedWeight }}
           </el-descriptions-item>
           <el-descriptions-item>
             <template slot="label">
@@ -297,7 +346,7 @@
 
 <script>
 import BarChart from '@/views/dashboard/BarChart'
-import { getList as getPlanAndInspect } from '@/api/planAndInspect'
+import { getList as getPlanAndInspect, getRangeDayInfo, getEveryDayInfo } from '@/api/planAndInspect'
 export default {
   batch_num: 'ProductQuality',
   components: {
@@ -306,33 +355,16 @@ export default {
   data() {
     return {
       labelStyle: {
-        background: '#8a1065'
+        background: '#fff'
       },
       // 遮罩层
       loading: false,
-      barData: [
-        ['周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{a}'),
-          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 5, '{a}'),
-          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 4, '{a}'),
-          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 3, '{a}'),
-          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 2, '{a}'),
-          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 1, '{a}'),
-          '周' + this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 0, '{a}')],
-        [15, 20, 19, 10, 23, 11, 10]
-      ],
-      barData1: [
-        [this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{y}-{m}-{d}'),
-          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 5, '{y}-{m}-{d}'),
-          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 4, '{y}-{m}-{d}'),
-          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 3, '{y}-{m}-{d}'),
-          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 2, '{y}-{m}-{d}'),
-          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 1, '{y}-{m}-{d}'),
-          this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 0, '{y}-{m}-{d}')],
-        [0, 1, 2, 1, 0, 1, 1]
-      ],
+      rangeQualifyRate: [],
+      everyQualifyRate: [],
+      key: 0,
       showWtich: 1,
-      qualifyDateRange: '',
-      reportDateRange: '',
+      qualifyDateRange: [this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{y}-{m}-{d}'), this.parseTime(new Date().getTime(), '{y}-{m}-{d}')],
+      reportDateRange: [],
       rollNumber: '',
       pageNum: 1,
       pageSize: 10,
@@ -384,15 +416,14 @@ export default {
       },
       tableData: [],
       dialogFormVisible: false,
-      size: 'small',
+      size: 'small ',
       // 查询参数
       queryParams: {
         pageNum: null,
         pageSize: null,
         startDateTime: null,
         endDateTime: null,
-        batchNum: null,
-        isDecision: 1
+        batchNum: null
       },
       productStandard: null
     }
@@ -415,7 +446,9 @@ export default {
     }
   },
   async created() {
-    await this.getList()
+    this.getList()
+    this.everyDayInfo()
+    this.rangeDayInfo()
   },
   methods: {
     /**
@@ -441,7 +474,6 @@ export default {
 			 */
     handleView(index, row) {
       this.showWtich = index
-      // this.$refs.dailog.dailogData = row
       this.dailogData = row
       this.dialogFormVisible = true
     },
@@ -454,7 +486,7 @@ export default {
       this.getList()
     },
     /**
-     * 日期查询
+     * 下面日期查询
      * @param {Object} val
      */
     dateRange(val) {
@@ -467,36 +499,59 @@ export default {
       }
     },
     /**
-     * 立马判断
-    */
-    getSoon() {
-      this.queryParams.isDecision = 1
-      this.getList()
+     * 上面日期查询
+     */
+    async dateRangeQuality(val) {
+      this.qualifyDateRange[0] = val[0]
+      this.qualifyDateRange[1] = val[1]
+      await this.everyDayInfo()
+      await this.rangeDayInfo()
+      this.key += 1
     },
-    /**
-			 * 获取表格数据
-			 */
-    // getList1() {
-    //   this.loading = true
-    //   getProductQualityVoList(this.queryParams).then((res) => {
-    //     this.tableData = res.data.records
-    //     this.total = res.data.total
-    //     this.loading = false
-    //   })
-    // },
     /**
      * 获取表格数据
      */
     getList() {
       this.loading = true
-      getPlanAndInspect({
-        pageNum: this.pageNum,
-        pageSize: this.pageSize
-      }).then((res) => {
+      getPlanAndInspect(this.queryParams).then((res) => {
         console.log('res: ', res)
         this.tableData = res.data.records
         this.total = res.data.total
         this.loading = false
+      })
+    },
+    /**
+     * 获取一段时间内的合格率
+     */
+    rangeDayInfo() {
+      const params = {
+        startTime: this.qualifyDateRange[0],
+        endTime: this.qualifyDateRange[1]
+      }
+      getRangeDayInfo(params).then((res) => {
+        console.log('范围内合格率: ', res)
+        if (res.data[0] === null) {
+          this.rangeQualifyRate = {
+            qualified: 0,
+            noQualified: 0,
+            tentative: 0
+          }
+          return
+        }
+        this.rangeQualifyRate = res.data[0]
+      })
+    },
+    /**
+     * 获取一段时间内每一天的合格率
+     */
+    everyDayInfo() {
+      const params = {
+        startTime: this.qualifyDateRange[0],
+        endTime: this.qualifyDateRange[1]
+      }
+      getEveryDayInfo(params).then((res) => {
+        this.everyQualifyRate = res.data
+        console.log('每一天的合格率: ', res)
       })
     }
   }
