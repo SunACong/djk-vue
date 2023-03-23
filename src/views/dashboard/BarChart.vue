@@ -31,28 +31,31 @@ export default {
     legend: {
       type: Array,
       default: function() {
-        return ['合格', '不合格']
+        return ['合格', '不合格', '待定']
       }
     },
-    oneXData: {
+    xydata: {
       type: Array,
-      default: null
-    },
-    twoXData: {
-      type: Array,
-      default: null
-    },
-    oneYData: {
-      type: Array,
-      default: null
-    },
-    twoYData: {
-      type: Array,
-      default: null
+      default: function() {
+        return []
+      }
     }
   },
   data() {
-    return { chart: null }
+    return {
+      chart: null
+    }
+  },
+  watch: {
+    xydata: {
+      handler(newVal, oldVal) {
+        this.$nextTick(() => {
+          this.initChart()
+        })
+      },
+      deep: true,
+      immediate: true
+    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -89,16 +92,18 @@ export default {
         dataZoom: { // 放大和缩放
           type: 'inside'
         },
+        dataset: {
+          dimensions: ['inspectCreateTime', 'noQualified', 'qualified', 'tentativ'],
+          source: this.xydata
+        },
         xAxis: [{
-          type: 'category',
-          data: this.oneXData
+          type: 'category'
         }, {
           type: 'category',
           position: 'bottom',
           offset: 25,
           axisTick: { show: false },
-          axisLine: { show: false },
-          data: this.twoXData
+          axisLine: { show: false }
         }],
         yAxis: [{
           type: 'value',
@@ -108,14 +113,41 @@ export default {
           name: this.legend[0],
           type: this.chartType,
           barWidth: '10%',
-          data: this.oneYData,
-          animationDuration
+          animationDuration,
+          itemStyle: {
+            normal: {
+              color: '#5087ff', // 改变折线点的颜色
+              lineStyle: {
+                color: '#5087ff' // 改变折线颜色
+              }
+            }
+          }
         }, {
           name: this.legend[1],
           type: this.chartType,
           barWidth: '10%',
-          data: this.twoYData,
-          animationDuration
+          animationDuration,
+          itemStyle: {
+            normal: {
+              color: '#a80000', // 改变折线点的颜色
+              lineStyle: {
+                color: '#a80000' // 改变折线颜色
+              }
+            }
+          }
+        }, {
+          name: this.legend[2],
+          type: this.chartType,
+          barWidth: '10%',
+          animationDuration,
+          itemStyle: {
+            normal: {
+              color: '#ff6f73', // 改变折线点的颜色
+              lineStyle: {
+                color: '#ff6f73' // 改变折线颜色
+              }
+            }
+          }
         }]
       })
     }

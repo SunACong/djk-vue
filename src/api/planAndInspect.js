@@ -7,3 +7,19 @@ export function getList(params) {
     params
   })
 }
+
+export function getRangeDayInfo(params) {
+  return request({
+    url: '/planAndInspect/rangeDayInfo',
+    method: 'get',
+    params
+  })
+}
+
+export function getEveryDayInfo(params) {
+  return request({
+    url: '/planAndInspect/everyDayInfo',
+    method: 'get',
+    params
+  })
+}
