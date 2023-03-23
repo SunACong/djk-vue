@@ -208,6 +208,16 @@ export let rollingTableData11 = [{
         maxData:null
     }
 }, {
+    xuhao: '05',
+    name: '卷取电机速度',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
     xuhao: '03',
     name: '主水泵电机速度(暂无数据)',
     value: '83',
@@ -220,16 +230,6 @@ export let rollingTableData11 = [{
 }, {
     xuhao: '04',
     name: '备用水泵电机速度(暂无数据)',
-    value: '83',
-    chartData:{
-        xData: [],
-        yData: [],
-        minData:null,
-        maxData:null
-    }
-}, {
-    xuhao: '05',
-    name: '卷取电机速度',
     value: '83',
     chartData:{
         xData: [],

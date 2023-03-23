@@ -1,0 +1,74 @@
+import request from '@/utils/request'
+
+//一号铸轧机工艺参数
+export function getListNewData(params) {
+    return request({
+        url: '/oneCastroll/listNewData',
+        method: 'get',
+        params
+    })
+}
+export function getListSpecial(params) {
+    return request({
+        url: '/oneCastroll/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+//1号重卷机设备参数
+export function getListNewDataCjj1(params) {
+    return request({
+        url: '/rewindRoll/list',
+        method: 'get',
+        params
+    })
+}
+
+export function getListSpecialCjj1(params) {
+    return request({
+        url: '/rewindRoll/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+
+
+
+
+export let  rollingOptions =[
+    {
+    value: '开卷机电流曲线',
+    lable:'开卷机电流曲线',
+    }, {
+    value: '卷取机电流曲线',
+    lable:'卷取机电流曲线',
+    }
+    // , {
+    // value: '卷取电机速度',
+    // lable:'卷取电机速度',
+    // }
+]
+export let rollingTableData1 = [{
+    xuhao: '01',
+    name: '开卷机电流曲线',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}, {
+    xuhao: '02',
+    name: '卷取机电流曲线',
+    value: '83',
+    chartData:{
+        xData: [],
+        yData: [],
+        minData:null,
+        maxData:null
+    }
+}
+]

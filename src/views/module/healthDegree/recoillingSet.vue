@@ -78,6 +78,9 @@
         <el-form-item label="最大值" prop="maxValue">
           <el-input v-model="form.maxValue" placeholder="请输入最大值" />
         </el-form-item>
+        <el-form-item label="设备ID" prop="deviceId">
+          <el-input v-model="form.deviceId" placeholder="请输入最大值" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -122,7 +125,7 @@ export default {
         danWei: null,
         minValue: null,
         maxValue: null,
-        deviceId: null
+        deviceId: "重卷机1#"
 
       },
       // 表单参数
@@ -176,7 +179,8 @@ export default {
         name: null,
         danWei: null,
         minValue: null,
-        maxValue: null
+        maxValue: null,
+        deviceId:"重卷机1#",
       };
       // this.resetForm("form");
     },

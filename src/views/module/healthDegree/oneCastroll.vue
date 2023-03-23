@@ -10,7 +10,7 @@
             </div>
           </div>
           <div>
-            <el-table :data="rollingTableData1" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="rollingTableData1" stripe style="width: 100%" height="400px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -39,7 +39,7 @@
         </el-card>
       </div>
     </div>
-    <div class="health_status" style="margin-top: 8px">
+    <!-- <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
@@ -75,12 +75,12 @@
           </el-table>
         </div>
       </el-card>
-    </div>
+    </div> -->
     <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
-            <span style="line-height: 20px;">历史报警记录</span>
+            <span style="line-height: 20px;">报警记录</span>
           </div>
         </div>
         <div style="display: flex;">
@@ -329,7 +329,7 @@ export default {
     getMyHistoryData: function() {
       this.historyWarnTable = []
       getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
-        // console.log("特定时间范围内的数据", res)
+        console.log("特定时间范围内的数据", res)
         this.historyWarnTable = res.data
       })
     },
@@ -408,15 +408,13 @@ export default {
     },
 
     // 定时查询铸轧机数据
-
     setTimer() {
       if (this.timer == null) {
         this.timer = setInterval(() => {
           // 1号铸轧机数据
-
           getListNewData().then((res) => {
             this.dataList = res.data
-            // console.log("这是拿到的数据"+res)
+            // console.log("这是拿到的数据"+this.dataList)
             this.rollingTableData1[0].chartData.xData = []
             this.rollingTableData1[0].chartData.yData = []
             this.rollingTableData1[1].chartData.xData = []
@@ -443,6 +441,7 @@ export default {
             this.rollingTableData1[11].chartData.yData = []
             this.rollingTableData1[12].chartData.xData = []
             this.rollingTableData1[12].chartData.yData = []
+
             this.dataList.forEach(item => {
               this.rollingTableData1[0].chartData.xData.push(item.createTime)
               this.rollingTableData1[0].chartData.yData.push(item.upRollMontorA)
@@ -483,13 +482,42 @@ export default {
               this.rollingTableData1[12].chartData.xData.push(item.createTime)
               this.rollingTableData1[12].chartData.yData.push(item.transPreloadForce)
               this.rollingTableData1[12].chartData.rName = '传动侧预载力'
+              //上辊电机电流
+              this.rollingTableData1[0].value = item.upRollMontorA;
+              //下辊电机电流
+              this.rollingTableData1[1].value = item.downRollMontorA;
+              //主水泵电机电流
+              this.rollingTableData1[2].value = item.upRollMontorA;
+              //备用水泵电机电流
+              this.rollingTableData1[3].value = item.upRollMontorA;
+              //卷取电机电流  rollA
+              this.rollingTableData1[4].value = item.rollA;
+              //上辊水压
+              this.rollingTableData1[5].value = item.upRollWaterFn;
+              //下辊水压
+              this.rollingTableData1[6].value = item.downRollWaterFn;
+              //上辊水温
+              this.rollingTableData1[7].value = item.upRollWaterT;
+              //下辊水温
+              this.rollingTableData1[8].value = item.upRollFlow;
+              //上辊流量
+              this.rollingTableData1[9].value = item.upRollFlow;
+              //下辊流量
+              this.rollingTableData1[10].value = item.downRollFlow;
+              //操作侧预载力
+              this.rollingTableData1[11].value = item.operationPreloadForce;
+              //传动侧预载力
+              this.rollingTableData1[12].value = item.transPreloadForce;
+              //  //传动侧预载力
+              //  this.rollingTableData1[12].value = item.upRollMontorA;
+              
             })
           })
           // 定时查询铸轧机最新20条报警记录
           getListWarnNewData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 2000)
+        }, 1000)
       }
     }
   }

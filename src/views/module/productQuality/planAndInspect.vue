@@ -152,30 +152,30 @@
             {{ dailogData.lmdpQcColdInspect.singleStraightness === null?'-':dailogData.lmdpQcColdInspect.singleStraightness }}
           </el-descriptions-item>
           <el-descriptions-item label="平直度标准">
-            {{ dailogData.lmdpQcColdInspect.singleStraightness === null?'-':dailogData.lmdpQcColdInspect.singleStraightness }}
+            -
           </el-descriptions-item>
           <el-descriptions-item label="中凸度">
             {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null?'-':dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度标准">
-            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null?'-':dailogData.lmdpQcColdInspect.singleMediumConvexity }}
+            -
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 尺寸偏差 -->
       <div v-if="showWtich===2 || showWtich===6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size">
-          <el-descriptions-item label="宽度差">
-            {{ dailogData.finishedWidth === null?'-':dailogData.finishedWidth }}
+          <el-descriptions-item label="宽度">
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="宽度差标准">
-            ±{{ dailogData.processStandard.widthDiff === null?'-': dailogData.processStandard.widthDiff }}
+            -
           </el-descriptions-item> 
-          <el-descriptions-item label="厚度差">
-            {{ dailogData.finishedThickness === null?'-':dailogData.finishedThickness }}
+          <el-descriptions-item label="厚度">
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
-            ±{{ dailogData.processStandard.thicknessDiff === null?'-':dailogData.processStandard.thicknessDiff }}
+            -
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -183,24 +183,22 @@
       <div v-if="showWtich===3 || showWtich===6" class="dialog-item">
         <el-descriptions title="力学性能" :column="2" border :size="size">
           <el-descriptions-item label="抗拉强度">
-            {{ dailogData.correctStrength === null?'-':dailogData.correctStrength }}
+            {{ dailogData.lmdpQcColdInspect.singleStrengthRe === null?'-':dailogData.lmdpQcColdInspect.singleStrengthRe }}
           </el-descriptions-item>
           <el-descriptions-item label="抗拉强度标准">
-            {{ dailogData.processStandard.tensileStrengthLow === null?'-':dailogData.processStandard.tensileStrengthLow }}
-            ~
-            {{ dailogData.processStandard.tensileStrengthHigh === null?'-':dailogData.processStandard.tensileStrengthHigh }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.tensileStrength === null?'-':dailogData.slaveErpPlanColdreductionstrip.tensileStrength }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率">
-            {{ dailogData.correctExtension === null?'-':dailogData.correctExtension }}
+            {{ dailogData.lmdpQcColdInspect.singleExtensionRe === null?'-':dailogData.lmdpQcColdInspect.singleExtensionRe }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率标准">
-            ≥{{ dailogData.processStandard.elongation === null?'-':dailogData.processStandard.elongation }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.elongation === null?'-':dailogData.slaveErpPlanColdreductionstrip.elongation }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能">
-            -
+            {{ dailogData.lmdpQcColdInspect.bendingPerformanceRe === null?'-':dailogData.lmdpQcColdInspect.bendingPerformanceRe }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能表标准">
-            -
+            {{ dailogData.lmdpQcColdInspect.bendingPerformanceRequirements === null?'-':dailogData.lmdpQcColdInspect.bendingPerformanceRequirements }}
           </el-descriptions-item>
         </el-descriptions>
       </div>

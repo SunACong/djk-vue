@@ -10,7 +10,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="700px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -54,19 +56,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -84,7 +79,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -126,19 +123,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -157,7 +147,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -199,19 +191,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -230,7 +215,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -272,19 +259,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -303,7 +283,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -345,19 +327,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -376,7 +351,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -418,19 +395,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -449,7 +419,9 @@
             </div>
           </div>
           <div>
-            <el-table :data="tableData5" stripe style="width: 100%" height="300px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="tableData5" stripe style="width: 100%" height="300px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
@@ -491,19 +463,12 @@
               <el-table-column prop="address" label="编号" min-width="25%" />
               <el-table-column prop="status" label="状态" min-width="25%">
                 <template slot-scope="scope">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    style="color: red"
-                  >{{ scope.row.status }}</el-button>
+                  <el-button size="medium" type="text" style="color: red">{{ scope.row.status }}</el-button>
                 </template>
               </el-table-column>
               <el-table-column label="判定结果" min-width="15%">
                 <template>
-                  <el-button
-                    size="medium"
-                    type="text"
-                  >查看</el-button>
+                  <el-button size="medium" type="text">查看</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -517,17 +482,8 @@
         <el-button style="" type="text"> 本月 </el-button>
         <el-button style="margin-right: 10px;" type="text"> 本年 </el-button>
         <div>
-          <el-date-picker
-            v-model="qualifyDateRange"
-            size="small"
-            type="daterange"
-            align="left"
-            unlink-panels
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
-            :picker-options="pickerOptions"
-          />
+          <el-date-picker v-model="qualifyDateRange" size="small" type="daterange" align="left" unlink-panels
+            range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions" />
         </div>
       </div>
       <div>
@@ -649,7 +605,7 @@ export default {
     }
   },
   methods: {
-    getChart2: function(row) {
+    getChart2: function (row) {
       this.dialogVisible2 = true
     }
   }
@@ -658,13 +614,14 @@ export default {
 </script>
 
 <style scoped>
-  .el-icon-mytubiao{
-    background: url('~@/icons/myicons/status1.jpg') center no-repeat;
-    background-size: cover;
-  }
-  .el-icon-mytubiao:before{
-    content: "替";
-    font-size: 16px;
-    visibility: hidden;
-  }
+.el-icon-mytubiao {
+  background: url('~@/icons/myicons/status1.jpg') center no-repeat;
+  background-size: cover;
+}
+
+.el-icon-mytubiao:before {
+  content: "替";
+  font-size: 16px;
+  visibility: hidden;
+}
 </style>

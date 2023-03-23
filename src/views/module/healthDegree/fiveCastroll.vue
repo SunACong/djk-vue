@@ -39,7 +39,7 @@
         </el-card>
       </div>
     </div>
-    <div class="health_status" style="margin-top: 8px">
+    <!-- <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
@@ -75,12 +75,12 @@
           </el-table>
         </div>
       </el-card>
-    </div>
+    </div> -->
     <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
-            <span style="line-height: 20px;">历史报警记录</span>
+            <span style="line-height: 20px;">报警记录</span>
           </div>
         </div>
         <div style="display: flex;">
@@ -229,7 +229,7 @@ export default {
     clearInterval(this.timer)
     this.timer = null
     this.setTimer()
-    await getListWarnHistoryData().then((res) => {
+    await getListWarnHistoryData({rollingDeviceNumber:"铸轧机5#"}).then((res) =>{
       this.historyWarnTable = res.data
     })
     await getAvaluateList().then((res) => {
@@ -464,6 +464,36 @@ export default {
               this.rollingTableData5[12].chartData.xData.push(item.createTime)
               this.rollingTableData5[12].chartData.yData.push(item.transPreloadForce)
               this.rollingTableData5[12].chartData.rName = '传动侧预载力'
+
+              
+               //上辊电机电流
+               this.rollingTableData5[0].value = item.upRollMontorA;
+              //下辊电机电流
+              this.rollingTableData5[1].value = item.downRollMontorA;
+              //主水泵电机电流
+              this.rollingTableData5[2].value = item.upRollMontorA;
+              //备用水泵电机电流
+              this.rollingTableData5[3].value = item.upRollMontorA;
+              //卷取电机电流  rollA
+              this.rollingTableData5[4].value = item.rollA;
+              //上辊水压
+              this.rollingTableData5[5].value = item.upRollWaterFn;
+              //下辊水压
+              this.rollingTableData5[6].value = item.downRollWaterFn;
+              //上辊水温
+              this.rollingTableData5[7].value = item.upRollWaterT;
+              //下辊水温
+              this.rollingTableData5[8].value = item.upRollFlow;
+              //上辊流量
+              this.rollingTableData5[9].value = item.upRollFlow;
+              //下辊流量
+              this.rollingTableData5[10].value = item.downRollFlow;
+              //操作侧预载力
+              this.rollingTableData5[11].value = item.operationPreloadForce;
+              //传动侧预载力
+              this.rollingTableData5[12].value = item.transPreloadForce;
+              //  //传动侧预载力
+              //  this.rollingTableData5[12].value = item.upRollMontorA;
             })
           })
           getListWarnNewData().then((res) => {
