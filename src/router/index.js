@@ -133,12 +133,65 @@ export const constantRoutes = [
       name: 'RecoilingMachineGong',
       component: () => import('@/views/module/healthDegree/recoilingMachineGong.vue'),
       meta: { title: '重卷机工艺参数', icon: 'dashboard' }
-    }, {
+    },
+
+    {
       path: 'annealingFurnace',
       name: 'AnnealingFurance',
       component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
       meta: { title: '退火炉', icon: 'dashboard' }
-    }, {
+    },
+
+    {
+      path: 'AnneaF1',
+      name: 'AnneaF1',
+      component: () => import('@/views/module/healthDegree/AnneaF1.vue'),
+      meta: { title: '退火炉参数1#', icon: 'dashboard' }
+    },
+
+    {
+      path: 'AnneaF2',
+      name: 'AnneaF2',
+      component: () => import('@/views/module/healthDegree/AnneaF2.vue'),
+      meta: { title: '退火炉参数2#', icon: 'dashboard' }
+    },
+
+    {
+      path: 'AnneaF3',
+      name: 'AnneaF3',
+      component: () => import('@/views/module/healthDegree/AnneaF3.vue'),
+      meta: { title: '退火炉参数3#', icon: 'dashboard' }
+    },
+
+    {
+      path: 'AnneaF4',
+      name: 'AnneaF4',
+      component: () => import('@/views/module/healthDegree/AnneaF4.vue'),
+      meta: { title: '退火炉参数4#', icon: 'dashboard' }
+    },
+
+    {
+      path: 'AnneaF5',
+      name: 'AnneaF5',
+      component: () => import('@/views/module/healthDegree/AnneaF5.vue'),
+      meta: { title: '退火炉参数5#', icon: 'dashboard' }
+    },
+
+
+    {
+      path: 'AnneaF6',
+      name: 'AnneaF6',
+      component: () => import('@/views/module/healthDegree/AnneaF6.vue'),
+      meta: { title: '退火炉参数6#', icon: 'dashboard' }
+    },
+
+    {
+      path: 'AnneaF7',
+      name: 'AnneaF7',
+      component: () => import('@/views/module/healthDegree/AnneaF7.vue'),
+      meta: { title: '退火炉参数7#', icon: 'dashboard' }
+    },
+    {
       path: 'avaluate',
       name: 'Avaluate',
       component: () => import('@/views/module/healthDegree/avaluate.vue'),
@@ -148,12 +201,23 @@ export const constantRoutes = [
       name: 'RollingMachineSet',
       component: () => import('@/views/module/healthDegree/rollingMachineSet.vue'),
       meta: { title: '铸轧机参数设置', icon: 'dashboard' }
-    }, {
+    },
+
+    {
       path: 'parameterSet',
       name: 'ParameterSet',
       component: () => import('@/views/module/healthDegree/recoillingSet.vue'),
       meta: { title: '重卷机参数设置', icon: 'dashboard' }
-    }, {
+    },
+
+    {
+      path: 'AnneaFurSet',
+      name: 'AnneaFurSet',
+      component: () => import('@/views/module/healthDegree/AnneaFurSet.vue'),
+      meta: { title: '退火炉参数设置', icon: 'dashboard' }
+    },
+
+    {
       path: 'searchRollingMachine',
       name: 'SearchRollingMachine',
       component: () => import('@/views/module/healthDegree/searchRollingMachine.vue'),
