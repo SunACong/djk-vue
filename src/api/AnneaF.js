@@ -32,6 +32,110 @@ export function getListSpecial1(params) {
     })
 }
 
+//二号退火炉刷新的数据
+export function getListNewData2(params) {
+    return request({
+        url: '/anneaf2/list',
+        method: 'get',
+        params
+    })
+}
+//二号退火炉拉取范围内的警报数据
+export function getListSpecial2(params) {
+    return request({
+        url: '/anneaf2/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+//三号退火炉刷新的数据
+export function getListNewData3(params) {
+    return request({
+        url: '/anneaf3/list',
+        method: 'get',
+        params
+    })
+}
+//三号退火炉拉取范围内的警报数据
+export function getListSpecial3(params) {
+    return request({
+        url: '/anneaf3/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+//四号退火炉刷新的数据
+export function getListNewData4(params) {
+    return request({
+        url: '/anneaf4/list',
+        method: 'get',
+        params
+    })
+}
+//四号退火炉拉取范围内的警报数据
+export function getListSpecial4(params) {
+    return request({
+        url: '/anneaf4/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+//五号退火炉刷新的数据
+export function getListNewData5(params) {
+    return request({
+        url: '/anneaf5/list',
+        method: 'get',
+        params
+    })
+}
+//五号退火炉拉取范围内的警报数据
+export function getListSpecial5(params) {
+    return request({
+        url: '/anneaf5/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+//六号退火炉刷新的数据
+export function getListNewData6(params) {
+    return request({
+        url: '/anneaf6/list',
+        method: 'get',
+        params
+    })
+}
+//六号退火炉拉取范围内的警报数据
+export function getListSpecial6(params) {
+    return request({
+        url: '/anneaf6/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+//七号退火炉刷新的数据
+export function getListNewData7(params) {
+    return request({
+        url: '/anneaf7/list',
+        method: 'get',
+        params
+    })
+}
+//七号退火炉拉取范围内的警报数据
+export function getListSpecial7(params) {
+    return request({
+        url: '/anneaf7/listSpecial',
+        method: 'get',
+        params
+    })
+}
+
+
+
 export let rollingOptions = [
     {
         value: '炉冷却水',

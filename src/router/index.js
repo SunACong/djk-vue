@@ -135,12 +135,12 @@ export const constantRoutes = [
       meta: { title: '重卷机工艺参数', icon: 'dashboard' }
     },
 
-    {
-      path: 'annealingFurnace',
-      name: 'AnnealingFurance',
-      component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
-      meta: { title: '退火炉', icon: 'dashboard' }
-    },
+    // {
+    //   path: 'annealingFurnace',
+    //   name: 'AnnealingFurance',
+    //   component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
+    //   meta: { title: '退火炉', icon: 'dashboard' }
+    // },
 
     {
       path: 'AnneaF1',
@@ -191,12 +191,13 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/AnneaF7.vue'),
       meta: { title: '退火炉参数7#', icon: 'dashboard' }
     },
+    // {
+    //   path: 'avaluate',
+    //   name: 'Avaluate',
+    //   component: () => import('@/views/module/healthDegree/avaluate.vue'),
+    //   meta: { title: '值域', icon: 'dashboard' }
+    // }, 
     {
-      path: 'avaluate',
-      name: 'Avaluate',
-      component: () => import('@/views/module/healthDegree/avaluate.vue'),
-      meta: { title: '值域', icon: 'dashboard' }
-    }, {
       path: 'rollingMachineSet',
       name: 'RollingMachineSet',
       component: () => import('@/views/module/healthDegree/rollingMachineSet.vue'),
