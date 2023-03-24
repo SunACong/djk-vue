@@ -1,7 +1,7 @@
 <template>
   <div class="layout-body">
     <div class="top-text">本页面是查询产品生产记录并且将铸轧生产中各项指标通过曲线图的形式展示
-      出来，输入框中可以输入铸轧卷号，点击搜索按钮，将会展示出该卷号的生产记录。（样例卷号：xxx）
+      出来，输入框中可以输入铸轧卷号，点击搜索按钮，将会展示出该卷号的生产记录。（样例卷号：5001A1230308 2458B1211108 ）
     </div>
     <!-- head -->
     <div class="top-search">
@@ -47,8 +47,9 @@
 
 <script>
 import { getCastProduceList } from '@/api/lmdpCastProduce'
-// import { getHistoryList } from '@/api/rollingMachine'
 import RecordBarChart from '@/views/dashboard/RecordBarChart.vue'
+import Axios from 'axios'
+import { header, dataSource } from '@/api/tdengine.js'
 const deviceName = ['操作侧预载力', '备用水泵电机电流',
   '卷取电机电流', '传动侧预载力',
   '主水泵电机电流', '下辊电机电流',
@@ -101,6 +102,8 @@ export default {
     this.initMap(this.map)
     // 初始化charData
     this.charData = this.initCharData(this.map, 100, 0)
+    // 获取tdengine的数据
+    this.getTDengineData()
   },
   mounted() {
 
@@ -132,7 +135,9 @@ export default {
       }
       this.loading = true
       // 通过铸轧卷号获取
+      console.log('reelNum:', reelNum)
       const { data: res } = await getCastProduceList({ reelNum })
+      console.log('res:', res)
       // 未查询到数据
       if (res.length === 0 || res[0].procUpperTime == null || res[0].procLowerRemoveTime == null) {
         this.$message({
@@ -233,6 +238,25 @@ export default {
         map.set(this.checkedBoxs[i], i)
       }
       console.log(map)
+    },
+    /**
+     * axios获取tdengine数据
+     */
+    getTDengineData() {
+      Axios({
+        method: 'post',
+        // url: 'http://' + dataSource.host + ':' + dataSource.port + '/rest/sql/' + dataSource.database,
+        url: 'https://console-mock.apipost.cn/mock/5eecb9fa-eb84-4f06-86b2-a7f7bf6876b8/tdengine1',
+        headers: {
+          'Content-Type': header.contentType,
+          'Authorization': header.authorization
+        },
+        data: {
+          'sql': 'SELECT * FROM t_3d8761c0928d11ed8fbe65289e32d77e where ts > now - 5s;'
+        }
+      }).then(res => {
+        console.log(res.data)
+      })
     }
   }
 }

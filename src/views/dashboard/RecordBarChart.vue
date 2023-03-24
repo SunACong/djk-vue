@@ -51,7 +51,7 @@ export default {
     dataZoomType: {
       type: String,
       default: 'slider'
-    },
+    }
   },
   data() {
     return { chart: null }
@@ -86,9 +86,9 @@ export default {
           containLabel: true
         },
         dataZoom: { // 放大和缩放
-          type: this.dataZoomType,
+          type: this.dataZoomType
         },
-        xAxis: [{ 
+        xAxis: [{
           type: 'category',
           data: this.oneXData,
           axisLabel: {
