@@ -177,7 +177,6 @@ export default {
     await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
       this.historyWarnTable = res.data
     })
-
     /**
      * 获取上下限阈值
      */
