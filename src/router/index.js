@@ -237,6 +237,7 @@ export const constantRoutes = [
       component: () => import('@/views/module/processMonitor'),
       meta: { title: '整体生产流程', icon: 'dashboard' }
     },
+
     {
       path: '/LTLTprocess',
       name: 'LTLTprocess',
