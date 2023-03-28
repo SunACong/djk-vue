@@ -10,6 +10,7 @@
             :title="d.title"
             :description="d.description"
             :status="active > i ? 'finish' : ''"
+            @click.native="throwActive(i)"
           />
         </el-steps>
         <div class="left-steps-bottom">
@@ -21,12 +22,13 @@
               :title="d.title"
               :description="d.description"
               :status="i > stepsData.length - active - 2 ? 'finish' : ''"
+              @click.native="throwActive(stepsData.length-i-1)"
             />
           </el-steps>
         </div>
 
       </div>
-      <div class="right-steps">
+      <div class="right-steps" @click="throwActive(7)">
         <div class="circle" :class="[active>7 ? 'finish' : '']">
           <p class="icon">
             <i :class="active==7? 'el-icon-loading':'el-icon-success'" />
@@ -74,6 +76,9 @@ export default {
     this._initStepsData()
   },
   methods: {
+    throwActive(i) {
+      this.$emit('active', i)
+    },
     // 测试方法
     _next() {
       this.active++
