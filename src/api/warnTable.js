@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 
+//添加是否已读标签
+export function addRead(params) {
+    return request({
+        url: '/warnTable/addRead',
+        method: 'get',
+        params
+    })
+}
+
 export function getListWarnNewData(params) {
     return request({
         url: '/warnTable/listWarnNewData',

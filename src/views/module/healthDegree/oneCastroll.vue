@@ -72,7 +72,9 @@
           </div>
         </div>
         <div>
+
           <el-table :data="historyWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <!-- <el-table-column prop="idNumber" label="序号" /> -->
             <el-table-column prop="rollingProduceTime" label="日期" />
             <el-table-column prop="rollingName" label="指标名称" />
             <el-table-column prop="rollingValue" label="数值" />
@@ -113,7 +115,7 @@
 import AreaChart from '@/views/dashboard/AreaChart'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } from '@/api/oneCastroll'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -171,7 +173,8 @@ export default {
       xData: [],
       yData: [],
       timer: null,
-      showWtich: 1
+      showWtich: 1,
+      wId: ''
     }
   },
   async created() {
@@ -290,7 +293,7 @@ export default {
     /**
      * 当电机页面中的图表和报警记录表中的查询按钮时，触发
      */
-    getMyData: function (index, row) {
+    getMyData(index, row) {
       this.showWtich = index
       if (index == 1) {
         this.xData = row.chartData.xData
@@ -304,9 +307,11 @@ export default {
        * 查看报警数据前后的数据，并以图表形式展示
        */
       else if (index == 2) {
+        console.log(row);
         getListSpecial({ rollingName: row.rollingName, ts: row.rollingProduceTime }).then((res) => {
-          console.log('报警数据前后的数据', res.data)
-          // this.myvisible = false
+          this.wId = row.idNumber
+          // console.log('报警数据前后的数据', res.data)
+          this.myvisible = false
           this.listSpecial = res.data
           this.xData = []
           this.yData = []
@@ -355,6 +360,9 @@ export default {
               this.maxData = this.rollingTableData1[12].chartData.maxData
             }
           })
+        })
+        addRead(row).then((res) => {
+          console.log("是否已读", res)
         })
       }
       // 为true则显示弹窗
