@@ -47,43 +47,6 @@
         </el-card>
       </div>
     </div>
-    <!-- <div class="health_status" style="margin-top: 8px">
-      <el-card shadow="always">
-        <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
-          <div style="display: flex;">
-            <span style="line-height: 20px;">实时报警记录</span>
-          </div>
-        </div>
-        <div>
-          <el-table :data="currentWarnTable" stripe style="width: 100%" height="300px" :show-header="false">
-            <el-table-column prop="rollingProduceTime" label="日期" min-width="25%" />
-            <el-table-column prop="rollingName" label="指标名称" min-width="25%" />
-            <el-table-column prop="rollingValue" label="数值" min-width="20%" />
-            <el-table-column prop="status" label="状态" min-width="20%">
-              <template slot-scope="scope">
-                <el-button
-                  size="medium"
-                  type="text"
-                  style="color: red"
-                >异常</el-button>
-              </template>
-            </el-table-column>
-            <el-table-column label="判定结果" min-width="10%">
-              <template slot-scope="scope">
-                <div style="display: flex">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    @click="getMyData(2, scope.row)"
-                  >查看</el-button>
-                  <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
-                </div>
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
-      </el-card>
-    </div> -->
     <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
@@ -109,23 +72,24 @@
           </div>
         </div>
         <div>
-          <el-table :data="historyWarnTable" stripe style="width: 100%" height="300px" :show-header="false">
-            <el-table-column prop="rollingProduceTime" label="日期" min-width="25%" />
-            <el-table-column prop="rollingName" label="指标名称" min-width="25%" />
-            <el-table-column prop="rollingValue" label="数值" min-width="20%" />
-            <el-table-column prop="status" label="状态" min-width="20%">
+          <el-table :data="historyWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <el-table-column prop="rollingProduceTime" label="日期" />
+            <el-table-column prop="rollingName" label="指标名称" />
+            <el-table-column prop="rollingValue" label="数值" />
+            <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
                 <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果" min-width="10%">
+            <el-table-column label="判定结果">
               <template slot-scope="scope">
                 <div style="display: flex">
                   <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
-                  <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
+                  <!-- <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button> -->
                 </div>
               </template>
             </el-table-column>
+            <el-table-column label="是否已读" />
           </el-table>
         </div>
       </el-card>
@@ -194,7 +158,7 @@ export default {
       },
       rollingOptions,
       rollingTableData1,
-      myvisible: false,
+      // myvisible: false,
       currentWarnTable: [],
       historyWarnTable: [],
       dialogVisible: false,
@@ -218,8 +182,11 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
+    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+
       this.historyWarnTable = res.data
+      console.log("historyWarnTable");
+      console.log(this.historyWarnTable);
     })
     /**
      * 获取上下限阈值
@@ -313,7 +280,8 @@ export default {
      * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
      */
     getMyHistoryData: function () {
-      this.historyWarnTable = []
+      this.historyWarnTable = [];
+
       getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
         console.log("特定时间范围内的数据", res)
         this.historyWarnTable = res.data
@@ -338,7 +306,7 @@ export default {
       else if (index == 2) {
         getListSpecial({ rollingName: row.rollingName, ts: row.rollingProduceTime }).then((res) => {
           console.log('报警数据前后的数据', res.data)
-          this.myvisible = false
+          // this.myvisible = false
           this.listSpecial = res.data
           this.xData = []
           this.yData = []
@@ -400,7 +368,7 @@ export default {
           // 1号铸轧机数据
           getListNewData().then((res) => {
             this.dataList = res.data
-            // console.log("这是拿到的数据"+this.dataList)
+            // console.log("这是拿到的数据" + res.data)
             this.rollingTableData1[0].chartData.xData = []
             this.rollingTableData1[0].chartData.yData = []
             this.rollingTableData1[1].chartData.xData = []
@@ -500,9 +468,9 @@ export default {
             })
           })
           // 定时查询铸轧机最新20条报警记录
-          getListWarnNewData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
-            this.currentWarnTable = res.data
-          })
+          // getListWarnNewData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
+          //   this.currentWarnTable = res.data
+          // })
         }, 1000)
       }
     }
