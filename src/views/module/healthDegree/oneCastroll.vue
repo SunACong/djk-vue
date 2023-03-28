@@ -91,7 +91,7 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column label="是否已读" />
+            <el-table-column prop="yd" label="是否已读" />
           </el-table>
         </div>
       </el-card>
@@ -186,10 +186,9 @@ export default {
      * 获取一号铸轧机报警历史记录（30条）
      */
     await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
-
       this.historyWarnTable = res.data
-      console.log("historyWarnTable");
-      console.log(this.historyWarnTable);
+      // console.log("historyWarnTable");
+      // console.log(this.historyWarnTable);
     })
     /**
      * 获取上下限阈值
@@ -286,8 +285,8 @@ export default {
       this.historyWarnTable = [];
 
       getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
-        console.log("特定时间范围内的数据", res)
-        this.historyWarnTable = res.data
+        // console.log("特定时间范围内的数据", res)
+        // this.historyWarnTable = res.data
       })
     },
     /**
@@ -362,7 +361,7 @@ export default {
           })
         })
         addRead(row).then((res) => {
-          console.log("是否已读", res)
+          // console.log("是否已读", res)
         })
       }
       // 为true则显示弹窗
@@ -476,9 +475,9 @@ export default {
             })
           })
           // 定时查询铸轧机最新20条报警记录
-          // getListWarnNewData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
-          //   this.currentWarnTable = res.data
-          // })
+          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+            this.historyWarnTable = res.data
+          })
         }, 1000)
       }
     }
