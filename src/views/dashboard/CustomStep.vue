@@ -2,31 +2,34 @@
   <div>
     <div class="custom-steps">
       <div class="left-steps">
-        <el-steps align-center >
+        <el-steps align-center>
           <el-step
             v-for="(d, i) in topSteps"
             :key="d.title"
-            icon="el-icon-success"
+            :icon="i !== active? 'el-icon-success':'el-icon-loading'"
             :title="d.title"
             :description="d.description"
             :status="active > i ? 'finish' : ''"
           />
         </el-steps>
-        <el-steps align-center >
-          <el-step
-            v-for="(d, i) in bottomSteps"
-            :key="i"
-            icon="el-icon-success"
-            :title="d.title"
-            :description="d.description"
-            :status="i > stepsData.length - active - 2 ? 'finish' : ''"
-          />
-        </el-steps>
+        <div class="left-steps-bottom">
+          <el-steps class="left-steps-bottom-item" align-center>
+            <el-step
+              v-for="(d, i) in bottomSteps"
+              :key="i"
+              :icon="i == stepsData.length - active - 1?'el-icon-loading':'el-icon-success'"
+              :title="d.title"
+              :description="d.description"
+              :status="i > stepsData.length - active - 2 ? 'finish' : ''"
+            />
+          </el-steps>
+        </div>
+
       </div>
       <div class="right-steps">
-        <div class="circle" :class="[midFlag ? 'finish' : '']">
+        <div class="circle" :class="[active>7 ? 'finish' : '']">
           <p class="icon">
-            <i class="el-icon-success" />
+            <i :class="active==7? 'el-icon-loading':'el-icon-success'" />
             <span class="tips">
               <span>{{ midSteps.title }}</span>
               <span>{{ midSteps.description }}</span>
@@ -93,7 +96,7 @@ export default {
         this.midNum = n
         this.topSteps = stepsData.slice(0, n)
         this.midSteps = stepsData[n]
-        this.bottomSteps = stepsData.slice(n).reverse()
+        this.bottomSteps = stepsData.slice(n + 1).reverse()
       }
     }
   }
@@ -102,60 +105,63 @@ export default {
 
 <style scoped lang="less">
 .circle {
-
-  width: 100px;
-  height: 200px;
+  width: 160px;
+  height: 110px;
   margin-top: 10px;
-  border: 0px solid #c0c4cc;
-  border-radius: 0 25% 25% 0/50%;
+  border: 5px solid #c0c4cc;
+  border-radius: 0 30% 30% 0/50%;
   border-left: none;
   position: relative;
   .icon {
     position: absolute;
-    right: 35px;
+    right: 0;
     top: 50%;
-    width: 40px;
-    height: 22px;
+    width: 36px;
+    height: 36px;
     transform: translate(55%, -50%);
     background-color: #fff;
-    border-radius: 70%;
-    color: #000000;
+    border-radius: 50%;
+    color: #c0c4cc;
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     border: 8px solid #ffffff;
-    padding: 10px;
+    padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     .el-icon-success {
-      font-size: 0;
+      font-size: 36px;
+      color: #cecece;
+    }
+    .el-icon-loading {
+      font-size: 36px;
       color: #cecece;
     }
     .tips {
       display: flex;
       position: absolute;
-      right: 0px;
-      font-size: 0px;
+      left: 30px;
+      font-size: 12px;
       color: #c0c4cc;
-      width: 11px;
-      padding-right: 11px;
+      width: 80px;
+      padding-right: 8px;
       flex-direction: column;
       text-align: center;
       > span:first-child {
-        font-size: 0px;
-        font-weight: 100;
+        font-size: 14px;
+        font-weight: 400;
       }
     }
   }
   &.finish {
-    border-color: #00ff00;
+    border-color: #409eff;
     .icon {
       .el-icon-success {
-        color: #00ff00;
+        color: #409eff;
       }
       .tips {
-        color: #00ff00;
+        color: #409eff;
       }
     }
   }
@@ -164,21 +170,29 @@ export default {
 
 <style scoped lang="less">
 .custom-steps {
-  padding: 30px;
+  // padding: 40px;
   display: flex;
   .left-steps {
-    width: calc(~"100% - 10px");
-    float: right;
+    width: calc(~"100% - 160px");
+    .left-steps-bottom{
+
+      margin-top: 40px;
+      .left-steps-bottom-item{
+
+      }
+    }
+    // height: 40px;
+    // float: left;
   }
   .right-steps {
     /*float: right;*/
-    margin-left: -50px;
+    margin-left: -100px;
   }
-  /deep/.el-step__icon {
-    ///*background: #f6f6f6;
-  }
+  // /deep/.el-step__icon {
+  //   // /*background: #f6f6f6;
+  // }
   /deep/.el-step__icon-inner {
-    font-size: 40px;
+    font-size: 36px;
   }
   /deep/.el-step__line {
     background: transparent;
@@ -190,11 +204,11 @@ export default {
   /deep/.el-step {
     position: relative;
     .el-step__head.is-process {
-      color: #00FF00;
+      color: #c0c4cc;
       border-color: #c0c4cc;
     }
     .el-step__title.is-process {
-      color: #5a5e66;
+      color: #c0c4cc;
       font-weight: unset;
     }
   }
