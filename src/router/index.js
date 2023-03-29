@@ -227,6 +227,7 @@ export const constantRoutes = [
       component: () => import('@/views/module/processMonitor/allProcessMonitor'),
       meta: { title: '整体生产流程', icon: 'dashboard' }
     },
+
     {
       path: 'castProcessMonitor',
       name: 'CastProcessMonitor',

@@ -10,14 +10,18 @@
             </div>
           </div>
           <div>
-            <el-table :data="rollingTableData1" stripe style="width: 100%" height="400px" :cell-style="{'text-align':'center','height':'10px','line-hight':'150px'}" :header-cell-style="{'text-align':'center'}">
+            <el-table :data="rollingTableData1" stripe style="width: 100%" height="400px"
+              :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
                   <div style="padding: 0 30%" @click="getMyData(1, scope.row)">
-                    <AreaChart width="200px" height="63px" :x-data="scope.row.chartData.xData" :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData" :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
+                    <AreaChart width="200px" height="63px" :x-data="scope.row.chartData.xData"
+                      :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
+                      :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
                   </div>
                 </template>
               </el-table-column>
@@ -48,36 +52,19 @@
         </div>
         <div style="display: flex;">
           <div>
-            <el-date-picker
-              v-model="qualifyDateRange"
-              size="medium"
-              type="datetimerange"
-              align="left"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions"
-              @change="getDate"
-            />
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
           </div>
           <template>
-            <el-select v-model="value" style="margin-bottom: 10px" size="medium" placeholder="请选择" @change="getIndicatorName($event)">
-              <el-option
-                v-for="item in rollingOptions"
-                :key="item.value"
-                size="mini"
-                :label="item.label"
-                :value="item.value"
-              />
+            <el-select v-model="value" style="margin-bottom: 10px" size="medium" placeholder="请选择"
+              @change="getIndicatorName($event)">
+              <el-option v-for="item in rollingOptions" :key="item.value" size="mini" :label="item.label"
+                :value="item.value" />
             </el-select>
           </template>
           <div style="margin-left: 30px">
-            <el-button
-              size="medium"
-              type="text"
-              @click="getMyHistoryData"
-            >查询</el-button>
+            <el-button size="medium" type="text" @click="getMyHistoryData">查询</el-button>
           </div>
         </div>
         <div>
@@ -87,21 +74,13 @@
             <el-table-column prop="rollingValue" label="数值" min-width="20%" />
             <el-table-column prop="status" label="状态" min-width="20%">
               <template slot-scope="scope">
-                <el-button
-                  size="medium"
-                  type="text"
-                  style="color: red"
-                >异常</el-button>
+                <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
             <el-table-column label="判定结果" min-width="10%">
               <template slot-scope="scope">
                 <div style="display: flex">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    @click="getMyData(2, scope.row)"
-                  >查看</el-button>
+                  <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
                   <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
                 </div>
               </template>
@@ -111,12 +90,12 @@
       </el-card>
     </div>
     <el-dialog :visible.sync="dialogVisible">
-      <div v-if="showWtich===1">
+      <div v-if="showWtich === 1">
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
-      <div v-if="showWtich===2">
+      <div v-if="showWtich === 2">
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
@@ -195,7 +174,7 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
+    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
       this.historyWarnTable = res.data
     })
     /**
@@ -224,7 +203,7 @@ export default {
       })
     })
   },
-  destroyed: function() {
+  destroyed: function () {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
@@ -234,12 +213,12 @@ export default {
     /**
      * 获取当点击时间空间以及单选框时，得到的指标名称和时间
      */
-    getIndicatorName: function(event) {
+    getIndicatorName: function (event) {
       console.log(event)
       this.indicatorName = this.value
       console.log('指标名称', this.value)
     },
-    getDate: function() {
+    getDate: function () {
       this.begin = parseTime(this.qualifyDateRange[0])
       this.end = parseTime(this.qualifyDateRange[1])
       console.log('开始时间', parseTime(this.qualifyDateRange[0]))
@@ -248,9 +227,9 @@ export default {
     /**
      * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
      */
-    getMyHistoryData: function() {
+    getMyHistoryData: function () {
       this.historyWarnTable = []
-      getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
+      getListDuringWarnData({ rollingDeviceNumber: '铸轧机5#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
         console.log("特定时间范围内的数据", res)
         this.historyWarnTable = res.data
       })
@@ -258,7 +237,7 @@ export default {
     /**
      * 当电机页面中的图表和报警记录表中的查询按钮时，触发
      */
-    getMyData: function(index, row) {
+    getMyData: function (index, row) {
       this.showWtich = index
       if (index == 1) {
         this.xData = row.chartData.xData
@@ -272,14 +251,14 @@ export default {
        * 查看报警数据前后的数据，并以图表形式展示
        */
       else if (index == 2) {
-        getListSpecial5({ rollingName: row.rollingName, createTime: row.rollingProduceTime }).then((res) => {
+        getListSpecial5({ rollingName: row.rollingName, ts: row.rollingProduceTime }).then((res) => {
           console.log('报警数据前后的数据', res.data)
           this.myvisible = false
           this.listSpecial = res.data
           this.xData = []
           this.yData = []
           this.listSpecial.forEach(item => {
-            console.log("名字",item.rollingName);
+            console.log("名字", item.rollingName);
             this.xData.push(item.rollingProduceTime)
             this.yData.push(item.rollingValue)
             this.rName = item.rollingName
@@ -289,12 +268,12 @@ export default {
             } else if (this.rName == '下辊电机速度') {
               this.minData = this.rollingTableData1[1].chartData.minData
               this.maxData = this.rollingTableData1[1].chartData.maxData
-            } 
+            }
             else if (this.rName == '卷取电机速度') {
               this.minData = this.rollingTableData1[2].chartData.minData
               this.maxData = this.rollingTableData1[2].chartData.maxData
-            } 
-            
+            }
+
           })
         })
       }
@@ -332,7 +311,7 @@ export default {
               this.rollingTableData1[1].value = item.downRollMontorLineV;
               //卷曲机速度
               this.rollingTableData1[2].value = item.rollV;
-              
+
             })
           })
 
@@ -340,22 +319,22 @@ export default {
           // getListNewData5().then((res) => {
           //   this.dataList = res.data
           //   // console.log("这是拿到的数据"+this.dataList)
-   
+
           //   this.rollingTableData1[2].chartData.xData = []
           //   this.rollingTableData1[2].chartData.yData = []
           //   this.dataList.forEach(item => {
           //     console.log("+++++++",item.rollV);
           //     this.rollingTableData1[2].chartData.xData.push(item.ts)
-              
+
           //     this.rollingTableData1[2].chartData.rName = '卷取电机速度'
           //     this.rollingTableData1[2].chartData.yData.push(item.rollV)
-    
+
           //   })
           // })
           // 定时查询铸轧机最新20条报警记录
-          getListWarnNewData({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
-            this.currentWarnTable = res.data
-          })
+          // getListWarnNewData({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
+          //   this.currentWarnTable = res.data
+          // })
         }, 1000)
       }
     }
@@ -364,11 +343,12 @@ export default {
 </script>
 
 <style scoped>
-.el-icon-mytubiao{
+.el-icon-mytubiao {
   background: url('~@/icons/myicons/status1.jpg') center no-repeat;
   background-size: cover;
 }
-.el-icon-mytubiao:before{
+
+.el-icon-mytubiao:before {
   content: "替";
   font-size: 16px;
   visibility: hidden;
