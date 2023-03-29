@@ -278,7 +278,7 @@ export default {
     })
   },
   destroyed: function () {
-    // 每次离开当前界面时，清除定时器
+    // 每次离开当前界面,清除定时器
     clearInterval(this.timer)
     this.timer = null
   },
