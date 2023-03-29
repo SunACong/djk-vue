@@ -6,7 +6,7 @@
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">1#铸轧机设备参数</span>
+              <span style="line-height: 20px;">5#铸轧机设备参数</span>
             </div>
           </div>
           <div>

@@ -68,23 +68,25 @@
           </div>
         </div>
         <div>
-          <el-table :data="historyWarnTable" stripe style="width: 100%" height="300px" :show-header="false">
-            <el-table-column prop="rollingProduceTime" label="日期" min-width="25%" />
-            <el-table-column prop="rollingName" label="指标名称" min-width="25%" />
-            <el-table-column prop="rollingValue" label="数值" min-width="20%" />
-            <el-table-column prop="status" label="状态" min-width="20%">
+          <el-table :data="historyWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <!-- <el-table-column prop="idNumber" label="序号" /> -->
+            <el-table-column prop="rollingProduceTime" label="日期" />
+            <el-table-column prop="rollingName" label="指标名称" />
+            <el-table-column prop="rollingValue" label="数值" />
+            <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
                 <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果" min-width="10%">
+            <el-table-column label="判定结果">
               <template slot-scope="scope">
                 <div style="display: flex">
                   <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
-                  <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
+                  <!-- <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button> -->
                 </div>
               </template>
             </el-table-column>
+            <el-table-column prop="yd" label="是否已读" />
           </el-table>
         </div>
       </el-card>
@@ -108,7 +110,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData4, getListSpecial4, rollingOptions, rollingTableData1 } from '@/api/oneCastrollgy'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -273,8 +275,10 @@ export default {
               this.minData = this.rollingTableData1[2].chartData.minData
               this.maxData = this.rollingTableData1[2].chartData.maxData
             }
-
           })
+        })
+        addRead(row).then((res) => {
+          // console.log("是否已读", res)
         })
       }
       // 为true则显示弹窗
@@ -316,9 +320,9 @@ export default {
           })
 
           // 定时查询铸轧机最新20条报警记录
-          // getListWarnNewData({ rollingDeviceNumber: '铸轧机4#' }).then((res) => {
-          //   this.currentWarnTable = res.data
-          // })
+          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机4#', rollingName: this.indicatorName }).then((res) => {
+            this.historyWarnTable = res.data
+          })
         }, 1000)
       }
     }
