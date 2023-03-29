@@ -11,7 +11,7 @@
     </div>
     <custom-step :steps-data="stepData" :active="active" @active="getActive" />
     <div class="bottom-form">
-      <v-form-render ref="vFormRef" :form-json="formJson[current]" />
+      <v-form-render ref="vFormRef" />
     </div>
   </div>
 </template>
@@ -83,8 +83,8 @@ export default {
           value: '1',
           label: '熔次号',
           children: [{
-            value: '1-057',
-            label: '1-057'
+            value: '1057',
+            label: '1057'
           }]
         },
         {
@@ -116,7 +116,9 @@ export default {
     current: {
       handler(val) {
         this.$refs.vFormRef.setFormJson(this.formJson[val])
-        this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+        setTimeout(() => {
+          this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+        }, 500)
       }
     }
   },
