@@ -72,7 +72,7 @@ export const constantRoutes = [
     path: '/module/healthDegree',
     component: Layout,
     meta: { title: '设备健康状况分析', icon: 'dashboard' },
-    redirect: '/module/healthDegree/roollingMachine',
+    redirect: '/module/healthDegree/oneCastroll',
     children: [{
       path: 'oneCastroll',
       name: 'OneCastroll',
@@ -134,14 +134,6 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/recoilingMachineGong.vue'),
       meta: { title: '重卷机工艺参数', icon: 'dashboard' }
     },
-
-    // {
-    //   path: 'annealingFurnace',
-    //   name: 'AnnealingFurance',
-    //   component: () => import('@/views/module/healthDegree/annealingFurnace.vue'),
-    //   meta: { title: '退火炉', icon: 'dashboard' }
-    // },
-
     {
       path: 'AnneaF1',
       name: 'AnneaF1',
@@ -176,8 +168,6 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/AnneaF5.vue'),
       meta: { title: '退火炉参数5#', icon: 'dashboard' }
     },
-
-
     {
       path: 'AnneaF6',
       name: 'AnneaF6',
@@ -196,7 +186,7 @@ export const constantRoutes = [
     //   name: 'Avaluate',
     //   component: () => import('@/views/module/healthDegree/avaluate.vue'),
     //   meta: { title: '值域', icon: 'dashboard' }
-    // }, 
+    // },
     {
       path: 'rollingMachineSet',
       name: 'RollingMachineSet',
@@ -227,41 +217,41 @@ export const constantRoutes = [
   },
 
   {
-    path: '/processMonitor',
+    path: '/module/processMonitor',
     component: Layout,
     meta: { title: '产品流程监控模型', icon: 'el-icon-finished' },
-    redirect: '/processMonitor',
+    redirect: '/module/processMonitor/allProcessMonitor',
     children: [{
-      path: '/processMonitor/processMonitor',
-      name: 'ProcessMonitor',
-      component: () => import('@/views/module/processMonitor'),
+      path: 'allProcessMonitor',
+      name: 'AllProcessMonitor',
+      component: () => import('@/views/module/processMonitor/allProcessMonitor'),
       meta: { title: '整体生产流程', icon: 'dashboard' }
     },
 
     {
-      path: '/LTLTprocess',
-      name: 'LTLTprocess',
-      component: () => import('@/views/module/LTLTprocess'),
+      path: 'castProcessMonitor',
+      name: 'CastProcessMonitor',
+      component: () => import('@/views/module/processMonitor/castProcessMonitor'),
       meta: { title: '铸轧生产流程', icon: 'dashboard' }
     }, {
-      path: '/LTLprocess',
-      name: 'LTLprocess',
-      component: () => import('@/views/module/LTLprocess'),
+      path: 'coldProcessMonitor',
+      name: 'ColdProcessMonitor',
+      component: () => import('@/views/module/processMonitor/coldProcessMonitor'),
       meta: { title: '冷轧生产流程', icon: 'dashboard' }
     }, {
-      path: '/computeIndex',
+      path: 'computeIndex',
       name: 'ComputeIndex',
-      component: () => import('@/views/module/computeIndex'),
+      component: () => import('@/views/module/processMonitor/computeIndex'),
       meta: { title: '生产周期计算', icon: 'dashboard' }
     }, {
-      path: '/processMonitor/predictIndex',
+      path: 'predictIndex',
       name: 'PredictIndex',
-      component: () => import('@/views/module/predictIndex'),
+      component: () => import('@/views/module/processMonitor/predictIndex'),
       meta: { title: '交期风险预判', icon: 'dashboard' }
     }, {
-      path: '/processMonitor/processIndex',
+      path: 'processIndex',
       name: 'ProcessIndex',
-      component: () => import('@/views/module/processIndex'),
+      component: () => import('@/views/module/processMonitor/processIndex'),
       meta: { title: '异常流程显示', icon: 'dashboard' }
     }]
   },

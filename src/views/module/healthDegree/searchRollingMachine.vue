@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { getCastProduceList } from '@/api/lmdpCastProduce'
+import { getCastProduceList } from '@/api/LmdpCastProduced'
 import RecordBarChart from '@/views/dashboard/RecordBarChart.vue'
 import Axios from 'axios'
 import { header, dataSource } from '@/api/tdengine.js'
@@ -150,38 +150,9 @@ export default {
       }
 
       // 通过卷号获取历史数据
-      this.getHistoryData(reelNum.charAt(0), res[0].procUpperTime, res[0].procLowerRemoveTime)
+
       // 关闭加载状态
       this.loading = false
-    },
-
-    /**
-     * @description: 获取信息并通过hashmap处理
-     * @param {*} deviceId 设备id
-     * @param {*} startDateTime 查询起始时间
-     * @param {*} endDateTime 查询结束时间
-     */
-    async getHistoryData(deviceId, startDateTime, endDateTime) {
-      const xData = Array.from(Array(13), () => new Array(0))
-      const yData = Array.from(Array(13), () => new Array(0))
-      // 得到历史数据
-      const { data: res1 } = await getHistoryList({ deviceId, startDateTime, endDateTime })
-      // 通过hashmap处理数据,分别存储到不同的数组中
-      for (let i = 0; i < res1.length; i++) {
-        xData[this.map.get(res1[i].rollingName)].push(res1[i].rollingValue)
-        yData[this.map.get(res1[i].rollingName)].push(res1[i].rollingProduceTime)
-      }
-      // 把数据添加到charData中x
-      for (let i = 0; i < 13; i++) {
-        if (this.charData[i][0].show !== false) {
-          this.charData[i][1] = xData[i]
-          this.charData[i][2] = yData[i]
-        }
-      }
-      // 过滤掉没有数据的数组
-      this.charData = this.charData.filter(item => item.length === 3)
-      this.key += 1
-      console.log('this.charData:', this.charData)
     },
     /**
      * @description: 复选框

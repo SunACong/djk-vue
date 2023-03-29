@@ -14,9 +14,19 @@
               <span class="top-card-header-left-text">产品合格判定汇总表格</span>
             </div>
             <div>
-              <el-date-picker v-model="qualifyDateRange" size="small" type="daterange" align="left" format="yyyy-MM-dd"
-                value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
-                end-placeholder="结束日期" @change="dateRange(qualityDateRange)" />
+              <el-date-picker
+                v-model="qualifyDateRange"
+                size="small"
+                type="daterange"
+                align="left"
+                format="yyyy-MM-dd"
+                value-format="yyyy-MM-dd"
+                :picker-options="pickerOptions"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                @change="dateRangeQuality(qualifyDateRange)"
+              />
             </div>
           </div>
           <BarChart :key="key" chart-type="line" :xydata="everyQualifyRate" />
@@ -34,21 +44,39 @@
               <i class="el-icon-s-help" si />
             </div>
             <span>冷轧卷报告单判定</span>
-            <el-button type="primary" :loading="loading" size="small"
-              style="height: 33px;width: 80px;margin: 5px 0 0 10px;" @click="getList">{{ loading ? "判定中" : "判定"
-              }}</el-button>
+            <el-button
+              type="primary"
+              :loading="loading"
+              size="small"
+              style="height: 33px;width: 80px;margin: 5px 0 0 10px;"
+              @click="getList"
+            >{{ loading ? "判定中" : "判定"
+            }}</el-button>
           </div>
           <div style="display: flex;">
             <div>
-              <el-date-picker v-model="reportDateRange" size="small" type="datetimerange" align="left"
-                format="yyyy-MM-dd HH:mm:ss" value-format="yyyy-MM-dd HH:mm:ss" :picker-options="pickerOptions"
-                range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
-                @change="dateRange(reportDateRange)" />
+              <el-date-picker
+                v-model="reportDateRange"
+                size="small"
+                type="datetimerange"
+                align="left"
+                format="yyyy-MM-dd HH:mm:ss"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                :picker-options="pickerOptions"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                @change="dateRange(reportDateRange)"
+              />
             </div>
             <div>
               <el-input v-model="rollNumber" size="small" placeholder="输入冷轧卷号" :clearable="true">
-                <el-button slot="append" style="background-color: #409EFF;color: white;line-height: 15px;" size="small"
-                  @click="query(rollNumber)">
+                <el-button
+                  slot="append"
+                  style="background-color: #409EFF;color: white;line-height: 15px;"
+                  size="small"
+                  @click="query(rollNumber)"
+                >
                   查询
                 </el-button>
               </el-input>
@@ -57,8 +85,15 @@
         </div>
         <!-- 表格 -->
         <div>
-          <el-table v-loading="loading" :data="tableData" stripe style="width: 100%" :border="true"
-            :cell-style="{ 'text-align': 'center', 'height': '10px' }" :header-cell-style="{ 'text-align': 'center' }">
+          <el-table
+            v-loading="loading"
+            :data="tableData"
+            stripe
+            style="width: 100%"
+            :border="true"
+            :cell-style="{ 'text-align': 'center', 'height': '10px' }"
+            :header-cell-style="{ 'text-align': 'center' }"
+          >
             <el-table-column prop="batchNum" label="卷号" min-width="21%" />
             <el-table-column prop="inspectCreateTime" label="巡检开始日期" min-width="35%" />
             <el-table-column prop="lmdpQcColdInspect.consumer" label="客户" min-width="20%" />
@@ -66,7 +101,8 @@
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.plateTypeDetermination === 1 ? 'success' : (scope.row.plateTypeDetermination === 2 ? 'info' : 'danger')"
-                  @click="handleView(1, scope.row)">
+                  @click="handleView(1, scope.row)"
+                >
                   {{ scope.row.plateTypeDetermination === 1 ? '合格' : (scope.row.plateTypeDetermination === 2 ? '暂未评定' :
                     '不合格') }}
                 </el-tag>
@@ -76,7 +112,8 @@
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.dimensionalDeviationDetermination === 1 ? 'success' : (scope.row.dimensionalDeviationDetermination === 2 ? 'info' : 'danger')"
-                  @click="handleView(2, scope.row)">
+                  @click="handleView(2, scope.row)"
+                >
                   {{ scope.row.dimensionalDeviationDetermination === 1 ? '合格' :
                     (scope.row.dimensionalDeviationDetermination
                       === 2 ? '暂未评定' : '不合格') }}
@@ -87,7 +124,8 @@
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.mechanicalPropertiesDetermination === 1 ? 'success' : (scope.row.mechanicalPropertiesDetermination === 2 ? 'info' : 'danger')"
-                  @click="handleView(3, scope.row)">
+                  @click="handleView(3, scope.row)"
+                >
                   {{ scope.row.mechanicalPropertiesDetermination === 1 ? '合格' :
                     (scope.row.mechanicalPropertiesDetermination
                       === 2 ? '暂未评定' : '不合格') }}
@@ -98,7 +136,8 @@
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.surfaceQualityDetermination === 1 ? 'success' : (scope.row.surfaceQualityDetermination === 2 ? 'info' : 'danger')"
-                  @click="handleView(4, scope.row)">
+                  @click="handleView(4, scope.row)"
+                >
                   {{ scope.row.surfaceQualityDetermination === 1 ? '合格' : (scope.row.surfaceQualityDetermination ===
                     2 ? '暂未评定' : '不合格') }}
                 </el-tag>
@@ -108,7 +147,8 @@
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.appearanceQualityDetermination === 1 ? 'success' : (scope.row.appearanceQualityDetermination === 2 ? 'info' : 'danger')"
-                  @click="handleView(5, scope.row)">
+                  @click="handleView(5, scope.row)"
+                >
                   {{ scope.row.appearanceQualityDetermination === 1 ? '合格' : (scope.row.appearanceQualityDetermination ===
                     2 ? '暂未评定' : '不合格') }}
                 </el-tag>
@@ -117,7 +157,8 @@
             <el-table-column prop="allDetermination" label="质量判定" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.allDetermination === 1 ? 'success' : (scope.row.allDetermination === 2 ? 'info' : 'danger')">
+                  :type="scope.row.allDetermination === 1 ? 'success' : (scope.row.allDetermination === 2 ? 'info' : 'danger')"
+                >
                   {{ scope.row.allDetermination === 1 ? '合格' : (scope.row.allDetermination === 2 ? '暂未评定' : '不合格') }}
                 </el-tag>
               </template>
@@ -134,9 +175,14 @@
         </div>
         <!-- 分页插件 -->
         <div style="margin: 30px 20px 20px;float: right;font-size: 20px;">
-          <el-pagination :current-page="pageNum" :page-sizes="[5, 10, 20, 30]"
-            layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
-            @current-change="handleCurrentChange" />
+          <el-pagination
+            :current-page="pageNum"
+            :page-sizes="[5, 10, 20, 30]"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
         </div>
       </el-card>
     </div>
@@ -384,14 +430,14 @@ export default {
   computed: {},
   watch: {
     pageNum: {
-      handler: function () {
+      handler: function() {
         this.queryParams.pageNum = this.pageNum
       },
       deep: true,
       immediate: true
     },
     pageSize: {
-      handler: function () {
+      handler: function() {
         this.queryParams.pageSize = this.pageSize
       },
       deep: true,
