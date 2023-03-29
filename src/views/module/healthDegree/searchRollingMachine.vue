@@ -47,9 +47,9 @@
 
 <script>
 import { getCastProduceList } from '@/api/LmdpCastProduced'
-import RecordBarChart from '@/views/dashboard/RecordBarChart.vue'
+import RecordBarChart from '@/views/dashboard/RecordBarChart'
 import Axios from 'axios'
-import { header, dataSource } from '@/api/tdengine.js'
+import { header, dataSource } from '@/api/tdengine'
 const deviceName = ['操作侧预载力', '备用水泵电机电流',
   '卷取电机电流', '传动侧预载力',
   '主水泵电机电流', '下辊电机电流',
