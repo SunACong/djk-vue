@@ -15,6 +15,35 @@
               <i class="el-icon-s-help" />
               <span class="top-card-header-left-text">产品合格判定汇总表格</span>
             </div>
+            <div class="">
+              <el-descriptions class="" title="" :column="5" border :size="size" :label-style="labelStyle">
+                <el-descriptions-item label="合格数">
+                  <el-tag type="success" size="mini">
+                    {{ rangeQualifyRate.qualified }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="合格率">
+                  <el-tag type="success" size="mini">
+                    {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.qualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="暂未判定">
+                  <el-tag type="info" size="mini">
+                    {{ rangeQualifyRate.tentative }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="不合格数">
+                  <el-tag type="danger" size="mini">
+                    {{ rangeQualifyRate.noQualified }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="不合格率">
+                  <el-tag type="danger" size="mini">
+                    {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.noQualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+              </el-descriptions>
+            </div>
             <div>
               <el-date-picker
                 v-model="qualifyDateRange"
@@ -195,19 +224,15 @@
       <div v-if="showWtich === 1 || showWtich === 6">
         <el-descriptions title="板型" :column="2" border :size="size">
           <el-descriptions-item label="平直度">
-            {{ dailogData.lmdpQcColdInspect.singleStraightness ===
-              null ? '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
+            {{ dailogData.lmdpQcColdInspect.singleStraightness === null ? '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
           </el-descriptions-item>
           <el-descriptions-item label="平直度标准">
             -
-            -
           </el-descriptions-item>
           <el-descriptions-item label="中凸度">
-            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity ===
-              null ? '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
+            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null ? '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度标准">
-            -
             -
           </el-descriptions-item>
         </el-descriptions>
@@ -216,7 +241,7 @@
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size">
           <el-descriptions-item label="宽度">
-            {{ dailogData.lmdpQcColdInspect.singleHeight === null ? '-' : dailogData.lmdpQcColdInspect.singleHeight }}
+            {{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="宽度差标准">
             -
@@ -226,6 +251,12 @@
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
             -
+          </el-descriptions-item>
+          <el-descriptions-item label="成品规格">
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}*{{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
+          </el-descriptions-item>
+          <el-descriptions-item label="成品规格要求">
+            {{ dailogData.lmdpQcColdInspect.model === null?'-':dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
         </el-descriptions>
       </div>

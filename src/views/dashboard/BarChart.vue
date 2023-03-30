@@ -31,7 +31,7 @@ export default {
     legend: {
       type: Array,
       default: function() {
-        return ['合格', '不合格', '待定']
+        return ['不合格', '合格', '暂未判定']
       }
     },
     xydata: {

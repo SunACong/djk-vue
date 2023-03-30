@@ -210,6 +210,7 @@ export default {
       }
       console.log(map)
     },
+
     /**
      * axios获取tdengine数据
      */
