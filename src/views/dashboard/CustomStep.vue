@@ -154,7 +154,7 @@ export default {
       flex-direction: column;
       text-align: center;
       > span:first-child {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
       }
     }

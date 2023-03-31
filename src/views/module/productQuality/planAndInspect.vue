@@ -1,8 +1,10 @@
 <template>
   <div class="layout-body">
     <!-- 顶部说明 -->
-    <div class="top-text">本页面是产品质量判定模型，上半部分是产品质量合格判定表格，可以根据时间段查询该范围内的所有合格的卷数和不合格的卷数。下半部分
-      是产品质量判定表格，可以根据时间段和冷轧卷号联合查询，共五项判定，状态包括暂未评定（代表产品该项检验某指标未完成），不合格（五项指标中有某一项指标不合格），合格（五项指标全部合格）。
+    <div class="top-text">
+      产品质量判定模型：上面部分是产品质量合格统计表格，负责统计一段时间内的卷的合格和不合格情况。下面部分是成品自动判定表格，负责自动判定卷子是否合格（状态说明：暂未判定（无不合格且数据不全的情况）不合格（出现任何不合格）合格（全部合格））。<hr>
+      功能：两部分都可以通过时间范围查询，自动判定可以同时通过卷号查询。可以查询卷号自动判定的详细信息<hr>
+      注意：自动判定的数据是通过巡检数据自动判定的，所以巡检数据必须要全面规范。
     </div>
     <!-- 合格率图表 -->
     <div class="top-card">
@@ -12,6 +14,35 @@
             <div class="top-card-header-left">
               <i class="el-icon-s-help" />
               <span class="top-card-header-left-text">产品合格判定汇总表格</span>
+            </div>
+            <div class="">
+              <el-descriptions class="" title="" :column="5" border :size="size" :label-style="labelStyle">
+                <el-descriptions-item label="合格数">
+                  <el-tag type="success" size="mini">
+                    {{ rangeQualifyRate.qualified }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="合格率">
+                  <el-tag type="success" size="mini">
+                    {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.qualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="暂未判定">
+                  <el-tag type="info" size="mini">
+                    {{ rangeQualifyRate.tentative }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="不合格数">
+                  <el-tag type="danger" size="mini">
+                    {{ rangeQualifyRate.noQualified }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="不合格率">
+                  <el-tag type="danger" size="mini">
+                    {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.noQualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+              </el-descriptions>
             </div>
             <div>
               <el-date-picker
@@ -193,19 +224,15 @@
       <div v-if="showWtich === 1 || showWtich === 6">
         <el-descriptions title="板型" :column="2" border :size="size">
           <el-descriptions-item label="平直度">
-            {{ dailogData.lmdpQcColdInspect.singleStraightness ===
-              null ? '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
+            {{ dailogData.lmdpQcColdInspect.singleStraightness === null ? '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
           </el-descriptions-item>
           <el-descriptions-item label="平直度标准">
             -
-            -
           </el-descriptions-item>
           <el-descriptions-item label="中凸度">
-            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity ===
-              null ? '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
+            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null ? '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度标准">
-            -
             -
           </el-descriptions-item>
         </el-descriptions>
@@ -214,7 +241,7 @@
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size">
           <el-descriptions-item label="宽度">
-            {{ dailogData.lmdpQcColdInspect.singleHeight === null ? '-' : dailogData.lmdpQcColdInspect.singleHeight }}
+            {{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="宽度差标准">
             -
@@ -224,6 +251,12 @@
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
             -
+          </el-descriptions-item>
+          <el-descriptions-item label="成品规格">
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}*{{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
+          </el-descriptions-item>
+          <el-descriptions-item label="成品规格要求">
+            {{ dailogData.lmdpQcColdInspect.model === null?'-':dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
