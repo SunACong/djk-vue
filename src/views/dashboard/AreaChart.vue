@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :style="{height:height,width:width}" />
+  <div :class="className" :style="{ height: height, width: width }" />
 </template>
 
 <script>
@@ -28,17 +28,17 @@ export default {
       type: Array,
       // default: ()=>[]
     },
-    yData:{
+    yData: {
       type: Array,
       // default: ()=>[]
     },
-    minData:{
+    minData: {
       type: Number
     },
-    maxData:{
+    maxData: {
       type: Number
     },
-    rName:{
+    rName: {
       type: String
     }
   },
@@ -95,11 +95,13 @@ export default {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
       // console.log(this.xData, this.yData)
-      this.setOption(this.xData, this.yData,this.minData,this.maxData,this.rName)
+      this.setOption(this.xData, this.yData, this.minData, this.maxData, this.rName)
     },
-    setOption(x, y,min,max,r) {
+    setOption(x, y, min, max, r) {
       this.chart.setOption({
-        title:{
+
+
+        title: {
           text: ''
         },
         tooltip: {
@@ -142,6 +144,9 @@ export default {
             data: y
           },
         ],
+        dataZoom: { // 放大和缩放
+          type: 'inside'
+        },
         visualMap: [{
           top: 10,
           right: 10,
@@ -149,11 +154,12 @@ export default {
           // precision: 1,
           // seriesIndex: 0,
           pieces: [{
-            gt:min,
-            lt: max , // 设置最大值<250
+            gt: min,
+            lt: max, // 设置最大值<250
             color: '#33bfcc'
           }],
-          outOfRange: { color: '#CC3300' // 设置超出部分的颜色
+          outOfRange: {
+            color: '#CC3300' // 设置超出部分的颜色
           }
         },
         ]

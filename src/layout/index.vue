@@ -24,9 +24,11 @@ export default {
   computed: {
     classObj() {
       return {
-        hideSidebar: true,
+        hideSidebar: false,
         openSidebar: false,
         withoutAnimation: false
+
+        // mobile: this.device === 'mobile'
       }
     }
   },
@@ -78,7 +80,7 @@ export default {
   width: 100%;
 }
 
-.main-container {
-  margin-left: 0px;
-}
+// .main-container {
+// 	margin-left: 0px;
+// }
 </style>

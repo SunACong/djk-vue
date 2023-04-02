@@ -47,11 +47,44 @@
         </el-card>
       </div>
     </div>
+
+    <!--实时报警记录刷新表-->
     <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
-            <span style="line-height: 20px;">报警记录</span>
+            <span style="line-height: 20px;">实时报警记录</span>
+          </div>
+        </div>
+        <div>
+          <el-table :data="currentWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <!-- <el-table-column prop="idNumber" label="序号" /> -->
+            <el-table-column prop="rollingProduceTime" label="日期" />
+            <el-table-column prop="rollingName" label="指标名称" />
+            <el-table-column prop="rollingValue" label="数值" />
+            <el-table-column prop="status" label="状态">
+              <template slot-scope="scope">
+                <el-button size="medium" type="text" style="color: red">异常</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="查看">
+              <template slot-scope="scope">
+                <div style="display: flex">
+                  <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column prop="yd" label="是否已读" />
+          </el-table>
+        </div>
+      </el-card>
+    </div>
+    <div class="health_status" style="margin-top: 8px">
+      <el-card shadow="always">
+        <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
+
+          <div style="display: flex;">
+            <span style="line-height: 20px;">历史报警记录</span>
           </div>
         </div>
         <div style="display: flex;">
@@ -72,7 +105,7 @@
           </div>
         </div>
         <div>
-
+          <!--历史报警记录刷新表-->
           <el-table :data="historyWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
             <!-- <el-table-column prop="idNumber" label="序号" /> -->
             <el-table-column prop="rollingProduceTime" label="日期" />
@@ -83,11 +116,10 @@
                 <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果">
+            <el-table-column label="查看">
               <template slot-scope="scope">
                 <div style="display: flex">
                   <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
-                  <!-- <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button> -->
                 </div>
               </template>
             </el-table-column>
@@ -281,12 +313,11 @@ export default {
     /**
      * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
      */
-    getMyHistoryData: function () {
+    getMyHistoryData() {
       this.historyWarnTable = [];
-
       getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
         // console.log("特定时间范围内的数据", res)
-        // this.historyWarnTable = res.data
+        this.historyWarnTable = res.data
       })
     },
     /**
@@ -306,7 +337,7 @@ export default {
        * 查看报警数据前后的数据，并以图表形式展示
        */
       else if (index == 2) {
-        console.log(row);
+        // console.log(row);
         getListSpecial({ rollingName: row.rollingName, ts: row.rollingProduceTime }).then((res) => {
           this.wId = row.idNumber
           // console.log('报警数据前后的数据', res.data)
@@ -476,7 +507,7 @@ export default {
           })
           // 定时查询铸轧机最新20条报警记录
           getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
-            this.historyWarnTable = res.data
+            this.currentWarnTable = res.data
           })
         }, 1000)
       }
