@@ -147,7 +147,7 @@
 import AreaChart from '@/views/dashboard/AreaChart'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } from '@/api/oneCastroll'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -215,20 +215,10 @@ export default {
     this.timer = null
     this.setTimer()
 
-    // const yy = new Date().getFullYear()
-    // const mm = new Date().getMonth() + 1 < 10 ? '0' + new Date().getMonth() : new Date().getMonth()
-    // const dd = new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()
-    // const hh = new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()
-    // const mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
-    // const ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds()
-    // this.gettime = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss
-    // console.log("时间", this.gettime)
-    // this.gettime = parseTime(this.qualifyDateRange[0]);
-    // this.gettime = parseTime(this.qualifyDateRange[1]);
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+    await getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
       this.historyWarnTable = res.data
       // console.log("historyWarnTable");
       // console.log(this.historyWarnTable);
@@ -519,7 +509,7 @@ export default {
             })
           })
           // 定时查询铸轧机最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+          getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 1000)

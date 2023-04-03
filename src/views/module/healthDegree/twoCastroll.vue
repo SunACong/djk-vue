@@ -18,8 +18,8 @@
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div @click="getMyData(1, scope.row)">
-                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
+                  <div style="padding: 0 30%" @click="getMyData(1, scope.row)">
+                    <AreaChart width="200px" height="63px" :x-data="scope.row.chartData.xData"
                       :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
                       :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName"></AreaChart>
                   </div>
@@ -143,7 +143,7 @@
 import AreaChart from '@/views/dashboard/AreaChart'
 import { getAvaluateList } from "@/api/avaluate";
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData2 } from "@/api/twoCastroll";
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from "@/api/warnTable";
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from "@/api/warnTable";
 import { parseTime } from "@/utils/utils";
 export default {
   components: { AreaChart },
@@ -206,7 +206,7 @@ export default {
     clearInterval(this.timer)
     this.timer = null
     this.setTimer()
-    await getListWarnHistoryData({ rollingDeviceNumber: "铸轧机2#" }).then((res) => {
+    await getDevice({ rollingDeviceNumber: "铸轧机2#" }).then((res) => {
       this.historyWarnTable = res.data
     })
     await getAvaluateList().then((res) => {
@@ -476,7 +476,7 @@ export default {
             })
           })
           // 定时查询铸轧机最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机2#', rollingName: this.indicatorName }).then((res) => {
+          getDevice({ rollingDeviceNumber: '铸轧机2#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 2000)

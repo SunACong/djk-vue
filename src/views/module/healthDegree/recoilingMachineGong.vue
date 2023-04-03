@@ -142,7 +142,7 @@ import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewDataCjj1, getListSpecialCjj1, rollingOptions, rollingTableData1 } from '@/api/oneCjjgy'
 // import { getListNewDataCjj1, getListSpecialCjj1, rollingOptions, rollingTableData1 } from '@/api/oneCjj'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getTec } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -208,7 +208,7 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '重卷机1#', rollingName: "带材长度" }).then((res) => {
+    await getTec({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
       this.historyWarnTable = res.data,
         console.log("得到基础数据", res.data);
     })
@@ -366,8 +366,8 @@ export default {
               this.rollingTableData1[3].value = item.stripL;
             })
           })
-          // 定时查询重卷机最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '重卷机1#', rollingName: this.indicatorName }).then((res) => {
+          // 定时查询重卷机最新50条报警记录
+          getTec({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 1000)

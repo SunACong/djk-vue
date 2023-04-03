@@ -142,7 +142,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewDataCjj1, getListSpecialCjj1, rollingOptions, rollingTableData1 } from '@/api/oneCjj'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -208,7 +208,7 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '重卷机1#', rollingName: '开卷机电流曲线' }).then((res) => {
+    await getDevice({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
       this.historyWarnTable = res.data
     })
     /**
@@ -359,7 +359,7 @@ export default {
           //   // console.log("+++++++++", res.data);
           // })
 
-          getListWarnHistoryData({ rollingDeviceNumber: '重卷机1#', rollingName: this.indicatorName }).then((res) => {
+          getDevice({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 1000)

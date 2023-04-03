@@ -208,6 +208,7 @@ export default {
     this.setTimer()
     await getListWarnHistoryData({ rollingDeviceNumber: "铸轧机3#" }).then((res) => {
       this.historyWarnTable = res.data
+      // console.log("3号设备参数", this.historyWarnTable);
     })
     await getAvaluateList().then((res) => {
       this.avaluateList = res.data

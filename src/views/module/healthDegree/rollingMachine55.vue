@@ -6,7 +6,7 @@
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">1#铸轧机工艺参数</span>
+              <span style="line-height: 20px;">5#铸轧机工艺参数</span>
             </div>
           </div>
           <div>
@@ -142,7 +142,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData5, getListSpecial5, rollingOptions, rollingTableData1 } from '@/api/oneCastrollgy'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getTec } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -208,8 +208,9 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
-      this.historyWarnTable = res.data
+    await getTec({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
+      this.historyWarnTable = res.data;
+      console.log("5号工艺", this.historyWarnTable);
     })
     /**
      * 获取上下限阈值
@@ -370,7 +371,7 @@ export default {
           //   })
           // })
           // 定时查询铸轧机最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机5#', rollingName: this.indicatorName }).then((res) => {
+          getTec({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 1000)

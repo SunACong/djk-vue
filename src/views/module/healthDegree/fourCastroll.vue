@@ -143,7 +143,7 @@
 import AreaChart from '@/views/dashboard/AreaChart'
 import { getAvaluateList } from "@/api/avaluate";
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData4 } from "@/api/fourCastroll";
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from "@/api/warnTable";
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from "@/api/warnTable";
 import { parseTime } from "@/utils/utils";
 export default {
   components: { AreaChart },
@@ -206,8 +206,9 @@ export default {
     clearInterval(this.timer)
     this.timer = null
     this.setTimer()
-    await getListWarnHistoryData({ rollingDeviceNumber: "铸轧机4#" }).then((res) => {
+    await getDevice({ rollingDeviceNumber: "铸轧机4#" }).then((res) => {
       this.historyWarnTable = res.data
+      console.log("4号设备参数", this.historyWarnTable);
     })
     await getAvaluateList().then((res) => {
       this.avaluateList = res.data
@@ -475,7 +476,7 @@ export default {
               //  this.rollingTableData4[12].value = item.upRollMontorA;
             })
           })
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机4#', rollingName: this.indicatorName }).then((res) => {
+          getDevice({ rollingDeviceNumber: '铸轧机4#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 2000)

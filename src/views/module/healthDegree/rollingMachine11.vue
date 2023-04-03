@@ -143,7 +143,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } from '@/api/oneCastrollgy'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getTec } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -207,10 +207,11 @@ export default {
     this.timer = null
     this.setTimer()
     /**
-     * 获取一号铸轧机报警历史记录（30条）
+     * 获取一号铸轧机报警历史记录（50条）
      */
-    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
-      this.historyWarnTable = res.data
+    await getTec({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
+      this.historyWarnTable = res.data;
+      // console.log("1号工艺参数", this.historyWarnTable);
     })
     /**
      * 获取上下限阈值
@@ -368,13 +369,17 @@ export default {
 
           //     this.rollingTableData1[2].chartData.rName = '卷取电机速度'
           //     this.rollingTableData1[2].chartData.yData.push(item.rollV)
-
           //   })
           // })
-          // 定时查询铸轧机最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+          // // 定时查询铸轧机最新50条报警记录
+          getTec({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, para: "工艺参数" }).then((res) => {
             this.currentWarnTable = res.data
           })
+
+          // 定时查询铸轧机最新20条报警记录
+          // getListWarnNewData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+          //   this.currentWarnTable = res.data
+          // })
         }, 1000)
       }
     }
