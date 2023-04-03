@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :style="{height:height,width:width}" />
+  <div :class="className" :style="{ height: height, width: width }" />
 </template>
 
 <script>
@@ -26,19 +26,19 @@ export default {
     },
     xData: {
       type: Array,
-      default: ()=>[]
+      default: () => []
     },
-    yData:{
+    yData: {
       type: Array,
-      default: ()=>[]
+      default: () => []
     },
-    minData:{
+    minData: {
       type: Number
     },
-    maxData:{
+    maxData: {
       type: Number
     },
-    rName:{
+    rName: {
       type: String
     }
   },
@@ -93,11 +93,11 @@ export default {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
       // console.log(this.xData, this.yData)
-      this.setOption(this.xData, this.yData,this.minData,this.maxData,this.rName)
+      this.setOption(this.xData, this.yData, this.minData, this.maxData, this.rName)
     },
-    setOption(x, y,min,max,r) {
+    setOption(x, y, min, max, r) {
       this.chart.setOption({
-        title:{
+        title: {
           text: ''
         },
         tooltip: {
@@ -129,11 +129,27 @@ export default {
           }
         ],
         series: [
+
+
           {
+            //最大值最小值标注线
+            markLine: {
+              // symbol: ['none', 'none'], // 去掉箭头
+              data: [
+                {
+                  yAxis: max,
+                  name: '上限'
+                },
+                {
+                  yAxis: min,
+                  name: '下限'
+                }
+              ]
+            },
             name: r,
             type: 'line',
             stack: 'Total',
-            areaStyle: {},
+            // areaStyle: {},
             emphasis: {
               focus: 'series'
             },
@@ -141,19 +157,24 @@ export default {
           },
         ],
         visualMap: [
-        {
-          min,
-          max,
-          show: false,
-          //平均分层
-          splitNumber: 2,
-          inRange: {
-            color: ['#33bfcc']
-          },
-          outOfRange: {
-            color: ['#CC3300'],
-          },
-        }]
+          {
+            min,
+            max,
+            // pieces: [{
+            //   gt: that.min, // 设置最小值
+            //   lte: that.max, // 设置最大值
+            //   color: '#33CC33'
+            // }],
+            show: false,
+            //平均分层
+            splitNumber: 2,
+            inRange: {
+              color: ['#33bfcc']
+            },
+            outOfRange: {
+              color: ['#CC3300'],
+            },
+          }]
       })
     }
   }

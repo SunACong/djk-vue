@@ -99,8 +99,6 @@ export default {
     },
     setOption(x, y, min, max, r) {
       this.chart.setOption({
-
-
         title: {
           text: ''
         },
@@ -137,7 +135,7 @@ export default {
             name: r,
             type: 'line',
             stack: 'Total',
-            areaStyle: {},
+            // areaStyle: {},
             emphasis: {
               focus: 'series'
             },
@@ -158,6 +156,9 @@ export default {
             lt: max, // 设置最大值<250
             color: '#33bfcc'
           }],
+          // inRange: {
+          //   color: ['#33bfcc']
+          // },
           outOfRange: {
             color: '#CC3300' // 设置超出部分的颜色
           }

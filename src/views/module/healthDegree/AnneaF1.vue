@@ -18,8 +18,8 @@
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div style="padding: 0 30%" @click="getMyData(1, scope.row)">
-                    <AreaChart width="200px" height="63px" :x-data="scope.row.chartData.xData"
+                  <div style="display: inline; " @click="getMyData(1, scope.row)">
+                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
                       :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
                       :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
                   </div>
@@ -377,7 +377,8 @@ export default {
               this.rollingTableData1[0].chartData.yData.unshift(item.coolWaterUpLimit)
               this.rollingTableData1[0].chartData.rName = '炉冷却水'
               this.rollingTableData1[1].chartData.xData.unshift(item.ts)
-              this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
+              // this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
+              this.rollingTableData1[1].chartData.yData.unshift(1)
               this.rollingTableData1[1].chartData.rName = '炉压缩空气'
               this.rollingTableData1[2].chartData.xData.unshift(item.ts)
               this.rollingTableData1[2].chartData.yData.unshift(item.meterialT)
