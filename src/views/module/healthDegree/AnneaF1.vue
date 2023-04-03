@@ -112,7 +112,7 @@
                 <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果">
+            <el-table-column label="查看">
               <template slot-scope="scope">
                 <div style="display: flex">
                   <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
@@ -430,7 +430,10 @@ export default {
             this.currentWarnTable = res.data
           })
 
-
+          // getListDuringWarnData({ rollingDeviceNumber: '退火炉1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
+          //   console.log("特定时间范围内的数据", res)
+          //   this.historyWarnTable = res.data
+          // })
         }, 1000)
       }
     }
