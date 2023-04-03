@@ -75,14 +75,14 @@
               <i class="el-icon-s-help" si />
             </div>
             <span>冷轧卷报告单判定</span>
-            <el-button
+            <!-- <el-button
               type="primary"
               :loading="loading"
               size="small"
               style="height: 33px;width: 80px;margin: 5px 0 0 10px;"
               @click="getList"
             >{{ loading ? "判定中" : "判定"
-            }}</el-button>
+            }}</el-button> -->
           </div>
           <div style="display: flex;">
             <div>
@@ -185,7 +185,7 @@
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="allDetermination" label="质量判定" min-width="20%">
+            <!-- <el-table-column prop="allDetermination" label="质量判定" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.allDetermination === 1 ? 'success' : (scope.row.allDetermination === 2 ? 'info' : 'danger')"
@@ -193,7 +193,7 @@
                   {{ scope.row.allDetermination === 1 ? '合格' : (scope.row.allDetermination === 2 ? '暂未评定' : '不合格') }}
                 </el-tag>
               </template>
-            </el-table-column>
+            </el-table-column> -->
             <!-- <el-table-column prop="remark" label="备注" min-width="20%" /> -->
             <el-table-column label="操作" min-width="20%">
               <template slot-scope="scope">
@@ -222,56 +222,80 @@
     <el-dialog ref="dailog" :title="dailogData.planNum" :visible.sync="dialogFormVisible">
       <!-- 板型 -->
       <div v-if="showWtich === 1 || showWtich === 6">
-        <el-descriptions title="板型" :column="2" border :size="size">
+        <el-descriptions title="板型" :column="2" border :size="size" :label-style="dailogData.plateTypeDetermination==0?labelStyleNo:labelStyle">
           <el-descriptions-item label="平直度">
-            {{ dailogData.lmdpQcColdInspect.singleStraightness === null ? '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
+            {{ dailogData.lmdpQcColdInspect.singleStraightness === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
           </el-descriptions-item>
           <el-descriptions-item label="平直度标准">
-            -
+            {{ dailogData.slaveErpPlanColdreductionstrip.flatness === null ?
+              '-' : dailogData.slaveErpPlanColdreductionstrip.flatness }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度">
-            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null ? '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
+            {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度标准">
-            -
+            {{ dailogData.slaveErpPlanColdreductionstrip.convexRate ===null ?
+              '-' : dailogData.slaveErpPlanColdreductionstrip.convexRate }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 尺寸偏差 -->
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
-        <el-descriptions title="尺寸偏差" :column="2" border :size="size">
+        <el-descriptions title="尺寸偏差" :column="2" border :size="size" :label-style="dailogData.dimensionalDeviationDetermination==0?labelStyleNo:labelStyle">
           <el-descriptions-item label="宽度">
-            {{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
+            {{ dailogData.lmdpQcColdInspect.finishedWidth === null?
+              '-':dailogData.lmdpQcColdInspect.finishedWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="宽度差标准">
-            -
+            {{ dailogData.slaveErpPlanColdreductionstrip.warpWidth ===
+              null ? '-' : dailogData.slaveErpPlanColdreductionstrip.warpWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度">
-            {{ dailogData.lmdpQcColdInspect.singleHeight === null ? '-' : dailogData.lmdpQcColdInspect.singleHeight }}
+            {{ dailogData.lmdpQcColdInspect.finishedThickness === null ?
+              '-' : dailogData.lmdpQcColdInspect.finishedThickness }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
-            -
+            {{ dailogData.slaveErpPlanColdreductionstrip.endwiseHeight ===
+              null ? '-' : dailogData.slaveErpPlanColdreductionstrip.endwiseHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格">
-            {{ dailogData.lmdpQcColdInspect.singleHeight === null?'-':dailogData.lmdpQcColdInspect.singleHeight }}*{{ dailogData.lmdpQcColdInspect.singleWidth === null?'-':dailogData.lmdpQcColdInspect.singleWidth }}
+            {{ dailogData.lmdpQcColdInspect.finishedThickness === null?
+              '-':dailogData.lmdpQcColdInspect.finishedThickness }}
+            *
+            {{ dailogData.lmdpQcColdInspect.finishedWidth === null?
+              '-':dailogData.lmdpQcColdInspect.finishedWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格要求">
-            {{ dailogData.lmdpQcColdInspect.model === null?'-':dailogData.lmdpQcColdInspect.model }}
+            {{ dailogData.lmdpQcColdInspect.model === null?
+              '-':dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 力学性能 -->
       <div v-if="showWtich === 3 || showWtich === 6" class="dialog-item">
-        <el-descriptions title="力学性能" :column="2" border :size="size">
+        <el-descriptions title="力学性能" :column="3" border :size="size" :label-style="dailogData.mechanicalPropertiesDetermination==0?labelStyleNo:labelStyle">
           <el-descriptions-item label="抗拉强度">
-            {{ dailogData.lmdpQcColdInspect.singleStrengthRe === null ? '-' : dailogData.lmdpQcColdInspect.singleStrengthRe }}
+            {{ dailogData.lmdpQcColdInspect.singleStrength === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleStrength }}
+          </el-descriptions-item>
+          <el-descriptions-item label="抗拉强度复检">
+            {{ dailogData.lmdpQcColdInspect.singleStrengthRe === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleStrengthRe }}
           </el-descriptions-item>
           <el-descriptions-item label="抗拉强度标准">
             {{ dailogData.slaveErpPlanColdreductionstrip.tensileStrength ===
               null ? '-' : dailogData.slaveErpPlanColdreductionstrip.tensileStrength }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率">
-            {{ dailogData.lmdpQcColdInspect.singleExtensionRe === null ? '-' : dailogData.lmdpQcColdInspect.singleExtensionRe
+            {{ dailogData.lmdpQcColdInspect.singleExtension === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleExtension
+            }}
+          </el-descriptions-item>
+          <el-descriptions-item label="延伸率复检">
+            {{ dailogData.lmdpQcColdInspect.singleExtensionRe === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleExtensionRe
             }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率标准">
@@ -279,88 +303,52 @@
               null ? '-' : dailogData.slaveErpPlanColdreductionstrip.elongation }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能">
+            {{ dailogData.lmdpQcColdInspect.bendingPerformanceRequirements ===
+              null ? '-' : Dict.get(dailogData.lmdpQcColdInspect.bendingPerformanceRequirements) }}
+          </el-descriptions-item>
+          <el-descriptions-item label="弯折性能复检">
             {{ dailogData.lmdpQcColdInspect.bendingPerformanceRe ===
-              null ? '-' : dailogData.lmdpQcColdInspect.bendingPerformanceRe }}
+              null ? '-' : Dict.get(dailogData.lmdpQcColdInspect.bendingPerformanceRe) }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能表标准">
             {{ dailogData.lmdpQcColdInspect.bendingPerformanceRequirements ===
-              null ? '-' : dailogData.lmdpQcColdInspect.bendingPerformanceRequirements }}
+              null ? '-' : Dict.get(dailogData.lmdpQcColdInspect.bendingPerformanceRequirements) }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 表面质量 -->
       <div v-if="showWtich === 4 || showWtich === 6" class="dialog-item">
-        <el-descriptions title="表面质量" :column="2" border :size="size">
-          <el-descriptions-item label="划痕">
-            -
+        <el-descriptions title="表面质量" :column="1" border :size="size" :label-style="dailogData.surfaceQualityDetermination==0?labelStyleNo:labelStyle">
+          <el-descriptions-item label="表面质量描述">
+            {{ dailogData.lmdpQcColdInspect.surfaceQuality ===
+              null ? '-' :
+                dailogData.lmdpQcColdInspect.surfaceQualityRemark == null?
+                  Dict.get(dailogData.lmdpQcColdInspect.surfaceQuality):dailogData.lmdpQcColdInspect.surfaceQualityRemark }}
           </el-descriptions-item>
-          <el-descriptions-item label="划痕">
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              条纹
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              油斑
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              腐蚀
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              黑线
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              辊印
-            </template>
-            -
+          <el-descriptions-item label="产品外观质量及轧制要求">
+            1、产品外观质量：{{ dailogData.slaveErpPlanColdreductionstrip.appearanceReq }},
+            2、坯料粗糙度：{{ dailogData.slaveErpPlanColdreductionstrip.roughness }},
+            3、卷层端面串层：{{ dailogData.slaveErpPlanColdreductionstrip.stringLayer }},
+            4、卷材端面塔形：{{ dailogData.slaveErpPlanColdreductionstrip.dagoba }},
+            5、卷端面其他要求：{{ dailogData.slaveErpPlanColdreductionstrip.otherrequirement }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 外观质量 -->
       <div v-if="showWtich === 5 || showWtich === 6" class="dialog-item">
-        <el-descriptions title="外观质量" :column="2" border :size="size">
-          <el-descriptions-item>
-            <template slot="label">
-              串层
-            </template>
-            -
+        <el-descriptions title="外观质量" :column="1" border :size="size" :label-style="dailogData.appearanceQualityDetermination==0?labelStyleNo:labelStyle">
+          <el-descriptions-item label="外观质量描述">
+            {{ dailogData.lmdpQcColdInspect.appearanceQuality ===
+              null ? '-' :
+                dailogData.lmdpQcColdInspect.appearanceQualityRemark == null?
+                  Dict.get(dailogData.lmdpQcColdInspect.appearanceQuality):dailogData.lmdpQcColdInspect.appearanceQualityRemark }}
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              塔形
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              卷径
-            </template>
-            {{ dailogData.finishedRollDiameter === null ? '-' : dailogData.finishedRollDiameter }}
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              偏移量
-            </template>
-            -
-          </el-descriptions-item>
-          <el-descriptions-item>
-            <template slot="label">
-              管芯
-            </template>
-            -
+          <el-descriptions-item label="产品外观质量及轧制要求">
+            1、产品外观质量：{{ dailogData.slaveErpPlanColdreductionstrip.appearanceReq }},
+            2、坯料粗糙度：{{ dailogData.slaveErpPlanColdreductionstrip.roughness }},
+            3、卷层端面串层：{{ dailogData.slaveErpPlanColdreductionstrip.stringLayer }},
+            4、卷材端面塔形：{{ dailogData.slaveErpPlanColdreductionstrip.dagoba }},
+            5、卷端面其他要求：{{ dailogData.slaveErpPlanColdreductionstrip.otherrequirement }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -379,6 +367,11 @@
 <script>
 import BarChart from '@/views/dashboard/BarChart'
 import { getList as getPlanAndInspect, getRangeDayInfo, getEveryDayInfo } from '@/api/planAndInspect'
+const Dict = new Map()
+Dict.set('no_cracks', '90°折弯无裂纹')
+Dict.set('cracked', '90°折弯有裂纹')
+Dict.set('qualified', '合格')
+Dict.set('unqualified', '不合格')
 export default {
   batch_num: 'ProductQuality',
   components: {
@@ -386,8 +379,15 @@ export default {
   },
   data() {
     return {
+      Dict,
+      labelStyleNo: {
+        background: '#fff',
+        width: '100px',
+        color: 'red'
+      },
       labelStyle: {
-        background: '#fff'
+        background: '#fff',
+        width: '100px'
       },
       // 遮罩层
       loading: false,
@@ -444,6 +444,9 @@ export default {
         lmdpQcColdInspect: {
           singleStraightness: null,
           singleMediumConvexity: null
+        },
+        slaveErpPlanColdreductionstrip: {
+          flatness: null
         }
       },
       tableData: [],
