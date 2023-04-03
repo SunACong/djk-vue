@@ -6,7 +6,7 @@
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">1#铸轧机设备参数</span>
+              <span style="line-height: 20px;">5#铸轧机设备参数</span>
             </div>
           </div>
           <div>
@@ -43,7 +43,8 @@
         </el-card>
       </div>
     </div>
-    <!-- <div class="health_status" style="margin-top: 8px">
+    <!--实时报警记录刷新表-->
+    <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
@@ -51,40 +52,34 @@
           </div>
         </div>
         <div>
-          <el-table :data="currentWarnTable" stripe style="width: 100%" height="300px" :show-header="false">
-            <el-table-column prop="rollingProduceTime" label="日期" min-width="25%" />
-            <el-table-column prop="rollingName" label="指标名称" min-width="25%" />
-            <el-table-column prop="rollingValue" label="数值" min-width="20%" />
-            <el-table-column prop="status" label="状态" min-width="20%">
+          <el-table :data="currentWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <!-- <el-table-column prop="idNumber" label="序号" /> -->
+            <el-table-column prop="rollingProduceTime" label="日期" />
+            <el-table-column prop="rollingName" label="指标名称" />
+            <el-table-column prop="rollingValue" label="数值" />
+            <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
-                <el-button
-                  size="medium"
-                  type="text"
-                  style="color: red"
-                >异常</el-button>
+                <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果" min-width="10%">
+            <el-table-column label="查看">
               <template slot-scope="scope">
                 <div style="display: flex">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    @click="getMyData(2, scope.row)"
-                  >查看</el-button>
-                  <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
+                  <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
                 </div>
               </template>
             </el-table-column>
+            <el-table-column prop="yd" label="是否已读" />
           </el-table>
         </div>
       </el-card>
-    </div> -->
+    </div>
+
     <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
-            <span style="line-height: 20px;">报警记录</span>
+            <span style="line-height: 20px;">历史报警记录</span>
           </div>
         </div>
         <div style="display: flex;">
@@ -115,7 +110,7 @@
                 <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果">
+            <el-table-column label="查看">
               <template slot-scope="scope">
                 <div style="display: flex">
                   <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
@@ -147,7 +142,7 @@
 import AreaChart from '@/views/dashboard/AreaChart'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData5 } from '@/api/fiveCastroll'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -210,8 +205,9 @@ export default {
     clearInterval(this.timer)
     this.timer = null
     this.setTimer()
-    await getListWarnHistoryData({ rollingDeviceNumber: "铸轧机5#" }).then((res) => {
+    await getDevice({ rollingDeviceNumber: "铸轧机5#" }).then((res) => {
       this.historyWarnTable = res.data
+      // console.log("五号设备参数", this.historyWarnTable);
     })
     await getAvaluateList().then((res) => {
       this.avaluateList = res.data
@@ -369,6 +365,8 @@ export default {
           // console.log("是否已读", res)
         })
       }
+      row.yd = "已读";
+
 
       this.dialogVisible = true
     },
@@ -481,8 +479,8 @@ export default {
               //  this.rollingTableData5[12].value = item.upRollMontorA;
             })
           })
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机5#', rollingName: this.indicatorName }).then((res) => {
-            this.historyWarnTable = res.data
+          getDevice({ rollingDeviceNumber: '铸轧机5#', rollingName: this.indicatorName }).then((res) => {
+            this.currentWarnTable = res.data
           })
         }, 2000)
       }

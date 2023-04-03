@@ -43,7 +43,8 @@
         </el-card>
       </div>
     </div>
-    <!-- <div class="health_status" style="margin-top: 8px">
+    <!--实时报警记录刷新表-->
+    <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
           <div style="display: flex;">
@@ -51,35 +52,28 @@
           </div>
         </div>
         <div>
-          <el-table :data="currentWarnTable" stripe style="width: 100%" height="300px" :show-header="false">
-            <el-table-column prop="rollingProduceTime" label="日期" min-width="25%" />
-            <el-table-column prop="rollingName" label="指标名称" min-width="25%" />
-            <el-table-column prop="rollingValue" label="数值" min-width="20%" />
-            <el-table-column prop="status" label="状态" min-width="20%">
+          <el-table :data="currentWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <!-- <el-table-column prop="idNumber" label="序号" /> -->
+            <el-table-column prop="rollingProduceTime" label="日期" />
+            <el-table-column prop="rollingName" label="指标名称" />
+            <el-table-column prop="rollingValue" label="数值" />
+            <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
-                <el-button
-                  size="medium"
-                  type="text"
-                  style="color: red"
-                >异常</el-button>
+                <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果" min-width="10%">
+            <el-table-column label="查看">
               <template slot-scope="scope">
                 <div style="display: flex">
-                  <el-button
-                    size="medium"
-                    type="text"
-                    @click="getMyData(2, scope.row)"
-                  >查看</el-button>
-                  <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
+                  <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
                 </div>
               </template>
             </el-table-column>
+            <el-table-column prop="yd" label="是否已读" />
           </el-table>
         </div>
       </el-card>
-    </div> -->
+    </div>
     <div class="health_status" style="margin-top: 8px">
       <el-card shadow="always">
         <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
@@ -105,23 +99,25 @@
           </div>
         </div>
         <div>
-          <el-table :data="historyWarnTable" stripe style="width: 100%" height="300px" :show-header="false">
-            <el-table-column prop="rollingProduceTime" label="日期" min-width="25%" />
-            <el-table-column prop="rollingName" label="指标名称" min-width="25%" />
-            <el-table-column prop="rollingValue" label="数值" min-width="20%" />
-            <el-table-column prop="status" label="状态" min-width="20%">
+          <el-table :data="historyWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+            <!-- <el-table-column prop="idNumber" label="序号" /> -->
+            <el-table-column prop="rollingProduceTime" label="日期" />
+            <el-table-column prop="rollingName" label="指标名称" />
+            <el-table-column prop="rollingValue" label="数值" />
+            <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
                 <el-button size="medium" type="text" style="color: red">异常</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="判定结果" min-width="10%">
+            <el-table-column label="查看">
               <template slot-scope="scope">
                 <div style="display: flex">
                   <el-button size="medium" type="text" @click="getMyData(2, scope.row)">查看</el-button>
-                  <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button>
+                  <!-- <el-button v-if="myvisible" size="medium" type="text" style="color: red">(已阅)</el-button> -->
                 </div>
               </template>
             </el-table-column>
+            <el-table-column prop="yd" label="是否已读" />
           </el-table>
         </div>
       </el-card>
@@ -145,7 +141,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData2, getListSpecial2, rollingOptions, rollingTableData1 } from '@/api/AnneaF'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -340,6 +336,11 @@ export default {
             }
           })
         })
+        addRead(row).then((res) => {
+          // console.log("是否已读", res)
+        })
+        row.yd = "已读";
+
       }
       // 为true则显示弹窗
       this.dialogVisible = true
@@ -425,9 +426,10 @@ export default {
             })
           })
           // 定时查询退火炉最新20条报警记录
-          // getListWarnNewData({ rollingDeviceNumber: '退火炉#' }).then((res) => {
-          //   this.currentWarnTable = res.data
-          // })
+          getListWarnHistoryData({ rollingDeviceNumber: '退火炉2#', rollingName: this.indicatorName }).then((res) => {
+            this.currentWarnTable = res.data
+          })
+
         }, 1000)
       }
     }
