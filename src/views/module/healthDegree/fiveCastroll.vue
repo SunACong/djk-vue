@@ -364,6 +364,8 @@ export default {
           // console.log("是否已读", res)
         })
       }
+      row.yd = "已读";
+
 
       this.dialogVisible = true
     },

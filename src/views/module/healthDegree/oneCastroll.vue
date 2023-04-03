@@ -19,7 +19,7 @@
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
                   <div style="padding: 0 30%" @click="getMyData(1, scope.row)">
-                    <AreaChart width="200px" height="63px" :x-data="scope.row.chartData.xData"
+                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
                       :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
                       :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
                   </div>
@@ -214,6 +214,17 @@ export default {
     clearInterval(this.timer)
     this.timer = null
     this.setTimer()
+
+    // const yy = new Date().getFullYear()
+    // const mm = new Date().getMonth() + 1 < 10 ? '0' + new Date().getMonth() : new Date().getMonth()
+    // const dd = new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()
+    // const hh = new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()
+    // const mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
+    // const ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds()
+    // this.gettime = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss
+    // console.log("时间", this.gettime)
+    // this.gettime = parseTime(this.qualifyDateRange[0]);
+    // this.gettime = parseTime(this.qualifyDateRange[1]);
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
@@ -394,6 +405,8 @@ export default {
         addRead(row).then((res) => {
           // console.log("是否已读", res)
         })
+        // console.log("打印row++++++++++++++++++++++++++++++++++++++", row);
+        row.yd = "已读";
       }
       // 为true则显示弹窗
       this.dialogVisible = true

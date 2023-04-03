@@ -322,6 +322,7 @@ export default {
         addRead(row).then((res) => {
           // console.log("是否已读", res)
         })
+        row.yd = "已读";
       }
       // 为true则显示弹窗
       this.dialogVisible = true
