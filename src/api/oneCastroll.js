@@ -17,7 +17,7 @@ export function getListSpecial(params) {
 
 export let  rollingOptions =[
     {
-    value: '上辊电机电流',
+        value: '上辊电机电流',
     lable:'上辊电机电流',
     }, {
     value: '下辊电机电流',
