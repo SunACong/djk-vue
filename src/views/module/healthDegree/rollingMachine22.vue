@@ -125,10 +125,18 @@
     </div>
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich === 1">
-        <div>
+
+        <div display="flex" margin="5%">
+          <el-row margin="5%">
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
+            <el-button size="medium" type="text" @click="getengineList">查询</el-button>
+          </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
+
       <div v-if="showWtich === 2">
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
@@ -197,7 +205,12 @@ export default {
       xData: [],
       yData: [],
       timer: null,
-      showWtich: 1
+      showWtich: 1,
+      //tdengine的sql信息
+      tdts: '',
+      //tdengine的标签信息
+      tdtype: '',
+
     }
   },
   async created() {
@@ -209,8 +222,8 @@ export default {
      * 获取一号铸轧机报警历史记录（30条）
      */
     await getTec({ rollingDeviceNumber: '铸轧机2#' }).then((res) => {
-      this.historyWarnTable = res.data;
-      console.log("2号工艺参数", this.historyWarnTable);
+      // this.historyWarnTable = res.data;
+      // console.log("2号工艺参数", this.historyWarnTable);
     })
     /**
      * 获取上下限阈值
@@ -245,6 +258,31 @@ export default {
   },
 
   methods: {
+    //查询tdengine上的数据
+    getengineList() {
+      console.log("打印是否为相应字段", this.tdtype);
+      // 铸轧机2#
+      // SELECT * FROM t_31daa490928d11ed8fbe65289e32d77e where ts > now - 5s;
+      var zong = 'SELECT * FROM t_31daa490928d11ed8fbe65289e32d77e where ts between';
+      var qian = parseTime(this.qualifyDateRange[0]);
+      var hou = parseTime(this.qualifyDateRange[1]);
+      //补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + "limit" + "  " + 1000;
+      axios
+        //params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get("http://localhost:9528/td/castRoll/historyRange", { params: { sql: this.tdts, type: this.tdtype } })
+        .then((data) => {
+          console.log('日期', data.data[0]);
+          console.log("值", data.data[1]);
+          this.xData = data.data[0];
+          this.yData = data.data[1];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+
     /**
      * 获取当点击时间空间以及单选框时，得到的指标名称和时间
      */
@@ -281,6 +319,8 @@ export default {
         this.maxData = row.chartData.maxData
         this.rName = row.chartData.rName
         // console.log("这是name",row.chartData.rName)
+        this.tdtype = row.chartData.rType;
+        console.log("打印出来的type", this.tdtype);
       }
       /**
        * 查看报警数据前后的数据，并以图表形式展示
@@ -334,16 +374,25 @@ export default {
             this.rollingTableData1[1].chartData.yData = []
             this.rollingTableData1[2].chartData.xData = []
             this.rollingTableData1[2].chartData.yData = []
+            this.rollingTableData1[0].chartData.rType = []
+            this.rollingTableData1[1].chartData.rType = []
+            this.rollingTableData1[2].chartData.rType = []
+
             this.dataList.forEach(item => {
               this.rollingTableData1[0].chartData.xData.push(item.ts)
               this.rollingTableData1[0].chartData.yData.push(item.upRollMontorLineV)
               this.rollingTableData1[0].chartData.rName = '上辊电机速度'
+              this.rollingTableData1[0].chartData.rType = "upRollMontorLineV"
+
               this.rollingTableData1[1].chartData.xData.push(item.ts)
               this.rollingTableData1[1].chartData.yData.push(item.downRollMontorLineV)
               this.rollingTableData1[1].chartData.rName = '下辊电机速度'
+              this.rollingTableData1[1].chartData.rType = "downRollMontorLineV"
+
               this.rollingTableData1[2].chartData.xData.push(item.ts)
               this.rollingTableData1[2].chartData.yData.push(item.rollV)
               this.rollingTableData1[2].chartData.rName = '卷取电机速度'
+              this.rollingTableData1[2].chartData.rType = "rollV"
               //上辊电机速度
               this.rollingTableData1[0].value = item.upRollMontorLineV;
               //下辊电机速度
@@ -353,6 +402,7 @@ export default {
 
             })
           })
+
 
 
           // getListNewData2().then((res) => {
