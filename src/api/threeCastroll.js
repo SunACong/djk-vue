@@ -76,7 +76,7 @@ export let rollingTableData3 = [{
     }
 }, {
     xuhao: '03',
-    name: '主水泵电机电流(暂无数据)',
+    name: '主水泵电机电流',
     value: '83',
     chartData: {
         xData: [],

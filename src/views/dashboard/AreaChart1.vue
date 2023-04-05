@@ -141,7 +141,7 @@ export default {
             },
             //最大值最小值标注线
             markLine: {
-              // symbol: ['上限', '下限'], // 去掉箭头
+              symbol: ['', ''], // 去掉箭头
               data: [
                 {
                   yAxis: max,
