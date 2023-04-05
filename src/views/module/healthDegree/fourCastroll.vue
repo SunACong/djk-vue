@@ -18,10 +18,10 @@
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
-                  <div style="padding: 0 30%" @click="getMyData(1, scope.row)">
-                    <AreaChart width="200px" height="63px" :x-data="scope.row.chartData.xData"
+                  <div style="display: inline; " @click="getMyData(1, scope.row)">
+                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
                       :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
-                      :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName"></AreaChart>
+                      :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
                   </div>
                 </template>
               </el-table-column>
@@ -140,7 +140,7 @@
 </template>
 
 <script>
-import AreaChart from '@/views/dashboard/AreaChart'
+import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from "@/api/avaluate";
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData4 } from "@/api/fourCastroll";
 import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from "@/api/warnTable";
