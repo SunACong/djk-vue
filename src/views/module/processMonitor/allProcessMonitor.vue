@@ -6,8 +6,23 @@
       点击功能：查询完成后点击已完成的步骤，可查看该步骤的详细信息
     </div>
     <div class="top-select">
-      <el-cascader v-model="selectValue" placeholder="熔次号/铸轧卷号/冷轧卷号" class="top-select-input" :options="options" filterable />
-      <el-button type="primary" style="margin-left: 15px" @click="getSelectValue(selectValue)">搜索</el-button>
+      <el-select v-model="type" style="width: 130px" @change="changeType(type)">
+        <el-option
+          v-for="(item, index) in typeOptions"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-select v-model="selectValue" filterable clearable :placeholder="'请选择'+typeOptions[type].label">
+        <el-option
+          v-for="(item, index) in valueOptions"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-button type="primary" style="margin-left: 15px" @click="getSelectValueAndType(selectValue, type)">搜索</el-button>
     </div>
     <custom-step :steps-data="stepData" :active="active" @active="getActive" />
     <div class="bottom-form">
@@ -20,12 +35,12 @@
 import CustomStep from '@/views/dashboard/CustomStep'
 import { getProcessMonitor } from '@/api/ErpPlanRollcasting'
 import { formJson0 } from '@/api/ErpPlanRollcasting'
-import { formJson1 } from '@/api/LmdpCastSmeltHold'
+import { getCastSmeltHoldList, formJson1 } from '@/api/LmdpCastSmeltHold'
 import { formJson2 } from '@/api/LmdpCastHoldingFurnace'
-import { formJson3 } from '@/api/LmdpCastProduced'
+import { getCastProduceList, formJson3 } from '@/api/LmdpCastProduced'
 import { formJson5 } from '@/api/LmdpQcCastReel'
 import { formJson6 } from '@/api/ErpPlanColdreductionstrip'
-import { formJson7 } from '@/api/LmdpColdRecord'
+import { getColdRecordList, formJson7 } from '@/api/LmdpColdRecord'
 import { formJson8 } from '@/api/LmdpColdFurnaceRecord'
 import { formJson12 } from '@/api/LmdpQcColdReelReport'
 import { formJson9 } from '@/api/LmdpColdRereelerRecord'
@@ -33,6 +48,10 @@ import { formJson10 } from '@/api/LmdpColdStoreRecord'
 import { formJson4 } from '@/api/LmdpCastReelStoreRecord'
 import { formJson11 } from '@/api/LmdpQcColdInspect'
 import { formJson13 } from '@/api/LmdpQcComplaintDetail'
+import { getDictList } from '@/api/reportDict'
+import { getUserDictList } from '@/api/sysUser'
+const reportDict = new Map()
+const userDict = new Map()
 const FormMap = new Map()
 FormMap.set(0, 'erpPlanRollcasting')
 FormMap.set(1, 'lmdpCastSmeltHold')
@@ -78,53 +97,83 @@ export default {
         { title: '投诉处理' }
       ],
       selectValue: null,
-      options: [
-        {
-          value: '1',
-          label: '熔次号',
-          children: [{
-            value: '1057',
-            label: '1057'
-          }]
-        },
-        {
-          value: '2',
-          label: '铸轧卷号',
-          children: [{
-            value: '1057A1140228',
-            label: '1057A1140228'
-          }]
-        },
-        {
-          value: '3',
-          label: '冷轧卷号',
-          children: [{
-            value: '1057A114',
-            label: '1057A114'
-          }]
-        }
-      ]
+      type: null,
+      typeOptions: [
+        { label: '熔次号', value: 0 },
+        { label: '铸轧卷号', value: 1 },
+        { label: '冷轧卷号', value: 2 }
+      ],
+      valueOptions: [],
+      reportDict: reportDict,
+      userDict: userDict
     }
   },
   watch: {
     active: {
       handler(val) {
         this.$refs.vFormRef.setFormJson(this.formJson[val - 2])
-        this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+        const formData = this.dictToValue(this.formData[`${FormMap.get(val)}`])
+        this.$refs.vFormRef.setFormData(formData)
       }
     },
     current: {
       handler(val) {
         this.$refs.vFormRef.setFormJson(this.formJson[val])
         setTimeout(() => {
-          this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+          const formData = this.dictToValue(this.formData[`${FormMap.get(val)}`])
+          this.$refs.vFormRef.setFormData(formData)
         }, 500)
       }
     }
   },
+  async mounted() {
+    // 获取报表所有字典存入map中
+    await getDictList().then(res => {
+      res.data.forEach(item => {
+        this.reportDict.set(item.value, item.chdesc)
+      })
+    })
+    await getUserDictList().then(res => {
+      res.data.forEach(item => {
+        this.userDict.set(item.userId, item.realName)
+      })
+    })
+  },
   created() {
+    this.type = this.typeOptions[0].value
+    // 搜索框默认熔次号
+    getCastSmeltHoldList().then(res => {
+      this.valueOptions = res.data.map(item => ({
+        label: item.smeltTimes,
+        value: item.smeltTimes
+      }))
+    })
   },
   methods: {
+    changeType(type) {
+      if (type === 0) {
+        getCastSmeltHoldList().then(res => {
+          this.valueOptions = res.data.map(item => ({
+            label: item.smeltTimes,
+            value: item.smeltTimes
+          }))
+        })
+      } else if (type === 1) {
+        getCastProduceList().then(res => {
+          this.valueOptions = res.data.map(item => ({
+            label: item.reelNum,
+            value: item.reelNum
+          }))
+        })
+      } else if (type === 2) {
+        getColdRecordList().then(res => {
+          this.valueOptions = res.data.map(item => ({
+            label: item.batchNum,
+            value: item.batchNum
+          }))
+        })
+      }
+    },
     getActive(val) {
       if (val > this.active) {
         this.$message({
@@ -135,15 +184,27 @@ export default {
         this.current = val
       }
     },
-    async getSelectValue(val) {
+    async getSelectValueAndType(val, type) {
       let query = null
-      if (val != null) {
+      console.log({ val, type })
+      if (val != null && type != null) {
         query = {
-          type: val[0],
-          number: val[1]
+          number: val,
+          type: type
         }
       }
       await this.getList(query)
+    },
+    dictToValue(data) {
+      for (const key in data) {
+        if (this.reportDict.has(data[`${key}`])) {
+          data[`${key}`] = this.reportDict.get(data[`${key}`])
+        }
+        if (this.userDict.has(data[`${key}`])) {
+          data[`${key}`] = this.userDict.get(data[`${key}`])
+        }
+      }
+      return data
     },
     getList(query) {
       getProcessMonitor(query).then(res => {

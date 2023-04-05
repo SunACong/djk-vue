@@ -8,7 +8,7 @@ export function listLqci(query) {
     params: query
   })
 }
-
+ 
 // 查询lqci详细
 export function getLqci(id) {
   return request({
@@ -42,3 +42,5 @@ export function delLqci(id) {
     method: 'delete'
   })
 }
+
+export const Json14 = { 'widgetList': [{ 'type': 'input', 'icon': 'text-field', 'formItemFlag': true, 'options': { 'name': 'groupId', 'label': '测试', 'labelAlign': '', 'type': 'text', 'defaultValue': '', 'placeholder': '', 'columnWidth': '200px', 'size': '', 'labelWidth': null, 'labelHidden': false, 'readonly': true, 'disabled': false, 'hidden': false, 'clearable': false, 'showPassword': false, 'required': false, 'requiredHint': '', 'validation': '', 'validationHint': '', 'customClass': [], 'labelIconClass': null, 'labelIconPosition': 'rear', 'labelTooltip': null, 'minLength': null, 'maxLength': null, 'showWordLimit': false, 'prefixIcon': '', 'suffixIcon': '', 'appendButton': false, 'appendButtonDisabled': false, 'buttonIcon': 'el-icon-search', 'onCreated': '', 'onMounted': '', 'onInput': 'groupId = window.getDict(value)\n', 'onChange': '', 'onFocus': '', 'onBlur': '', 'onValidate': '', 'onAppendButtonClick': '' }, 'id': 'input82455' }], 'formConfig': { 'modelName': 'formData', 'refName': 'vForm', 'rulesName': 'rules', 'labelWidth': 80, 'labelPosition': 'left', 'size': '', 'labelAlign': 'label-left-align', 'cssCode': '', 'customClass': [], 'functions': 'function getDict(key){\n  const Dict = new Map()\n  Dict.set("qualify:", "测试")\n  Dict.set("unQualify:", "测试")\n  return Dict.get(key)\n}', 'layoutType': 'PC', 'onFormCreated': '', 'onFormMounted': 'const Dict = new Map()\nDict.set(1, "测试")\n', 'onFormDataChange': '' }}
