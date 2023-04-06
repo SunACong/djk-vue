@@ -158,11 +158,10 @@ export const constantRoutes = [
       component: () => import('@/views/module/healthDegree/AnneaF4.vue'),
       meta: { title: '退火炉参数4#', icon: 'dashboard' }
     },
-
     {
       path: 'AnneaF5',
       name: 'AnneaF5',
-      component: () => import('@/views/module/healthDegree/AnneaF5.vue'),
+      component: () => import('@/views/module/healthDegree/ .vue'),
       meta: { title: '退火炉参数5#', icon: 'dashboard' }
     },
     {
