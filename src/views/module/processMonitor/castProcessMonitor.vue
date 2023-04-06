@@ -8,18 +8,18 @@
     <div class="top-select">
       <el-select v-model="type" style="width: 130px" @change="changeType(type)">
         <el-option
-            v-for="(item, index) in typeOptions"
-            :key="index"
-            :label="item.label"
-            :value="item.value"
+          v-for="(item, index) in typeOptions"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
         />
       </el-select>
       <el-select v-model="selectValue" filterable clearable :placeholder="熔次号">
         <el-option
-            v-for="(item, index) in valueOptions"
-            :key="index"
-            :label="item.label"
-            :value="item.value"
+          v-for="(item, index) in valueOptions"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
         />
       </el-select>
       <el-button type="primary" style="margin-left: 15px" @click="getSelectValueAndType(selectValue, type)">搜索</el-button>
@@ -66,8 +66,8 @@ export default {
   },
   data() {
     return {
-      formJson: [ formJson1, formJson2, formJson3, formJson4, formJson5,
-        ],
+      formJson: [formJson1, formJson2, formJson3, formJson4, formJson5
+      ],
       active: null,
       current: null,
       formData: {},
@@ -77,15 +77,14 @@ export default {
         { title: '保温工序' },
         { title: '铸轧工序' },
         { title: '铸轧质检' },
-        { title: '铸轧出入库' },
-
+        { title: '铸轧出入库' }
 
       ],
       selectValue: null,
       type: null,
       typeOptions: [
 
-        { label: '铸轧卷号', value: 1 },
+        { label: '铸轧卷号', value: 1 }
 
       ],
       valueOptions: [],
@@ -208,8 +207,8 @@ export default {
           this.active = null
           this.current = null
         } else {
-          this.active = count - 1
-          this.current = count - 1
+          this.active = count - 2
+          this.current = count - 2
         }
       })
     }

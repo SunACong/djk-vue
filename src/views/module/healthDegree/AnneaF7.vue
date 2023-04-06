@@ -10,18 +10,29 @@
             </div>
           </div>
           <div>
-            <el-table :data="rollingTableData1" stripe style="width: 100%" height="400px"
+            <el-table
+              :data="rollingTableData1"
+              stripe
+              style="width: 100%"
+              height="400px"
               :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
-              :header-cell-style="{ 'text-align': 'center' }">
+              :header-cell-style="{ 'text-align': 'center' }"
+            >
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
                   <div style="display: inline; " @click="getMyData(1, scope.row)">
-                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
-                      :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
-                      :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
+                    <AreaChart
+                      width="100%"
+                      height="80%"
+                      :x-data="scope.row.chartData.xData"
+                      :y-data="scope.row.chartData.yData"
+                      :min-data="scope.row.chartData.minData"
+                      :max-data="scope.row.chartData.maxData"
+                      :r-name="scope.row.chartData.rName"
+                    />
                   </div>
                 </template>
               </el-table-column>
@@ -83,15 +94,34 @@
         </div>
         <div style="display: flex;">
           <div>
-            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
-              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
-              @change="getDate" />
+            <el-date-picker
+              v-model="qualifyDateRange"
+              size="medium"
+              type="datetimerange"
+              align="left"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="pickerOptions"
+              @change="getDate"
+            />
           </div>
           <template>
-            <el-select v-model="value" style="margin-bottom: 10px" size="medium" placeholder="请选择"
-              @change="getIndicatorName($event)">
-              <el-option v-for="item in rollingOptions" :key="item.value" size="mini" :label="item.label"
-                :value="item.value" />
+            <el-select
+              v-model="value"
+              style="margin-bottom: 10px"
+              size="medium"
+              placeholder="请选择"
+              @change="getIndicatorName($event)"
+            >
+              <el-option
+                v-for="item in rollingOptions"
+                :key="item.value"
+                size="mini"
+                :label="item.label"
+                :value="item.value"
+              />
             </el-select>
           </template>
           <div style="margin-left: 30px">
@@ -128,9 +158,18 @@
 
         <div display="flex" margin="5%">
           <el-row margin="5%">
-            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
-              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
-              @change="getDate" />
+            <el-date-picker
+              v-model="qualifyDateRange"
+              size="medium"
+              type="datetimerange"
+              align="left"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="pickerOptions"
+              @change="getDate"
+            />
             <el-button size="medium" type="text" @click="getengineList">查询</el-button>
           </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
@@ -207,10 +246,10 @@ export default {
       yData: [],
       timer: null,
       showWtich: 1,
-      //tdengine的sql信息
+      // tdengine的sql信息
       tdts: '',
-      //tdengine的标签信息
-      tdtype: '',
+      // tdengine的标签信息
+      tdtype: ''
 
     }
   },
@@ -268,46 +307,46 @@ export default {
       })
     })
   },
-  destroyed: function () {
+  destroyed: function() {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
   },
 
   methods: {
-    //查询tdengine上的数据
+    // 查询tdengine上的数据
     getengineList() {
-      console.log("打印是否为相应字段", this.tdtype);
+      console.log('打印是否为相应字段', this.tdtype)
       //       退火炉4#
       // select * from t_4085e170a62511ed8b62ff846936488a where ts > now - 5s;
-      var zong = 'SELECT * FROM t_4085e170a62511ed8b62ff846936488a where ts between';
-      var qian = parseTime(this.qualifyDateRange[0]);
-      var hou = parseTime(this.qualifyDateRange[1]);
-      //补全sql语句，并且将其添加限制查询条件
-      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + "limit" + "  " + 1000;
+      var zong = 'SELECT * FROM t_4085e170a62511ed8b62ff846936488a where ts between'
+      var qian = parseTime(this.qualifyDateRange[0])
+      var hou = parseTime(this.qualifyDateRange[1])
+      // 补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
-        //params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get("http://localhost:9528/td/annealingFurnace/historyRange", { params: { sql: this.tdts, type: this.tdtype } })
+        // params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get('https://192.168.100.208:9528/td/annealingFurnace/historyRange', { params: { sql: this.tdts, type: this.tdtype }})
         .then((data) => {
-          console.log('日期', data.data[0]);
-          console.log("值", data.data[1]);
-          this.xData = data.data[0];
-          this.yData = data.data[1];
+          console.log('日期', data.data[0])
+          console.log('值', data.data[1])
+          this.xData = data.data[0]
+          this.yData = data.data[1]
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
 
     /**
      * 获取当点击时间空间以及单选框时，得到的指标名称和时间
      */
-    getIndicatorName: function (event) {
+    getIndicatorName: function(event) {
       console.log(event)
       this.indicatorName = this.value
       console.log('指标名称', this.value)
     },
-    getDate: function () {
+    getDate: function() {
       this.begin = parseTime(this.qualifyDateRange[0])
       this.end = parseTime(this.qualifyDateRange[1])
       console.log('开始时间', parseTime(this.qualifyDateRange[0]))
@@ -316,17 +355,17 @@ export default {
     /**
      * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
      */
-    getMyHistoryData: function () {
+    getMyHistoryData: function() {
       this.historyWarnTable = []
       getListDuringWarnData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
-        console.log("特定时间范围内的数据", res)
+        console.log('特定时间范围内的数据', res)
         this.historyWarnTable = res.data
       })
     },
     /**
      * 当电机页面中的图表和报警记录表中的查询按钮时，触发
      */
-    getMyData: function (index, row) {
+    getMyData: function(index, row) {
       this.showWtich = index
       if (index == 1) {
         this.xData = row.chartData.xData
@@ -335,8 +374,8 @@ export default {
         this.maxData = row.chartData.maxData
         this.rName = row.chartData.rName
         // console.log("这是name",row.chartData.rName)
-        this.tdtype = row.chartData.rType;
-        console.log("打印出来的type", this.tdtype);
+        this.tdtype = row.chartData.rType
+        console.log('打印出来的type', this.tdtype)
       }
       /**
        * 查看报警数据前后的数据，并以图表形式展示
@@ -380,8 +419,7 @@ export default {
         addRead(row).then((res) => {
           // console.log("是否已读", res)
         })
-        row.yd = "已读";
-
+        row.yd = '已读'
       }
       // 为true则显示弹窗
       this.dialogVisible = true
@@ -459,20 +497,20 @@ export default {
               this.rollingTableData1[6].chartData.rName = '炉气设定温度'
               this.rollingTableData1[6].chartData.rType = 'setT'
 
-              //炉冷却水
-              this.rollingTableData1[0].value = item.coolWaterUpLimit;
-              //炉压缩空气
-              this.rollingTableData1[1].value = item.compressedAirOneLowPressure;
-              //金属料温温度曲线
-              this.rollingTableData1[2].value = item.meterialT;
-              //1区炉气温度曲线
-              this.rollingTableData1[3].value = item.zoneOneT;
-              //2区炉气温度曲线  rollA
-              this.rollingTableData1[4].value = item.zoneTwoT;
-              //3区炉气温度曲线
-              this.rollingTableData1[5].value = item.zoneThreeT;
-              //炉气设定温度
-              this.rollingTableData1[6].value = item.setT;
+              // 炉冷却水
+              this.rollingTableData1[0].value = item.coolWaterUpLimit
+              // 炉压缩空气
+              this.rollingTableData1[1].value = item.compressedAirOneLowPressure
+              // 金属料温温度曲线
+              this.rollingTableData1[2].value = item.meterialT
+              // 1区炉气温度曲线
+              this.rollingTableData1[3].value = item.zoneOneT
+              // 2区炉气温度曲线  rollA
+              this.rollingTableData1[4].value = item.zoneTwoT
+              // 3区炉气温度曲线
+              this.rollingTableData1[5].value = item.zoneThreeT
+              // 炉气设定温度
+              this.rollingTableData1[6].value = item.setT
               // //上辊水温
               // this.rollingTableData1[7].value = item.upRollWaterT;
               // //下辊水温
@@ -494,7 +532,6 @@ export default {
           getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
           })
-
         }, 1000)
       }
     }
