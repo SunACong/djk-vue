@@ -125,16 +125,25 @@
     </div>
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich === 1">
-        <div>
+
+        <div display="flex" margin="5%">
+          <el-row margin="5%">
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
+            <el-button size="medium" type="text" @click="getengineList">查询</el-button>
+          </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
+
       <div v-if="showWtich === 2">
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
     </el-dialog>
+
   </div>
 </template>
 
@@ -197,7 +206,12 @@ export default {
       xData: [],
       yData: [],
       timer: null,
-      showWtich: 1
+      showWtich: 1,
+      //tdengine的sql信息
+      tdts: '',
+      //tdengine的标签信息
+      tdtype: '',
+
     }
   },
   async created() {
@@ -206,7 +220,7 @@ export default {
     this.timer = null
     this.setTimer()
     await getDevice({ rollingDeviceNumber: "铸轧机5#" }).then((res) => {
-      this.historyWarnTable = res.data
+      // this.historyWarnTable = res.data
       // console.log("五号设备参数", this.historyWarnTable);
     })
     await getAvaluateList().then((res) => {
@@ -280,6 +294,31 @@ export default {
   },
 
   methods: {
+    //查询tdengine上的数据
+    getengineList() {
+      console.log("打印是否为相应字段", this.tdtype);
+      //       铸轧机5#
+      // SELECT * FROM t_58a64890928d11ed8fbe65289e32d77e where ts > now - 5s;
+
+      var zong = 'SELECT * FROM t_58a64890928d11ed8fbe65289e32d77e where ts between';
+      var qian = parseTime(this.qualifyDateRange[0]);
+      var hou = parseTime(this.qualifyDateRange[1]);
+      //补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + "limit" + "  " + 1000;
+      axios
+        //params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get("http://localhost:9528/td/castRoll/historyRange", { params: { sql: this.tdts, type: this.tdtype } })
+        .then((data) => {
+          console.log('日期', data.data[0]);
+          console.log("值", data.data[1]);
+          this.xData = data.data[0];
+          this.yData = data.data[1];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
     getIndicatorName: function (event) {
       console.log(event)
       this.indicatorName = this.value
@@ -306,6 +345,9 @@ export default {
         this.minData = row.chartData.minData
         this.maxData = row.chartData.maxData
         this.rName = row.chartData.rName
+        this.tdtype = row.chartData.rType;
+        console.log("打印出来的type", this.tdtype);
+
         // console.log("这是name",row.chartData.rName)
       } else if (index == 2) {
         getListSpecial({ rollingName: row.rollingName, ts: row.rollingProduceTime }).then((res) => {
@@ -376,11 +418,11 @@ export default {
     setTimer() {
       if (this.timer == null) {
         this.timer = setInterval(() => {
-          // 1号铸轧机数据
+          // 5号铸轧机数据
 
           getListNewData().then((res) => {
             this.dataList = res.data
-            // console.log("这是拿到的数据"+res)
+            // console.log("这是拿到的数据" + res.data)
             this.rollingTableData5[0].chartData.xData = []
             this.rollingTableData5[0].chartData.yData = []
             this.rollingTableData5[1].chartData.xData = []
@@ -407,48 +449,88 @@ export default {
             this.rollingTableData5[11].chartData.yData = []
             this.rollingTableData5[12].chartData.xData = []
             this.rollingTableData5[12].chartData.yData = []
+            this.rollingTableData5[0].chartData.rType = []
+            this.rollingTableData5[1].chartData.rType = []
+            this.rollingTableData5[2].chartData.rType = []
+            this.rollingTableData5[3].chartData.rType = []
+            this.rollingTableData5[4].chartData.rType = []
+            this.rollingTableData5[5].chartData.rType = []
+            this.rollingTableData5[6].chartData.rType = []
+            this.rollingTableData5[7].chartData.rType = []
+            this.rollingTableData5[8].chartData.rType = []
+            this.rollingTableData5[9].chartData.rType = []
+            this.rollingTableData5[10].chartData.rType = []
+            this.rollingTableData5[11].chartData.rType = []
+            this.rollingTableData5[12].chartData.rType = []
+
+
             this.dataList.forEach(item => {
               this.rollingTableData5[0].chartData.xData.push(item.ts)
               this.rollingTableData5[0].chartData.yData.push(item.upRollMontorA)
               this.rollingTableData5[0].chartData.rName = '上辊电机电流'
+              this.rollingTableData5[0].chartData.rType = "upRollMontorA"
+
               this.rollingTableData5[1].chartData.xData.push(item.ts)
               this.rollingTableData5[1].chartData.yData.push(item.downRollMontorA)
               this.rollingTableData5[1].chartData.rName = '下辊电机电流'
+              this.rollingTableData5[1].chartData.rType = "downRollMontorA"
+
               this.rollingTableData5[2].chartData.xData.push(item.ts)
               this.rollingTableData5[2].chartData.yData.push(item.upRollMontorA)
               this.rollingTableData5[2].chartData.rName = '主水泵电机电流'
+              this.rollingTableData5[2].chartData.rType = "upRollMontorA"
+
               this.rollingTableData5[3].chartData.xData.push(item.ts)
               this.rollingTableData5[3].chartData.yData.push(item.upRollMontorA)
               this.rollingTableData5[3].chartData.rName = '备用水泵电机电流'
+              this.rollingTableData5[3].chartData.rType = "upRollMontorA"
+
               this.rollingTableData5[4].chartData.xData.push(item.ts)
               this.rollingTableData5[4].chartData.yData.push(item.rollA)
               this.rollingTableData5[4].chartData.rName = '卷取电机电流'
+              this.rollingTableData5[4].chartData.rType = "rollA"
+
+
               this.rollingTableData5[5].chartData.xData.push(item.ts)
               this.rollingTableData5[5].chartData.yData.push(item.upRollWaterFn)
               this.rollingTableData5[5].chartData.rName = '上辊水压'
+              this.rollingTableData5[5].chartData.rType = "upRollWaterFn"
+
               this.rollingTableData5[6].chartData.xData.push(item.ts)
               this.rollingTableData5[6].chartData.yData.push(item.downRollWaterFn)
               this.rollingTableData5[6].chartData.rName = '下辊水压'
+              this.rollingTableData5[6].chartData.rType = "downRollWaterFn"
+
               this.rollingTableData5[7].chartData.xData.push(item.ts)
               this.rollingTableData5[7].chartData.yData.push(item.upRollWaterT)
               this.rollingTableData5[7].chartData.rName = '上辊水温'
+              this.rollingTableData5[7].chartData.rType = "upRollWaterT"
+
               this.rollingTableData5[8].chartData.xData.push(item.ts)
               this.rollingTableData5[8].chartData.yData.push(item.downRollWaterT)
               this.rollingTableData5[8].chartData.rName = '下辊水温'
+              this.rollingTableData5[8].chartData.rType = "downRollWaterT"
+              // this.rollingTableData5[].chartData.rType = ""
+
               this.rollingTableData5[9].chartData.xData.push(item.ts)
               this.rollingTableData5[9].chartData.yData.push(item.upRollFlow)
               this.rollingTableData5[9].chartData.rName = '上辊流量'
+              this.rollingTableData5[9].chartData.rType = "upRollFlow"
+
               this.rollingTableData5[10].chartData.xData.push(item.ts)
               this.rollingTableData5[10].chartData.yData.push(item.downRollFlow)
               this.rollingTableData5[10].chartData.rName = '下辊流量'
+              this.rollingTableData5[10].chartData.rType = "downRollFlow"
+
               this.rollingTableData5[11].chartData.xData.push(item.ts)
               this.rollingTableData5[11].chartData.yData.push(item.operationPreloadForce)
               this.rollingTableData5[11].chartData.rName = '操作侧预载力'
+              this.rollingTableData5[11].chartData.rType = "operationPreloadForce"
+
               this.rollingTableData5[12].chartData.xData.push(item.ts)
               this.rollingTableData5[12].chartData.yData.push(item.transPreloadForce)
               this.rollingTableData5[12].chartData.rName = '传动侧预载力'
-
-
+              this.rollingTableData5[12].chartData.rType = "transPreloadForce"
               //上辊电机电流
               this.rollingTableData5[0].value = item.upRollMontorA;
               //下辊电机电流
@@ -477,8 +559,13 @@ export default {
               this.rollingTableData5[12].value = item.transPreloadForce;
               //  //传动侧预载力
               //  this.rollingTableData5[12].value = item.upRollMontorA;
+
             })
           })
+
+
+
+
           getDevice({ rollingDeviceNumber: '铸轧机5#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
           })

@@ -6,6 +6,7 @@
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
+import { type } from 'os'
 
 // const animationDuration = 3000
 
@@ -129,12 +130,18 @@ export default {
           }
         ],
         series: [
-
-
           {
+
+            name: r,
+            type: 'line',
+            stack: 'Total',
+            // areaStyle: {},
+            emphasis: {
+              focus: 'series'
+            },
             //最大值最小值标注线
             markLine: {
-              // symbol: ['none', 'none'], // 去掉箭头
+              symbol: ['', ''], // 去掉箭头
               data: [
                 {
                   yAxis: max,
@@ -146,25 +153,16 @@ export default {
                 }
               ]
             },
-            name: r,
-            type: 'line',
-            stack: 'Total',
-            // areaStyle: {},
-            emphasis: {
-              focus: 'series'
-            },
             data: y
           },
         ],
+        dataZoom: { // 放大和缩放
+          type: 'inside'
+        },
         visualMap: [
           {
             min,
             max,
-            // pieces: [{
-            //   gt: that.min, // 设置最小值
-            //   lte: that.max, // 设置最大值
-            //   color: '#33CC33'
-            // }],
             show: false,
             //平均分层
             splitNumber: 2,

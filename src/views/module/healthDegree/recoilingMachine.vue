@@ -123,18 +123,28 @@
         </div>
       </el-card>
     </div>
+
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich === 1">
-        <div>
+
+        <div display="flex" margin="5%">
+          <el-row margin="5%">
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
+            <el-button size="medium" type="text" @click="getengineList">查询</el-button>
+          </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
+
       <div v-if="showWtich === 2">
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
     </el-dialog>
+
   </div>
 </template>
 
@@ -197,7 +207,12 @@ export default {
       xData: [],
       yData: [],
       timer: null,
-      showWtich: 1
+      showWtich: 1,
+      //tdengine的sql信息
+      tdts: '',
+      //tdengine的标签信息
+      tdtype: '',
+
     }
   },
   async created() {
@@ -244,6 +259,30 @@ export default {
   },
 
   methods: {
+    //查询tdengine上的数据
+    getengineList() {
+      console.log("打印是否为相应字段", this.tdtype);
+      // 重卷机#
+      // select * from t_8e6f17d0928e11ed8fbe65289e32d77e where ts > now - 5s;
+      var zong = 'SELECT * FROM t_8e6f17d0928e11ed8fbe65289e32d77e where ts between';
+      var qian = parseTime(this.qualifyDateRange[0]);
+      var hou = parseTime(this.qualifyDateRange[1]);
+      //补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + "limit" + "  " + 1000;
+      axios
+        //params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get("http://localhost:9528/td/rewindRoll/historyRange", { params: { sql: this.tdts, type: this.tdtype } })
+        .then((data) => {
+          console.log('日期', data.data[0]);
+          console.log("值", data.data[1]);
+          this.xData = data.data[0];
+          this.yData = data.data[1];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
     /**
      * 获取当点击时间空间以及单选框时，得到的指标名称和时间
      */
@@ -280,6 +319,8 @@ export default {
         this.maxData = row.chartData.maxData
         this.rName = row.chartData.rName
         // console.log("这是name",row.chartData.rName)
+        this.tdtype = row.chartData.rType;
+        console.log("打印出来的type", this.tdtype);
       }
       /**
        * 查看报警数据前后的数据，并以图表形式展示
@@ -324,7 +365,7 @@ export default {
     setTimer() {
       if (this.timer == null) {
         this.timer = setInterval(() => {
-          // 1号铸轧机数据
+          // 重卷机
           getListNewDataCjj1().then((res) => {
             this.dataList = res.data
             // console.log("这是拿到的数据"+this.dataList)
@@ -332,15 +373,23 @@ export default {
             this.rollingTableData1[0].chartData.yData = []
             this.rollingTableData1[1].chartData.xData = []
             this.rollingTableData1[1].chartData.yData = []
+
+            this.rollingTableData1[0].chartData.rType = []
+            this.rollingTableData1[1].chartData.rType = []
+            // this.rollingTableData1[2].chartData.rType = []
+            // this.rollingTableData1[3].chartData.rType = []
             // this.rollingTableData1[2].chartData.xData = []
             // this.rollingTableData1[2].chartData.yData = []
             this.dataList.forEach(item => {
               this.rollingTableData1[0].chartData.xData.unshift(item.ts)
               this.rollingTableData1[0].chartData.yData.unshift(item.openRollA)
               this.rollingTableData1[0].chartData.rName = '开卷机电流曲线'
+              this.rollingTableData1[0].chartData.rType = 'openRollA'
+
               this.rollingTableData1[1].chartData.xData.unshift(item.ts)
               this.rollingTableData1[1].chartData.yData.unshift(item.rollWindA)
               this.rollingTableData1[1].chartData.rName = '卷取机电流曲线'
+              this.rollingTableData1[1].chartData.rType = 'rollWindA'
               // this.rollingTableData1[2].chartData.xData.push(item.ts)
               // this.rollingTableData1[2].chartData.yData.push(item.rollV)
               // this.rollingTableData1[2].chartData.rName = '卷取电机速度'

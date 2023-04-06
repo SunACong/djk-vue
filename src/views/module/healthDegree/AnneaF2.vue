@@ -122,18 +122,28 @@
         </div>
       </el-card>
     </div>
+
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich === 1">
-        <div>
+
+        <div display="flex" margin="5%">
+          <el-row margin="5%">
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
+            <el-button size="medium" type="text" @click="getengineList">查询</el-button>
+          </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
+
       <div v-if="showWtich === 2">
         <div>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
     </el-dialog>
+
   </div>
 </template>
 
@@ -196,7 +206,12 @@ export default {
       xData: [],
       yData: [],
       timer: null,
-      showWtich: 1
+      showWtich: 1,
+      //tdengine的sql信息
+      tdts: '',
+      //tdengine的标签信息
+      tdtype: '',
+
     }
   },
   async created() {
@@ -260,6 +275,31 @@ export default {
   },
 
   methods: {
+    //查询tdengine上的数据
+    getengineList() {
+      console.log("打印是否为相应字段", this.tdtype);
+      //       退火炉2#
+      // select * from t_2ed846c0a62511ed8b62ff846936488a where ts > now - 5s;
+
+      var zong = 'SELECT * FROM t_2ed846c0a62511ed8b62ff846936488a where ts between';
+      var qian = parseTime(this.qualifyDateRange[0]);
+      var hou = parseTime(this.qualifyDateRange[1]);
+      //补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + "limit" + "  " + 1000;
+      axios
+        //params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get("http://localhost:9528/td/annealingFurnace/historyRange", { params: { sql: this.tdts, type: this.tdtype } })
+        .then((data) => {
+          console.log('日期', data.data[0]);
+          console.log("值", data.data[1]);
+          this.xData = data.data[0];
+          this.yData = data.data[1];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
     /**
      * 获取当点击时间空间以及单选框时，得到的指标名称和时间
      */
@@ -296,6 +336,9 @@ export default {
         this.maxData = row.chartData.maxData
         this.rName = row.chartData.rName
         // console.log("这是name",row.chartData.rName)
+        this.tdtype = row.chartData.rType;
+        console.log("打印出来的type", this.tdtype);
+
       }
       /**
        * 查看报警数据前后的数据，并以图表形式展示
@@ -350,7 +393,7 @@ export default {
     setTimer() {
       if (this.timer == null) {
         this.timer = setInterval(() => {
-          // 1号铸轧机数据
+          // 2号退火炉数据
           getListNewData2().then((res) => {
             this.dataList = res.data
             // console.log("这是拿到的数据"+this.dataList)
@@ -369,35 +412,59 @@ export default {
             this.rollingTableData1[6].chartData.xData = []
             this.rollingTableData1[6].chartData.yData = []
 
+            this.rollingTableData1[0].chartData.rType = []
+            this.rollingTableData1[1].chartData.rType = []
+            this.rollingTableData1[2].chartData.rType = []
+            this.rollingTableData1[3].chartData.rType = []
+            this.rollingTableData1[4].chartData.rType = []
+            this.rollingTableData1[5].chartData.rType = []
+            this.rollingTableData1[6].chartData.rType = []
+
+            // this.rollingTableData1[].chartData.rType = ''
+
             this.dataList.forEach(item => {
               this.rollingTableData1[0].chartData.xData.unshift(item.ts)
               this.rollingTableData1[0].chartData.yData.unshift(item.coolWaterUpLimit)
               this.rollingTableData1[0].chartData.rName = '炉冷却水'
+              this.rollingTableData1[0].chartData.rType = 'coolWaterUpLimit'
+
               this.rollingTableData1[1].chartData.xData.unshift(item.ts)
               // this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
               this.rollingTableData1[1].chartData.yData.unshift(1)
               this.rollingTableData1[1].chartData.rName = '炉压缩空气'
+              this.rollingTableData1[1].chartData.rType = 'compressedAirOneLowPressure'
+
               this.rollingTableData1[2].chartData.xData.unshift(item.ts)
               this.rollingTableData1[2].chartData.yData.unshift(item.meterialT)
               this.rollingTableData1[2].chartData.rName = '金属料温温度曲线'
+              this.rollingTableData1[2].chartData.rType = 'meterialT'
+
               this.rollingTableData1[3].chartData.xData.unshift(item.ts)
               this.rollingTableData1[3].chartData.yData.unshift(item.zoneOneT)
               this.rollingTableData1[3].chartData.rName = '1区炉气温度曲线'
+              this.rollingTableData1[3].chartData.rType = 'zoneOneT'
+
+              // this.rollingTableData1[].chartData.rType = ''
+
               this.rollingTableData1[4].chartData.xData.unshift(item.ts)
               this.rollingTableData1[4].chartData.yData.unshift(item.zoneTwoT)
               this.rollingTableData1[4].chartData.rName = '2区炉气温度曲线'
+              this.rollingTableData1[4].chartData.rType = 'zoneTwoT'
+
               this.rollingTableData1[5].chartData.xData.unshift(item.ts)
               this.rollingTableData1[5].chartData.yData.unshift(item.zoneThreeT)
               this.rollingTableData1[5].chartData.rName = '3区炉气温度曲线'
+              this.rollingTableData1[5].chartData.rType = 'zoneThreeT'
+
               this.rollingTableData1[6].chartData.xData.unshift(item.ts)
               this.rollingTableData1[6].chartData.yData.unshift(item.setT)
               this.rollingTableData1[6].chartData.rName = '炉气设定温度'
+              this.rollingTableData1[6].chartData.rType = 'setT'
 
               //炉冷却水
               this.rollingTableData1[0].value = item.coolWaterUpLimit;
               //炉压缩空气
-              // this.rollingTableData1[1].value = item.compressedAirOneLowPressure;
-              this.rollingTableData1[1].value = 1;
+              this.rollingTableData1[1].value = item.compressedAirOneLowPressure;
               //金属料温温度曲线
               this.rollingTableData1[2].value = item.meterialT;
               //1区炉气温度曲线
@@ -425,6 +492,8 @@ export default {
 
             })
           })
+
+
           // 定时查询退火炉最新20条报警记录
           getListWarnHistoryData({ rollingDeviceNumber: '退火炉2#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
