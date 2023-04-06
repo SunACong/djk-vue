@@ -38,14 +38,14 @@ import { formJson0 } from '@/api/ErpPlanRollcasting'
 import { getCastSmeltHoldList, formJson1 } from '@/api/LmdpCastSmeltHold'
 import { formJson2 } from '@/api/LmdpCastHoldingFurnace'
 import { getCastProduceList, formJson3 } from '@/api/LmdpCastProduced'
-import { formJson5 } from '@/api/LmdpQcCastReel'
+import { formJson4 } from '@/api/LmdpQcCastReel'
 import { formJson6 } from '@/api/ErpPlanColdreductionstrip'
 import { getColdRecordList, formJson7 } from '@/api/LmdpColdRecord'
 import { formJson8 } from '@/api/LmdpColdFurnaceRecord'
 import { formJson12 } from '@/api/LmdpQcColdReelReport'
 import { formJson9 } from '@/api/LmdpColdRereelerRecord'
 import { formJson10 } from '@/api/LmdpColdStoreRecord'
-import { formJson4 } from '@/api/LmdpCastReelStoreRecord'
+import { formJson5 } from '@/api/LmdpCastReelStoreRecord'
 import { formJson11 } from '@/api/LmdpQcColdInspect'
 import { formJson13 } from '@/api/LmdpQcComplaintDetail'
 import { getDictList } from '@/api/reportDict'
@@ -75,8 +75,8 @@ export default {
   data() {
     return {
       formJson: [formJson0, formJson1, formJson2, formJson3, formJson4, formJson5,
-        formJson6, formJson7, formJson8, formJson9, formJson10, formJson11,
-        formJson12, formJson13],
+        formJson6, formJson7, formJson8, formJson9, formJson12,
+        formJson10, formJson13],
       active: null,
       current: null,
       formData: {},
@@ -85,15 +85,17 @@ export default {
         { title: '熔炼工序' },
         { title: '保温工序' },
         { title: '铸轧工序' },
-        { title: '铸轧出入库' },
         { title: '铸轧质检' },
+        { title: '铸轧出入库' },
+
         { title: '冷轧计划' },
         { title: '冷轧工序' },
         { title: '退火工序' },
         { title: '重卷工序' },
-        { title: '冷轧出入库' },
-        { title: '冷轧巡检' },
         { title: '冷轧质检' },
+        { title: '冷轧出入库' },
+
+
         { title: '投诉处理' }
       ],
       selectValue: null,

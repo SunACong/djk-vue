@@ -185,7 +185,7 @@
                 </el-tag>
               </template>
             </el-table-column>
-            <!-- <el-table-column prop="allDetermination" label="质量判定" min-width="20%">
+            <el-table-column prop="allDetermination" label="质量判定" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
                   :type="scope.row.allDetermination === 1 ? 'success' : (scope.row.allDetermination === 2 ? 'info' : 'danger')"
@@ -193,7 +193,7 @@
                   {{ scope.row.allDetermination === 1 ? '合格' : (scope.row.allDetermination === 2 ? '暂未评定' : '不合格') }}
                 </el-tag>
               </template>
-            </el-table-column> -->
+            </el-table-column>
             <!-- <el-table-column prop="remark" label="备注" min-width="20%" /> -->
             <el-table-column label="操作" min-width="20%">
               <template slot-scope="scope">
@@ -311,8 +311,8 @@
               null ? '-' : Dict.get(dailogData.lmdpQcColdInspect.bendingPerformanceRe) }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能表标准">
-            {{ dailogData.lmdpQcColdInspect.bendingPerformanceRequirements ===
-              null ? '-' : Dict.get(dailogData.lmdpQcColdInspect.bendingPerformanceRequirements) }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.bendingPerformance ===
+              null ? '-' : Dict.get(dailogData.slaveErpPlanColdreductionstrip.bendingPerformance) }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -443,10 +443,16 @@ export default {
         remark: null,
         lmdpQcColdInspect: {
           singleStraightness: null,
-          singleMediumConvexity: null
+          singleMediumConvexity: null,
+          tensileStrength: null,
+          flatness: null,
+          elongation: null
         },
         slaveErpPlanColdreductionstrip: {
-          flatness: null
+          flatness: null,
+          tensileStrength: null,
+          elongation: null,
+          appearanceReq: null
         }
       },
       tableData: [],
@@ -509,6 +515,7 @@ export default {
        */
     handleView(index, row) {
       this.showWtich = index
+      console.log(row)
       this.dailogData = row
       this.dialogFormVisible = true
     },
