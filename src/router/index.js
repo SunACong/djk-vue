@@ -161,7 +161,7 @@ export const constantRoutes = [
     {
       path: 'AnneaF5',
       name: 'AnneaF5',
-      component: () => import('@/views/module/healthDegree/ .vue'),
+      component: () => import('@/views/module/healthDegree/AnneaF5.vue'),
       meta: { title: '退火炉参数5#', icon: 'dashboard' }
     },
     {
