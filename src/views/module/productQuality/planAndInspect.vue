@@ -63,7 +63,7 @@
           <BarChart :key="key" chart-type="line" :xydata="everyQualifyRate" />
         </div>
       </el-card>
-    </div>
+    </div> 
 
     <!-- 报告表格 -->
     <div class="bottom_card">
@@ -75,14 +75,6 @@
               <i class="el-icon-s-help" si />
             </div>
             <span>冷轧卷报告单判定</span>
-            <!-- <el-button
-              type="primary"
-              :loading="loading"
-              size="small"
-              style="height: 33px;width: 80px;margin: 5px 0 0 10px;"
-              @click="getList"
-            >{{ loading ? "判定中" : "判定"
-            }}</el-button> -->
           </div>
           <div style="display: flex;">
             <div>
