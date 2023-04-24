@@ -260,8 +260,8 @@
               '-':dailogData.lmdpQcColdInspect.finishedWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格要求">
-            {{ dailogData.lmdpQcColdInspect.model === null?
-              '-':dailogData.lmdpQcColdInspect.model }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.productSpec === null?
+              '-':dailogData.slaveErpPlanColdreductionstrip.productSpec }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
