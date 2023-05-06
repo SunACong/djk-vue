@@ -15,6 +15,25 @@ import {
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
+	// name: 'Layout',
+	// components: {
+	// 	Sidebar,
+	// 	AppMain
+	// },
+	// mixins: [ResizeMixin],
+	// computed: {
+	// 	classObj() {
+	// 		return {
+	// 			hideSidebar: false,
+	// 			openSidebar: false,
+	// 			withoutAnimation: false
+
+	// 			// mobile: this.device === 'mobile'
+	// 		}
+	// 	}
+	// },
+	// methods: {
+	// }
 	name: 'Layout',
 	components: {
 		Sidebar,
@@ -27,8 +46,6 @@ export default {
 				hideSidebar: false,
 				openSidebar: false,
 				withoutAnimation: false
-
-				// mobile: this.device === 'mobile'
 			}
 		}
 	},

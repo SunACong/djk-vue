@@ -8,3 +8,4 @@ export function getDictList(query) {
     params: query
   })
 }
+
