@@ -140,19 +140,19 @@ export default {
               focus: 'series'
             },
             //最大值最小值标注线
-            markLine: {
-              symbol: ['', ''], // 去掉箭头
-              data: [
-                {
-                  yAxis: max,
-                  name: '上限'
-                },
-                {
-                  yAxis: min,
-                  name: '下限'
-                }
-              ]
-            },
+            // markLine: {
+            //   symbol: ['', ''], // 去掉箭头
+            //   data: [
+            //     {
+            //       yAxis: max,
+            //       name: '上限'
+            //     },
+            //     {
+            //       yAxis: min,
+            //       name: '下限'
+            //     }
+            //   ]
+            // },
             data: y
           },
         ],

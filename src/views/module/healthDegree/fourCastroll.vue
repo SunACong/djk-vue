@@ -558,7 +558,7 @@ export default {
             })
           })
 
-
+          
 
 
           getDevice({ rollingDeviceNumber: '铸轧机4#' }).then((res) => {

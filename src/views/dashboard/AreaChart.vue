@@ -135,19 +135,19 @@ export default {
           {
 
             //最大值最小值标注线
-            markLine: {
-              // symbol: ['none', 'none'], // 去掉箭头
-              data: [
-                {
-                  yAxis: max,
-                  name: '上限'
-                },
-                {
-                  yAxis: min,
-                  name: '下限'
-                }
-              ]
-            },
+            // markLine: {
+            //   // symbol: ['none', 'none'], // 去掉箭头
+            //   data: [
+            //     {
+            //       yAxis: max,
+            //       name: '上限'
+            //     },
+            //     {
+            //       yAxis: min,
+            //       name: '下限'
+            //     }
+            //   ]
+            // },
             name: r,
             type: 'line',
             stack: 'Total',
