@@ -1,6 +1,6 @@
 <template>
 	<div :class="classObj" class="app-wrapper">
-		<sidebar class="sidebar-container" />
+		<!-- <sidebar class="sidebar-container" /> -->
 		<div class="main-container">
 			<app-main />
 		</div>
@@ -9,41 +9,22 @@
 
 <script>
 import {
-	Sidebar,
+	// Sidebar,
 	AppMain
 } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
-	// name: 'Layout',
-	// components: {
-	// 	Sidebar,
-	// 	AppMain
-	// },
-	// mixins: [ResizeMixin],
-	// computed: {
-	// 	classObj() {
-	// 		return {
-	// 			hideSidebar: false,
-	// 			openSidebar: false,
-	// 			withoutAnimation: false
-
-	// 			// mobile: this.device === 'mobile'
-	// 		}
-	// 	}
-	// },
-	// methods: {
-	// }
 	name: 'Layout',
 	components: {
-		Sidebar,
+		// Sidebar,
 		AppMain
 	},
 	mixins: [ResizeMixin],
 	computed: {
 		classObj() {
 			return {
-				hideSidebar: false,
+				hideSidebar: true,
 				openSidebar: false,
 				withoutAnimation: false
 			}
