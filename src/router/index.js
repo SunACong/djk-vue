@@ -47,22 +47,22 @@ export const constantRoutes = [
       component: () => import('@/views/module/productQuality/planAndInspect'),
       meta: { title: '合格判定', icon: 'dashboard' }
     }
-    // , {
-    //   path: 'productStandard',
-    //   name: 'ProductStandard',
-    //   component: () => import('@/views/module/productQuality/productStandard'),
-    //   meta: { title: '判定标准', icon: 'dashboard' }
-    // }, {
-    //   path: 'productLqcmr',
-    //   name: 'ProductLqcmr',
-    //   component: () => import('@/views/module/productQuality/productLqcmr'),
-    //   meta: { title: '力学性能指标', icon: 'dashboard' }
-    // }, {
-    //   path: 'productLqci',
-    //   name: 'ProductLqci',
-    //   component: () => import('@/views/module/productQuality/productLqci'),
-    //   meta: { title: '产品随行卡指标', icon: 'dashboard' }
-    // }
+      // , {
+      //   path: 'productStandard',
+      //   name: 'ProductStandard',
+      //   component: () => import('@/views/module/productQuality/productStandard'),
+      //   meta: { title: '判定标准', icon: 'dashboard' }
+      // }, {
+      //   path: 'productLqcmr',
+      //   name: 'ProductLqcmr',
+      //   component: () => import('@/views/module/productQuality/productLqcmr'),
+      //   meta: { title: '力学性能指标', icon: 'dashboard' }
+      // }, {
+      //   path: 'productLqci',
+      //   name: 'ProductLqci',
+      //   component: () => import('@/views/module/productQuality/productLqci'),
+      //   meta: { title: '产品随行卡指标', icon: 'dashboard' }
+      // }
     ]
   },
   {
@@ -192,7 +192,7 @@ export const constantRoutes = [
 
     {
       path: 'parameterSet',
-      name: 'ParameterSet',
+      name: 'parameterSet',
       component: () => import('@/views/module/healthDegree/recoillingSet.vue'),
       meta: { title: '重卷机参数设置', icon: 'dashboard' }
     },

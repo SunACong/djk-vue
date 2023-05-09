@@ -188,7 +188,6 @@
         </div>
       </div>
     </el-dialog>
-
   </div>
 </template>
 
@@ -204,7 +203,7 @@ export default {
     return {
       // 报警状态 正常1 异常2
       ZT1: 'true',
-      ZT2: '',
+      // ZT2: 'true',
       value: '',
       ListDuringData: {},
       indicatorName: null,
@@ -254,6 +253,7 @@ export default {
       xData: [],
       yData: [],
       timer: null,
+      timer1: null,
       showWtich: 1,
       showWtich1: 1,
       wId: '',
@@ -267,13 +267,15 @@ export default {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
+    clearInterval(this.timer1)
+    this.timer1 = null
     this.setTimer()
 
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
     await getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
-      // this.historyWarnTable = res.data
+      this.currentWarnTable = res.data
       // console.log("historyWarnTable");
       // console.log(this.historyWarnTable);
     })
@@ -348,6 +350,8 @@ export default {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
+    clearInterval(this.timer1)
+    this.timer1 = null
   },
 
   methods: {
@@ -567,8 +571,7 @@ export default {
               this.rollingTableData1[7].chartData.xData.push(item.ts)
               this.rollingTableData1[7].chartData.yData.push(item.downRollWaterT)
               this.rollingTableData1[7].chartData.rName = '下辊水温'
-              this.rollingTableData1[7].chartData.rType = 'downRollWaterT'
-              // this.rollingTableData1[].chartData.rType = ""
+              this.rollingTableData1[7].chartData.rType = "downRollWaterT"
 
               this.rollingTableData1[8].chartData.xData.push(item.ts)
               this.rollingTableData1[8].chartData.yData.push(item.upRollFlow)
@@ -620,10 +623,18 @@ export default {
             })
           })
           // 定时查询铸轧机最新20条报警记录
+          // getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+          //   this.currentWarnTable = res.data
+          // })
+        }, 1000)
+      }
+      if (this.timer1 == null) {
+        this.timer1 = setInterval(() => {
+          console.log("执行一次");
           getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 1000)
+        }, 21000)
       }
     }
   }
