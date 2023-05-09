@@ -9,7 +9,7 @@
       注意：自动判定的数据是通过巡检数据自动判定的，所以巡检数据必须要全面规范。
     </div>
     <!-- 合格率图表 -->
-    <!-- <div class="top-card">
+    <div class="top-card">
       <el-card shadow="always">
         <div slot="header" class="top-card">
           <div class="top-card-header">
@@ -65,7 +65,7 @@
           <BarChart :key="key" chart-type="line" :xydata="everyQualifyRate" />
         </div>
       </el-card>
-    </div> -->
+    </div>
 
     <!-- 报告表格 -->
     <div class="bottom_card">
