@@ -389,6 +389,7 @@ export default {
           this.listSpecial = res.data
           this.xData = []
           this.yData = []
+
           this.listSpecial.forEach(item => {
             this.xData.push(item.rollingProduceTime)
             this.yData.push(item.rollingValue)
@@ -436,6 +437,7 @@ export default {
               this.maxData = this.rollingTableData1[11].chartData.maxData
             }
           })
+
         })
         addRead(row).then((res) => {
           // console.log("是否已读", res)

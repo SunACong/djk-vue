@@ -242,41 +242,41 @@ export default {
               this.rollingTableData5[2].chartData.minData = item.minValue
               this.rollingTableData5[2].chartData.maxData = item.maxValue
               break
-            case '备用水泵电机电流':
+            // case '备用水泵电机电流':
+            //   this.rollingTableData5[3].chartData.minData = item.minValue
+            //   this.rollingTableData5[3].chartData.maxData = item.maxValue
+            //   break
+            case '卷取电机电流':
               this.rollingTableData5[3].chartData.minData = item.minValue
               this.rollingTableData5[3].chartData.maxData = item.maxValue
               break
-            case '卷取电机电流':
+            case '上辊水压':
               this.rollingTableData5[4].chartData.minData = item.minValue
               this.rollingTableData5[4].chartData.maxData = item.maxValue
               break
-            case '上辊水压':
+            case '下辊水压':
               this.rollingTableData5[5].chartData.minData = item.minValue
               this.rollingTableData5[5].chartData.maxData = item.maxValue
               break
-            case '下辊水压':
+            case '上辊水温':
               this.rollingTableData5[6].chartData.minData = item.minValue
               this.rollingTableData5[6].chartData.maxData = item.maxValue
               break
-            case '上辊水温':
+            case '下辊水温':
               this.rollingTableData5[7].chartData.minData = item.minValue
               this.rollingTableData5[7].chartData.maxData = item.maxValue
               break
-            case '下辊水温':
+            case '上辊流量':
               this.rollingTableData5[8].chartData.minData = item.minValue
               this.rollingTableData5[8].chartData.maxData = item.maxValue
               break
-            case '上辊流量':
+            case '下辊流量':
               this.rollingTableData5[9].chartData.minData = item.minValue
               this.rollingTableData5[9].chartData.maxData = item.maxValue
               break
-            case '下辊流量':
+            case '操作侧预载力':
               this.rollingTableData5[10].chartData.minData = item.minValue
               this.rollingTableData5[10].chartData.maxData = item.maxValue
-              break
-            case '操作侧预载力':
-              this.rollingTableData5[11].chartData.minData = item.minValue
-              this.rollingTableData5[11].chartData.maxData = item.maxValue
               break
             case '传动侧预载力':
               this.rollingTableData5[12].chartData.minData = item.minValue
@@ -369,36 +369,38 @@ export default {
             } else if (this.rName == '主水泵电机电流') {
               this.minData = this.rollingTableData5[2].chartData.minData
               this.maxData = this.rollingTableData5[2].chartData.maxData
-            } else if (this.rName == '备用水泵电机电流') {
+            } else if
+              // (this.rName == '备用水泵电机电流') {
+              //   this.minData = this.rollingTableData5[3].chartData.minData
+              //   this.maxData = this.rollingTableData5[3].chartData.maxData
+              // } else if
+              (this.rName == '卷取电机电流') {
               this.minData = this.rollingTableData5[3].chartData.minData
               this.maxData = this.rollingTableData5[3].chartData.maxData
-            } else if (this.rName == '卷取电机电流') {
+            } else if (this.rName == '上辊水压') {
               this.minData = this.rollingTableData5[4].chartData.minData
               this.maxData = this.rollingTableData5[4].chartData.maxData
-            } else if (this.rName == '上辊水压') {
+            } else if (this.rName == '下辊水压') {
               this.minData = this.rollingTableData5[5].chartData.minData
               this.maxData = this.rollingTableData5[5].chartData.maxData
-            } else if (this.rName == '下辊水压') {
+            } else if (this.rName == '上辊水温') {
               this.minData = this.rollingTableData5[6].chartData.minData
               this.maxData = this.rollingTableData5[6].chartData.maxData
-            } else if (this.rName == '上辊水温') {
+            } else if (this.rName == '下辊水温') {
               this.minData = this.rollingTableData5[7].chartData.minData
               this.maxData = this.rollingTableData5[7].chartData.maxData
-            } else if (this.rName == '下辊水温') {
+            } else if (this.rName == '上辊流量') {
               this.minData = this.rollingTableData5[8].chartData.minData
               this.maxData = this.rollingTableData5[8].chartData.maxData
-            } else if (this.rName == '上辊流量') {
+            } else if (this.rName == '下辊流量') {
               this.minData = this.rollingTableData5[9].chartData.minData
               this.maxData = this.rollingTableData5[9].chartData.maxData
-            } else if (this.rName == '下辊流量') {
+            } else if (this.rName == '操作侧预载力') {
               this.minData = this.rollingTableData5[10].chartData.minData
               this.maxData = this.rollingTableData5[10].chartData.maxData
-            } else if (this.rName == '操作侧预载力') {
+            } else if (this.rName == '传动侧预载力') {
               this.minData = this.rollingTableData5[11].chartData.minData
               this.maxData = this.rollingTableData5[11].chartData.maxData
-            } else if (this.rName == '传动侧预载力') {
-              this.minData = this.rollingTableData5[12].chartData.minData
-              this.maxData = this.rollingTableData5[12].chartData.maxData
             }
           })
         })
@@ -446,8 +448,7 @@ export default {
             this.rollingTableData5[10].chartData.yData = []
             this.rollingTableData5[11].chartData.xData = []
             this.rollingTableData5[11].chartData.yData = []
-            this.rollingTableData5[12].chartData.xData = []
-            this.rollingTableData5[12].chartData.yData = []
+
             this.rollingTableData5[0].chartData.rType = []
             this.rollingTableData5[1].chartData.rType = []
             this.rollingTableData5[2].chartData.rType = []
@@ -460,7 +461,6 @@ export default {
             this.rollingTableData5[9].chartData.rType = []
             this.rollingTableData5[10].chartData.rType = []
             this.rollingTableData5[11].chartData.rType = []
-            this.rollingTableData5[12].chartData.rType = []
 
             this.dataList.forEach(item => {
               this.rollingTableData5[0].chartData.xData.push(item.ts)
@@ -474,60 +474,54 @@ export default {
               this.rollingTableData5[1].chartData.rType = 'downRollMontorA'
 
               this.rollingTableData5[2].chartData.xData.push(item.ts)
-              this.rollingTableData5[2].chartData.yData.push(item.upRollMontorA)
+              this.rollingTableData5[2].chartData.yData.push(item.pumpA)
               this.rollingTableData5[2].chartData.rName = '主水泵电机电流'
-              this.rollingTableData5[2].chartData.rType = 'upRollMontorA'
+              this.rollingTableData5[2].chartData.rType = 'pumpA'
 
               this.rollingTableData5[3].chartData.xData.push(item.ts)
-              this.rollingTableData5[3].chartData.yData.push(item.upRollMontorA)
-              this.rollingTableData5[3].chartData.rName = '备用水泵电机电流'
-              this.rollingTableData5[3].chartData.rType = 'upRollMontorA'
+              this.rollingTableData5[3].chartData.yData.push(item.rollA)
+              this.rollingTableData5[3].chartData.rName = '卷取电机电流'
+              this.rollingTableData5[3].chartData.rType = 'rollA'
 
               this.rollingTableData5[4].chartData.xData.push(item.ts)
-              this.rollingTableData5[4].chartData.yData.push(item.rollA)
-              this.rollingTableData5[4].chartData.rName = '卷取电机电流'
-              this.rollingTableData5[4].chartData.rType = 'rollA'
+              this.rollingTableData5[4].chartData.yData.push(item.upRollWaterFn)
+              this.rollingTableData5[4].chartData.rName = '上辊水压'
+              this.rollingTableData5[4].chartData.rType = 'upRollWaterFn'
 
               this.rollingTableData5[5].chartData.xData.push(item.ts)
-              this.rollingTableData5[5].chartData.yData.push(item.upRollWaterFn)
-              this.rollingTableData5[5].chartData.rName = '上辊水压'
-              this.rollingTableData5[5].chartData.rType = 'upRollWaterFn'
+              this.rollingTableData5[5].chartData.yData.push(item.downRollWaterFn)
+              this.rollingTableData5[5].chartData.rName = '下辊水压'
+              this.rollingTableData5[5].chartData.rType = 'downRollWaterFn'
 
               this.rollingTableData5[6].chartData.xData.push(item.ts)
-              this.rollingTableData5[6].chartData.yData.push(item.downRollWaterFn)
-              this.rollingTableData5[6].chartData.rName = '下辊水压'
-              this.rollingTableData5[6].chartData.rType = 'downRollWaterFn'
+              this.rollingTableData5[6].chartData.yData.push(item.upRollWaterT)
+              this.rollingTableData5[6].chartData.rName = '上辊水温'
+              this.rollingTableData5[6].chartData.rType = 'upRollWaterT'
 
               this.rollingTableData5[7].chartData.xData.push(item.ts)
-              this.rollingTableData5[7].chartData.yData.push(item.upRollWaterT)
-              this.rollingTableData5[7].chartData.rName = '上辊水温'
-              this.rollingTableData5[7].chartData.rType = 'upRollWaterT'
+              this.rollingTableData5[7].chartData.yData.push(item.downRollWaterT)
+              this.rollingTableData5[7].chartData.rName = '下辊水温'
+              this.rollingTableData5[7].chartData.rType = "downRollWaterT"
 
               this.rollingTableData5[8].chartData.xData.push(item.ts)
-              this.rollingTableData5[8].chartData.yData.push(item.downRollWaterT)
-              this.rollingTableData5[8].chartData.rName = '下辊水温'
-              this.rollingTableData5[8].chartData.rType = 'downRollWaterT'
-              // this.rollingTableData5[].chartData.rType = ""
+              this.rollingTableData5[8].chartData.yData.push(item.upRollFlow)
+              this.rollingTableData5[8].chartData.rName = '上辊流量'
+              this.rollingTableData5[8].chartData.rType = 'upRollFlow'
 
               this.rollingTableData5[9].chartData.xData.push(item.ts)
-              this.rollingTableData5[9].chartData.yData.push(item.upRollFlow)
-              this.rollingTableData5[9].chartData.rName = '上辊流量'
-              this.rollingTableData5[9].chartData.rType = 'upRollFlow'
+              this.rollingTableData5[9].chartData.yData.push(item.downRollFlow)
+              this.rollingTableData5[9].chartData.rName = '下辊流量'
+              this.rollingTableData5[9].chartData.rType = 'downRollFlow'
 
               this.rollingTableData5[10].chartData.xData.push(item.ts)
-              this.rollingTableData5[10].chartData.yData.push(item.downRollFlow)
-              this.rollingTableData5[10].chartData.rName = '下辊流量'
-              this.rollingTableData5[10].chartData.rType = 'downRollFlow'
+              this.rollingTableData5[10].chartData.yData.push(item.operationPreloadForce)
+              this.rollingTableData5[10].chartData.rName = '操作侧预载力'
+              this.rollingTableData5[10].chartData.rType = 'operationPreloadForce'
 
               this.rollingTableData5[11].chartData.xData.push(item.ts)
-              this.rollingTableData5[11].chartData.yData.push(item.operationPreloadForce)
-              this.rollingTableData5[11].chartData.rName = '操作侧预载力'
-              this.rollingTableData5[11].chartData.rType = 'operationPreloadForce'
-
-              this.rollingTableData5[12].chartData.xData.push(item.ts)
-              this.rollingTableData5[12].chartData.yData.push(item.transPreloadForce)
-              this.rollingTableData5[12].chartData.rName = '传动侧预载力'
-              this.rollingTableData5[12].chartData.rType = 'transPreloadForce'
+              this.rollingTableData5[11].chartData.yData.push(item.transPreloadForce)
+              this.rollingTableData5[11].chartData.rName = '传动侧预载力'
+              this.rollingTableData5[11].chartData.rType = 'transPreloadForce'
               // 上辊电机电流
               this.rollingTableData5[0].value = item.upRollMontorA
               // 下辊电机电流
@@ -535,25 +529,25 @@ export default {
               // 主水泵电机电流
               this.rollingTableData5[2].value = item.upRollMontorA
               // 备用水泵电机电流
-              this.rollingTableData5[3].value = item.upRollMontorA
+              // this.rollingTableData5[3].value = item.upRollMontorA;
               // 卷取电机电流  rollA
-              this.rollingTableData5[4].value = item.rollA
+              this.rollingTableData5[3].value = item.rollA
               // 上辊水压
-              this.rollingTableData5[5].value = item.upRollWaterFn
+              this.rollingTableData5[4].value = item.upRollWaterFn
               // 下辊水压
-              this.rollingTableData5[6].value = item.downRollWaterFn
+              this.rollingTableData5[5].value = item.downRollWaterFn
               // 上辊水温
-              this.rollingTableData5[7].value = item.upRollWaterT
+              this.rollingTableData5[6].value = item.upRollWaterT
               // 下辊水温
-              this.rollingTableData5[8].value = item.upRollFlow
+              this.rollingTableData5[7].value = item.upRollFlow
               // 上辊流量
-              this.rollingTableData5[9].value = item.upRollFlow
+              this.rollingTableData5[8].value = item.upRollFlow
               // 下辊流量
-              this.rollingTableData5[10].value = item.downRollFlow
+              this.rollingTableData5[9].value = item.downRollFlow
               // 操作侧预载力
-              this.rollingTableData5[11].value = item.operationPreloadForce
+              this.rollingTableData5[10].value = item.operationPreloadForce
               // 传动侧预载力
-              this.rollingTableData5[12].value = item.transPreloadForce
+              this.rollingTableData5[11].value = item.transPreloadForce
               //  //传动侧预载力
               //  this.rollingTableData5[12].value = item.upRollMontorA;
             })
