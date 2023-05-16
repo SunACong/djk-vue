@@ -9,7 +9,7 @@
       注意：自动判定的数据是通过巡检数据自动判定的，所以巡检数据必须要全面规范。
     </div>
     <!-- 合格率图表 -->
-    <!-- <div class="top-card">
+    <div class="top-card">
       <el-card shadow="always">
         <div slot="header" class="top-card">
           <div class="top-card-header">
@@ -65,7 +65,7 @@
           <BarChart :key="key" chart-type="line" :xydata="everyQualifyRate" />
         </div>
       </el-card>
-    </div> -->
+    </div>
 
     <!-- 报告表格 -->
     <div class="bottom_card">
@@ -236,6 +236,10 @@
             {{ dailogData.lmdpQcColdInspect.model === null ?
               '-' : dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
+          <!-- <el-descriptions-item label="成品规格要求">
+            {{ dailogData.slaveErpPlanColdreductionstrip.productSpec === null?
+              '-':dailogData.slaveErpPlanColdreductionstrip.productSpec }}
+          </el-descriptions-item> -->
         </el-descriptions>
       </div>
       <!-- 力学性能 -->
