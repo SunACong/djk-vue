@@ -245,7 +245,7 @@ export default {
      */
     await getAvaluateList().then((res) => {
       this.avaluateList = res.data
-      // console.log("上下限：",res.data)
+      // console.log("上下限：", res.data)
       this.avaluateList.forEach(item => {
         // 1号铸轧机参数
         if (item.deviceId == '铸轧机设备参数') {
@@ -274,7 +274,7 @@ export default {
               this.rollingTableData1[4].chartData.minData = item.minValue
               this.rollingTableData1[4].chartData.maxData = item.maxValue
               break
-            case '下辊水压':
+            case "下辊水压":
               this.rollingTableData1[5].chartData.minData = item.minValue
               this.rollingTableData1[5].chartData.maxData = item.maxValue
               break
@@ -299,13 +299,17 @@ export default {
               this.rollingTableData1[10].chartData.maxData = item.maxValue
               break
             case '传动侧预载力':
-              this.rollingTableData1[12].chartData.minData = item.minValue
-              this.rollingTableData1[12].chartData.maxData = item.maxValue
+              this.rollingTableData1[11].chartData.minData = item.minValue
+              this.rollingTableData1[11].chartData.maxData = item.maxValue
               break
           }
         }
+        // console.log("下辊水压", this.rollingTableData1[5].chartData.maxData);
+        // console.log("传动侧预载力", this.rollingTableData1[11].chartData.maxData);
       })
+
     })
+
   },
   destroyed: function () {
     // 每次离开当前界面时，清除定时器
@@ -437,6 +441,7 @@ export default {
               this.maxData = this.rollingTableData1[11].chartData.maxData
             }
           })
+
 
         })
         addRead(row).then((res) => {

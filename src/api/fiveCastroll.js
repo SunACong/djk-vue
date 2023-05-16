@@ -57,9 +57,6 @@ export let rollingOptions = [
 
 ]
 
-
-
-
 export let rollingTableData5 = [{
     xuhao: '01',
     name: '上辊电机电流',

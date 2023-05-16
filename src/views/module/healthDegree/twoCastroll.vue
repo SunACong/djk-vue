@@ -278,8 +278,8 @@ export default {
               this.rollingTableData2[10].chartData.maxData = item.maxValue
               break
             case '传动侧预载力':
-              this.rollingTableData2[12].chartData.minData = item.minValue
-              this.rollingTableData2[12].chartData.maxData = item.maxValue
+              this.rollingTableData2[11].chartData.minData = item.minValue
+              this.rollingTableData2[11].chartData.maxData = item.maxValue
               break
           }
         }
