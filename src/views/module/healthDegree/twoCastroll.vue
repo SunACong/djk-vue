@@ -10,29 +10,18 @@
             </div>
           </div>
           <div>
-            <el-table
-              :data="rollingTableData2"
-              stripe
-              style="width: 100%"
-              height="300px"
+            <el-table :data="rollingTableData2" stripe style="width: 100%" height="300px"
               :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
-              :header-cell-style="{ 'text-align': 'center' }"
-            >
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
                   <div style="display: inline; " @click="getMyData(1, scope.row)">
-                    <AreaChart
-                      width="100%"
-                      height="80%"
-                      :x-data="scope.row.chartData.xData"
-                      :y-data="scope.row.chartData.yData"
-                      :min-data="scope.row.chartData.minData"
-                      :max-data="scope.row.chartData.maxData"
-                      :r-name="scope.row.chartData.rName"
-                    />
+                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
+                      :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
+                      :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
                   </div>
                 </template>
               </el-table-column>
@@ -95,34 +84,15 @@
         </div>
         <div style="display: flex;">
           <div>
-            <el-date-picker
-              v-model="qualifyDateRange"
-              size="medium"
-              type="datetimerange"
-              align="left"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions"
-              @change="getDate"
-            />
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
           </div>
           <template>
-            <el-select
-              v-model="value"
-              style="margin-bottom: 10px"
-              size="medium"
-              placeholder="请选择"
-              @change="getIndicatorName($event)"
-            >
-              <el-option
-                v-for="item in rollingOptions"
-                :key="item.value"
-                size="mini"
-                :label="item.label"
-                :value="item.value"
-              />
+            <el-select v-model="value" style="margin-bottom: 10px" size="medium" placeholder="请选择"
+              @change="getIndicatorName($event)">
+              <el-option v-for="item in rollingOptions" :key="item.value" size="mini" :label="item.label"
+                :value="item.value" />
             </el-select>
           </template>
           <div style="margin-left: 30px">
@@ -159,18 +129,9 @@
 
         <div display="flex" margin="5%">
           <el-row margin="5%">
-            <el-date-picker
-              v-model="qualifyDateRange"
-              size="medium"
-              type="datetimerange"
-              align="left"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions"
-              @change="getDate"
-            />
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
             <el-button size="medium" type="text" @click="getengineList">查询</el-button>
           </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
@@ -325,7 +286,7 @@ export default {
       })
     })
   },
-  destroyed: function() {
+  destroyed: function () {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
@@ -344,7 +305,7 @@ export default {
       this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
         // params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get('https://192.168.100.208:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype }})
+        .get('https://192.168.100.208:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         .then((data) => {
           console.log('日期', data.data[0])
           console.log('值', data.data[1])
@@ -356,25 +317,25 @@ export default {
         })
     },
 
-    getIndicatorName: function(event) {
+    getIndicatorName: function (event) {
       console.log(event)
       this.indicatorName = this.value
       console.log('指标名称', this.value)
     },
-    getDate: function() {
+    getDate: function () {
       this.begin = parseTime(this.qualifyDateRange[0])
       this.end = parseTime(this.qualifyDateRange[1])
       console.log('开始时间', parseTime(this.qualifyDateRange[0]))
       console.log('结束时间', parseTime(this.qualifyDateRange[1]))
     },
-    getMyHistoryData: function() {
+    getMyHistoryData: function () {
       this.historyWarnTable = []
       getListDuringWarnData({ rollingDeviceNumber: '铸轧机2#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
         // console.log("特定时间范围内的数据", res)
         this.historyWarnTable = res.data
       })
     },
-    getMyData: function(index, row) {
+    getMyData: function (index, row) {
       this.showWtich = index
       if (index == 1) {
         this.xData = row.chartData.xData
@@ -597,7 +558,7 @@ export default {
           getDevice({ rollingDeviceNumber: '铸轧机2#' }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 2000)
+        }, 3500)
       }
     }
   }

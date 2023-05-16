@@ -448,7 +448,7 @@ export default {
           getDevice({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 1000)
+        }, 3500)
       }
     }
   }

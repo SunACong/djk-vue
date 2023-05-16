@@ -532,7 +532,7 @@ export default {
           getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 1000)
+        }, 3500)
       }
     }
   }

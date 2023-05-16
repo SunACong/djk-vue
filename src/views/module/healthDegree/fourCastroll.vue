@@ -597,7 +597,7 @@ export default {
           getDevice({ rollingDeviceNumber: '铸轧机4#' }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 2000)
+        }, 3500)
       }
     }
   }

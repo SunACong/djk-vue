@@ -540,7 +540,7 @@ export default {
           //   console.log("特定时间范围内的数据", res)
           //   this.historyWarnTable = res.data
           // })
-        }, 1000)
+        }, 3500)
       }
     }
   }

@@ -598,7 +598,7 @@ export default {
           getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
           })
-        }, 2000)
+        }, 3500)
       }
     }
   }
