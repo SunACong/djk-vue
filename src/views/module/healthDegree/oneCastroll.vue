@@ -162,9 +162,12 @@ export default {
   components: { AreaChart },
   data() {
     return {
+      //判断状态
+      judge: 1,
+      judgeList: [],
       // 报警状态 正常1 异常2
-      ZT1: 'true',
-      // ZT2: 'true',
+      ZT1: '',
+      ZT2: '',
       value: '',
       ListDuringData: {},
       indicatorName: null,
@@ -231,6 +234,20 @@ export default {
     clearInterval(this.timer1)
     this.timer1 = null
     this.setTimer()
+    // this.ZT1 = "true";
+    // this.ZT2 = "";
+    setInterval(() => {
+      // 绿
+      if (this.judge == 1) {
+        this.ZT1 = "true";
+        this.ZT2 = "";
+      };
+      // 红
+      if (this.judge == 0) {
+        this.ZT1 = "";
+        this.ZT2 = "true";
+      };
+    }, 1000)
 
     /**
      * 获取一号铸轧机报警历史记录（30条）
@@ -332,7 +349,8 @@ export default {
       this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
         // params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get('https://192.168.100.208:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        // .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         .then((data) => {
           console.log('日期', data.data[0])
           console.log('值', data.data[1])
@@ -590,20 +608,49 @@ export default {
               //  this.rollingTableData1[12].value = item.upRollMontorA;
             })
           })
-          // 定时查询铸轧机最新20条报警记录
-          // getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
-          //   this.currentWarnTable = res.data
-          // })
-        }, 3500)
-      }
-      if (this.timer1 == null) {
-        this.timer1 = setInterval(() => {
-          console.log("执行一次");
+
           getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
+            // console.log("currentWarnTable", this.currentWarnTable);
+            this.judgeList = [];
+            this.currentWarnTable.forEach(item => {
+              // console.log("item.yd", item.yd);
+              // this.judgeList.push(item.yd)
+              if (item.yd == "null") {
+                this.judge = 0
+              }
+            });
+
+
+            // console.log("judgeList", this.judgeList);
+            // console.log('打印judge', this.judge);
+            //绿
+            // if (this.judge == 1) {
+            //   this.ZT1 = "true";
+            //   this.ZT2 = "";
+            // };
+
+            //红
+            // if (this.judge == 0) {
+            //   this.ZT1 = "";
+            //   this.ZT2 = "true";
+            // };
           })
-        }, 21000)
+        }, 3500)
       }
+      // if (this.timer1 == null) {
+      //   this.timer1 = setInterval(() => {
+      //     // console.log("执行一次");
+      //     getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+      //       this.currentWarnTable = res.data
+      //       // console.log("currentWarnTable", this.currentWarnTable);
+      //       this.currentWarnTable.forEach(item => {
+      //       console.log("是否已读", item);
+      //     })
+      //     })
+
+      //   }, 21000)
+      // }
     }
   }
 }
