@@ -68,7 +68,7 @@
     </div>
 
     <!-- 报告表格 -->
-    <div class="bottom_card">
+    <div class="bottom-card">
       <el-card shadow="always">
         <!-- 卡片头 -->
         <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
@@ -100,65 +100,58 @@
           <el-table v-loading="loading" :data="tableData" stripe style="width: 100%" :border="true"
             :cell-style="{ 'text-align': 'center', 'height': '10px' }" :header-cell-style="{ 'text-align': 'center' }">
             <el-table-column prop="batchNum" label="卷号" min-width="21%" />
-            <el-table-column prop="inspectCreateTime" label="巡检开始日期" min-width="35%" />
+            <el-table-column prop="reportTime" label="报告日期" min-width="35%" />
             <el-table-column prop="lmdpQcColdInspect.consumer" label="客户" min-width="20%" />
-            <el-table-column prop="plateTypeDetermination" label="板型" min-width="20%">
+            <el-table-column prop="shapeQc" label="板型" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.plateTypeDetermination === 1 ? 'success' : (scope.row.plateTypeDetermination === 2 ? 'info' : 'danger')"
+                  :type="scope.row.shapeQc === null ? 'info' : (scope.row.shapeQc === 'qualified' ? 'success' : 'danger')"
                   @click="handleView(1, scope.row)">
-                  {{ scope.row.plateTypeDetermination === 1 ? '合格' : (scope.row.plateTypeDetermination === 2 ? '暂未评定' :
-                    '不合格') }}
+                  {{ scope.row.shapeQc === null? '暂未判定' : (scope.row.shapeQc === 'qualified' ? '合格' :  '不合格') }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="dimensionalDeviationDetermination" label="尺寸偏差" min-width="20%">
+            <el-table-column prop="dimensionalDeviation" label="尺寸偏差" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.dimensionalDeviationDetermination === 1 ? 'success' : (scope.row.dimensionalDeviationDetermination === 2 ? 'info' : 'danger')"
+                  :type="scope.row.dimensionalDeviation === null ? 'info' : (scope.row.dimensionalDeviation === 'qualified' ? 'success' : 'danger')"
                   @click="handleView(2, scope.row)">
-                  {{ scope.row.dimensionalDeviationDetermination === 1 ? '合格' :
-                    (scope.row.dimensionalDeviationDetermination
-                      === 2 ? '暂未评定' : '不合格') }}
+                  {{ scope.row.dimensionalDeviation === null? '暂未判定' : (scope.row.dimensionalDeviation === 'qualified' ? '合格' :  '不合格') }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="mechanicalPropertiesDetermination" label="力学性能" min-width="20%">
+            <el-table-column prop="mechanicalProperty" label="力学性能" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.mechanicalPropertiesDetermination === 1 ? 'success' : (scope.row.mechanicalPropertiesDetermination === 2 ? 'info' : 'danger')"
+                  :type="scope.row.mechanicalProperty === null ? 'info' : (scope.row.mechanicalProperty === 'qualified' ? 'success' : 'danger')"
                   @click="handleView(3, scope.row)">
-                  {{ scope.row.mechanicalPropertiesDetermination === 1 ? '合格' :
-                    (scope.row.mechanicalPropertiesDetermination
-                      === 2 ? '暂未评定' : '不合格') }}
+                  {{ scope.row.mechanicalProperty === null? '暂未判定' : (scope.row.mechanicalProperty === 'qualified' ? '合格' :  '不合格') }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="surfaceQualityDetermination" label="表面质量" min-width="20%">
+            <el-table-column prop="surfaceQc" label="表面质量" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.surfaceQualityDetermination === 1 ? 'success' : (scope.row.surfaceQualityDetermination === 2 ? 'info' : 'danger')"
+                  :type="scope.row.surfaceQc === null ? 'info' : (scope.row.surfaceQc === 'qualified' ? 'success' : 'danger')"
                   @click="handleView(4, scope.row)">
-                  {{ scope.row.surfaceQualityDetermination === 1 ? '合格' : (scope.row.surfaceQualityDetermination ===
-                    2 ? '暂未评定' : '不合格') }}
+                  {{ scope.row.surfaceQc === null? '暂未判定' : (scope.row.surfaceQc === 'qualified' ? '合格' :  '不合格') }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="appearanceQualityDetermination" label="外观质量" min-width="20%">
+            <el-table-column prop="facadeQc" label="外观质量" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.appearanceQualityDetermination === 1 ? 'success' : (scope.row.appearanceQualityDetermination === 2 ? 'info' : 'danger')"
+                  :type="scope.row.facadeQc === null ? 'info' : (scope.row.facadeQc === 'qualified' ? 'success' : 'danger')"
                   @click="handleView(5, scope.row)">
-                  {{ scope.row.appearanceQualityDetermination === 1 ? '合格' : (scope.row.appearanceQualityDetermination ===
-                    2 ? '暂未评定' : '不合格') }}
+                  {{ scope.row.facadeQc === null? '暂未判定' : (scope.row.facadeQc === 'qualified' ? '合格' :  '不合格') }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="allDetermination" label="质量判定" min-width="20%">
+            <el-table-column prop="inspectorJudge" label="判定意见" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.allDetermination === 1 ? 'success' : (scope.row.allDetermination === 2 ? 'info' : 'danger')">
-                  {{ scope.row.allDetermination === 1 ? '合格' : (scope.row.allDetermination === 2 ? '暂未评定' : '不合格') }}
+                  :type="scope.row.inspectorJudge === null ? 'info' : (scope.row.inspectorJudge === 'qualified' ? 'success' : 'danger')">
+                  {{ scope.row.inspectorJudge === null? '暂未判定' : (scope.row.inspectorJudge === 'qualified' ? '合格' :  '不合格') }}
                 </el-tag>
               </template>
             </el-table-column>
@@ -186,7 +179,7 @@
       <!-- 板型 -->
       <div v-if="showWtich === 1 || showWtich === 6">
         <el-descriptions title="板型" :column="2" border :size="size"
-          :label-style="dailogData.plateTypeDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.shapeQc !== 'unqualified' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="平直度">
             {{ dailogData.lmdpQcColdInspect.singleStraightness === null ?
               '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
@@ -208,7 +201,7 @@
       <!-- 尺寸偏差 -->
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size"
-          :label-style="dailogData.dimensionalDeviationDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.dimensionalDeviation !== 'unqualified' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="宽度">
             {{ dailogData.lmdpQcColdInspect.singleWidth === null ?
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
@@ -233,19 +226,15 @@
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格要求">
-            {{ dailogData.lmdpQcColdInspect.model === null ?
-              '-' : dailogData.lmdpQcColdInspect.model }}
+            {{ dailogData.slaveErpPlanColdreductionstrip.productSpec === null ?
+              '-' : dailogData.slaveErpPlanColdreductionstrip.productSpec }}
           </el-descriptions-item>
-          <!-- <el-descriptions-item label="成品规格要求">
-            {{ dailogData.slaveErpPlanColdreductionstrip.productSpec === null?
-              '-':dailogData.slaveErpPlanColdreductionstrip.productSpec }}
-          </el-descriptions-item> -->
         </el-descriptions>
       </div>
       <!-- 力学性能 -->
       <div v-if="showWtich === 3 || showWtich === 6" class="dialog-item">
         <el-descriptions title="力学性能" :column="3" border :size="size"
-          :label-style="dailogData.mechanicalPropertiesDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.mechanicalProperty !== 'unqualified' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="抗拉强度">
             {{ dailogData.lmdpQcColdInspect.singleStrength === null ?
               '-' : dailogData.lmdpQcColdInspect.singleStrength }}
@@ -283,13 +272,13 @@
           <el-descriptions-item label="弯折性能表标准">
             {{ dailogData.slaveErpPlanColdreductionstrip.bendingPerformance ===
               null ? '-' : Dict.get(dailogData.slaveErpPlanColdreductionstrip.bendingPerformance) }}
-          </el-descriptions-item>
+          </el-descriptions-item>tableData
         </el-descriptions>
       </div>
       <!-- 表面质量 -->
       <div v-if="showWtich === 4 || showWtich === 6" class="dialog-item">
         <el-descriptions title="表面质量" :column="1" border :size="size"
-          :label-style="dailogData.surfaceQualityDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.surfaceQc !== 'unqualified' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="表面质量描述">
             {{ dailogData.lmdpQcColdInspect.surfaceQuality ===
               null ? '-' :
@@ -308,7 +297,7 @@
       <!-- 外观质量 -->
       <div v-if="showWtich === 5 || showWtich === 6" class="dialog-item">
         <el-descriptions title="外观质量" :column="1" border :size="size"
-          :label-style="dailogData.appearanceQualityDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.facadeQc !== 'unqualified' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="外观质量描述">
             {{ dailogData.lmdpQcColdInspect.appearanceQuality ===
               null ? '-' :
@@ -340,7 +329,7 @@
 
 <script>
 import BarChart from '@/views/dashboard/BarChart'
-import { getList as getPlanAndInspect, getRangeDayInfo, getEveryDayInfo } from '@/api/planAndInspect'
+import { getList as getPlanAndInspectBackup, getRangeDayInfo, getEveryDayInfo } from '@/api/LmdpQcColdReelReport'
 const Dict = new Map()
 Dict.set('no_cracks', '90°折弯无裂纹')
 Dict.set('cracked', '90°折弯有裂纹')
@@ -356,12 +345,12 @@ export default {
       Dict,
       labelStyleNo: {
         background: '#fff',
-        width: '100px',
-        color: 'red'
+        width: '100px'
       },
       labelStyle: {
         background: '#fff',
-        width: '100px'
+        width: '100px',
+        color: 'red'
       },
       // 遮罩层
       loading: false,
@@ -407,26 +396,30 @@ export default {
       dailogData: {
         batchNum: null,
         planNum: null,
-        inspectCreateTime: null,
-        plateTypeDetermination: null,
-        mechanicalPropertiesDetermination: null,
-        dimensionalDeviationDetermination: null,
-        surfaceQualityDetermination: null,
-        appearanceQualityDetermination: null,
-        allDetermination: null,
+        reportTime: null,
+        shapeQc: null,
+        dimensionalDeviation: null,
+        mechanicalProperty: null,
+        surfaceQc: null,
+        facadeQc: null,
+        inspectorJudge: null,
         remark: null,
         lmdpQcColdInspect: {
           singleStraightness: null,
           singleMediumConvexity: null,
           tensileStrength: null,
           flatness: null,
-          elongation: null
+          elongation: null,
+          singleWidth: null,
+          appearanceQuality: null,
+          appearanceQualityRemark: null
         },
         slaveErpPlanColdreductionstrip: {
           flatness: null,
           tensileStrength: null,
           elongation: null,
-          appearanceReq: null
+          appearanceReq: null,
+          appearanceQuality: null
         }
       },
       tableData: [],
@@ -529,7 +522,7 @@ export default {
      */
     getList() {
       this.loading = true
-      getPlanAndInspect(this.queryParams).then((res) => {
+      getPlanAndInspectBackup(this.queryParams).then((res) => {
         console.log('res: ', res)
         this.tableData = res.data.records
         this.total = res.data.total

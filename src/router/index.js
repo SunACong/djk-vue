@@ -46,6 +46,11 @@ export const constantRoutes = [
       name: 'PlanAndInspect',
       component: () => import('@/views/module/productQuality/planAndInspect'),
       meta: { title: '合格判定', icon: 'dashboard' }
+    },{
+      path: 'planAndInspectBackup',
+      name: 'planAndInspectBackup',
+      component: () => import('@/views/module/productQuality/planAndInspectBackup'),
+      meta: { title: '合格判定', icon: 'dashboard' }
     }
       // , {
       //   path: 'productStandard',

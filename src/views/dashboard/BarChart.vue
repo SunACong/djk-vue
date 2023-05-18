@@ -116,9 +116,9 @@ export default {
           animationDuration,
           itemStyle: {
             normal: {
-              color: '#5087ff', // 改变折线点的颜色
+              color: '#a80000', // 改变折线点的颜色
               lineStyle: {
-                color: '#5087ff' // 改变折线颜色
+                color: '#a80000' // 改变折线颜色
               }
             }
           }
@@ -129,9 +129,9 @@ export default {
           animationDuration,
           itemStyle: {
             normal: {
-              color: '#a80000', // 改变折线点的颜色
+              color: '#5087ff', // 改变折线点的颜色
               lineStyle: {
-                color: '#a80000' // 改变折线颜色
+                color: '#5087ff' // 改变折线颜色
               }
             }
           }
@@ -142,9 +142,9 @@ export default {
           animationDuration,
           itemStyle: {
             normal: {
-              color: '#ff6f73', // 改变折线点的颜色
+              color: '#333333', // 改变折线点的颜色
               lineStyle: {
-                color: '#ff6f73' // 改变折线颜色
+                color: '#333333' // 改变折线颜色
               }
             }
           }

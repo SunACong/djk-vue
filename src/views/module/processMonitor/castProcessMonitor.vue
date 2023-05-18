@@ -1,11 +1,12 @@
 <template>
   <div class="layout-body">
     <div class="top-text">
-      铸轧生产流程功能模块，查询某个卷在生产流程中的某个位置<hr>
-      查询功能：输入框选择铸轧卷号，点击查询后展示当前卷所在流程步骤<hr>
+      整体生产流程功能模块，查询某个卷在生产流程中的某个位置<hr>
+      查询功能：输入框选择熔次号/铸轧卷号/冷轧卷号，点击查询后展示当前卷所在流程步骤<hr>
       点击功能：查询完成后点击已完成的步骤，可查看该步骤的详细信息
     </div>
-    <div class="top-select">
+    <div class="mid-process">
+      <div class="top-select">
       <el-select v-model="type" style="width: 130px" @change="changeType(type)">
         <el-option
           v-for="(item, index) in typeOptions"
@@ -14,7 +15,7 @@
           :value="item.value"
         />
       </el-select>
-      <el-select v-model="selectValue" filterable clearable :placeholder="熔次号">
+      <el-select v-model="selectValue" filterable clearable :placeholder="'请选择'+typeOptions[type].label">
         <el-option
           v-for="(item, index) in valueOptions"
           :key="index"
@@ -22,11 +23,13 @@
           :value="item.value"
         />
       </el-select>
-      <el-button type="primary" style="margin-left: 15px" @click="getSelectValueAndType(selectValue, type)">搜索</el-button>
+      <el-button type="primary" style="margin-left: 15px" @click="getSelectValueAndType(selectValue, 1)">搜索</el-button>
     </div>
-    <custom-step1 :steps-data="stepData" :active="active" @active="getActive" />
+    <custom-step-1 :steps-data="stepData" :active="active" @active="getActive" :status="status"/>
+    </div>
+    
     <div class="bottom-form">
-      <v-form-render ref="vFormRef" />
+      <v-form-render ref="vFormRef"/>
     </div>
   </div>
 </template>
@@ -50,15 +53,23 @@ import { formJson11 } from '@/api/LmdpQcColdInspect'
 import { formJson13 } from '@/api/LmdpQcComplaintDetail'
 import { getDictList } from '@/api/reportDict'
 import { getUserDictList } from '@/api/sysUser'
+import { getColdProduceList } from '@/api/LmdpColdProduce'
 const reportDict = new Map()
 const userDict = new Map()
 const FormMap = new Map()
-FormMap.set(0, 'lmdpCastSmeltHold')
-FormMap.set(1, 'lmdpCastHoldingFurnace')
-FormMap.set(2, 'lmdpCastProduce')
-FormMap.set(3, 'lmdpCastReelStoreRecord')
+FormMap.set(0, 'erpPlanRollcasting')
+FormMap.set(1, 'lmdpCastSmeltHold')
+FormMap.set(2, 'lmdpCastHoldingFurnace')
+FormMap.set(3, 'lmdpCastProduce')
 FormMap.set(4, 'lmdpQcCastReel')
-
+FormMap.set(5, 'lmdpCastReelStoreRecord')
+FormMap.set(6, 'erpPlanColdreductionstrip')
+FormMap.set(7, 'lmdpColdRecord')
+FormMap.set(8, 'lmdpColdFurnaceRecord')
+FormMap.set(9, 'lmdpColdRereelerRecord')
+FormMap.set(10, 'lmdpQcColdReelReport')
+FormMap.set(11, 'lmdpColdStoreRecord')
+FormMap.set(12, 'lmdpQcComplaintDetail')
 export default {
   name: 'ProcessMonitor',
   components: {
@@ -66,47 +77,51 @@ export default {
   },
   data() {
     return {
-      formJson: [formJson1, formJson2, formJson3, formJson4, formJson5
-      ],
-      active: null,
+      formJson: [formJson0, formJson1, formJson2, formJson3, formJson4, formJson5,
+        formJson6, formJson7, formJson8, formJson9, formJson12,
+        formJson10, formJson13],
+      active: -2,
       current: null,
+      status: [],
       formData: {},
       stepData: [
-
+        { title: '铸轧计划' },
         { title: '熔炼工序' },
         { title: '保温工序' },
         { title: '铸轧工序' },
         { title: '铸轧质检' },
-        { title: '铸轧出入库' }
+        { title: '铸轧出入库' },
 
+        { title: '冷轧计划' },
+        { title: '冷轧工序' },
+        { title: '退火工序' },
+        { title: '重卷工序' },
+        { title: '冷轧质检' },
+        { title: '冷轧出入库' },
+
+
+        { title: '投诉处理' }
       ],
       selectValue: null,
       type: null,
       typeOptions: [
-
-        { label: '铸轧卷号', value: 1 }
-
+        { label: '铸轧卷号', value: 0 }
       ],
       valueOptions: [],
       reportDict: reportDict,
-      userDict: userDict
+      userDict: userDict,
+      formKey: null
     }
   },
   watch: {
-    active: {
-      handler(val) {
-        this.$refs.vFormRef.setFormJson(this.formJson[val - 2])
-        const formData = this.dictToValue(this.formData[`${FormMap.get(val)}`])
-        this.$refs.vFormRef.setFormData(formData)
-      }
-    },
     current: {
       handler(val) {
         this.$refs.vFormRef.setFormJson(this.formJson[val])
         setTimeout(() => {
           const formData = this.dictToValue(this.formData[`${FormMap.get(val)}`])
+          console.log(FormMap.get(val))
           this.$refs.vFormRef.setFormData(formData)
-        }, 500)
+        }, 500);
       }
     }
   },
@@ -125,7 +140,7 @@ export default {
   },
   created() {
     this.type = this.typeOptions[0].value
-    // 搜索框默认铸轧卷号
+    // 搜索框默认熔次号
     getCastProduceList().then(res => {
       this.valueOptions = res.data.map(item => ({
         label: item.reelNum,
@@ -135,31 +150,9 @@ export default {
   },
   methods: {
     changeType(type) {
-      if (type === 0) {
-        getCastSmeltHoldList().then(res => {
-          this.valueOptions = res.data.map(item => ({
-            label: item.smeltTimes,
-            value: item.smeltTimes
-          }))
-        })
-      } else if (type === 1) {
-        getCastProduceList().then(res => {
-          this.valueOptions = res.data.map(item => ({
-            label: item.reelNum,
-            value: item.reelNum
-          }))
-        })
-      } else if (type === 2) {
-        getColdRecordList().then(res => {
-          this.valueOptions = res.data.map(item => ({
-            label: item.batchNum,
-            value: item.batchNum
-          }))
-        })
-      }
     },
     getActive(val) {
-      if (val > this.active) {
+      if (val > this.active-1) {
         this.$message({
           message: '暂未开始',
           type: 'warning'
@@ -171,11 +164,17 @@ export default {
     async getSelectValueAndType(val, type) {
       let query = null
       console.log({ val, type })
-      if (val != null && type != null) {
+      if ((val != null && val != '') && type != null) {
         query = {
           number: val,
           type: type
         }
+      }else{
+        this.$message({
+            message: '请输入对应卷号',
+            type: 'warning'
+          })
+          return
       }
       await this.getList(query)
     },
@@ -191,24 +190,23 @@ export default {
       return data
     },
     getList(query) {
-      getProcessMonitor(query).then(res => {
+      getProcessMonitor(query).then(async res => {
         this.formData = res.data
-        let count = 0
-        for (const key in res.data) {
-          if (res.data[key] != null) {
-            count++
-          }
-        }
-        if (count === 0) {
+        this.status = res.data.status
+        let count = res.data.length
+        if (count === null) {
           this.$message({
             message: '未查询到数据',
             type: 'warning'
           })
-          this.active = null
+          this.active = -2
           this.current = null
         } else {
-          this.active = count - 2
-          this.current = count - 2
+          this.active = count
+          const formData = this.dictToValue(this.formData[`${FormMap.get(count-1)}`])
+          this.$refs.vFormRef.setFormJson(this.formJson[count-1])
+          this.$refs.vFormRef.setFormData(formData)
+          this.current = count-1
         }
       })
     }
