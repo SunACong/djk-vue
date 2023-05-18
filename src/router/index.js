@@ -196,8 +196,9 @@ export const constantRoutes = [
     },
 
     {
-      path: 'parameterSet',
-      name: 'parameterSet',
+      //parameterSet
+      path: 'recoillingSet',
+      name: 'recoillingSet',
       component: () => import('@/views/module/healthDegree/recoillingSet.vue'),
       meta: { title: '重卷机参数设置', icon: 'dashboard' }
     },
