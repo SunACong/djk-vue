@@ -63,6 +63,7 @@ service.interceptors.response.use(
     } else {
       return res
     }
+    // return res
   },
   error => {
     console.log('err' + error) // for debug

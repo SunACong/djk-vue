@@ -6,17 +6,41 @@
           <el-step
             v-for="(d, i) in topSteps"
             :key="d.title"
-            :icon="i !== active? 'el-icon-success':'el-icon-loading'"
+            :icon="i+1 !== active? 'el-icon-success':'el-icon-loading'"
             :title="d.title"
             :description="d.description"
-            :status="active > i ? 'finish' : ''"
+            :status="i+1<active && status[i] ? 'finish' : ''"
             @click.native="throwActive(i)"
           />
         </el-steps>
-
-
-</div>
+        <!-- <div class="left-steps-bottom">
+          <el-steps class="left-steps-bottom-item" align-center>
+            <el-step
+              v-for="(d, i) in bottomSteps"
+              :key="i"
+              :icon="(stepsData.length - active) == i?'el-icon-loading':'el-icon-success'"
+              :title="d.title"
+              :description="d.description"
+              :status="status[stepsData.length-i-1]? 'finish' : ''"
+              @click.native="throwActive(stepsData.length-i-1)"
+            />
+          </el-steps>
+        </div> -->
       </div>
+
+
+      <!-- <div class="right-steps" @click="throwActive(6)">
+        <div class="circle" :class="[status[6]? 'finish' : '']">
+          <p class="icon">
+            <i :class="active==7? 'el-icon-loading':'el-icon-success'"></i>
+            <span class="tips">
+              <span>{{ midSteps.title }}</span>
+              <span>{{ midSteps.description }}</span>
+            </span>
+          </p>
+        </div>
+      </div> -->
+    </div>
   </div>
 </template>
 
@@ -30,6 +54,12 @@ export default {
         return []
       }
     },
+    status: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
     active: {
       type: Number,
       default: 0
@@ -38,10 +68,10 @@ export default {
   data() {
     return {
       topSteps: [],
-      // midSteps: {},
-      // bottomSteps: [],
+      midSteps: {},
+      bottomSteps: [],
       midFlag: false,
-      midNum: 0
+      midNum: 0,
     }
   },
   watch: {
@@ -62,7 +92,6 @@ export default {
       this._setActive()
     },
     _setActive() {
-      console.log(this.active)
       if (this.active > this.topSteps.length) {
         this.midFlag = true
       }
@@ -74,7 +103,7 @@ export default {
     _initStepsData() {
       const stepsData = this.stepsData
       if (stepsData && stepsData.length > 0) {
-        const n = Math.floor(stepsData.length)
+        const n = Math.floor(stepsData.length / 2)
         this.midNum = n
         this.topSteps = stepsData.slice(0, n)
         this.midSteps = stepsData[n]
@@ -87,7 +116,7 @@ export default {
 
 <style scoped lang="less">
 .circle {
-  width: 300px;
+  width: 160px;
   height: 110px;
   margin-top: 10px;
   border: 5px solid #c0c4cc;
@@ -120,6 +149,10 @@ export default {
       font-size: 36px;
       color: #cecece;
     }
+    .el-icon-close {
+      font-size: 36px;
+      color: red;
+    }
     .tips {
       display: flex;
       position: absolute;
@@ -131,7 +164,7 @@ export default {
       flex-direction: column;
       text-align: center;
       > span:first-child {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
       }
     }
@@ -155,22 +188,21 @@ export default {
   // padding: 40px;
   display: flex;
   .left-steps {
-    width: calc(~"100% - 160px");
+    width: calc(~"100%");
     .left-steps-bottom{
+
       margin-top: 40px;
-      .left-steps-bottom-item{
-      }
     }
     // height: 40px;
     // float: left;
   }
-  .right-steps {
-    /*float: right;*/
-    margin-left: -100px;
-  }
-  // /deep/.el-step__icon {
-  //   // /*background: #f6f6f6;
+  // .right-steps {
+  //   /*float: right;*/
+  //   margin-left: -130px;
   // }
+  /deep/.el-step__icon {
+    background: #f6f6f6;
+  }
   /deep/.el-step__icon-inner {
     font-size: 36px;
   }

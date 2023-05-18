@@ -9,11 +9,11 @@
             :icon="i+1 !== active? 'el-icon-success':'el-icon-loading'"
             :title="d.title"
             :description="d.description"
-            :status="i+1<active && status[i] ? 'finish' : ''"
+            :status="i+1<active && status[i+6] ? 'finish' : ''"
             @click.native="throwActive(i)"
           />
         </el-steps>
-        <div class="left-steps-bottom">
+        <!-- <div class="left-steps-bottom">
           <el-steps class="left-steps-bottom-item" align-center>
             <el-step
               v-for="(d, i) in bottomSteps"
@@ -25,11 +25,11 @@
               @click.native="throwActive(stepsData.length-i-1)"
             />
           </el-steps>
-        </div>
+        </div> -->
       </div>
 
 
-      <div class="right-steps" @click="throwActive(6)">
+      <!-- <div class="right-steps" @click="throwActive(6)">
         <div class="circle" :class="[status[6]? 'finish' : '']">
           <p class="icon">
             <i :class="active==7? 'el-icon-loading':'el-icon-success'"></i>
@@ -39,7 +39,7 @@
             </span>
           </p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -188,24 +188,21 @@ export default {
   // padding: 40px;
   display: flex;
   .left-steps {
-    width: calc(~"100% - 160px");
+    width: calc(~"100%");
     .left-steps-bottom{
 
       margin-top: 40px;
-      .left-steps-bottom-item{
-
-      }
     }
     // height: 40px;
     // float: left;
   }
-  .right-steps {
-    /*float: right;*/
-    margin-left: -130px;
-  }
-  // /deep/.el-step__icon {
-  //   // /*background: #f6f6f6;
+  // .right-steps {
+  //   /*float: right;*/
+  //   margin-left: -130px;
   // }
+  /deep/.el-step__icon {
+    background: #f6f6f6;
+  }
   /deep/.el-step__icon-inner {
     font-size: 36px;
   }
