@@ -478,20 +478,20 @@ export default {
               this.rollingTableData1[6].chartData.rName = '炉气设定温度'
               this.rollingTableData1[6].chartData.rType = 'setT'
 
-              // 炉冷却水
-              this.rollingTableData1[0].value = item.coolWaterUpLimit
-              // 炉压缩空气
-              this.rollingTableData1[1].value = item.compressedAirOneLowPressure
-              // 金属料温温度曲线
-              this.rollingTableData1[2].value = item.meterialT
-              // 1区炉气温度曲线
-              this.rollingTableData1[3].value = item.zoneOneT
-              // 2区炉气温度曲线  rollA
-              this.rollingTableData1[4].value = item.zoneTwoT
-              // 3区炉气温度曲线
-              this.rollingTableData1[5].value = item.zoneThreeT
-              // 炉气设定温度
-              this.rollingTableData1[6].value = item.setT
+              // // 炉冷却水
+              // this.rollingTableData1[0].value = item.coolWaterUpLimit
+              // // 炉压缩空气
+              // this.rollingTableData1[1].value = item.compressedAirOneLowPressure
+              // // 金属料温温度曲线
+              // this.rollingTableData1[2].value = item.meterialT
+              // // 1区炉气温度曲线
+              // this.rollingTableData1[3].value = item.zoneOneT
+              // // 2区炉气温度曲线  rollA
+              // this.rollingTableData1[4].value = item.zoneTwoT
+              // // 3区炉气温度曲线
+              // this.rollingTableData1[5].value = item.zoneThreeT
+              // // 炉气设定温度
+              // this.rollingTableData1[6].value = item.setT
               // //上辊水温
               // this.rollingTableData1[7].value = item.upRollWaterT;
               // //下辊水温
@@ -511,9 +511,25 @@ export default {
 
           //判断设备健康状况
           getListNewData1().then((res) => {
-            console.log("打印设备的状态信息", res.data[18].zoneOneT);
+            console.log("打印设备的状态信息", res.data[0].zoneOneT);
+
+            // 炉冷却水
+            this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit
+            // 炉压缩空气
+            this.rollingTableData1[1].value = res.data[0].compressedAirOneLowPressure
+            // 金属料温温度曲线
+            this.rollingTableData1[2].value = res.data[0].meterialT
+            // 1区炉气温度曲线
+            this.rollingTableData1[3].value = res.data[0].zoneOneT
+            // 2区炉气温度曲线  rollA
+            this.rollingTableData1[4].value = res.data[0].zoneTwoT
+            // 3区炉气温度曲线
+            this.rollingTableData1[5].value = res.data[0].zoneThreeT
+            // 炉气设定温度
+            this.rollingTableData1[6].value = res.data[0].setT
+
             this.judgeList = [];
-            this.judge = res.data[18].zoneOneT;
+            this.judge = res.data[0].zoneOneT;
             // 绿
             if (this.judge > 100) {
               this.ZT1 = "true";
