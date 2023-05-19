@@ -10,7 +10,7 @@
             </div>
           </div>
           <div>
-            <el-table :data="rollingTableData1" stripe style="width: 100%" height="400px"
+            <el-table :data="rollingTableData1" stripe style="width: 100%" height="300px"
               :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
               :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
@@ -36,12 +36,18 @@
               <span style="line-height: 20px;">当前设备状态</span>
             </div>
           </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+          <div v-show="ZT1" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
             <el-button class="el-icon-mytubiao" style="margin-bottom: 8px" />
             <div style="font-size: 30px;color: green;">正常</div>
           </div>
+
+          <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+            <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
+            <div style="font-size: 30px;color: red;">停机</div>
+          </div>
         </el-card>
       </div>
+
     </div>
     <!--实时报警记录刷新表-->
     <div class="health_status" style="margin-top: 8px">
@@ -157,6 +163,13 @@ export default {
   components: { AreaChart },
   data() {
     return {
+      //判断状态
+      judge: '',
+      judgeList: [],
+      // 报警状态 正常1 异常2
+      ZT1: '',
+      ZT2: '',
+
       value: '',
       ListDuringData: {},
       indicatorName: null,
@@ -218,6 +231,9 @@ export default {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
+    this.ZT1 = "true";
+    this.ZT2 = "";
+
     this.setTimer()
     /**
      * 获取一号铸轧机报警历史记录（30条）
@@ -427,8 +443,8 @@ export default {
               this.rollingTableData1[0].chartData.rType = 'coolWaterUpLimit'
 
               this.rollingTableData1[1].chartData.xData.unshift(item.ts)
-              // this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
-              this.rollingTableData1[1].chartData.yData.unshift(1)
+              this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
+              // this.rollingTableData1[1].chartData.yData.unshift(1)
               this.rollingTableData1[1].chartData.rName = '炉压缩空气'
               this.rollingTableData1[1].chartData.rType = 'compressedAirOneLowPressure'
 
@@ -459,20 +475,20 @@ export default {
               this.rollingTableData1[6].chartData.rName = '炉气设定温度'
               this.rollingTableData1[6].chartData.rType = 'setT'
 
-              // 炉冷却水
-              this.rollingTableData1[0].value = item.coolWaterUpLimit
-              // 炉压缩空气
-              this.rollingTableData1[1].value = item.compressedAirOneLowPressure
-              // 金属料温温度曲线
-              this.rollingTableData1[2].value = item.meterialT
-              // 1区炉气温度曲线
-              this.rollingTableData1[3].value = item.zoneOneT
-              // 2区炉气温度曲线  rollA
-              this.rollingTableData1[4].value = item.zoneTwoT
-              // 3区炉气温度曲线
-              this.rollingTableData1[5].value = item.zoneThreeT
-              // 炉气设定温度
-              this.rollingTableData1[6].value = item.setT
+              // // 炉冷却水
+              // this.rollingTableData1[0].value = item.coolWaterUpLimit
+              // // 炉压缩空气
+              // this.rollingTableData1[1].value = item.compressedAirOneLowPressure
+              // // 金属料温温度曲线
+              // this.rollingTableData1[2].value = item.meterialT
+              // // 1区炉气温度曲线
+              // this.rollingTableData1[3].value = item.zoneOneT
+              // // 2区炉气温度曲线  rollA
+              // this.rollingTableData1[4].value = item.zoneTwoT
+              // // 3区炉气温度曲线
+              // this.rollingTableData1[5].value = item.zoneThreeT
+              // // 炉气设定温度
+              // this.rollingTableData1[6].value = item.setT
               // //上辊水温
               // this.rollingTableData1[7].value = item.upRollWaterT;
               // //下辊水温
@@ -490,6 +506,40 @@ export default {
             })
           })
 
+          //判断设备健康状况
+          getListNewData7().then((res) => {
+            console.log("打印设备的状态信息", res.data[0].zoneOneT);
+
+            // 炉冷却水
+            this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit
+            // 炉压缩空气
+            // this.rollingTableData1[1].value = res.data[0].compressedAirOneLowPressure
+            this.rollingTableData1[1].value = 1
+            // 金属料温温度曲线
+            this.rollingTableData1[2].value = res.data[0].meterialT
+            // 1区炉气温度曲线
+            this.rollingTableData1[3].value = res.data[0].zoneOneT
+            // 2区炉气温度曲线  rollA
+            this.rollingTableData1[4].value = res.data[0].zoneTwoT
+            // 3区炉气温度曲线
+            this.rollingTableData1[5].value = res.data[0].zoneThreeT
+            // 炉气设定温度
+            this.rollingTableData1[6].value = res.data[0].setT
+
+            this.judgeList = [];
+            this.judge = res.data[0].zoneOneT;
+            // 绿
+            if (this.judge > 100) {
+              this.ZT1 = "true";
+              this.ZT2 = "";
+            };
+
+            // 红
+            if (this.judge <= 100) {
+              this.ZT1 = "";
+              this.ZT2 = "true";
+            };
+          })
           // 定时查询退火炉最新20条报警记录
           getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
@@ -504,6 +554,11 @@ export default {
 <style scoped>
 .el-icon-mytubiao {
   background: url('~@/icons/myicons/status1.jpg') center no-repeat;
+  background-size: cover;
+}
+
+.el-icon-mytubiao1 {
+  background: url('~@/icons/myicons/status2.jpg') center no-repeat;
   background-size: cover;
 }
 

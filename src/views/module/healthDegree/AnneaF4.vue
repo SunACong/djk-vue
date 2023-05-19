@@ -10,29 +10,18 @@
             </div>
           </div>
           <div>
-            <el-table
-              :data="rollingTableData1"
-              stripe
-              style="width: 100%"
-              height="400px"
+            <el-table :data="rollingTableData1" stripe style="width: 100%" height="300px"
               :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
-              :header-cell-style="{ 'text-align': 'center' }"
-            >
+              :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
               <el-table-column prop="name" label="指标名称" min-width="20%" />
               <el-table-column prop="value" label="数值" min-width="20%" />
               <el-table-column prop="chartData" label="图表" min-width="50%">
                 <template slot-scope="scope">
                   <div style="display: inline; " @click="getMyData(1, scope.row)">
-                    <AreaChart
-                      width="100%"
-                      height="80%"
-                      :x-data="scope.row.chartData.xData"
-                      :y-data="scope.row.chartData.yData"
-                      :min-data="scope.row.chartData.minData"
-                      :max-data="scope.row.chartData.maxData"
-                      :r-name="scope.row.chartData.rName"
-                    />
+                    <AreaChart width="100%" height="80%" :x-data="scope.row.chartData.xData"
+                      :y-data="scope.row.chartData.yData" :min-data="scope.row.chartData.minData"
+                      :max-data="scope.row.chartData.maxData" :r-name="scope.row.chartData.rName" />
                   </div>
                 </template>
               </el-table-column>
@@ -47,12 +36,18 @@
               <span style="line-height: 20px;">当前设备状态</span>
             </div>
           </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+          <div v-show="ZT1" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
             <el-button class="el-icon-mytubiao" style="margin-bottom: 8px" />
             <div style="font-size: 30px;color: green;">正常</div>
           </div>
+
+          <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+            <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
+            <div style="font-size: 30px;color: red;">停机</div>
+          </div>
         </el-card>
       </div>
+
     </div>
     <!--实时报警记录刷新表-->
     <div class="health_status" style="margin-top: 8px">
@@ -94,34 +89,15 @@
         </div>
         <div style="display: flex;">
           <div>
-            <el-date-picker
-              v-model="qualifyDateRange"
-              size="medium"
-              type="datetimerange"
-              align="left"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions"
-              @change="getDate"
-            />
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
           </div>
           <template>
-            <el-select
-              v-model="value"
-              style="margin-bottom: 10px"
-              size="medium"
-              placeholder="请选择"
-              @change="getIndicatorName($event)"
-            >
-              <el-option
-                v-for="item in rollingOptions"
-                :key="item.value"
-                size="mini"
-                :label="item.label"
-                :value="item.value"
-              />
+            <el-select v-model="value" style="margin-bottom: 10px" size="medium" placeholder="请选择"
+              @change="getIndicatorName($event)">
+              <el-option v-for="item in rollingOptions" :key="item.value" size="mini" :label="item.label"
+                :value="item.value" />
             </el-select>
           </template>
           <div style="margin-left: 30px">
@@ -158,18 +134,9 @@
 
         <div display="flex" margin="5%">
           <el-row margin="5%">
-            <el-date-picker
-              v-model="qualifyDateRange"
-              size="medium"
-              type="datetimerange"
-              align="left"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions"
-              @change="getDate"
-            />
+            <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" />
             <el-button size="medium" type="text" @click="getengineList">查询</el-button>
           </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
@@ -196,6 +163,13 @@ export default {
   components: { AreaChart },
   data() {
     return {
+      //判断状态
+      judge: '',
+      judgeList: [],
+      // 报警状态 正常1 异常2
+      ZT1: '',
+      ZT2: '',
+
       value: '',
       ListDuringData: {},
       indicatorName: null,
@@ -257,6 +231,9 @@ export default {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
+    this.ZT1 = "true";
+    this.ZT2 = "";
+
     this.setTimer()
     /**
      * 获取一号铸轧机报警历史记录（30条）
@@ -307,7 +284,7 @@ export default {
       })
     })
   },
-  destroyed: function() {
+  destroyed: function () {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
@@ -342,12 +319,12 @@ export default {
     /**
      * 获取当点击时间空间以及单选框时，得到的指标名称和时间
      */
-    getIndicatorName: function(event) {
+    getIndicatorName: function (event) {
       console.log(event)
       this.indicatorName = this.value
       console.log('指标名称', this.value)
     },
-    getDate: function() {
+    getDate: function () {
       this.begin = parseTime(this.qualifyDateRange[0])
       this.end = parseTime(this.qualifyDateRange[1])
       console.log('开始时间', parseTime(this.qualifyDateRange[0]))
@@ -356,7 +333,7 @@ export default {
     /**
      * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
      */
-    getMyHistoryData: function() {
+    getMyHistoryData: function () {
       this.historyWarnTable = []
       getListDuringWarnData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
         console.log('特定时间范围内的数据', res)
@@ -366,7 +343,7 @@ export default {
     /**
      * 当电机页面中的图表和报警记录表中的查询按钮时，触发
      */
-    getMyData: function(index, row) {
+    getMyData: function (index, row) {
       this.showWtich = index
       if (index == 1) {
         this.xData = row.chartData.xData
@@ -499,19 +476,19 @@ export default {
               this.rollingTableData1[6].chartData.rType = 'setT'
 
               // 炉冷却水
-              this.rollingTableData1[0].value = item.coolWaterUpLimit
-              // 炉压缩空气
-              this.rollingTableData1[1].value = item.compressedAirOneLowPressure
-              // 金属料温温度曲线
-              this.rollingTableData1[2].value = item.meterialT
-              // 1区炉气温度曲线
-              this.rollingTableData1[3].value = item.zoneOneT
-              // 2区炉气温度曲线  rollA
-              this.rollingTableData1[4].value = item.zoneTwoT
-              // 3区炉气温度曲线
-              this.rollingTableData1[5].value = item.zoneThreeT
-              // 炉气设定温度
-              this.rollingTableData1[6].value = item.setT
+              // this.rollingTableData1[0].value = item.coolWaterUpLimit
+              // // 炉压缩空气
+              // this.rollingTableData1[1].value = item.compressedAirOneLowPressure
+              // // 金属料温温度曲线
+              // this.rollingTableData1[2].value = item.meterialT
+              // // 1区炉气温度曲线
+              // this.rollingTableData1[3].value = item.zoneOneT
+              // // 2区炉气温度曲线  rollA
+              // this.rollingTableData1[4].value = item.zoneTwoT
+              // // 3区炉气温度曲线
+              // this.rollingTableData1[5].value = item.zoneThreeT
+              // // 炉气设定温度
+              // this.rollingTableData1[6].value = item.setT
               // //上辊水温
               // this.rollingTableData1[7].value = item.upRollWaterT;
               // //下辊水温
@@ -529,6 +506,42 @@ export default {
             })
           })
 
+          //判断设备健康状况
+          getListNewData4().then((res) => {
+            console.log("打印设备的状态信息", res.data[0].zoneOneT);
+
+            // 炉冷却水
+            this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit
+            // 炉压缩空气
+            // this.rollingTableData1[1].value = res.data[0].compressedAirOneLowPressure
+            this.rollingTableData1[1].value = 1
+            // 金属料温温度曲线
+            this.rollingTableData1[2].value = res.data[0].meterialT
+            // 1区炉气温度曲线
+            this.rollingTableData1[3].value = res.data[0].zoneOneT
+            // 2区炉气温度曲线  rollA
+            this.rollingTableData1[4].value = res.data[0].zoneTwoT
+            // 3区炉气温度曲线
+            this.rollingTableData1[5].value = res.data[0].zoneThreeT
+            // 炉气设定温度
+            this.rollingTableData1[6].value = res.data[0].setT
+
+            this.judgeList = [];
+            this.judge = res.data[0].zoneOneT;
+            // 绿
+            if (this.judge > 100) {
+              this.ZT1 = "true";
+              this.ZT2 = "";
+            };
+
+            // 红
+            if (this.judge <= 100) {
+              this.ZT1 = "";
+              this.ZT2 = "true";
+            };
+          })
+
+
           // 定时查询退火炉最新20条报警记录
           getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
@@ -541,6 +554,11 @@ export default {
 </script>
 
 <style scoped>
+.el-icon-mytubiao1 {
+  background: url('~@/icons/myicons/status2.jpg') center no-repeat;
+  background-size: cover;
+}
+
 .el-icon-mytubiao {
   background: url('~@/icons/myicons/status1.jpg') center no-repeat;
   background-size: cover;

@@ -10,7 +10,7 @@
             </div>
           </div>
           <div>
-            <el-table :data="rollingTableData1" stripe style="width: 100%" height="400px"
+            <el-table :data="rollingTableData1" stripe style="width: 100%" height="300px"
               :cell-style="{ 'text-align': 'center', 'height': '10px', 'line-hight': '150px' }"
               :header-cell-style="{ 'text-align': 'center' }">
               <el-table-column prop="xuhao" label="序号" min-width="10%" />
@@ -36,12 +36,18 @@
               <span style="line-height: 20px;">当前设备状态</span>
             </div>
           </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+          <div v-show="ZT1" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
             <el-button class="el-icon-mytubiao" style="margin-bottom: 8px" />
             <div style="font-size: 30px;color: green;">正常</div>
           </div>
+
+          <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+            <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
+            <div style="font-size: 30px;color: red;">停机</div>
+          </div>
         </el-card>
       </div>
+
     </div>
 
     <!--实时报警记录刷新表-->
@@ -158,6 +164,13 @@ export default {
   components: { AreaChart },
   data() {
     return {
+      //判断状态
+      judge: '',
+      judgeList: [],
+      // 报警状态 正常1 异常2
+      ZT1: '',
+      ZT2: '',
+
       value: '',
       ListDuringData: {},
       indicatorName: null,
@@ -219,6 +232,9 @@ export default {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
+    this.ZT1 = "true";
+    this.ZT2 = "";
+
     this.setTimer()
     /**
      * 获取一号铸轧机报警历史记录（30条）
@@ -401,11 +417,25 @@ export default {
               // this.rollingTableData1[2].value = item.rollV;
             })
           })
-          // 定时查询铸轧机最新20条报警记录
-          // getListWarnHistoryData({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
-          //   this.historyWarnTable = res.data
-          //   // console.log("+++++++++", res.data);
-          // })
+
+          //判断设备健康状况
+          getListNewDataCjj1().then((res) => {
+            console.log("打印设备的状态信息", res.data[19].machineColsV);
+            this.judgeList = [];
+            this.judge = res.data[19].machineColsV;
+            // 绿
+            if (this.judge > 10) {
+              this.ZT1 = "true";
+              this.ZT2 = "";
+            };
+
+            // 红
+            if (this.judge <= 10) {
+              this.ZT1 = "";
+              this.ZT2 = "true";
+            };
+          })
+
 
           getDevice({ rollingDeviceNumber: '重卷机1#' }).then((res) => {
             this.currentWarnTable = res.data
@@ -427,5 +457,10 @@ export default {
   content: "替";
   font-size: 16px;
   visibility: hidden;
+}
+
+.el-icon-mytubiao1 {
+  background: url('~@/icons/myicons/status2.jpg') center no-repeat;
+  background-size: cover;
 }
 </style>
