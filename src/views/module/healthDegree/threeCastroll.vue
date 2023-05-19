@@ -578,13 +578,13 @@ export default {
             this.judgeList = [];
             this.judge = res.data[10].rollV;
             // 绿
-            if (this.judge > 0) {
+            if (res.data[19].rollV > 200) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
 
             // 红
-            if (this.judge <= 0) {
+            if (res.data[19].rollV <= 200) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

@@ -36,12 +36,18 @@
               <span style="line-height: 20px;">当前设备状态</span>
             </div>
           </div>
-          <div style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+          <div v-show="ZT1" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
             <el-button class="el-icon-mytubiao" style="margin-bottom: 8px" />
             <div style="font-size: 30px;color: green;">正常</div>
           </div>
+
+          <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
+            <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
+            <div style="font-size: 30px;color: red;">停机</div>
+          </div>
         </el-card>
       </div>
+
     </div>
     <!--实时报警记录刷新表-->
     <div class="health_status" style="margin-top: 8px">
@@ -157,6 +163,13 @@ export default {
   components: { AreaChart },
   data() {
     return {
+      //判断状态
+      judge: '',
+      judgeList: [],
+      // 报警状态 正常1 异常2
+      ZT1: '',
+      ZT2: '',
+
       value: '',
       ListDuringData: {},
       indicatorName: null,
@@ -218,6 +231,9 @@ export default {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
+    this.ZT1 = "true";
+    this.ZT2 = "";
+
     this.setTimer()
     /**
      * 获取一号铸轧机报警历史记录（30条）
@@ -490,6 +506,25 @@ export default {
             })
           })
 
+          //判断设备健康状况
+          getListNewData1().then((res) => {
+            console.log("打印设备的状态信息", res.data[19].zoneOneT);
+            this.judgeList = [];
+            this.judge = res.data[19].zoneOneT;
+            // 绿
+            if (this.judge > 100) {
+              this.ZT1 = "true";
+              this.ZT2 = "";
+            };
+
+            // 红
+            if (this.judge <= 100) {
+              this.ZT1 = "";
+              this.ZT2 = "true";
+            };
+          })
+
+
           // 定时查询退火炉最新20条报警记录
           getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
@@ -504,6 +539,11 @@ export default {
 <style scoped>
 .el-icon-mytubiao {
   background: url('~@/icons/myicons/status1.jpg') center no-repeat;
+  background-size: cover;
+}
+
+.el-icon-mytubiao1 {
+  background: url('~@/icons/myicons/status2.jpg') center no-repeat;
   background-size: cover;
 }
 
