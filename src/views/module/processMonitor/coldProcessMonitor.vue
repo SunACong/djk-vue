@@ -133,7 +133,7 @@ export default {
   },
   created() {
     this.type = this.typeOptions[0].value
-    // 搜索框默认熔次号
+    // 搜索框默认冷轧卷号
     getColdProduceList().then(res => {
       console.log(res);
       this.valueOptions = res.data.map(item => ({

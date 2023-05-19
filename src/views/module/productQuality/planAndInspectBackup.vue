@@ -211,23 +211,23 @@
               null ? '-' : dailogData.slaveErpPlanColdreductionstrip.warpWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度">
-            {{ dailogData.lmdpQcColdInspect.finishedThickness === null ?
-              '-' : dailogData.lmdpQcColdInspect.finishedThickness }}
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
             {{ dailogData.slaveErpPlanColdreductionstrip.endwiseHeight ===
               null ? '-' : dailogData.slaveErpPlanColdreductionstrip.endwiseHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格">
-            {{ dailogData.lmdpQcColdInspect.finishedThickness === null ?
-              '-' : dailogData.lmdpQcColdInspect.finishedThickness }}
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleHeight }}
             *
             {{ dailogData.lmdpQcColdInspect.singleWidth === null ?
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格要求">
-            {{ dailogData.slaveErpPlanColdreductionstrip.productSpec === null ?
-              '-' : dailogData.slaveErpPlanColdreductionstrip.productSpec }}
+            {{ dailogData.lmdpQcColdInspect.model === null ?
+              '-' : dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
