@@ -36,14 +36,15 @@
               <span style="line-height: 20px;">当前设备状态</span>
             </div>
           </div>
+
           <div v-show="ZT1" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
-            <el-button class="el-icon-mytubiao" style="margin-bottom: 8px" />
-            <div style="font-size: 30px;color: green;">正常</div>
+            <el-button class="el-icon-mytubiao" />
+            <h2 style="font-size: 30px;color: green;"> 正常</h2>
           </div>
 
           <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
-            <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
-            <div style="font-size: 30px;color: red;">停机</div>
+            <el-button class="el-icon-mytubiao1" />
+            <h2 style="font-size: 30px;color: gray;">停机</h2>
           </div>
         </el-card>
       </div>
@@ -575,8 +576,8 @@ export default {
             console.log("打印设备的状态信息", res.data[10].rollV);
             this.judgeList = [];
             this.judge = res.data[10].rollV;
-          // 绿
-          if (res.data[19].rollV > 200) {
+            // 绿
+            if (res.data[19].rollV > 200) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
@@ -602,6 +603,8 @@ export default {
 .el-icon-mytubiao {
   background: url('~@/icons/myicons/status1.jpg') center no-repeat;
   background-size: cover;
+  height: 50px;
+  width: auto;
 }
 
 .el-icon-mytubiao:before {
@@ -613,5 +616,7 @@ export default {
 .el-icon-mytubiao1 {
   background: url('~@/icons/myicons/status2.jpg') center no-repeat;
   background-size: cover;
+  height: 50px;
+  width: auto;
 }
 </style>
