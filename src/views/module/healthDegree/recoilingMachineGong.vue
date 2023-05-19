@@ -437,9 +437,9 @@ export default {
 
           //判断设备健康状况
           getListNewDataCjj1().then((res) => {
-            console.log("打印设备的状态信息", res.data[19].machineColsV);
+            console.log("打印设备的状态信息", res.data[0].machineColsV);
             this.judgeList = [];
-            this.judge = res.data[19].machineColsV;
+            this.judge = res.data[0].machineColsV;
             // 绿
             if (this.judge > 10) {
               this.ZT1 = "true";
