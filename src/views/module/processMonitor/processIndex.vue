@@ -1,45 +1,68 @@
 <template>
-  <div>
-    <div style="font-size: 15px;color: black;margin-right: 3px;">
+  <div class="layout-body" style="width: 100%;height: auto;">
+    <div class="top-text">
       模块功能说明：这是查询异常流程的功能模块，该模块主要显示异常流程，在下方点击刷新，即可查看异常流程。
     </div>
-    <div class="top_card">
+    <div class="top-card">
       <el-card shadow="always">
-        <div slot="header" style="line-height: 40px;display: flex;justify-content: space-between;">
-          <div style="display: flex;">
-            <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si />
+        <div slot="header" class="top-card">
+          <div class="top-card-header">
+            <div class="top-card-header-left">
+              <i class="el-icon-s-help" />
+              <span class="top-card-header-left-text">异常流程统计表</span>
             </div>
-            <span style="line-height: 40px;">异常流程显示</span>
-
+            <div>
+              <el-date-picker
+                v-model="qualifyDateRange"
+                size="large"
+                type="daterange"
+                format="yyyy-MM-dd"
+                value-format="yyyy-MM-dd" 
+                :picker-options="pickerOptions"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                @change="dateRangeQuality(qualifyDateRange)"
+              />
+            </div>
           </div>
-          <!--          <div>-->
-          <!--            <el-date-picker v-model="value" type="daterange" start-placeholder="开始日期"-->
-          <!--                            end-placeholder="结束日期" :default-time="['00:00:00', '23:59:59']">-->
-          <!--            </el-date-picker>-->
-          <!--          </div>-->
         </div>
-        <el-button style="background-color: #409EFF;color: white;line-height: 15px;" size="small" @click="query">刷新</el-button>
-        <process-bar-chart :period-data="processData" />
         <div>
-          <el-table :data="yichangData" border>
-            <el-table-column fixed prop="number" label="序号" />
-            <el-table-column prop="productNum" label="产品编号" />
-            <el-table-column prop="nowProduce" label="当前流程" />
-            <el-table-column prop="stopTime" label="停滞时间" />
-            <el-table-column prop="note" label="备注" />
-            <el-table-column fixed="right" label="操作">
+          <div style="height: 300px">
+            <LineChart :chart-data="chartData" height="100%"/>
+          </div>
+        </div>
+        <!-- 表格 -->
+        <div style="margin-top: 40px;">
+          <el-table v-loading="loading" :data="tableData" stripe style="width: 100%" :border="true"
+            :cell-style="{ 'text-align': 'center', 'height': '10px' }" :header-cell-style="{ 'text-align': 'center' }">
+            <el-table-column prop="batchNum" label="熔次/铸轧/冷轧" min-width="21%" />
+            <el-table-column prop="inspectCreateTime" label="巡检开始日期" min-width="35%" />
+            <el-table-column prop="lmdpQcColdInspect.consumer" label="客户" min-width="20%" />
+            <el-table-column prop="plateTypeDetermination" label="板型" min-width="20%">
               <template slot-scope="scope">
-                <!--                                  <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
-                <el-button type="text" @click="yichangClick(scope.row)">查看</el-button>
+                <el-tag
+                  :type="scope.row.plateTypeDetermination === 1 ? 'success' : (scope.row.plateTypeDetermination === 2 ? 'info' : 'danger')"
+                  @click="handleView(1, scope.row)">
+                  {{ scope.row.plateTypeDetermination === 1 ? '合格' : (scope.row.plateTypeDetermination === 2 ? '暂未评定' :
+                    '不合格') }}
+                </el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" min-width="20%">
+              <template slot-scope="scope">
+                <el-button size="medium" type="text" @click="handleView(6, scope.row)">
+                  查看
+                </el-button>
               </template>
             </el-table-column>
           </el-table>
-        </div>
+          </div>
       </el-card>
     </div>
 
     <!--    异常流程信息显示查看对话框-->
-    <el-dialog title="提示" :visible.sync="yichangVisible" width="30%">
+    <!-- <el-dialog title="提示" :visible.sync="yichangVisible" width="30%">
       <span>异常流程信息显示</span>
       <el-form label-width="80px" label-position="left" :model="yichangAlign" :disabled="true">
         <el-form-item label="序号">
@@ -62,73 +85,69 @@
         <el-button @click="yichangVisible = false">取 消</el-button>
         <el-button type="primary" @click="yichangVisible = false">确 定</el-button>
       </span>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
 <script>
-import { getProcess } from '@/api/process'
-import ProcessBarChart from '@/views/dashboard/ProcessBarChart'
+import LineChart from '@/views/dashboard/LineChart'
 
 export default {
   name: 'ProcessIndex',
-  components: { ProcessBarChart },
+  components: { LineChart },
   data() {
     return {
-      value: '',
-      processData: [50, 30, 110, 78],
-      yichangVisible: false,
-      yichangAlign: {},
-      yichangData: [{
-        number: '001',
-        productNum: 'A12034',
-        nowProduce: '生产',
-        stopTime: '2022-04-15',
-        note: ''
-      }, {
-        number: '002',
-        productNum: 'ACC034',
-        nowProduce: '轧制',
-        stopTime: '2022-06-55',
-        note: ''
-      }, {
-        number: '003',
-        productNum: 'BB2034',
-        nowProduce: '质检',
-        stopTime: '2022-08-15',
-        note: ''
-      }, {
-        number: '004',
-        productNum: 'ABC034',
-        nowProduce: '退火 ',
-        stopTime: '2022-10-15',
-        note: ''
-      }]
+      tableData: [],
+      qualifyDateRange: [this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{y}-{m}-{d}'), this.parseTime(new Date().getTime(), '{y}-{m}-{d}')],
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一年',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 365)
+            // const start = new Date(new Date().getFullYear(), 0)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
+      loading: false,
+      chartData: [1,2,8,15,4,11,10],
+      formData: {
+        rongLian: '',
+        baoWen: '',
+        zhuZha: '',
+        lengZha: '',
+        tuiHuo: '',
+        chongJuan: ''
+      }
     }
   },
   created() {
 
   },
   methods: {
-    // 异常流程操作
-    yichangClick(row) {
-      console.log(row)
-      this.yichangVisible = true
-      this.yichangAlign = row
-    },
-    query() {
-      getProcess().then(response => {
-        console.log('这是异常流程数据 ', response)
-        this.processData = [
-          response.data[0].productNum,
-          response.data[1].productNum,
-          response.data[2].productNum,
-          response.data[3].productNum
-        ]
-        this.yichangData = response.data
-      })
-    }
-
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '@/styles/productQuality/productQuality.scss';
+
+</style>

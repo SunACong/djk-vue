@@ -27,37 +27,36 @@
               />
             </div>
           </div>
-          <div style="height: calc(80vh);">
-            
-            <div style="margin-top: 40px;">
-              <el-form ref="form" :model="formData" label-width="80px" style="display: flex;flex-wrap: wrap;">
-                <el-form-item label="熔炼工序">
-                  <el-input v-model="formData.rongLian"></el-input>
-                </el-form-item>
-                <el-form-item label="保温工序">
-                  <el-input v-model="formData.baoWen"></el-input>
-                </el-form-item>
-                <el-form-item label="铸轧工序">
-                  <el-input v-model="formData.zhuZha"></el-input>
-                </el-form-item>
-                <el-form-item label="冷轧工序">
-                  <el-input v-model="formData.lengZha"></el-input>
-                </el-form-item>
-                <el-form-item label="退火工序">
-                  <el-input v-model="formData.tuiHuo"></el-input>
-                </el-form-item>
-                <el-form-item label="重卷工序">
-                  <el-input v-model="formData.chongJuan"></el-input>
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="warning">修改</el-button>
-                  <el-button type="primary">确定</el-button>
-                </el-form-item>
-              </el-form>
-            </div>
-            <div style="height: 90%">
-              <LineChart :chart-data="chartData" height="100%"/>
-            </div>
+        </div>
+        <div style="height: calc(80vh);">
+          <div style="margin-top: 40px;">
+            <el-form ref="form" :model="formData" label-width="80px" style="display: flex;flex-wrap: wrap;">
+              <el-form-item label="熔炼(天)">
+                <el-input v-model="formData.rongLian"></el-input>
+              </el-form-item>
+              <el-form-item label="保温(天)">
+                <el-input v-model="formData.baoWen"></el-input>
+              </el-form-item>
+              <el-form-item label="铸轧(天)">
+                <el-input v-model="formData.zhuZha"></el-input>
+              </el-form-item>
+              <el-form-item label="冷轧(天)">
+                <el-input v-model="formData.lengZha"></el-input>
+              </el-form-item>
+              <el-form-item label="退火(天)">
+                <el-input v-model="formData.tuiHuo"></el-input>
+              </el-form-item>
+              <el-form-item label="重卷(天)">
+                <el-input v-model="formData.chongJuan"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="warning">修改</el-button>
+                <el-button type="primary">确定</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div style="height: 90%">
+            <LineChart :chart-data="chartData" height="100%" :key="chartKey"/>
           </div>
         </div>
       </el-card>
@@ -67,6 +66,7 @@
 
 <script>
 import LineChart from '@/views/dashboard/LineChart'
+import { getProcessComputeTime } from '@/api/ProcessCompute'
 export default {
   name: 'ComputeIndex',
   components: { LineChart },
@@ -102,19 +102,26 @@ export default {
           }
         }]
       },
-      chartData: [1,2,8,15,4,11,10],
+      chartData: [],
+      chartKey: 0,
       formData: {
-          rongLian: '',
-          baoWen: '',
-          zhuZha: '',
-          lengZha: '',
-          tuiHuo: '',
-          chongJuan: ''
-        }
+        rongLian: '',
+        baoWen: '',
+        zhuZha: '',
+        lengZha: '',
+        tuiHuo: '',
+        chongJuan: ''
+      }
     }
   },
   created() {
-
+    getProcessComputeTime().then(res => {
+      res.data.forEach((item, index) => {
+        this.chartData[index] = item.time
+      });
+      this.chartKey++
+    })
+    console.log(this.chartData)
   },
   methods: {
     
@@ -138,7 +145,7 @@ export default {
         color: blue;
         font-size: 30px;
         .top-card-header-left-text{
-          font-size: 32px !important;
+          font-size: 30px !important;
           color: #333;
         }
       }

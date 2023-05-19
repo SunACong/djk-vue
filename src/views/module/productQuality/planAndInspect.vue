@@ -186,7 +186,7 @@
       <!-- 板型 -->
       <div v-if="showWtich === 1 || showWtich === 6">
         <el-descriptions title="板型" :column="2" border :size="size"
-          :label-style="dailogData.plateTypeDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.plateTypeDetermination === 0 ? labelStyleNo : labelStyle">
           <el-descriptions-item label="平直度">
             {{ dailogData.lmdpQcColdInspect.singleStraightness === null ?
               '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
@@ -208,7 +208,7 @@
       <!-- 尺寸偏差 -->
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size"
-          :label-style="dailogData.dimensionalDeviation !== 'unqualified' ? labelStyleNo : labelStyle">
+          :label-style="dailogData.dimensionalDeviationDetermination === 0 ? labelStyleNo : labelStyle">
           <el-descriptions-item label="宽度">
             {{ dailogData.lmdpQcColdInspect.singleWidth === null ?
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
@@ -241,7 +241,7 @@
       <!-- 力学性能 -->
       <div v-if="showWtich === 3 || showWtich === 6" class="dialog-item">
         <el-descriptions title="力学性能" :column="3" border :size="size"
-          :label-style="dailogData.mechanicalPropertiesDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.mechanicalPropertiesDetermination === 0 ? labelStyleNo : labelStyle">
           <el-descriptions-item label="抗拉强度">
             {{ dailogData.lmdpQcColdInspect.singleStrength === null ?
               '-' : dailogData.lmdpQcColdInspect.singleStrength }}
@@ -285,7 +285,7 @@
       <!-- 表面质量 -->
       <div v-if="showWtich === 4 || showWtich === 6" class="dialog-item">
         <el-descriptions title="表面质量" :column="1" border :size="size"
-          :label-style="dailogData.surfaceQualityDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.surfaceQualityDetermination === 0 ? labelStyleNo : labelStyle">
           <el-descriptions-item label="表面质量描述">
             {{ dailogData.lmdpQcColdInspect.surfaceQuality ===
               null ? '-' :
@@ -304,7 +304,7 @@
       <!-- 外观质量 -->
       <div v-if="showWtich === 5 || showWtich === 6" class="dialog-item">
         <el-descriptions title="外观质量" :column="1" border :size="size"
-          :label-style="dailogData.appearanceQualityDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.appearanceQualityDetermination === 0 ? labelStyleNo : labelStyle">
           <el-descriptions-item label="外观质量描述">
             {{ dailogData.lmdpQcColdInspect.appearanceQuality ===
               null ? '-' :

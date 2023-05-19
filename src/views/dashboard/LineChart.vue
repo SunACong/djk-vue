@@ -29,6 +29,10 @@ export default {
     chartData: {
       type: Array,
       required: true
+    },
+    barColor: {
+      type: String,
+      default: '#2EC7C9'
     }
   },
   data() {
@@ -59,15 +63,15 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions('bar', '平均时间', this.chartData)
+      this.setOptions('bar', this.barColor , this.chartData)
     },
-    setOptions(type, legend, data) {
+    setOptions(type, barColor, data) {
       this.chart.setOption({
         xAxis: {
           data: ['熔炼工序', '保温工序', '铸轧工序', '冷轧工序', '退火工序', '重卷工序'],
           axisLabel: {
             interval:0,
-            fontSize:30//调整坐标轴字体大小
+            fontSize:20//调整坐标轴字体大小
           }
         },
         tooltip: {
@@ -99,14 +103,10 @@ export default {
           },
           axisLabel: {
             interval:0,
-            fontSize:30
+            fontSize:20
           }
         },
-        legend: {
-          data: legend
-        },
         series: [{
-          name: length[0],
           barWidth: '25%',
           smooth: true,
           type: type,
@@ -114,6 +114,7 @@ export default {
           animationDuration: 1000,
           itemStyle: {
             normal: {
+              color: barColor,
               label: {
                 show: true, //开启显示
                 position: 'top', //在上方显示
