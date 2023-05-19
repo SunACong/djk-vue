@@ -303,7 +303,7 @@ export default {
       this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
         // params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .get('https://10.82.23.246:9528/td/annealingFurnace/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         // .get('https://192.168.100.208:9528/td/annealingFurnace/historyRange', { params: { sql: this.tdts, type: this.tdtype }})
         .then((data) => {
           console.log('日期', data.data[0])
