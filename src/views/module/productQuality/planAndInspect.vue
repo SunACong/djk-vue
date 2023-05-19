@@ -208,7 +208,7 @@
       <!-- 尺寸偏差 -->
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size"
-          :label-style="dailogData.dimensionalDeviationDetermination == 0 ? labelStyleNo : labelStyle">
+          :label-style="dailogData.dimensionalDeviation !== 'unqualified' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="宽度">
             {{ dailogData.lmdpQcColdInspect.singleWidth === null ?
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
@@ -218,16 +218,16 @@
               null ? '-' : dailogData.slaveErpPlanColdreductionstrip.warpWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度">
-            {{ dailogData.lmdpQcColdInspect.finishedThickness === null ?
-              '-' : dailogData.lmdpQcColdInspect.finishedThickness }}
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
             {{ dailogData.slaveErpPlanColdreductionstrip.endwiseHeight ===
               null ? '-' : dailogData.slaveErpPlanColdreductionstrip.endwiseHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格">
-            {{ dailogData.lmdpQcColdInspect.finishedThickness === null ?
-              '-' : dailogData.lmdpQcColdInspect.finishedThickness }}
+            {{ dailogData.lmdpQcColdInspect.singleHeight === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleHeight }}
             *
             {{ dailogData.lmdpQcColdInspect.singleWidth === null ?
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
@@ -236,10 +236,6 @@
             {{ dailogData.lmdpQcColdInspect.model === null ?
               '-' : dailogData.lmdpQcColdInspect.model }}
           </el-descriptions-item>
-          <!-- <el-descriptions-item label="成品规格要求">
-            {{ dailogData.slaveErpPlanColdreductionstrip.productSpec === null?
-              '-':dailogData.slaveErpPlanColdreductionstrip.productSpec }}
-          </el-descriptions-item> -->
         </el-descriptions>
       </div>
       <!-- 力学性能 -->
