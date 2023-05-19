@@ -40,9 +40,10 @@
             <el-button class="el-icon-mytubiao" style="margin-bottom: 8px" />
             <div style="font-size: 30px;color: green;">正常</div>
           </div>
+
           <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
             <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
-            <div style="font-size: 30px;color: red;">异常</div>
+            <div style="font-size: 30px;color: red;">停机</div>
           </div>
         </el-card>
       </div>
@@ -163,7 +164,7 @@ export default {
   data() {
     return {
       //判断状态
-      judge: 1,
+      judge: "",
       judgeList: [],
       // 报警状态 正常1 异常2
       ZT1: '',
@@ -217,7 +218,6 @@ export default {
       xData: [],
       yData: [],
       timer: null,
-      timer1: null,
       showWtich: 1,
       showWtich1: 1,
       wId: '',
@@ -231,23 +231,9 @@ export default {
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
-    clearInterval(this.timer1)
-    this.timer1 = null
+    this.ZT1 = "true";
+    this.ZT2 = "";
     this.setTimer()
-    // this.ZT1 = "true";
-    // this.ZT2 = "";
-    setInterval(() => {
-      // 绿
-      if (this.judge == 1) {
-        this.ZT1 = "true";
-        this.ZT2 = "";
-      };
-      // 红
-      if (this.judge == 0) {
-        this.ZT1 = "";
-        this.ZT2 = "true";
-      };
-    }, 1000)
 
     /**
      * 获取一号铸轧机报警历史记录（30条）
@@ -332,8 +318,7 @@ export default {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
-    clearInterval(this.timer1)
-    this.timer1 = null
+
   },
 
   methods: {
@@ -609,48 +594,28 @@ export default {
             })
           })
 
+          //判断设备健康状况
+          getListNewData().then((res) => {
+            console.log("打印设备的状态信息", res.data[19].rollV);
+            this.judgeList = [];
+            this.judge = 0
+            // 绿
+            if (res.data[19].rollV > 0) {
+              this.ZT1 = "true";
+              this.ZT2 = "";
+            };
+
+            // 红
+            if (res.data[19].rollV <= 0) {
+              this.ZT1 = "";
+              this.ZT2 = "true";
+            };
+          })
           getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
             this.currentWarnTable = res.data
-            // console.log("currentWarnTable", this.currentWarnTable);
-            this.judgeList = [];
-            this.currentWarnTable.forEach(item => {
-              // console.log("item.yd", item.yd);
-              // this.judgeList.push(item.yd)
-              if (item.yd == "null") {
-                this.judge = 0
-              }
-            });
-
-
-            // console.log("judgeList", this.judgeList);
-            // console.log('打印judge', this.judge);
-            //绿
-            // if (this.judge == 1) {
-            //   this.ZT1 = "true";
-            //   this.ZT2 = "";
-            // };
-
-            //红
-            // if (this.judge == 0) {
-            //   this.ZT1 = "";
-            //   this.ZT2 = "true";
-            // };
           })
         }, 3500)
       }
-      // if (this.timer1 == null) {
-      //   this.timer1 = setInterval(() => {
-      //     // console.log("执行一次");
-      //     getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
-      //       this.currentWarnTable = res.data
-      //       // console.log("currentWarnTable", this.currentWarnTable);
-      //       this.currentWarnTable.forEach(item => {
-      //       console.log("是否已读", item);
-      //     })
-      //     })
-
-      //   }, 21000)
-      // }
     }
   }
 }
