@@ -43,7 +43,7 @@
 
           <div v-show="ZT2" style="font-size: 60px;color: blue;text-align: center;margin: 99px 0px 87px 0px">
             <el-button class="el-icon-mytubiao1" style="margin-bottom: 8px" />
-            <div style="font-size: 30px;color: red;">停机</div>
+            <div style="font-size: 30px;color: gray;">停机</div>
           </div>
         </el-card>
       </div>
@@ -303,7 +303,7 @@ export default {
       this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
         // params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .get('https://10.82.23.246:9528/td/annealingFurnace/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         // .get('https://192.168.100.208:9528/td/annealingFurnace/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         .then((data) => {
           console.log('日期', data.data[0])
@@ -557,11 +557,15 @@ export default {
 .el-icon-mytubiao1 {
   background: url('~@/icons/myicons/status2.jpg') center no-repeat;
   background-size: cover;
+  height: 50px;
+  width: auto;
 }
 
 .el-icon-mytubiao {
   background: url('~@/icons/myicons/status1.jpg') center no-repeat;
   background-size: cover;
+  height: 50px;
+  width: auto;
 }
 
 .el-icon-mytubiao:before {
