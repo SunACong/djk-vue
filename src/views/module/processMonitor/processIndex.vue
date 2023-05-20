@@ -51,32 +51,6 @@
         </div>
       </el-card>
     </div>
-
-    <!--    异常流程信息显示查看对话框-->
-    <!-- <el-dialog title="提示" :visible.sync="yichangVisible" width="30%">
-      <span>异常流程信息显示</span>
-      <el-form label-width="80px" label-position="left" :model="yichangAlign" :disabled="true">
-        <el-form-item label="序号">
-          <el-input v-model="yichangAlign.number" />
-        </el-form-item>
-        <el-form-item label="产品编号">
-          <el-input v-model="yichangAlign.productNum" />
-        </el-form-item>
-        <el-form-item label="当前流程">
-          <el-input v-model="yichangAlign.nowProduce" />
-        </el-form-item>
-        <el-form-item label="停滞时间">
-          <el-input v-model="yichangAlign.stopTime" />
-        </el-form-item>
-        <el-form-item label="备注">
-          <el-input v-model="yichangAlign.note" />
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="yichangVisible = false">取 消</el-button>
-        <el-button type="primary" @click="yichangVisible = false">确 定</el-button>
-      </span>
-    </el-dialog> -->
   </div>
 </template>
 

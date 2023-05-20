@@ -25,10 +25,13 @@ export default {
     autoResize: {
       type: Boolean,
       default: true
-    },
-    chartData: {
+    }, 
+    chartData1: {
       type: Array,
       required: true
+    },
+    chartData2: {
+      type: Array
     },
     barColor: {
       type: String,
@@ -63,9 +66,9 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions('bar', this.barColor , this.chartData)
+      this.setOptions('bar', this.barColor , this.chartData1, this.chartData2)
     },
-    setOptions(type, barColor, data) {
+    setOptions(type, barColor, data1, data2) {
       this.chart.setOption({
         xAxis: {
           data: ['熔炼工序', '保温工序', '铸轧工序', '冷轧工序', '退火工序', '重卷工序'],
@@ -74,43 +77,34 @@ export default {
             fontSize:20//调整坐标轴字体大小
           }
         },
+        legend: {
+            data:['自动计算', '手动设定'],
+            x:'right',      //可设定图例在左、右、居中
+            y:'top',     //可设定图例在上、下、居中
+        },
         tooltip: {
             show: true,    // 是否显示提示框组件
             trigger: 'item',    // 触发类型（'item'，数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用；'axis'，坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用；'none'，不触发。）
-            showContent: true,     // 是否显示提示框浮层，默认显示
-            alwaysShowContent: true,     // 是否永远显示提示框内容，默认情况下在移出可触发提示框区域后一定时间后隐藏
-            triggerOn: 'mousemove|click',    // 提示框触发的条件（'mousemove'，鼠标移动时触发；'click'，鼠标点击时触发；'mousemove|click'，同时鼠标移动和点击时触发；'none'，不在 'mousemove' 或 'click' 时触发）
             confine: true,    // 是否将 tooltip 框限制在图表的区域内
-            backgroundColor: 'rgba(50,50,50,0.7)',    // 提示框浮层的背景颜色
-            padding: 5,    // 提示框浮层内边距，单位px
-            textStyle: {
-                color: '#FFF',     // 文字的颜色
-                fontStyle: 'normal',    // 文字字体的风格（'normal'，无样式；'italic'，斜体；'oblique'，倾斜字体） 
-                fontWeight: 'normal',    // 文字字体的粗细（'normal'，无样式；'bold'，加粗；'bolder'，加粗的基础上再加粗；'lighter'，变细；数字定义粗细也可以，取值范围100至700）
-                fontSize: '20',    // 文字字体大小
-                lineHeight: '50',    // 行高 
-            },
         },
         grid: {
           left: 40,
           right: 10,
           bottom: 40,
-          top: 30,
+          top: 40,
         },
         yAxis: {
-          axisTick: {
-            show: false
-          },
           axisLabel: {
             interval:0,
             fontSize:20
           }
         },
         series: [{
+          name: '自动计算',
           barWidth: '25%',
           smooth: true,
           type: type,
-          data: data,
+          data: data1,
           animationDuration: 1000,
           itemStyle: {
             normal: {
@@ -119,7 +113,25 @@ export default {
                 show: true, //开启显示
                 position: 'top', //在上方显示
                 textStyle: { //数值样式
-                  color: 'black',
+                  fontSize: 20
+                }
+              }
+            }
+          }
+        },{
+          name: '手动设定',
+          barWidth: '25%',
+          smooth: true,
+          type: type,
+          data: data2,
+          animationDuration: 1000,
+          itemStyle: {
+            normal: {
+              color: '#fEC7C9',
+              label: {
+                show: true, //开启显示
+                position: 'top', //在上方显示
+                textStyle: { //数值样式
                   fontSize: 16
                 }
               }
