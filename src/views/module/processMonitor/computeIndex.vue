@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-body">
+  <div class="layout-body" style="width: 100%;height: auto;">
     <div class="top-text">
       模块功能说明：这是计算平均生产天数功能模块，该模块主要计算每个流程的平均生产天数，在下方点击计算平均生产天数，即可计算所有步骤的平均生产天数。
     </div>
@@ -13,60 +13,47 @@
               <span class="top-card-header-left-text">工序平均周期计算</span>
             </div>
             <div>
-              <el-date-picker
-                v-model="qualifyDateRange"
-                size="large"
-                type="daterange"
-                format="yyyy-MM-dd"
-                value-format="yyyy-MM-dd"
-                :picker-options="pickerOptions"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                @change="dateRangeQuality(qualifyDateRange)"
-              />
+              <el-button type="primary" size="small" @click="showDailog = true">工序周期设定</el-button>
             </div>
           </div>
         </div>
-        <div style="height: calc(80vh);">
-          <div style="margin-top: 40px;">
-            <el-form ref="form" :model="formData" label-width="80px" style="display: flex;flex-wrap: wrap;">
-              <el-form-item label="熔炼(天)">
-                <el-input v-model="formData.rongLian"></el-input>
-              </el-form-item>
-              <el-form-item label="保温(天)">
-                <el-input v-model="formData.baoWen"></el-input>
-              </el-form-item>
-              <el-form-item label="铸轧(天)">
-                <el-input v-model="formData.zhuZha"></el-input>
-              </el-form-item>
-              <el-form-item label="冷轧(天)">
-                <el-input v-model="formData.lengZha"></el-input>
-              </el-form-item>
-              <el-form-item label="退火(天)">
-                <el-input v-model="formData.tuiHuo"></el-input>
-              </el-form-item>
-              <el-form-item label="重卷(天)">
-                <el-input v-model="formData.chongJuan"></el-input>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="warning">修改</el-button>
-                <el-button type="primary">确定</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
-          <div style="height: 90%">
-            <LineChart :chart-data="chartData" height="100%" :key="chartKey"/>
-          </div>
+        <div style="height: 600px">
+          <LineChart :chart-data1="chartData1" ::chart-data2="charData2" height="100%" :key="chartKey"/>
         </div>
       </el-card>
     </div>
+    <el-dialog title="设定工序周期" :visible.sync="showDailog">
+      <el-form ref="form" :model="formData" label-width="100px" >
+        <el-form-item label="熔炼工序(天)">
+          <el-input v-model="formData.rongLian"></el-input>
+        </el-form-item>
+        <el-form-item label="保温工序(天)">
+          <el-input v-model="formData.baoWen"></el-input>
+        </el-form-item>
+        <el-form-item label="铸轧工序(天)">
+          <el-input v-model="formData.zhuZha"></el-input>
+        </el-form-item>
+        <el-form-item label="冷轧工序(天)">
+          <el-input v-model="formData.lengZha"></el-input>
+        </el-form-item>
+        <el-form-item label="退火工序(天)">
+          <el-input v-model="formData.tuiHuo"></el-input>
+        </el-form-item>
+        <el-form-item label="重卷工序(天)">
+          <el-input v-model="formData.chongJuan"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="showDailog = false">取 消</el-button>
+        <el-button type="primary" @click="showDailog = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import LineChart from '@/views/dashboard/LineChart'
-import { getProcessComputeTime } from '@/api/ProcessCompute'
+import { getProcessComputeTime, getSetProcessTime, updateProcessComputeTime } from '@/api/ProcessCompute'
 export default {
   name: 'ComputeIndex',
   components: { LineChart },
@@ -97,31 +84,36 @@ export default {
             const end = new Date()
             const start = new Date()
             start.setTime(start.getTime() - 3600 * 1000 * 24 * 365)
-            // const start = new Date(new Date().getFullYear(), 0)
             picker.$emit('pick', [start, end])
           }
         }]
       },
-      chartData: [],
+      chartData1: [],
+
       chartKey: 0,
+      showDailog: false,
       formData: {
-        rongLian: '',
-        baoWen: '',
-        zhuZha: '',
-        lengZha: '',
-        tuiHuo: '',
-        chongJuan: ''
+        id:  null,
+        rongLian:  null,
+        baoWen:  null,
+        zhuZha:  null,
+        lengZha: null,
+        tuiHuo:  null,
+        chongJuan: null
       }
     }
   },
   created() {
     getProcessComputeTime().then(res => {
       res.data.forEach((item, index) => {
-        this.chartData[index] = item.time
+        this.chartData1[index] = item.time
       });
       this.chartKey++
     })
-    console.log(this.chartData)
+    getSetProcessTime().then(res => {
+      this.formData = res.data
+      console.log(this.formData)
+    })
   },
   methods: {
     
@@ -143,9 +135,9 @@ export default {
 
       .top-card-header-left{
         color: blue;
-        font-size: 30px;
+        font-size: 20px;
         .top-card-header-left-text{
-          font-size: 30px !important;
+          font-size: 20px !important;
           color: #333;
         }
       }
