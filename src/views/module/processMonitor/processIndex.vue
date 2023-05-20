@@ -12,24 +12,15 @@
               <span class="top-card-header-left-text">异常流程统计表</span>
             </div>
             <div>
-              <el-date-picker
-                v-model="qualifyDateRange"
-                size="large"
-                type="daterange"
-                format="yyyy-MM-dd"
-                value-format="yyyy-MM-dd" 
-                :picker-options="pickerOptions"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                @change="dateRangeQuality(qualifyDateRange)"
-              />
+              <el-date-picker v-model="qualifyDateRange" size="large" type="daterange" format="yyyy-MM-dd"
+                value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
+                end-placeholder="结束日期" @change="dateRangeQuality(qualifyDateRange)" />
             </div>
           </div>
         </div>
         <div>
           <div style="height: 300px">
-            <LineChart :chart-data="chartData" height="100%"/>
+            <LineChart :chart-data="chartData" height="100%" />
           </div>
         </div>
         <!-- 表格 -->
@@ -57,7 +48,7 @@
               </template>
             </el-table-column>
           </el-table>
-          </div>
+        </div>
       </el-card>
     </div>
 
@@ -128,7 +119,7 @@ export default {
         }]
       },
       loading: false,
-      chartData: [1,2,8,15,4,11,10],
+      chartData: [1, 2, 8, 15, 4, 11, 10],
       formData: {
         rongLian: '',
         baoWen: '',
@@ -149,5 +140,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/productQuality/productQuality.scss';
-
 </style>
