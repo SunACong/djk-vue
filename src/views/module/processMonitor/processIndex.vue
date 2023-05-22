@@ -1,6 +1,8 @@
 <template>
-  <div class="GrapeBox" style="width: 100%;height: auto;">
+  <div class="GrapeBox" style="width: 96%;height: auto;">
+
     <div style="width: 52%; height: 800; margin-top: 0.5%">
+      <h3 style="margin-left: 1.5%;">异常流程显示</h3>
       <el-card class="box-card">
         <el-descriptions class="margin-top" title="设定时间" border>
           <!-- <template slot="extra">
@@ -109,53 +111,54 @@
 
     </div>
 
-    <div style="width: 48%; height: 400px; margin-top: 0.5%">
+    <div style="width: 48%; height: 300px; ">
       <el-card class="box-card">
         <bar :barData="Datatwo"></bar>
         <div class="but">
         </div>
       </el-card>
-
-
     </div>
-    <div style="width: 80%; height: auto; margin-top: 0.5% ;align-items: center;">
-      <el-card class="box-card">
+
+
+    <div style="width: 90%; height: auto;align-items: center;">
+      <el-card class="box-card1">
         <el-form size="small" :inline="true" label-width="68px">
           <el-form-item label="选择工序">
             <el-select v-model="value" placeholder="请选择">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" @click="">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
           </el-form-item>
-
           <el-form-item label="熔次号/铸轧卷号/冷轧卷号" label-width="180px">
-            <el-input placeholder="请输入熔次号" clearable />
+            <el-input placeholder="请输入熔次号" clearable v-model="queryParams.id" />
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" size="mini">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search" size="mini" @click="searchList">搜索</el-button>
             <el-button icon="el-icon-refresh" size="mini">重置</el-button>
           </el-form-item>
-
         </el-form>
 
         <!--间隔-->
         <el-table :data="tableData" border style="width: 100%">
-          <el-table-column fixed prop="id" label="序号">
+          <el-table-column prop="numberID" label="熔次号/铸轧卷号/冷轧卷号">
           </el-table-column>
-          <el-table-column prop="name" label="熔次号/铸轧卷号/冷轧卷号">
+          <el-table-column prop="beginTime" label="开始时间">
           </el-table-column>
-          <el-table-column prop="province" label="开始时间">
+          <el-table-column prop="runningTime" label="已进行时间">
           </el-table-column>
-          <el-table-column prop="city" label="已进行时间">
-          </el-table-column>
-          <el-table-column prop="address" label="超时时长">
+          <el-table-column prop="exceedTime" label="超时时长">
           </el-table-column>
         </el-table>
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage1"
-          :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="total">
-        </el-pagination>
+        <!-- 分页插件 -->
+        <div style="margin: 30px 20px 20px;float: right;font-size: 20px;">
+          <el-pagination :current-page="queryParams.pageNum" :page-sizes="[5, 10, 20, 30]"
+            layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
+            @current-change="handleCurrentChange" />
+        </div>
       </el-card>
+
+
     </div>
 
   </div>
@@ -165,7 +168,7 @@
 import LineChart from '@/views/dashboard/LineChart'
 import { getSetProcessTime, gethistoryException } from '@/api/ProcessCompute'
 import bar from "@/views/dashboard/Albar";
-import { getCastSmeltHoldList } from '@/api/LmdpCastSmeltHold'
+import { getCastSmeltHoldList, getOneException, getTwoException, getThreeException, getFourException, getFiveException, getSixException } from '@/api/LmdpCastSmeltHold'
 import { tableData } from '@/api/rollingMachine';
 
 export default {
@@ -173,14 +176,21 @@ export default {
   components: { LineChart, bar },
   data() {
     return {
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4,
+      tableData: [],
+      //查询参数
+      queryParams: {
+        pageNum: 1,
+        pageSize: 10,
+        id: null
+      },
+      size: '',
+      num: '',
+
+      total: 100,
+      eceptionList: [],
+
       // 总条数
       total: 10,
-      pageNum: 1,
-      pageSize: 10,
       options: [{
         value: '1',
         label: '熔炼工序'
@@ -204,200 +214,7 @@ export default {
       value: '',
       Datatwo: [],
       historyEcp: [],
-      tableData: [{
-        id: '1',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        id: '2',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '3',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '4',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '5',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '6',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '7',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '8',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '9',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '10',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '11',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '22',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '13',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        id: '14',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }
-        , {
-        id: '15',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1519 弄',
-        zip: 200333
-      }, {
-        id: '16',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '17',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '18',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '19',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '20',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '21',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '22',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '23',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '24',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '25',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '26',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }, {
-        id: '27',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }
-      ],
       Dataone: [],
-      // tableData: [],
       qualifyDateRange: [this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{y}-{m}-{d}'), this.parseTime(new Date().getTime(), '{y}-{m}-{d}')],
       pickerOptions: {
         shortcuts: [{
@@ -428,31 +245,104 @@ export default {
         }]
       },
       loading: false,
-      chartData: [1, 2, 8, 15, 4, 11, 10],
-      formData: {
-        rongLian: '',
-        baoWen: '',
-        zhuZha: '',
-        lengZha: '',
-        tuiHuo: '',
-        chongJuan: ''
-      }
     }
   },
+
+
   created() {
     this.getjudgeList();
-
   },
+
+  watch: {
+    value: {
+      handler(newVal, oldVal) {
+        this.searchList();
+        if (newVal != oldVal) {
+          this.queryParams.pageNum = 1;
+          this.queryParams.id = null
+        }
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+
   methods: {
-
+    searchList() {
+      this.tableData = [];
+      // console.log('打印对应的参数', this.value);
+      if (this.value == 1) {
+        console.log("1_熔炼");
+        getOneException(this.queryParams).then((res) => {
+          console.log(res);
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log("打印data", this.tableData);
+        })
+      } else if (this.value == 2) {
+        console.log("2_保温");
+        getTwoException(this.queryParams).then((res) => {
+          console.log(res);
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log("打印data", this.tableData);
+        })
+      } else if (this.value == 3) {
+        console.log("3_铸轧");
+        getThreeException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      } else if (this.value == 4) {
+        console.log("4_冷轧");
+        getFourException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      } else if (this.value == 5) {
+        console.log("5_退火");
+        getFiveException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      } else if (this.value == 6) {
+        console.log("6_重卷");
+        getSixException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      }
+    },
+    /**
+      * 更改pageSize
+      * @param {Object} val
+      */
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      this.queryParams.pageSize = val
+      this.searchList();
     },
+    /**
+       * 更改当前页码
+       * @param {Object} val
+       */
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      this.queryParams.pageNum = val
+      this.searchList();
     },
 
-
+    // getnowException() {
+    //   this.loading = true
+    //   getCastSmeltHoldList().then((res) => {
+    //     // this.eceptionList = res.data;
+    //     // this.total = res.data.length
+    //     // console.log(this.total);
+    //     this.loading = false
+    //   })
+    // },
 
     getjudgeList() {
       gethistoryException().then((res1) => {
@@ -498,13 +388,18 @@ export default {
 }
 
 .box-card {
-  margin: 2%;
+  margin: 1%;
 }
 
 .box-card1 {
-  margin-top: 3%;
-  margin-left: 2%;
+  margin: 1%;
+  margin-left: 10%;
 }
+
+// .box-card1 {
+//   margin-top: 3%;
+//   margin-left: 2%;
+// }
 
 .box-card2 {
   margin-top: 3%;
