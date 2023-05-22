@@ -4,7 +4,7 @@
     <div style="width: 52%; height: 800; margin-top: 0.5%">
       <h3 style="margin-left: 1.5%;">异常流程显示</h3>
       <el-card class="box-card">
-        <el-descriptions class="margin-top" title="设定时间" border>
+        <el-descriptions class="margin-top" title="设定时间(小时)" border>
           <!-- <template slot="extra">
             <el-date-picker v-model="qualifyDateRange" size="large" type="daterange" format="yyyy-MM-dd"
               value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
@@ -135,7 +135,7 @@
 
           <el-form-item>
             <el-button type="primary" icon="el-icon-search" size="mini" @click="searchList">搜索</el-button>
-            <el-button icon="el-icon-refresh" size="mini">重置</el-button>
+            <el-button icon="el-icon-refresh" size="mini" @click="reset">重置</el-button>
           </el-form-item>
         </el-form>
 
@@ -147,7 +147,7 @@
           </el-table-column>
           <el-table-column prop="runningTime" label="已进行时间">
           </el-table-column>
-          <el-table-column prop="exceedTime" label="超时时长">
+          <el-table-column prop="exceedTime" label="超时时长(小时)">
           </el-table-column>
         </el-table>
         <!-- 分页插件 -->
@@ -268,6 +268,11 @@ export default {
   },
 
   methods: {
+    reset() {
+      this.value = '';
+      this.queryParams.id = null;
+
+    },
     searchList() {
       this.tableData = [];
       // console.log('打印对应的参数', this.value);
