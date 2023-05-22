@@ -100,12 +100,12 @@ export default {
             //   }
             // },
 
-            // itemStyle: {
-            //   normal: {
+            itemStyle: {
+              normal: {
 
-            //     color: function () { return "#" + Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16); }
-            //   }
-            // },
+                color: function () { return "#" + Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16); }
+              }
+            },
 
             type: "bar",
             data: this.barData,
