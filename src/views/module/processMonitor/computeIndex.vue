@@ -1,7 +1,7 @@
 <template>
   <div class="layout-body" style="width: 100%;height: auto;">
     <div class="top-text">
-      模块功能说明：这是计算平均生产天数功能模块，该模块主要计算每个流程的平均生产天数，在下方点击计算平均生产天数，即可计算所有步骤的平均生产天数。
+      模块功能说明：这是计算工序的平均生产周期功能模块，该模块主要计算每个工序的平均耗时，可点击工序周期设定图标可以设定每个工序的平均时间。
     </div>
     <!-- 工序平均周期 -->
     <div class="top-card">
@@ -122,7 +122,7 @@ export default {
         res.data.forEach((item, index) => {
           this.chartData1[index] = item.time
         });
-        // this.chartKey++
+        this.chartKey++
       })
       const arr = ['rongLian', 'baoWen', 'zhuZha', 'lengZha', 'tuiHuo', 'chongJuan']
       getSetProcessTime().then(res => {
