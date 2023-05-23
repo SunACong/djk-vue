@@ -419,7 +419,6 @@ export default {
 
           //判断设备健康状况
           getListNewData3().then((res) => {
-
             console.log("打印设备的状态信息", res.data[19].rollV);
             this.judgeList = [];
             this.judge = res.data[19].rollV;
