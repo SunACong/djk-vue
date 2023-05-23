@@ -110,6 +110,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } from '@/api/oneCastrollgy'
+import { getAlldata } from '@/api/oneCastroll'
 import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getTec } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
@@ -338,6 +339,7 @@ export default {
           // 1号铸轧机数据
           getListNewData().then((res) => {
             this.dataList = res.data;
+            console.log("this.dataList", this.dataList);
             this.rollingTableData1[0].chartData.xData = []
             this.rollingTableData1[0].chartData.yData = []
             this.rollingTableData1[1].chartData.xData = []
@@ -386,7 +388,7 @@ export default {
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (res.data[19].rollV == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

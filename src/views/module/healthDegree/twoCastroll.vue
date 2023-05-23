@@ -158,7 +158,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData2 } from '@/api/twoCastroll'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
+import { getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -576,7 +576,7 @@ export default {
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (res.data[19].rollV == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

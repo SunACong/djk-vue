@@ -581,7 +581,7 @@ export default {
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (res.data[19].rollV == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

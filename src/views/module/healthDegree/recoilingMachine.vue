@@ -424,13 +424,13 @@ export default {
             this.judgeList = [];
             this.judge = res.data[19].machineColsV;
             // 绿
-            if (this.judge > 10) {
+            if (this.judge >= 10) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
 
             // 红
-            if (this.judge <= 10) {
+            if (this.judge < 10) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

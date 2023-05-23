@@ -1,15 +1,11 @@
 <template>
-  <div class="GrapeBox" style="width: 96%;height: auto;">
+  <div class="GrapeBox" style="width: 100%;height: auto;">
 
-    <div style="width: 52%; height: 800; margin-top: 0.5%">
-      <h3 style="margin-left: 1.5%;">异常流程显示</h3>
-      <el-card class="box-card">
+    <div style="width: 50%; height: 340px; margin-top: 0.5%">
+      <!-- <h3 style="margin-left: 1.5%;">异常流程显示</h3> -->
+
+      <el-card class="box-card" style="height: 50%;width: auto;">
         <el-descriptions class="margin-top" title="设定时间(小时)" border>
-          <!-- <template slot="extra">
-            <el-date-picker v-model="qualifyDateRange" size="large" type="daterange" format="yyyy-MM-dd"
-              value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
-              end-placeholder="结束日期" @change="dateRangeQuality(qualifyDateRange)" />
-          </template> -->
           <el-descriptions-item>
             <template slot="label">
               <i class="el-icon-sunrise-1"></i>
@@ -56,13 +52,8 @@
         </el-descriptions>
       </el-card>
 
-      <el-card class="box-card">
+      <el-card class="box-card" style="height: 50%;width: auto;">
         <el-descriptions class="margin-top" title="历史异常统计表" border>
-          <!-- <template slot="extra">
-            <el-date-picker v-model="qualifyDateRange" size="large" type="daterange" format="yyyy-MM-dd"
-              value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
-              end-placeholder="结束日期" @change="dateRangeQuality(qualifyDateRange)" />
-          </template> -->
           <el-descriptions-item>
             <template slot="label">
               <i class="el-icon-sunrise-1"></i>
@@ -111,7 +102,7 @@
 
     </div>
 
-    <div style="width: 48%; height: 300px; ">
+    <div style="width: 49%; height: 300px; ">
       <el-card class="box-card">
         <bar :barData="Datatwo"></bar>
         <div class="but">
@@ -120,7 +111,7 @@
     </div>
 
 
-    <div style="width: 90%; height: auto;align-items: center;">
+    <div style="width: 100%; height: auto;align-items: center;margin-top: 5%;">
       <el-card class="box-card1">
         <el-form size="small" :inline="true" label-width="68px">
           <el-form-item label="选择工序">
@@ -397,8 +388,8 @@ export default {
 }
 
 .box-card1 {
-  margin: 1%;
-  margin-left: 10%;
+  // margin: 1%;
+  // margin-left: 10%;
 }
 
 // .box-card1 {

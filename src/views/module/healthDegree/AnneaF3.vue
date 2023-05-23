@@ -528,13 +528,13 @@ export default {
             this.judgeList = [];
             this.judge = res.data[0].zoneOneT;
             // 绿
-            if (this.judge > 100) {
+            if (this.judge >= 100) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
 
             // 红
-            if (this.judge <= 100) {
+            if (this.judge < 100) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

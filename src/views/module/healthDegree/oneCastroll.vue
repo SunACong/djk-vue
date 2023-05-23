@@ -6,7 +6,7 @@
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">1#铸轧机设备参数change</span>
+              <span style="line-height: 20px;">1#铸轧机设备参数</span>
             </div>
           </div>
           <div>
@@ -326,8 +326,8 @@ export default {
     getengineList() {
       console.log('打印是否为相应字段', this.tdtype)
       // 铸轧机1#
-      // SELECT * FROM t_3d8761c0928d11ed8fbe65289e32d77e where ts > now - 5s;
-      var zong = 'SELECT * FROM t_3d8761c0928d11ed8fbe65289e32d77e where ts between'
+      // SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts > now - 5s;
+      var zong = 'SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts between'
       var qian = parseTime(this.qualifyDateRange[0])
       var hou = parseTime(this.qualifyDateRange[1])
       // 补全sql语句，并且将其添加限制查询条件
@@ -606,7 +606,7 @@ export default {
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (res.data[19].rollV == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

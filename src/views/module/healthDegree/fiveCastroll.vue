@@ -315,7 +315,6 @@ export default {
       console.log('打印是否为相应字段', this.tdtype)
       //       铸轧机5#
       // SELECT * FROM t_58a64890928d11ed8fbe65289e32d77e where ts > now - 5s;
-
       var zong = 'SELECT * FROM t_58a64890928d11ed8fbe65289e32d77e where ts between'
       var qian = parseTime(this.qualifyDateRange[0])
       var hou = parseTime(this.qualifyDateRange[1])
@@ -583,7 +582,7 @@ export default {
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (res.data[19].rollV == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };

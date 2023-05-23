@@ -96,17 +96,27 @@ export default {
             //   normal: {
             //     barBorderRadius: [10, 10, 0, 0],
             //     color: function () { return "#" + Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16); }
-
             //   }
             // },
 
+            // itemStyle: {
+            //   normal: {
+
+            //     color: function () { return "#" + Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16); }
+            //   }
+            // },
+
+
             itemStyle: {
               normal: {
-
-                color: function () { return "#" + Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16); }
+                //这里是颜色
+                color: function (params) {
+                  //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
+                  var colorList = ['#5D6E1E', '#36AE37', '#7D4195', '#C6A477', '#43978D', '#522157'];
+                  return colorList[params.dataIndex]
+                }
               }
             },
-
             type: "bar",
             data: this.barData,
           },
