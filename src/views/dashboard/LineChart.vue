@@ -44,12 +44,6 @@ export default {
     }
   },
   watch: {
-    chartData: {
-      deep: true,
-      handler(val) {
-        this.setOptions(val)
-      }
-    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -94,6 +88,10 @@ export default {
           top: 40,
         },
         yAxis: {
+          name: '小时',
+          nameTextStyle: {
+            fontSize: 20
+          },
           axisLabel: {
             interval:0,
             fontSize:20

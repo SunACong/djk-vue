@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { getPredict } from '@/api/predict'
+// import { getPredict } from '@/api/predict'
 import PredictBarChart from '@/views/dashboard/PredictBarChart'
 
 export default {
