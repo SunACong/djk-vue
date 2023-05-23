@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+//历史异常查询
+export function gethistoryException() {
+  return request({
+    url: '/processCaculate/historyException',
+    method: 'get'
+  })
+}
+
 // 查询整体周期计算详细
 export function getProcessComputeTime() {
   return request({

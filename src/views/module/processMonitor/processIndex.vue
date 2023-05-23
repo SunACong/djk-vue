@@ -1,77 +1,220 @@
 <template>
-  <div class="layout-body" style="width: 100%;height: auto;">
-    <div class="top-text">
-      模块功能说明：这是查询异常流程的功能模块，该模块主要显示异常流程，在下方点击刷新，即可查看异常流程。
+  <div class="GrapeBox" style="width: 96%;height: auto;">
+
+    <div style="width: 52%; height: 800; margin-top: 0.5%">
+      <h3 style="margin-left: 1.5%;">异常流程显示</h3>
+      <el-card class="box-card">
+        <el-descriptions class="margin-top" title="设定时间(小时)" border>
+          <!-- <template slot="extra">
+            <el-date-picker v-model="qualifyDateRange" size="large" type="daterange" format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
+              end-placeholder="结束日期" @change="dateRangeQuality(qualifyDateRange)" />
+          </template> -->
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-sunrise-1"></i>
+              熔炼工序
+            </template>
+            {{ this.Dataone[5] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-sunny
+"></i>
+              保温工序
+            </template>
+            {{ this.Dataone[4] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-guide"></i>
+              铸轧工序
+            </template>
+            {{ this.Dataone[3] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-receiving"></i>
+              冷轧工序
+            </template>
+            {{ this.Dataone[2] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-mobile"></i>
+              退火工序
+            </template>
+            {{ this.Dataone[1] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-orange"></i>
+              重卷工序
+            </template>
+            {{ this.Dataone[0] }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </el-card>
+
+      <el-card class="box-card">
+        <el-descriptions class="margin-top" title="历史异常统计表" border>
+          <!-- <template slot="extra">
+            <el-date-picker v-model="qualifyDateRange" size="large" type="daterange" format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd" :picker-options="pickerOptions" range-separator="至" start-placeholder="开始日期"
+              end-placeholder="结束日期" @change="dateRangeQuality(qualifyDateRange)" />
+          </template> -->
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-sunrise-1"></i>
+              熔炼工序
+            </template>
+            {{ this.Datatwo[5] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-sunny
+"></i>
+              保温工序
+            </template>
+            {{ this.Datatwo[4] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-guide"></i>
+              铸轧工序
+            </template>
+            {{ this.Datatwo[3] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-receiving"></i>
+              冷轧工序
+            </template>
+            {{ this.Datatwo[2] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-mobile"></i>
+              退火工序
+            </template>
+            {{ this.Datatwo[1] }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-orange"></i>
+              重卷工序
+            </template>
+            {{ this.Datatwo[0] }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </el-card>
+
     </div>
-    <div class="top-card">
-      <el-card shadow="always">
-        <div slot="header" class="top-card">
-          <div class="top-card-header">
-            <div class="top-card-header-left">
-              <i class="el-icon-s-help" />
-              <span class="top-card-header-left-text">异常流程统计表</span>
-            </div>
-            <div>
-              <el-date-picker
-                v-model="qualifyDateRange"
-                size="large"
-                type="daterange"
-                format="yyyy-MM-dd"
-                value-format="yyyy-MM-dd" 
-                :picker-options="pickerOptions"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                @change="dateRangeQuality(qualifyDateRange)"
-              />
-            </div>
-          </div>
+
+    <div style="width: 48%; height: 300px; ">
+      <el-card class="box-card">
+        <bar :barData="Datatwo"></bar>
+        <div class="but">
         </div>
-        <div>
-          <div style="height: 300px">
-            <LineChart :chart-data="chartData" height="100%"/>
-          </div>
-        </div>
-        <!-- 表格 -->
-        <div style="margin-top: 40px;">
-          <el-table v-loading="loading" :data="tableData" stripe style="width: 100%" :border="true"
-            :cell-style="{ 'text-align': 'center', 'height': '10px' }" :header-cell-style="{ 'text-align': 'center' }">
-            <el-table-column prop="batchNum" label="熔次/铸轧/冷轧" min-width="21%" />
-            <el-table-column prop="inspectCreateTime" label="巡检开始日期" min-width="35%" />
-            <el-table-column prop="lmdpQcColdInspect.consumer" label="客户" min-width="20%" />
-            <el-table-column prop="plateTypeDetermination" label="板型" min-width="20%">
-              <template slot-scope="scope">
-                <el-tag
-                  :type="scope.row.plateTypeDetermination === 1 ? 'success' : (scope.row.plateTypeDetermination === 2 ? 'info' : 'danger')"
-                  @click="handleView(1, scope.row)">
-                  {{ scope.row.plateTypeDetermination === 1 ? '合格' : (scope.row.plateTypeDetermination === 2 ? '暂未评定' :
-                    '不合格') }}
-                </el-tag>
-              </template>
-            </el-table-column>
-            <el-table-column label="操作" min-width="20%">
-              <template slot-scope="scope">
-                <el-button size="medium" type="text" @click="handleView(6, scope.row)">
-                  查看
-                </el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-          </div>
       </el-card>
     </div>
+
+
+    <div style="width: 90%; height: auto;align-items: center;">
+      <el-card class="box-card1">
+        <el-form size="small" :inline="true" label-width="68px">
+          <el-form-item label="选择工序">
+            <el-select v-model="value" placeholder="请选择">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="熔次号/铸轧卷号/冷轧卷号" label-width="180px">
+            <el-input placeholder="请输入熔次号" clearable v-model="queryParams.id" />
+          </el-form-item>
+
+          <el-form-item>
+            <el-button type="primary" icon="el-icon-search" size="mini" @click="searchList">搜索</el-button>
+            <el-button icon="el-icon-refresh" size="mini" @click="reset">重置</el-button>
+          </el-form-item>
+        </el-form>
+
+        <!--间隔-->
+        <el-table :data="tableData" border style="width: 100%">
+          <el-table-column prop="numberID" label="熔次号/铸轧卷号/冷轧卷号">
+          </el-table-column>
+          <el-table-column prop="beginTime" label="开始时间">
+          </el-table-column>
+          <el-table-column prop="runningTime" label="已进行时间">
+          </el-table-column>
+          <el-table-column prop="exceedTime" label="超时时长(小时)">
+          </el-table-column>
+        </el-table>
+        <!-- 分页插件 -->
+        <div style="margin: 30px 20px 20px;float: right;font-size: 20px;">
+          <el-pagination :current-page="queryParams.pageNum" :page-sizes="[5, 10, 20, 30]"
+            layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
+            @current-change="handleCurrentChange" />
+        </div>
+      </el-card>
+
+
+    </div>
+
   </div>
 </template>
 
 <script>
 import LineChart from '@/views/dashboard/LineChart'
+import { getSetProcessTime, gethistoryException } from '@/api/ProcessCompute'
+import bar from "@/views/dashboard/Albar";
+import { getCastSmeltHoldList, getOneException, getTwoException, getThreeException, getFourException, getFiveException, getSixException } from '@/api/LmdpCastSmeltHold'
+import { tableData } from '@/api/rollingMachine';
 
 export default {
   name: 'ProcessIndex',
-  components: { LineChart },
+  components: { LineChart, bar },
   data() {
     return {
       tableData: [],
+      //查询参数
+      queryParams: {
+        pageNum: 1,
+        pageSize: 10,
+        id: null
+      },
+      size: '',
+      num: '',
+
+      total: 100,
+      eceptionList: [],
+
+      // 总条数
+      total: 10,
+      options: [{
+        value: '1',
+        label: '熔炼工序'
+      }, {
+        value: '2',
+        label: '保温工序'
+      }, {
+        value: '3',
+        label: '铸轧工序'
+      }, {
+        value: '4',
+        label: '冷轧工序'
+      }, {
+        value: '5',
+        label: '退火工序'
+      }, {
+        value: '6',
+        label: '重卷工序'
+      }
+      ],
+      value: '',
+      Datatwo: [],
+      historyEcp: [],
+      Dataone: [],
       qualifyDateRange: [this.parseTime(new Date().getTime() - 3600 * 1000 * 24 * 6, '{y}-{m}-{d}'), this.parseTime(new Date().getTime(), '{y}-{m}-{d}')],
       pickerOptions: {
         shortcuts: [{
@@ -102,21 +245,136 @@ export default {
         }]
       },
       loading: false,
-      chartData: [1,2,8,15,4,11,10],
-      formData: {
-        rongLian: '',
-        baoWen: '',
-        zhuZha: '',
-        lengZha: '',
-        tuiHuo: '',
-        chongJuan: ''
-      }
     }
   },
-  created() {
 
+
+  created() {
+    this.getjudgeList();
   },
+
+  watch: {
+    value: {
+      handler(newVal, oldVal) {
+        this.searchList();
+        if (newVal != oldVal) {
+          this.queryParams.pageNum = 1;
+          this.queryParams.id = null
+        }
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+
   methods: {
+    reset() {
+      this.value = '';
+      this.queryParams.id = null;
+
+    },
+    searchList() {
+      this.tableData = [];
+      // console.log('打印对应的参数', this.value);
+      if (this.value == 1) {
+        console.log("1_熔炼");
+        getOneException(this.queryParams).then((res) => {
+          console.log(res);
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log("打印data", this.tableData);
+        })
+      } else if (this.value == 2) {
+        console.log("2_保温");
+        getTwoException(this.queryParams).then((res) => {
+          console.log(res);
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log("打印data", this.tableData);
+        })
+      } else if (this.value == 3) {
+        console.log("3_铸轧");
+        getThreeException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      } else if (this.value == 4) {
+        console.log("4_冷轧");
+        getFourException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      } else if (this.value == 5) {
+        console.log("5_退火");
+        getFiveException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      } else if (this.value == 6) {
+        console.log("6_重卷");
+        getSixException(this.queryParams).then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total
+          console.log(res);
+        })
+      }
+    },
+    /**
+      * 更改pageSize
+      * @param {Object} val
+      */
+    handleSizeChange(val) {
+      this.queryParams.pageSize = val
+      this.searchList();
+    },
+    /**
+       * 更改当前页码
+       * @param {Object} val
+       */
+    handleCurrentChange(val) {
+      this.queryParams.pageNum = val
+      this.searchList();
+    },
+
+    // getnowException() {
+    //   this.loading = true
+    //   getCastSmeltHoldList().then((res) => {
+    //     // this.eceptionList = res.data;
+    //     // this.total = res.data.length
+    //     // console.log(this.total);
+    //     this.loading = false
+    //   })
+    // },
+
+    getjudgeList() {
+      gethistoryException().then((res1) => {
+        this.historyEcp = res1.data;
+        var arrData1 = [];
+        // 第一种for循环
+        for (let i = 0; i < res1.data.length; i++) {
+          arrData1.push(res1.data[i].number)
+        }
+        arrData1.reverse();
+        this.Datatwo = arrData1;
+      })
+      getSetProcessTime().then((res) => {
+        var arrData = [];
+        arrData.push(
+          res.data.rongLian,
+          res.data.baoWen,
+          res.data.zhuZha,
+          res.data.lengZha,
+          res.data.tuiHuo,
+          res.data.chongJuan,
+        )
+        arrData.reverse()
+
+        this.Dataone = arrData;
+      })
+    },
   }
 }
 </script>
@@ -124,4 +382,36 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/productQuality/productQuality.scss';
 
+.tableflex {
+  width: fit-content;
+}
+
+.GrapeBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.box-card {
+  margin: 1%;
+}
+
+.box-card1 {
+  margin: 1%;
+  margin-left: 10%;
+}
+
+// .box-card1 {
+//   margin-top: 3%;
+//   margin-left: 2%;
+// }
+
+.box-card2 {
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.but {
+  margin-left: 20%;
+}
 </style>
