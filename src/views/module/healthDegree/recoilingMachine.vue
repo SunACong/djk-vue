@@ -410,9 +410,9 @@ export default {
               // this.rollingTableData1[2].chartData.yData.push(item.rollV)
               // this.rollingTableData1[2].chartData.rName = '卷取电机速度'
               // 开卷机速度
-              this.rollingTableData1[0].value = item.openRollA
+              this.rollingTableData1[0].value = item.openRollA.toFixed(1)
               // 卷曲机机速度
-              this.rollingTableData1[1].value = item.rollWindA
+              this.rollingTableData1[1].value = item.rollWindA.toFixed(1)
               // //卷曲机速度
               // this.rollingTableData1[2].value = item.rollV;
             })

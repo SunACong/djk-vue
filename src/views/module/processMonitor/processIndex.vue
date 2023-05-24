@@ -1,7 +1,7 @@
 <template>
   <div class="GrapeBox" style="width: 100%;height: auto;">
 
-    <div style="width: 50%; height: 340px; margin-top: 0.5%">
+    <div style="width: 50%; margin-top: 0.5%">
       <!-- <h3 style="margin-left: 1.5%;">异常流程显示</h3> -->
 
       <el-card class="box-card" style="height: 50%;width: auto;">
@@ -52,8 +52,8 @@
         </el-descriptions>
       </el-card>
 
-      <el-card class="box-card" style="height: 50%;width: auto;">
-        <el-descriptions class="margin-top" title="历史异常统计表" border>
+      <el-card class="box-card" style="height: 50%;width: auto;margin-top: 0.5%">
+        <el-descriptions class="margin-top" title="历史异常统计表(次数)" border>
           <el-descriptions-item>
             <template slot="label">
               <i class="el-icon-sunrise-1"></i>
@@ -111,7 +111,7 @@
     </div>
 
 
-    <div style="width: 100%; height: auto;align-items: center;margin-top: 5%;">
+    <div style="width: 98%; height: auto;align-items: center;margin-top: 1.5%;margin-left: 0.5%;">
       <el-card class="box-card1">
         <el-form size="small" :inline="true" label-width="68px">
           <el-form-item label="选择工序">
@@ -136,7 +136,7 @@
           </el-table-column>
           <el-table-column prop="beginTime" label="开始时间">
           </el-table-column>
-          <el-table-column prop="runningTime" label="已进行时间">
+          <el-table-column prop="runningTime" label="已进行时间(小时)">
           </el-table-column>
           <el-table-column prop="exceedTime" label="超时时长(小时)">
           </el-table-column>
