@@ -410,11 +410,11 @@ export default {
               this.rollingTableData1[2].chartData.rName = '卷取电机速度'
               this.rollingTableData1[2].chartData.rType = 'rollV'
               // 上辊电机速度
-              this.rollingTableData1[0].value = item.upRollMontorLineV.toFixed(1)
+              this.rollingTableData1[0].value = item.upRollMontorLineV
               // 下辊电机速度
-              this.rollingTableData1[1].value = item.downRollMontorLineV.toFixed(1)
+              this.rollingTableData1[1].value = item.downRollMontorLineV
               // 卷曲机速度
-              this.rollingTableData1[2].value = item.rollV.toFixed(1)
+              this.rollingTableData1[2].value = item.rollV
             })
           })
 
