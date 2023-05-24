@@ -540,31 +540,31 @@ export default {
               this.rollingTableData5[11].chartData.rName = '传动侧预载力'
               this.rollingTableData5[11].chartData.rType = 'transPreloadForce'
               // 上辊电机电流
-              this.rollingTableData5[0].value = item.upRollMontorA
+              this.rollingTableData5[0].value = item.upRollMontorA.toFixed(1)
               // 下辊电机电流
-              this.rollingTableData5[1].value = item.downRollMontorA
+              this.rollingTableData5[1].value = item.downRollMontorA.toFixed(1)
               // 主水泵电机电流
-              this.rollingTableData5[2].value = item.pumpA
+              this.rollingTableData5[2].value = item.pumpA.toFixed(1)
               // 备用水泵电机电流
               // this.rollingTableData5[3].value = item.upRollMontorA;
               // 卷取电机电流  rollA
-              this.rollingTableData5[3].value = item.rollA
+              this.rollingTableData5[3].value = item.rollA.toFixed(1)
               // 上辊水压
-              this.rollingTableData5[4].value = item.upRollWaterFn
+              this.rollingTableData5[4].value = item.upRollWaterFn.toFixed(1)
               // 下辊水压
-              this.rollingTableData5[5].value = item.downRollWaterFn
+              this.rollingTableData5[5].value = item.downRollWaterFn.toFixed(1)
               // 上辊水温
-              this.rollingTableData5[6].value = item.upRollWaterT
+              this.rollingTableData5[6].value = item.upRollWaterT.toFixed(1)
               // 下辊水温
-              this.rollingTableData5[7].value = item.downRollWaterT
+              this.rollingTableData5[7].value = item.downRollWaterT.toFixed(1)
               // 上辊流量
-              this.rollingTableData5[8].value = item.upRollFlow
+              this.rollingTableData5[8].value = item.upRollFlow.toFixed(1)
               // 下辊流量
-              this.rollingTableData5[9].value = item.downRollFlow
+              this.rollingTableData5[9].value = item.downRollFlow.toFixed(1)
               // 操作侧预载力
-              this.rollingTableData5[10].value = item.operationPreloadForce
+              this.rollingTableData5[10].value = item.operationPreloadForce.toFixed(1)
               // 传动侧预载力
-              this.rollingTableData5[11].value = item.transPreloadForce
+              this.rollingTableData5[11].value = item.transPreloadForce.toFixed(1)
               //  //传动侧预载力
               //  this.rollingTableData5[12].value = item.upRollMontorA;
             })
