@@ -424,13 +424,14 @@ export default {
               this.rollingTableData1[3].chartData.rName = '带材长度'
               this.rollingTableData1[3].chartData.rType = 'stripL'
               // 机列速度
-              this.rollingTableData1[0].value = item.machineColsV
+              this.rollingTableData1[0].value = item.machineColsV.toFixed(1)
+              // console.log('item.machineColsV', item.machineColsV);
               // 卷取卷径
-              this.rollingTableData1[1].value = item.rollWindD
+              this.rollingTableData1[1].value = item.rollWindD.toFixed(1)
               // 实际张力
-              this.rollingTableData1[2].value = item.actualTension
+              this.rollingTableData1[2].value = item.actualTension.toFixed(1)
               // 带材长度
-              this.rollingTableData1[3].value = item.stripL
+              this.rollingTableData1[3].value = item.stripL.toFixed(1)
             })
           })
 

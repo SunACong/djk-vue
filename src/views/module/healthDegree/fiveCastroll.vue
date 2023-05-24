@@ -544,7 +544,7 @@ export default {
               // 下辊电机电流
               this.rollingTableData5[1].value = item.downRollMontorA
               // 主水泵电机电流
-              this.rollingTableData5[2].value = item.upRollMontorA
+              this.rollingTableData5[2].value = item.pumpA
               // 备用水泵电机电流
               // this.rollingTableData5[3].value = item.upRollMontorA;
               // 卷取电机电流  rollA
@@ -556,7 +556,7 @@ export default {
               // 上辊水温
               this.rollingTableData5[6].value = item.upRollWaterT
               // 下辊水温
-              this.rollingTableData5[7].value = item.upRollFlow
+              this.rollingTableData5[7].value = item.downRollWaterT
               // 上辊流量
               this.rollingTableData5[8].value = item.upRollFlow
               // 下辊流量
