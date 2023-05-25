@@ -369,7 +369,7 @@ export default {
       reportDateRange: [],
       rollNumber: '',
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 5,
       total: 100,
       pickerOptions: {
         shortcuts: [{
