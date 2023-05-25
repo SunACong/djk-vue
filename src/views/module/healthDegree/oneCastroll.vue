@@ -238,7 +238,7 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+    await getDevice({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
       this.currentWarnTable = res.data
       // console.log("historyWarnTable");
       // console.log(this.historyWarnTable);
@@ -334,8 +334,8 @@ export default {
       this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
         // params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
-        // .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        // .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         .then((data) => {
           console.log('日期', data.data[0])
           console.log('值', data.data[1])
@@ -614,7 +614,7 @@ export default {
           })
 
 
-          getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+          getDevice({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 3500)

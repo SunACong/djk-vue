@@ -438,7 +438,7 @@ export default {
 
 
           // 定时查询铸轧机最新20条报警记录
-          getTec({ rollingDeviceNumber: '铸轧机3#', rollingName: this.indicatorName }).then((res) => {
+          getTec({ rollingDeviceNumber: '铸轧机3#', para: '工艺参数' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 1000)

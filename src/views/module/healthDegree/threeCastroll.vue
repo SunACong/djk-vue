@@ -592,7 +592,7 @@ export default {
           })
 
 
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#', rollingName: this.indicatorName }).then((res) => {
+          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
             this.currentWarnTable = res.data
             this.judgeList = [];
 

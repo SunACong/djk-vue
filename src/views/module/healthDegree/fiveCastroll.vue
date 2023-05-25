@@ -589,7 +589,7 @@ export default {
             };
           })
 
-          getDevice({ rollingDeviceNumber: '铸轧机5#', rollingName: this.indicatorName }).then((res) => {
+          getDevice({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 3500)

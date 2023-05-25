@@ -545,7 +545,7 @@ export default {
             };
           })
           // 定时查询退火炉最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#', rollingName: this.indicatorName }).then((res) => {
+          getListWarnHistoryData({ rollingDeviceNumber: '退火炉4#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 3500)
