@@ -541,31 +541,31 @@ export default {
               this.rollingTableData3[11].chartData.rName = '传动侧预载力'
               this.rollingTableData3[11].chartData.rType = 'transPreloadForce'
               // 上辊电机电流
-              this.rollingTableData3[0].value = item.upRollMontorA
+              this.rollingTableData3[0].value = item.upRollMontorA.toFixed(1)
               // 下辊电机电流
-              this.rollingTableData3[1].value = item.downRollMontorA
+              this.rollingTableData3[1].value = item.downRollMontorA.toFixed(1)
               // 主水泵电机电流
-              this.rollingTableData3[2].value = item.upRollMontorA
+              this.rollingTableData3[2].value = item.pumpA.toFixed(1)
               // 备用水泵电机电流
               // this.rollingTableData3[3].value = item.upRollMontorA;
               // 卷取电机电流  rollA
-              this.rollingTableData3[3].value = item.rollA
+              this.rollingTableData3[3].value = item.rollA.toFixed(1)
               // 上辊水压
-              this.rollingTableData3[4].value = item.upRollWaterFn
+              this.rollingTableData3[4].value = item.upRollWaterFn.toFixed(1)
               // 下辊水压
-              this.rollingTableData3[5].value = item.downRollWaterFn
+              this.rollingTableData3[5].value = item.downRollWaterFn.toFixed(1)
               // 上辊水温
-              this.rollingTableData3[6].value = item.upRollWaterT
+              this.rollingTableData3[6].value = item.upRollWaterT.toFixed(1)
               // 下辊水温
-              this.rollingTableData3[7].value = item.upRollFlow
+              this.rollingTableData3[7].value = item.downRollWaterT.toFixed(1)
               // 上辊流量
-              this.rollingTableData3[8].value = item.upRollFlow
+              this.rollingTableData3[8].value = item.upRollFlow.toFixed(1)
               // 下辊流量
-              this.rollingTableData3[9].value = item.downRollFlow
+              this.rollingTableData3[9].value = item.downRollFlow.toFixed(1)
               // 操作侧预载力
-              this.rollingTableData3[10].value = item.operationPreloadForce
+              this.rollingTableData3[10].value = item.operationPreloadForce.toFixed(1)
               // 传动侧预载力
-              this.rollingTableData3[11].value = item.transPreloadForce
+              this.rollingTableData3[11].value = item.transPreloadForce.toFixed(1)
               //  //传动侧预载力
               //  this.rollingTableData3[12].value = item.upRollMontorA;
             })
@@ -574,25 +574,25 @@ export default {
 
           //判断设备健康状况
           getListNewData().then((res) => {
-            console.log("打印设备的状态信息", res.data[10].rollV);
+            console.log("打印设备的状态信息", res.data[19].rollV);
             this.judgeList = [];
-            this.judge = res.data[10].rollV;
+            this.judge = res.data[19].rollV;
+
             // 绿
-            if (res.data[19].rollV > 0) {
+            if (this.judge > 0) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (this.judge == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };
           })
 
 
-
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#', rollingName: this.indicatorName }).then((res) => {
+          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
             this.currentWarnTable = res.data
             this.judgeList = [];
 

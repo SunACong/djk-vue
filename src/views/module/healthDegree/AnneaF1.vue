@@ -446,8 +446,8 @@ export default {
               this.rollingTableData1[0].chartData.rType = 'coolWaterUpLimit'
 
               this.rollingTableData1[1].chartData.xData.unshift(item.ts)
-              // this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
-              this.rollingTableData1[1].chartData.yData.unshift(1)
+              this.rollingTableData1[1].chartData.yData.unshift(item.compressedAirOneLowPressure)
+
               this.rollingTableData1[1].chartData.rName = '炉压缩空气'
               this.rollingTableData1[1].chartData.rType = 'compressedAirOneLowPressure'
 
@@ -514,30 +514,36 @@ export default {
             console.log("打印设备的状态信息", res.data[0].zoneOneT);
 
             // 炉冷却水
-            this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit
+            this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit.toFixed(1)
             // 炉压缩空气
-            this.rollingTableData1[1].value = res.data[0].compressedAirOneLowPressure
+            if (res.data[0].compressedAirOneLowPressure == 0) {
+              this.rollingTableData1[1].value = "false"
+            } else if (res.data[0].compressedAirOneLowPressure == 1) {
+              this.rollingTableData1[1].value = "true"
+            }
             // 金属料温温度曲线
-            this.rollingTableData1[2].value = res.data[0].meterialT
+            this.rollingTableData1[2].value = res.data[0].meterialT.toFixed(1)
+            // console.log('+++++++++++++++++', res.data[0].meterialT);
             // 1区炉气温度曲线
-            this.rollingTableData1[3].value = res.data[0].zoneOneT
+            this.rollingTableData1[3].value = res.data[0].zoneOneT.toFixed(1)
+            // console.log('+++++++++++++++++', res.data[0].zoneOneT);
             // 2区炉气温度曲线  rollA
-            this.rollingTableData1[4].value = res.data[0].zoneTwoT
+            this.rollingTableData1[4].value = res.data[0].zoneTwoT.toFixed(1)
             // 3区炉气温度曲线
-            this.rollingTableData1[5].value = res.data[0].zoneThreeT
+            this.rollingTableData1[5].value = res.data[0].zoneThreeT.toFixed(1)
             // 炉气设定温度
-            this.rollingTableData1[6].value = res.data[0].setT
+            this.rollingTableData1[6].value = res.data[0].setT.toFixed(1)
 
             this.judgeList = [];
             this.judge = res.data[0].zoneOneT;
             // 绿
-            if (this.judge > 100) {
+            if (this.judge >= 100) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
 
             // 红
-            if (this.judge <= 100) {
+            if (this.judge < 100) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };
@@ -545,7 +551,7 @@ export default {
 
 
           // 定时查询退火炉最新20条报警记录
-          getListWarnHistoryData({ rollingDeviceNumber: '退火炉1#', rollingName: this.indicatorName }).then((res) => {
+          getListWarnHistoryData({ rollingDeviceNumber: '退火炉1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
 

@@ -410,11 +410,11 @@ export default {
               this.rollingTableData1[2].chartData.rName = '卷取电机速度'
               this.rollingTableData1[2].chartData.rType = 'rollV'
               // 上辊电机速度
-              this.rollingTableData1[0].value = item.upRollMontorLineV
+              this.rollingTableData1[0].value = item.upRollMontorLineV.toFixed(1)
               // 下辊电机速度
-              this.rollingTableData1[1].value = item.downRollMontorLineV
+              this.rollingTableData1[1].value = item.downRollMontorLineV.toFixed(1)
               // 卷曲机速度
-              this.rollingTableData1[2].value = item.rollV
+              this.rollingTableData1[2].value = item.rollV.toFixed(1)
             })
           })
 
@@ -430,14 +430,14 @@ export default {
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (res.data[19].rollV == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };
           })
 
           // 定时查询铸轧机最新20条报警记录
-          getTec({ rollingDeviceNumber: '铸轧机5#' }).then((res) => {
+          getTec({ rollingDeviceNumber: '铸轧机5#', para: '工艺参数' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 3500)

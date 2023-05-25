@@ -6,7 +6,7 @@
           <div slot="header" style="line-height: 20px;display: flex;justify-content: space-between;">
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
-              <span style="line-height: 20px;">1#铸轧机设备参数change</span>
+              <span style="line-height: 20px;">1#铸轧机设备参数</span>
             </div>
           </div>
           <div>
@@ -238,7 +238,7 @@ export default {
     /**
      * 获取一号铸轧机报警历史记录（30条）
      */
-    await getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+    await getDevice({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
       this.currentWarnTable = res.data
       // console.log("historyWarnTable");
       // console.log(this.historyWarnTable);
@@ -326,16 +326,16 @@ export default {
     getengineList() {
       console.log('打印是否为相应字段', this.tdtype)
       // 铸轧机1#
-      // SELECT * FROM t_3d8761c0928d11ed8fbe65289e32d77e where ts > now - 5s;
-      var zong = 'SELECT * FROM t_3d8761c0928d11ed8fbe65289e32d77e where ts between'
+      // SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts > now - 5s;
+      var zong = 'SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts between'
       var qian = parseTime(this.qualifyDateRange[0])
       var hou = parseTime(this.qualifyDateRange[1])
       // 补全sql语句，并且将其添加限制查询条件
       this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
       axios
         // params:可传递多个参数,固定写法,不能改,否则参数传递失败
-        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
-        // .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        // .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
         .then((data) => {
           console.log('日期', data.data[0])
           console.log('值', data.data[1])
@@ -564,31 +564,31 @@ export default {
               this.rollingTableData1[11].chartData.rName = '传动侧预载力'
               this.rollingTableData1[11].chartData.rType = 'transPreloadForce'
               // 上辊电机电流
-              this.rollingTableData1[0].value = item.upRollMontorA
+              this.rollingTableData1[0].value = item.upRollMontorA.toFixed(1)
               // 下辊电机电流
-              this.rollingTableData1[1].value = item.downRollMontorA
+              this.rollingTableData1[1].value = item.downRollMontorA.toFixed(1)
               // 主水泵电机电流
-              this.rollingTableData1[2].value = item.upRollMontorA
+              this.rollingTableData1[2].value = item.pumpA.toFixed(1)
               // 备用水泵电机电流
               // this.rollingTableData1[3].value = item.upRollMontorA;
               // 卷取电机电流  rollA
-              this.rollingTableData1[3].value = item.rollA
+              this.rollingTableData1[3].value = item.rollA.toFixed(1)
               // 上辊水压
-              this.rollingTableData1[4].value = item.upRollWaterFn
+              this.rollingTableData1[4].value = item.upRollWaterFn.toFixed(1)
               // 下辊水压
-              this.rollingTableData1[5].value = item.downRollWaterFn
+              this.rollingTableData1[5].value = item.downRollWaterFn.toFixed(1)
               // 上辊水温
-              this.rollingTableData1[6].value = item.upRollWaterT
+              this.rollingTableData1[6].value = item.upRollWaterT.toFixed(1)
               // 下辊水温
-              this.rollingTableData1[7].value = item.upRollFlow
+              this.rollingTableData1[7].value = item.downRollWaterT.toFixed(1)
               // 上辊流量
-              this.rollingTableData1[8].value = item.upRollFlow
+              this.rollingTableData1[8].value = item.upRollFlow.toFixed(1)
               // 下辊流量
-              this.rollingTableData1[9].value = item.downRollFlow
+              this.rollingTableData1[9].value = item.downRollFlow.toFixed(1)
               // 操作侧预载力
-              this.rollingTableData1[10].value = item.operationPreloadForce
+              this.rollingTableData1[10].value = item.operationPreloadForce.toFixed(1)
               // 传动侧预载力
-              this.rollingTableData1[11].value = item.transPreloadForce
+              this.rollingTableData1[11].value = item.transPreloadForce.toFixed(1)
               //  //传动侧预载力
               //  this.rollingTableData1[12].value = item.upRollMontorA;
             })
@@ -596,22 +596,25 @@ export default {
 
           //判断设备健康状况
           getListNewData().then((res) => {
-            console.log("打印设备的状态信息", res.data[19].rollV);
+            // console.log("打印设备的状态信息", res.data[19].rollV);
             this.judgeList = [];
-            this.judge = 0
+            this.judge = res.data[19].rollV;
+
             // 绿
-            if (res.data[19].rollV > 0) {
+            if (this.judge > 0) {
               this.ZT1 = "true";
               this.ZT2 = "";
             };
 
             // 红
-            if (res.data[19].rollV = 0) {
+            if (this.judge == 0) {
               this.ZT1 = "";
               this.ZT2 = "true";
             };
           })
-          getDevice({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName }).then((res) => {
+
+
+          getDevice({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
             this.currentWarnTable = res.data
           })
         }, 3500)
