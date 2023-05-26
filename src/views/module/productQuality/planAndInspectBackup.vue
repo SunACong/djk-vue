@@ -18,7 +18,7 @@
               <span class="top-card-header-left-text">成品卷合格判定汇总</span>
             </div>
             <div class="">
-              <el-descriptions class="" title="" :column="5" border :size="size" :label-style="labelStyle">
+              <el-descriptions class="" title="" :column="5" border :size="size" :label-style="labelStyleNo">
                 <el-descriptions-item label="合格数">
                   <el-tag type="success" size="mini">
                     {{ rangeQualifyRate.qualified }}
@@ -455,7 +455,7 @@ export default {
   },
   async created() {
     this.getList()
-    this.everyDayInfo()
+    this.everyDayInfo() 
     this.rangeDayInfo()
   },
   methods: {
