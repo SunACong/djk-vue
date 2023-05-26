@@ -46,7 +46,7 @@ export const constantRoutes = [
       name: 'PlanAndInspect',
       component: () => import('@/views/module/productQuality/planAndInspect'),
       meta: { title: '合格判定', icon: 'dashboard' }
-    },{
+    }, {
       path: 'planAndInspectBackup',
       name: 'planAndInspectBackup',
       component: () => import('@/views/module/productQuality/planAndInspectBackup'),
@@ -79,52 +79,52 @@ export const constantRoutes = [
       path: 'oneCastroll',
       name: 'OneCastroll',
       component: () => import('@/views/module/healthDegree/oneCastroll.vue'),
-      meta: { title: '铸轧机设备参数1#', icon: 'dashboard' }
+      meta: { title: '1#铸轧机设备参数', icon: 'dashboard' }
     }, {
       path: 'twoCastroll',
       name: 'TwoCastroll',
       component: () => import('@/views/module/healthDegree/twoCastroll.vue'),
-      meta: { title: '铸轧机设备参数2#', icon: 'dashboard' }
+      meta: { title: '2#铸轧机设备参数', icon: 'dashboard' }
     }, {
       path: 'threeCastroll',
       name: 'ThreeCastroll',
       component: () => import('@/views/module/healthDegree/threeCastroll.vue'),
-      meta: { title: '铸轧机设备参数3#', icon: 'dashboard' }
+      meta: { title: '3#铸轧机设备参数', icon: 'dashboard' }
     }, {
       path: 'fourCastroll',
       name: 'FourCastroll',
       component: () => import('@/views/module/healthDegree/fourCastroll.vue'),
-      meta: { title: '铸轧机设备参数4#', icon: 'dashboard' }
+      meta: { title: '4#铸轧机设备参数', icon: 'dashboard' }
     }, {
       path: 'fiveCastroll',
       name: 'FiveCastroll',
       component: () => import('@/views/module/healthDegree/fiveCastroll.vue'),
-      meta: { title: '铸轧机设备参数5#', icon: 'dashboard' }
+      meta: { title: '5#铸轧机设备参数', icon: 'dashboard' }
     }, {
       path: 'rollingMachine11',
       name: 'RollingMachine11',
       component: () => import('@/views/module/healthDegree/rollingMachine11.vue'),
-      meta: { title: '铸轧机工艺参数1#', icon: 'dashboard' }
+      meta: { title: '1#铸轧机工艺参数', icon: 'dashboard' }
     }, {
       path: 'rollingMachine22',
       name: 'RollingMachine22',
       component: () => import('@/views/module/healthDegree/rollingMachine22.vue'),
-      meta: { title: '铸轧机工艺参数2#', icon: 'dashboard' }
+      meta: { title: '2#铸轧机工艺参数', icon: 'dashboard' }
     }, {
       path: 'rollingMachine33',
       name: 'RollingMachine33',
       component: () => import('@/views/module/healthDegree/rollingMachine33.vue'),
-      meta: { title: '铸轧机工艺参数3#', icon: 'dashboard' }
+      meta: { title: '3#铸轧机工艺参数', icon: 'dashboard' }
     }, {
       path: 'rollingMachine44',
       name: 'RollingMachine44',
       component: () => import('@/views/module/healthDegree/rollingMachine44.vue'),
-      meta: { title: '铸轧机工艺参数4#', icon: 'dashboard' }
+      meta: { title: '4#铸轧机工艺参数', icon: 'dashboard' }
     }, {
       path: 'rollingMachine55',
       name: 'RollingMachine55',
       component: () => import('@/views/module/healthDegree/rollingMachine55.vue'),
-      meta: { title: '铸轧机工艺参数5#', icon: 'dashboard' }
+      meta: { title: '5#铸轧机工艺参数', icon: 'dashboard' }
     }, {
       path: 'recoilingMachine',
       name: 'RecoilingMachine',
@@ -140,47 +140,47 @@ export const constantRoutes = [
       path: 'AnneaF1',
       name: 'AnneaF1',
       component: () => import('@/views/module/healthDegree/AnneaF1.vue'),
-      meta: { title: '退火炉参数1#', icon: 'dashboard' }
+      meta: { title: '1#退火炉参数', icon: 'dashboard' }
     },
 
     {
       path: 'AnneaF2',
       name: 'AnneaF2',
       component: () => import('@/views/module/healthDegree/AnneaF2.vue'),
-      meta: { title: '退火炉参数2#', icon: 'dashboard' }
+      meta: { title: '2#退火炉参数', icon: 'dashboard' }
     },
 
     {
       path: 'AnneaF3',
       name: 'AnneaF3',
       component: () => import('@/views/module/healthDegree/AnneaF3.vue'),
-      meta: { title: '退火炉参数3#', icon: 'dashboard' }
+      meta: { title: '3#退火炉参数', icon: 'dashboard' }
     },
 
     {
       path: 'AnneaF4',
       name: 'AnneaF4',
       component: () => import('@/views/module/healthDegree/AnneaF4.vue'),
-      meta: { title: '退火炉参数4#', icon: 'dashboard' }
+      meta: { title: '4#退火炉参数', icon: 'dashboard' }
     },
     {
       path: 'AnneaF5',
       name: 'AnneaF5',
       component: () => import('@/views/module/healthDegree/AnneaF5.vue'),
-      meta: { title: '退火炉参数5#', icon: 'dashboard' }
+      meta: { title: '5#退火炉参数', icon: 'dashboard' }
     },
     {
       path: 'AnneaF6',
       name: 'AnneaF6',
       component: () => import('@/views/module/healthDegree/AnneaF6.vue'),
-      meta: { title: '退火炉参数6#', icon: 'dashboard' }
+      meta: { title: '6#退火炉参数', icon: 'dashboard' }
     },
 
     {
       path: 'AnneaF7',
       name: 'AnneaF7',
       component: () => import('@/views/module/healthDegree/AnneaF7.vue'),
-      meta: { title: '退火炉参数7#', icon: 'dashboard' }
+      meta: { title: '7#退火炉参数', icon: 'dashboard' }
     },
     // {
     //   path: 'avaluate',
