@@ -511,10 +511,11 @@ export default {
 
             // 炉冷却水
             // this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit.toFixed(1)
+            this.rollingTableData1[0].value = res.data[0].coolWaterUpLimit.toFixed(1)
             if (res.data[0].coolWaterUpLimit == 0) {
-              this.rollingTableData1[1].value = "false"
+              this.rollingTableData1[0].value = "false"
             } else if (res.data[0].coolWaterUpLimit == 1) {
-              this.rollingTableData1[1].value = "true"
+              this.rollingTableData1[0].value = "true"
             }
             // 炉压缩空气
             // this.rollingTableData1[1].value = res.data[0].compressedAirOneLowPressure
