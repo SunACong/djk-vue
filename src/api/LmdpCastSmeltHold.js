@@ -226,25 +226,50 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "heatNum",
                     "label": "生产线号",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "1",
+                        "label": "1"
+                      },
+                      {
+                        "value": "2",
+                        "label": "2"
+                      },
+                      {
+                        "value": "3",
+                        "label": "3"
+                      },
+                      {
+                        "value": "4",
+                        "label": "4"
+                      },
+                      {
+                        "value": "5",
+                        "label": "5"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -253,23 +278,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input70898"
+                  "id": "select31163"
                 }
               ],
               "options": {
@@ -303,7 +320,7 @@ export const formJson1 = {
         "label": "基础信息",
         "hidden": false,
         "folded": false,
-        "showFold": false,
+        "showFold": true,
         "cardWidth": "100%",
         "shadow": "never",
         "customClass": []
@@ -516,8 +533,8 @@ export const formJson1 = {
                     "multipleLimit": 0,
                     "optionItems": [
                       {
-                        "label": "一班",
-                        "value": "workGroupOne"
+                        "value": "workGroupOne",
+                        "label": "一班"
                       },
                       {
                         "value": "workGroupTwo",
@@ -548,7 +565,7 @@ export const formJson1 = {
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "select67618"
+                  "id": "select97354"
                 }
               ],
               "options": {
@@ -1325,25 +1342,58 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "stuffOtherName",
-                    "label": "名称",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
+                    "label": "废料一名称",
+                    "labelAlign": "",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "degass_box",
+                        "label": "除气箱"
+                      },
+                      {
+                        "value": "filter_box",
+                        "label": "过滤箱"
+                      },
+                      {
+                        "value": "dry_waste",
+                        "label": "保温炉放干废料"
+                      },
+                      {
+                        "value": "shutdown_waste",
+                        "label": "停机废料"
+                      },
+                      {
+                        "value": "riser_waste",
+                        "label": "立板废料"
+                      },
+                      {
+                        "value": "commission_waste",
+                        "label": "立板调试废料"
+                      },
+                      {
+                        "value": "launder_waste",
+                        "label": "停机流槽废料"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -1352,23 +1402,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input86123"
+                  "id": "select62393"
                 }
               ],
               "options": {
@@ -1461,25 +1503,58 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "stuffOtherName1",
-                    "label": "名称",
+                    "label": "废料二名称",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "degass_box",
+                        "label": "除气箱"
+                      },
+                      {
+                        "value": "filter_box",
+                        "label": "过滤箱"
+                      },
+                      {
+                        "value": "dry_waste",
+                        "label": "保温炉放干废料"
+                      },
+                      {
+                        "value": "shutdown_waste",
+                        "label": "停机废料"
+                      },
+                      {
+                        "value": "riser_waste",
+                        "label": "立板废料"
+                      },
+                      {
+                        "value": "commission_waste",
+                        "label": "立板调试废料"
+                      },
+                      {
+                        "value": "launder_waste",
+                        "label": "停机流槽废料"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -1488,23 +1563,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input71187"
+                  "id": "select58179"
                 }
               ],
               "options": {
@@ -1597,25 +1664,58 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "stuffOtherName2",
-                    "label": "名称",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
+                    "label": "废料三名称",
+                    "labelAlign": "",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "degass_box",
+                        "label": "除气箱"
+                      },
+                      {
+                        "value": "filter_box",
+                        "label": "过滤箱"
+                      },
+                      {
+                        "value": "dry_waste",
+                        "label": "保温炉放干废料"
+                      },
+                      {
+                        "value": "shutdown_waste",
+                        "label": "停机废料"
+                      },
+                      {
+                        "value": "riser_waste",
+                        "label": "立板废料"
+                      },
+                      {
+                        "value": "commission_waste",
+                        "label": "立板调试废料"
+                      },
+                      {
+                        "value": "launder_waste",
+                        "label": "停机流槽废料"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -1624,23 +1724,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input46199"
+                  "id": "select43497"
                 }
               ],
               "options": {
@@ -1733,25 +1825,58 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "stuffOtherName3",
-                    "label": "名称",
+                    "label": "废料四名称",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "degass_box",
+                        "label": "除气箱"
+                      },
+                      {
+                        "value": "filter_box",
+                        "label": "过滤箱"
+                      },
+                      {
+                        "value": "dry_waste",
+                        "label": "保温炉放干废料"
+                      },
+                      {
+                        "value": "shutdown_waste",
+                        "label": "停机废料"
+                      },
+                      {
+                        "value": "riser_waste",
+                        "label": "立板废料"
+                      },
+                      {
+                        "value": "commission_waste",
+                        "label": "立板调试废料"
+                      },
+                      {
+                        "value": "launder_waste",
+                        "label": "停机流槽废料"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -1760,23 +1885,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input91209"
+                  "id": "select15656"
                 }
               ],
               "options": {
@@ -1905,25 +2022,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "input50617",
-                    "label": "灌铝班组名称",
+                    "name": "stuffAlGroupId",
+                    "label": "灌铝班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "100",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -1932,23 +2070,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input50617"
+                  "id": "select92918"
                 }
               ],
               "options": {
@@ -2874,6 +3004,1504 @@ export const formJson1 = {
             "customClass": ""
           },
           "id": "grid37616"
+        },
+        {
+          "type": "card",
+          "category": "container",
+          "icon": "card",
+          "widgetList": [
+            {
+              "type": "grid",
+              "category": "container",
+              "icon": "grid",
+              "cols": [
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "firingTime",
+                        "label": "点火时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date21718"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol19115",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-19115"
+                }
+              ],
+              "options": {
+                "name": "grid81478",
+                "hidden": false,
+                "gutter": 12,
+                "colHeight": null,
+                "customClass": ""
+              },
+              "id": "grid81478"
+            },
+            {
+              "type": "alert",
+              "icon": "alert",
+              "formItemFlag": false,
+              "options": {
+                "name": "alert68575",
+                "title": "叉车搅拌",
+                "type": "success",
+                "description": "",
+                "closable": false,
+                "closeText": "",
+                "center": true,
+                "showIcon": false,
+                "effect": "light",
+                "hidden": false,
+                "onClose": "",
+                "customClass": "",
+                "label": "alert"
+              },
+              "id": "alert68575"
+            },
+            {
+              "type": "grid",
+              "category": "container",
+              "icon": "grid",
+              "cols": [
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftStirTime1",
+                        "label": "第1次时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date107397"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol75292",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-75292"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "select",
+                      "icon": "select-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftGroupId",
+                        "label": "班组",
+                        "labelAlign": "label-right-align",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "disabled": true,
+                        "hidden": false,
+                        "clearable": false,
+                        "filterable": false,
+                        "allowCreate": false,
+                        "remote": false,
+                        "automaticDropdown": false,
+                        "multiple": false,
+                        "multipleLimit": 0,
+                        "optionItems": [
+                          {
+                            "value": "workGroupOne",
+                            "label": "一班"
+                          },
+                          {
+                            "value": "workGroupTwo",
+                            "label": "二班"
+                          },
+                          {
+                            "value": "workGroupThree",
+                            "label": "三班"
+                          },
+                          {
+                            "value": "workGroupFour",
+                            "label": "四班"
+                          }
+                        ],
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onRemoteQuery": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "select84327"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol54616",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-54616"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftDriverName",
+                        "label": "叉车工",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input66174"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol44846",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-44846"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftStirTime2",
+                        "label": "第2次时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date39072"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol77637",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-77637"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "select",
+                      "icon": "select-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftGroupId2",
+                        "label": "班组",
+                        "labelAlign": "label-right-align",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "disabled": true,
+                        "hidden": false,
+                        "clearable": false,
+                        "filterable": false,
+                        "allowCreate": false,
+                        "remote": false,
+                        "automaticDropdown": false,
+                        "multiple": false,
+                        "multipleLimit": 0,
+                        "optionItems": [
+                          {
+                            "value": "workGroupOne",
+                            "label": "一班"
+                          },
+                          {
+                            "value": "workGroupTwo",
+                            "label": "二班"
+                          },
+                          {
+                            "value": "workGroupThree",
+                            "label": "三班"
+                          },
+                          {
+                            "value": "workGroupFour",
+                            "label": "四班"
+                          }
+                        ],
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onRemoteQuery": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "select101788"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol42878",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-42878"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftDriverName2",
+                        "label": "叉车工",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input51063"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol32628",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-32628"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftStirTime3",
+                        "label": "第3次时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date109033"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol54417",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-54417"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "select",
+                      "icon": "select-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftGroupId3",
+                        "label": "班组",
+                        "labelAlign": "label-right-align",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "disabled": true,
+                        "hidden": false,
+                        "clearable": false,
+                        "filterable": false,
+                        "allowCreate": false,
+                        "remote": false,
+                        "automaticDropdown": false,
+                        "multiple": false,
+                        "multipleLimit": 0,
+                        "optionItems": [
+                          {
+                            "value": "workGroupOne",
+                            "label": "一班"
+                          },
+                          {
+                            "value": "workGroupTwo",
+                            "label": "二班"
+                          },
+                          {
+                            "value": "workGroupThree",
+                            "label": "三班"
+                          },
+                          {
+                            "value": "workGroupFour",
+                            "label": "四班"
+                          }
+                        ],
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onRemoteQuery": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "select110240"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol55273",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-55273"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "forkliftDriverName3",
+                        "label": "叉车工",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input40428"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol46300",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-46300"
+                }
+              ],
+              "options": {
+                "name": "grid72091",
+                "hidden": false,
+                "gutter": 12,
+                "colHeight": null,
+                "customClass": ""
+              },
+              "id": "grid72091"
+            },
+            {
+              "type": "alert",
+              "icon": "alert",
+              "formItemFlag": false,
+              "options": {
+                "name": "alert69098",
+                "title": "造渣剂",
+                "type": "success",
+                "description": "",
+                "closable": false,
+                "closeText": "",
+                "center": true,
+                "showIcon": false,
+                "effect": "light",
+                "hidden": false,
+                "onClose": "",
+                "customClass": "",
+                "label": "alert"
+              },
+              "id": "alert69098"
+            },
+            {
+              "type": "grid",
+              "category": "container",
+              "icon": "grid",
+              "cols": [
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "makingSlagAgentAddAmount",
+                        "label": "炉料装炉前造渣剂加入量",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": "170",
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input82935"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol39786",
+                    "hidden": false,
+                    "span": 12,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-39786"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "makingPreSlagAgentAddAmount",
+                        "label": "预扒渣前造渣剂加入量",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": "170",
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input27241"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol68703",
+                    "hidden": false,
+                    "span": 12,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-68703"
+                }
+              ],
+              "options": {
+                "name": "grid102713",
+                "hidden": false,
+                "gutter": 12,
+                "colHeight": null,
+                "customClass": ""
+              },
+              "id": "grid102713"
+            },
+            {
+              "type": "alert",
+              "icon": "alert",
+              "formItemFlag": false,
+              "options": {
+                "name": "alert78309",
+                "title": "预扒渣",
+                "type": "success",
+                "description": "",
+                "closable": true,
+                "closeText": "",
+                "center": true,
+                "showIcon": false,
+                "effect": "light",
+                "hidden": false,
+                "onClose": "",
+                "customClass": "",
+                "label": "alert"
+              },
+              "id": "alert78309"
+            },
+            {
+              "type": "grid",
+              "category": "container",
+              "icon": "grid",
+              "cols": [
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "drossingTime",
+                        "label": "时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": "100",
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date107674"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol102750",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-102750"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "drossingTemp",
+                        "label": "温度",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": "100",
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input102526"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol106023",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-106023"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "drossingTempTime",
+                        "label": "温度测量时间",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": "100",
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input95636"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol88978",
+                    "hidden": false,
+                    "span": 8,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-88978"
+                }
+              ],
+              "options": {
+                "name": "grid88559",
+                "hidden": false,
+                "gutter": 12,
+                "colHeight": null,
+                "customClass": ""
+              },
+              "id": "grid88559"
+            },
+            {
+              "type": "alert",
+              "icon": "alert",
+              "formItemFlag": false,
+              "options": {
+                "name": "alert60823",
+                "title": "配比前取样",
+                "type": "success",
+                "description": "",
+                "closable": false,
+                "closeText": "",
+                "center": true,
+                "showIcon": false,
+                "effect": "light",
+                "hidden": false,
+                "onClose": "",
+                "customClass": "",
+                "label": "alert"
+              },
+              "id": "alert60823"
+            },
+            {
+              "type": "grid",
+              "category": "container",
+              "icon": "grid",
+              "cols": [
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "prepSamplingTime",
+                        "label": "时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date41687"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol79968",
+                    "hidden": false,
+                    "span": 12,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-79968"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "prepSamplingTemp",
+                        "label": "温度",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input65538"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol61137",
+                    "hidden": false,
+                    "span": 12,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-61137"
+                }
+              ],
+              "options": {
+                "name": "grid70045",
+                "hidden": false,
+                "gutter": 12,
+                "colHeight": null,
+                "customClass": ""
+              },
+              "id": "grid70045"
+            },
+            {
+              "type": "alert",
+              "icon": "alert",
+              "formItemFlag": false,
+              "options": {
+                "name": "alert104146",
+                "title": "配比前取样复查",
+                "type": "success",
+                "description": "",
+                "closable": false,
+                "closeText": "",
+                "center": true,
+                "showIcon": false,
+                "effect": "light",
+                "hidden": false,
+                "onClose": "",
+                "customClass": "",
+                "label": "alert"
+              },
+              "id": "alert104146"
+            },
+            {
+              "type": "grid",
+              "category": "container",
+              "icon": "grid",
+              "cols": [
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "date",
+                      "icon": "date-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "prepSamplingTimeRe",
+                        "label": "时间",
+                        "labelAlign": "label-right-align",
+                        "type": "date",
+                        "defaultValue": null,
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "editable": false,
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "valueFormat": "yyyy-MM-dd HH:mm:ss",
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "date62154"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol39614",
+                    "hidden": false,
+                    "span": 12,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-39614"
+                },
+                {
+                  "type": "grid-col",
+                  "category": "container",
+                  "icon": "grid-col",
+                  "internal": true,
+                  "widgetList": [
+                    {
+                      "type": "input",
+                      "icon": "text-field",
+                      "formItemFlag": true,
+                      "options": {
+                        "name": "prepSamplingTempRe",
+                        "label": "温度",
+                        "labelAlign": "label-right-align",
+                        "type": "text",
+                        "defaultValue": "",
+                        "placeholder": "",
+                        "columnWidth": "200px",
+                        "size": "",
+                        "labelWidth": null,
+                        "labelHidden": false,
+                        "readonly": true,
+                        "disabled": false,
+                        "hidden": false,
+                        "clearable": false,
+                        "showPassword": false,
+                        "required": false,
+                        "requiredHint": "",
+                        "validation": "",
+                        "validationHint": "",
+                        "customClass": "",
+                        "labelIconClass": null,
+                        "labelIconPosition": "rear",
+                        "labelTooltip": null,
+                        "minLength": null,
+                        "maxLength": null,
+                        "showWordLimit": false,
+                        "prefixIcon": "",
+                        "suffixIcon": "",
+                        "appendButton": false,
+                        "appendButtonDisabled": false,
+                        "buttonIcon": "el-icon-search",
+                        "onCreated": "",
+                        "onMounted": "",
+                        "onInput": "",
+                        "onChange": "",
+                        "onFocus": "",
+                        "onBlur": "",
+                        "onValidate": ""
+                      },
+                      "id": "input106789"
+                    }
+                  ],
+                  "options": {
+                    "name": "gridCol43988",
+                    "hidden": false,
+                    "span": 12,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0,
+                    "responsive": false,
+                    "md": 12,
+                    "sm": 12,
+                    "xs": 12,
+                    "customClass": ""
+                  },
+                  "id": "grid-col-43988"
+                }
+              ],
+              "options": {
+                "name": "grid55055",
+                "hidden": false,
+                "gutter": 12,
+                "colHeight": null,
+                "customClass": ""
+              },
+              "id": "grid55055"
+            }
+          ],
+          "options": {
+            "name": "card46505",
+            "label": "化平搅拌取配比前样",
+            "hidden": false,
+            "folded": false,
+            "showFold": true,
+            "cardWidth": "100%",
+            "shadow": "never",
+            "customClass": [
+              "text-color",
+              "text-size1"
+            ]
+          },
+          "id": "card46505"
         }
       ],
       "options": {
@@ -2881,1464 +4509,12 @@ export const formJson1 = {
         "label": "熔料炉备料明细",
         "hidden": false,
         "folded": false,
-        "showFold": false,
+        "showFold": true,
         "cardWidth": "100%",
         "shadow": "never",
         "customClass": []
       },
       "id": "card29883"
-    },
-    {
-      "type": "card",
-      "category": "container",
-      "icon": "card",
-      "widgetList": [
-        {
-          "type": "grid",
-          "category": "container",
-          "icon": "grid",
-          "cols": [
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "firingTime",
-                    "label": "点火时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date21718"
-                }
-              ],
-              "options": {
-                "name": "gridCol19115",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-19115"
-            }
-          ],
-          "options": {
-            "name": "grid81478",
-            "hidden": false,
-            "gutter": 12,
-            "colHeight": null,
-            "customClass": ""
-          },
-          "id": "grid81478"
-        },
-        {
-          "type": "alert",
-          "icon": "alert",
-          "formItemFlag": false,
-          "options": {
-            "name": "alert68575",
-            "title": "叉车搅拌",
-            "type": "success",
-            "description": "",
-            "closable": false,
-            "closeText": "",
-            "center": true,
-            "showIcon": false,
-            "effect": "light",
-            "hidden": false,
-            "onClose": "",
-            "customClass": "",
-            "label": "alert"
-          },
-          "id": "alert68575"
-        },
-        {
-          "type": "grid",
-          "category": "container",
-          "icon": "grid",
-          "cols": [
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftStirTime1",
-                    "label": "第1次时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date107397"
-                }
-              ],
-              "options": {
-                "name": "gridCol75292",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-75292"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftGroupName",
-                    "label": "班组",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input61316"
-                }
-              ],
-              "options": {
-                "name": "gridCol54616",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-54616"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftDriverName",
-                    "label": "叉车工",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input66174"
-                }
-              ],
-              "options": {
-                "name": "gridCol44846",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-44846"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftStirTime2",
-                    "label": "第2次时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date39072"
-                }
-              ],
-              "options": {
-                "name": "gridCol77637",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-77637"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftGroupName2",
-                    "label": "班组",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input89689"
-                }
-              ],
-              "options": {
-                "name": "gridCol42878",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-42878"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftDriverName2",
-                    "label": "叉车工",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input51063"
-                }
-              ],
-              "options": {
-                "name": "gridCol32628",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-32628"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftStirTime3",
-                    "label": "第3次时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date109033"
-                }
-              ],
-              "options": {
-                "name": "gridCol54417",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-54417"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftGroupName3",
-                    "label": "班组",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input17804"
-                }
-              ],
-              "options": {
-                "name": "gridCol55273",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-55273"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "forkliftDriverName3",
-                    "label": "叉车工",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input40428"
-                }
-              ],
-              "options": {
-                "name": "gridCol46300",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-46300"
-            }
-          ],
-          "options": {
-            "name": "grid72091",
-            "hidden": false,
-            "gutter": 12,
-            "colHeight": null,
-            "customClass": ""
-          },
-          "id": "grid72091"
-        },
-        {
-          "type": "alert",
-          "icon": "alert",
-          "formItemFlag": false,
-          "options": {
-            "name": "alert69098",
-            "title": "造渣剂",
-            "type": "success",
-            "description": "",
-            "closable": false,
-            "closeText": "",
-            "center": true,
-            "showIcon": false,
-            "effect": "light",
-            "hidden": false,
-            "onClose": "",
-            "customClass": "",
-            "label": "alert"
-          },
-          "id": "alert69098"
-        },
-        {
-          "type": "grid",
-          "category": "container",
-          "icon": "grid",
-          "cols": [
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "makingSlagAgentAddAmount",
-                    "label": "炉料装炉前造渣剂加入量",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": "170",
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input82935"
-                }
-              ],
-              "options": {
-                "name": "gridCol39786",
-                "hidden": false,
-                "span": 12,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-39786"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "makingPreSlagAgentAddAmount",
-                    "label": "预扒渣前造渣剂加入量",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": "170",
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input27241"
-                }
-              ],
-              "options": {
-                "name": "gridCol68703",
-                "hidden": false,
-                "span": 12,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-68703"
-            }
-          ],
-          "options": {
-            "name": "grid102713",
-            "hidden": false,
-            "gutter": 12,
-            "colHeight": null,
-            "customClass": ""
-          },
-          "id": "grid102713"
-        },
-        {
-          "type": "alert",
-          "icon": "alert",
-          "formItemFlag": false,
-          "options": {
-            "name": "alert78309",
-            "title": "预扒渣",
-            "type": "success",
-            "description": "",
-            "closable": false,
-            "closeText": "",
-            "center": true,
-            "showIcon": false,
-            "effect": "light",
-            "hidden": false,
-            "onClose": "",
-            "customClass": "",
-            "label": "alert"
-          },
-          "id": "alert78309"
-        },
-        {
-          "type": "grid",
-          "category": "container",
-          "icon": "grid",
-          "cols": [
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "drossingTime",
-                    "label": "时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": "100",
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date107674"
-                }
-              ],
-              "options": {
-                "name": "gridCol102750",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-102750"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "drossingTemp",
-                    "label": "温度",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": "100",
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input102526"
-                }
-              ],
-              "options": {
-                "name": "gridCol106023",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-106023"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "drossingTempTime",
-                    "label": "温度测量时间",
-                    "labelAlign": "",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": "100",
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date20710"
-                }
-              ],
-              "options": {
-                "name": "gridCol88978",
-                "hidden": false,
-                "span": 8,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-88978"
-            }
-          ],
-          "options": {
-            "name": "grid88559",
-            "hidden": false,
-            "gutter": 12,
-            "colHeight": null,
-            "customClass": ""
-          },
-          "id": "grid88559"
-        },
-        {
-          "type": "alert",
-          "icon": "alert",
-          "formItemFlag": false,
-          "options": {
-            "name": "alert60823",
-            "title": "配比前取样",
-            "type": "success",
-            "description": "",
-            "closable": false,
-            "closeText": "",
-            "center": true,
-            "showIcon": false,
-            "effect": "light",
-            "hidden": false,
-            "onClose": "",
-            "customClass": "",
-            "label": "alert"
-          },
-          "id": "alert60823"
-        },
-        {
-          "type": "grid",
-          "category": "container",
-          "icon": "grid",
-          "cols": [
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "prepSamplingTime",
-                    "label": "时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date41687"
-                }
-              ],
-              "options": {
-                "name": "gridCol79968",
-                "hidden": false,
-                "span": 12,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-79968"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "prepSamplingTemp",
-                    "label": "温度",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input65538"
-                }
-              ],
-              "options": {
-                "name": "gridCol61137",
-                "hidden": false,
-                "span": 12,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-61137"
-            }
-          ],
-          "options": {
-            "name": "grid70045",
-            "hidden": false,
-            "gutter": 12,
-            "colHeight": null,
-            "customClass": ""
-          },
-          "id": "grid70045"
-        },
-        {
-          "type": "alert",
-          "icon": "alert",
-          "formItemFlag": false,
-          "options": {
-            "name": "alert104146",
-            "title": "配比前取样复查",
-            "type": "success",
-            "description": "",
-            "closable": false,
-            "closeText": "",
-            "center": true,
-            "showIcon": false,
-            "effect": "light",
-            "hidden": false,
-            "onClose": "",
-            "customClass": "",
-            "label": "alert"
-          },
-          "id": "alert104146"
-        },
-        {
-          "type": "grid",
-          "category": "container",
-          "icon": "grid",
-          "cols": [
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "date",
-                  "icon": "date-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "prepSamplingTimeRe",
-                    "label": "时间",
-                    "labelAlign": "label-right-align",
-                    "type": "date",
-                    "defaultValue": null,
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "editable": false,
-                    "format": "yyyy-MM-dd HH:mm:ss",
-                    "valueFormat": "yyyy-MM-dd HH:mm:ss",
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "date62154"
-                }
-              ],
-              "options": {
-                "name": "gridCol39614",
-                "hidden": false,
-                "span": 12,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-39614"
-            },
-            {
-              "type": "grid-col",
-              "category": "container",
-              "icon": "grid-col",
-              "internal": true,
-              "widgetList": [
-                {
-                  "type": "input",
-                  "icon": "text-field",
-                  "formItemFlag": true,
-                  "options": {
-                    "name": "prepSamplingTempRe",
-                    "label": "温度",
-                    "labelAlign": "label-right-align",
-                    "type": "text",
-                    "defaultValue": "",
-                    "placeholder": "",
-                    "columnWidth": "200px",
-                    "size": "",
-                    "labelWidth": null,
-                    "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
-                    "hidden": false,
-                    "clearable": false,
-                    "showPassword": false,
-                    "required": false,
-                    "requiredHint": "",
-                    "validation": "",
-                    "validationHint": "",
-                    "customClass": "",
-                    "labelIconClass": null,
-                    "labelIconPosition": "rear",
-                    "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
-                    "onCreated": "",
-                    "onMounted": "",
-                    "onInput": "",
-                    "onChange": "",
-                    "onFocus": "",
-                    "onBlur": "",
-                    "onValidate": ""
-                  },
-                  "id": "input106789"
-                }
-              ],
-              "options": {
-                "name": "gridCol43988",
-                "hidden": false,
-                "span": 12,
-                "offset": 0,
-                "push": 0,
-                "pull": 0,
-                "responsive": false,
-                "md": 12,
-                "sm": 12,
-                "xs": 12,
-                "customClass": ""
-              },
-              "id": "grid-col-43988"
-            }
-          ],
-          "options": {
-            "name": "grid55055",
-            "hidden": false,
-            "gutter": 12,
-            "colHeight": null,
-            "customClass": ""
-          },
-          "id": "grid55055"
-        }
-      ],
-      "options": {
-        "name": "card46505",
-        "label": "化平搅拌取配比前样",
-        "hidden": false,
-        "folded": false,
-        "showFold": true,
-        "cardWidth": "100%",
-        "shadow": "never",
-        "customClass": [
-          "text-color",
-          "text-size1"
-        ]
-      },
-      "id": "card46505"
     },
     {
       "type": "card",
@@ -4930,25 +5106,110 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "alloyRefine1OtherName",
                     "label": "合金名称",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "al_ingot",
+                        "label": "铝锭"
+                      },
+                      {
+                        "value": "fe_agent",
+                        "label": "铁剂"
+                      },
+                      {
+                        "value": "cu_agent",
+                        "label": "铜剂"
+                      },
+                      {
+                        "value": "mn_agent",
+                        "label": "锰剂"
+                      },
+                      {
+                        "value": "instant_si",
+                        "label": "速溶硅"
+                      },
+                      {
+                        "value": "al_si_alloy",
+                        "label": "铝硅合金"
+                      },
+                      {
+                        "value": "al_ti_alloy",
+                        "label": "铝钛合金"
+                      },
+                      {
+                        "value": "al_ti_b_wire",
+                        "label": "铝钛硼丝"
+                      },
+                      {
+                        "value": "nozzle_material",
+                        "label": "铸嘴料"
+                      },
+                      {
+                        "value": "refining_agent",
+                        "label": "精炼剂"
+                      },
+                      {
+                        "value": "slagging_agent",
+                        "label": "打渣剂"
+                      },
+                      {
+                        "value": "liquid_argon",
+                        "label": "液氩"
+                      },
+                      {
+                        "value": "rolling_base_oil",
+                        "label": "轧制基础油"
+                      },
+                      {
+                        "value": "rolling_oil_additive",
+                        "label": "轧制油添加剂"
+                      },
+                      {
+                        "value": "diatomite_filter_aid",
+                        "label": "硅藻土助滤剂"
+                      },
+                      {
+                        "value": "activated_clay",
+                        "label": "活性白土"
+                      },
+                      {
+                        "value": "non_woven_fabric",
+                        "label": "无纺布"
+                      },
+                      {
+                        "value": "paper_sleeve",
+                        "label": "纸套筒"
+                      },
+                      {
+                        "value": "steel_sleeve",
+                        "label": "钢套筒"
+                      },
+                      {
+                        "value": "steel_strip_pack",
+                        "label": "包装用钢带"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -4957,23 +5218,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input98255"
+                  "id": "select31363"
                 }
               ],
               "options": {
@@ -5102,25 +5355,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "alloyRefine1SmeltGroupName",
+                    "name": "alloyRefine1SmeltGroupId",
                     "label": "班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -5129,23 +5403,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input67907"
+                  "id": "select17027"
                 }
               ],
               "options": {
@@ -5464,25 +5730,38 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "mimRefine1Medium",
                     "label": "精炼剂介质",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "100",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "液体精炼剂",
+                        "label": "液体精炼剂"
+                      },
+                      {
+                        "value": "W-715",
+                        "label": "W-715"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -5491,23 +5770,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input50091"
+                  "id": "select52492"
                 }
               ],
               "options": {
@@ -5661,25 +5932,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "mimRefine1GroupName",
+                    "name": "mimRefine1GroupId",
                     "label": "班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "100",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -5688,23 +5980,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input21026"
+                  "id": "select35527"
                 }
               ],
               "options": {
@@ -5980,25 +6264,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "refine1RatioGroupName",
+                    "name": "refine1RatioGroupId",
                     "label": "班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -6007,23 +6312,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input102975"
+                  "id": "select58530"
                 }
               ],
               "options": {
@@ -6151,7 +6448,7 @@ export const formJson1 = {
                   "options": {
                     "name": "refine1SamplingTempRe",
                     "label": "取样温度",
-                    "labelAlign": "",
+                    "labelAlign": "label-right-align",
                     "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
@@ -6861,25 +7158,110 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "alloyRefine2OtherName",
                     "label": "合金名称",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "al_ingot",
+                        "label": "铝锭"
+                      },
+                      {
+                        "value": "fe_agent",
+                        "label": "铁剂"
+                      },
+                      {
+                        "value": "cu_agent",
+                        "label": "铜剂"
+                      },
+                      {
+                        "value": "mn_agent",
+                        "label": "锰剂"
+                      },
+                      {
+                        "value": "instant_si",
+                        "label": "速溶硅"
+                      },
+                      {
+                        "value": "al_si_alloy",
+                        "label": "铝硅合金"
+                      },
+                      {
+                        "value": "al_ti_alloy",
+                        "label": "铝钛合金"
+                      },
+                      {
+                        "value": "al_ti_b_wire",
+                        "label": "铝钛硼丝"
+                      },
+                      {
+                        "value": "nozzle_material",
+                        "label": "铸嘴料"
+                      },
+                      {
+                        "value": "refining_agent",
+                        "label": "精炼剂"
+                      },
+                      {
+                        "value": "slagging_agent",
+                        "label": "打渣剂"
+                      },
+                      {
+                        "value": "liquid_argon",
+                        "label": "液氩"
+                      },
+                      {
+                        "value": "rolling_base_oil",
+                        "label": "轧制基础油"
+                      },
+                      {
+                        "value": "rolling_oil_additive",
+                        "label": "轧制油添加剂"
+                      },
+                      {
+                        "value": "diatomite_filter_aid",
+                        "label": "硅藻土助滤剂"
+                      },
+                      {
+                        "value": "activated_clay",
+                        "label": "活性白土"
+                      },
+                      {
+                        "value": "non_woven_fabric",
+                        "label": "无纺布"
+                      },
+                      {
+                        "value": "paper_sleeve",
+                        "label": "纸套筒"
+                      },
+                      {
+                        "value": "steel_sleeve",
+                        "label": "钢套筒"
+                      },
+                      {
+                        "value": "steel_strip_pack",
+                        "label": "包装用钢带"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -6888,23 +7270,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input50993"
+                  "id": "select98500"
                 }
               ],
               "options": {
@@ -7033,25 +7407,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "alloyRefine2GroupName",
+                    "name": "alloyRefine2GroupId",
                     "label": "班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": null,
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -7060,23 +7455,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input100390"
+                  "id": "select31090"
                 }
               ],
               "options": {
@@ -7413,25 +7800,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "grainRefine1SmeltGroupName",
+                    "name": "grainRefine1SmeltGroupId",
                     "label": "班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -7440,23 +7848,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input15144"
+                  "id": "select86125"
                 }
               ],
               "options": {
@@ -7617,25 +8017,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "grainRefine1DrossingGroupName",
+                    "name": "grainRefine1DrossingGroupId",
                     "label": "扒渣班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -7644,23 +8065,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input118444"
+                  "id": "select28236"
                 }
               ],
               "options": {
@@ -7721,25 +8134,38 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "grainRefine1Medium",
                     "label": "精炼剂介质",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "液体精炼剂",
+                        "label": "液体精炼剂"
+                      },
+                      {
+                        "value": "W-715",
+                        "label": "W-715"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -7748,23 +8174,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input59223"
+                  "id": "select102326"
                 }
               ],
               "options": {
@@ -7869,7 +8287,7 @@ export const formJson1 = {
             "title": "【二次】液体，颗粒精炼",
             "type": "success",
             "description": "",
-            "closable": false,
+            "closable": true,
             "closeText": "",
             "center": true,
             "showIcon": false,
@@ -8083,25 +8501,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "grainRefine2SmeltGroupName",
+                    "name": "grainRefine2SmeltGroupId",
                     "label": "班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -8110,23 +8549,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input76166"
+                  "id": "select40188"
                 }
               ],
               "options": {
@@ -8219,25 +8650,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
-                    "name": "grainRefine2DrossingGroupName",
+                    "name": "grainRefine2DrossingGroupId",
                     "label": "扒渣班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -8246,23 +8698,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input53428"
+                  "id": "select52542"
                 }
               ],
               "options": {
@@ -8412,25 +8856,38 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "grainRefine2Medium",
                     "label": "精炼剂介质",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "液体精炼剂",
+                        "label": "液体精炼剂"
+                      },
+                      {
+                        "value": "W-715",
+                        "label": "W-715"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -8439,23 +8896,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input59999"
+                  "id": "select86885"
                 }
               ],
               "options": {
@@ -8932,25 +9381,46 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "turndownGroupId",
                     "label": "倒炉班组",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "workGroupOne",
+                        "label": "一班"
+                      },
+                      {
+                        "value": "workGroupTwo",
+                        "label": "二班"
+                      },
+                      {
+                        "value": "workGroupThree",
+                        "label": "三班"
+                      },
+                      {
+                        "value": "workGroupFour",
+                        "label": "四班"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -8959,23 +9429,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input79349"
+                  "id": "select67180"
                 }
               ],
               "options": {
@@ -9523,25 +9985,38 @@ export const formJson1 = {
               "internal": true,
               "widgetList": [
                 {
-                  "type": "input",
-                  "icon": "text-field",
+                  "type": "select",
+                  "icon": "select-field",
                   "formItemFlag": true,
                   "options": {
                     "name": "smeltApprove",
                     "label": "熔炼工序审核",
                     "labelAlign": "label-right-align",
-                    "type": "text",
                     "defaultValue": "",
                     "placeholder": "",
                     "columnWidth": "200px",
                     "size": "",
                     "labelWidth": "110",
                     "labelHidden": false,
-                    "readonly": true,
-                    "disabled": false,
+                    "disabled": true,
                     "hidden": false,
                     "clearable": false,
-                    "showPassword": false,
+                    "filterable": false,
+                    "allowCreate": false,
+                    "remote": false,
+                    "automaticDropdown": false,
+                    "multiple": false,
+                    "multipleLimit": 0,
+                    "optionItems": [
+                      {
+                        "value": "0",
+                        "label": "未审核"
+                      },
+                      {
+                        "value": "1",
+                        "label": "审核"
+                      }
+                    ],
                     "required": false,
                     "requiredHint": "",
                     "validation": "",
@@ -9550,23 +10025,15 @@ export const formJson1 = {
                     "labelIconClass": null,
                     "labelIconPosition": "rear",
                     "labelTooltip": null,
-                    "minLength": null,
-                    "maxLength": null,
-                    "showWordLimit": false,
-                    "prefixIcon": "",
-                    "suffixIcon": "",
-                    "appendButton": false,
-                    "appendButtonDisabled": false,
-                    "buttonIcon": "el-icon-search",
                     "onCreated": "",
                     "onMounted": "",
-                    "onInput": "",
+                    "onRemoteQuery": "",
                     "onChange": "",
                     "onFocus": "",
                     "onBlur": "",
                     "onValidate": ""
                   },
-                  "id": "input105950"
+                  "id": "select95960"
                 }
               ],
               "options": {

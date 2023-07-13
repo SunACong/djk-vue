@@ -120,7 +120,9 @@ export default {
       handler(val) {
         this.$refs.vFormRef.setFormJson(this.formJson[val])
         console.log(this.formData[`${FormMap.get(val)}`])
-        this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+        setTimeout(() => {
+          this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+        }, 1000)
       }
     }
   },
@@ -203,7 +205,9 @@ export default {
           this.active = count
           this.$refs.vFormRef.setFormJson(this.formJson[count-1])
           console.log(this.formData[`${FormMap.get(count-1)}`])
-          this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(count-1)}`])
+          setTimeout(() => {
+            this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(count-1)}`])
+          }, 1000)
           this.current = count-1
         }
       })

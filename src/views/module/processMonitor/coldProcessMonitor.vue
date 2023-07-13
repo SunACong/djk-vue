@@ -110,26 +110,12 @@ export default {
     current: {
       handler(val) {
         this.$refs.vFormRef.setFormJson(this.formJson[val])
+        console.log(this.formData[`${FormMap.get(val)}`])
         setTimeout(() => {
-          const formData = this.dictToValue(this.formData[`${FormMap.get(val)}`])
-          console.log(FormMap.get(val))
-          this.$refs.vFormRef.setFormData(formData)
-        }, 500);
+          this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(val)}`])
+        }, 1000)
       }
     }
-  },
-  async mounted() {
-    // 获取报表所有字典存入map中
-    await getDictList().then(res => {
-      res.data.forEach(item => {
-        this.reportDict.set(item.value, item.chdesc)
-      })
-    })
-    await getUserDictList().then(res => {
-      res.data.forEach(item => {
-        this.userDict.set(item.userId, item.realName)
-      })
-    })
   },
   created() {
     this.type = this.typeOptions[0].value
@@ -172,17 +158,6 @@ export default {
       }
       await this.getList(query)
     },
-    dictToValue(data) {
-      for (const key in data) {
-        if (this.reportDict.has(data[`${key}`])) {
-          data[`${key}`] = this.reportDict.get(data[`${key}`])
-        }
-        if (this.userDict.has(data[`${key}`])) {
-          data[`${key}`] = this.userDict.get(data[`${key}`])
-        }
-      }
-      return data
-    },
     getList(query) {
       getProcessMonitor(query).then(async res => {
         this.formData = res.data
@@ -198,9 +173,11 @@ export default {
         } else {
           this.showForm = true
           this.active = count
-          const formData = this.dictToValue(this.formData[`${FormMap.get(count-1)}`])
           this.$refs.vFormRef.setFormJson(this.formJson[count-1])
-          this.$refs.vFormRef.setFormData(formData)
+          console.log(this.formData[`${FormMap.get(count-1)}`])
+          setTimeout(() => {
+            this.$refs.vFormRef.setFormData(this.formData[`${FormMap.get(count-1)}`])
+          }, 1000)
           this.current = count-1
         }
       })
