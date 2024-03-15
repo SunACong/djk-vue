@@ -59,7 +59,7 @@
           </div>
         </div>
         <div>
-          <el-table :data="currentWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+          <el-table :data="currentWarnTable" stripe style="width: 100%,display=flex;" height="300px" :show-header="true">
             <!-- <el-table-column prop="idNumber" label="序号" /> -->
             <el-table-column prop="rollingProduceTime" label="日期" />
             <el-table-column prop="rollingName" label="指标名称" />
@@ -108,7 +108,7 @@
         </div>
         <div>
           <!--历史报警记录刷新表-->
-          <el-table :data="historyWarnTable" stripe style="width: 100%,display: flex;" height="300px" :show-header="true">
+          <el-table :data="historyWarnTable" stripe style="width: 100%,display= flex;" height="300px" :show-header="true">
             <!-- <el-table-column prop="idNumber" label="序号" /> -->
             <el-table-column prop="rollingProduceTime" label="日期" />
             <el-table-column prop="rollingName" label="指标名称" />
@@ -194,7 +194,7 @@
 <script>
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
-import { getListNewData, getListSpecial, rollingOptions, rollingTableData1, gettestMaxData } from '@/api/oneCastroll'
+import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } from '@/api/oneCastroll'
 import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 import moment from 'moment';
@@ -282,7 +282,6 @@ export default {
   },
   async created() {
 
-    // this.gettestMaxData();
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
@@ -393,6 +392,27 @@ export default {
       const endFormate = moment(new Date(end)).format('YYYY-MM-DD HH:mm:ss');
       console.log("后一段开始时间", this.beginformate);
       console.log("后一段结束时间", endFormate);
+      console.log('打印是否为相应字段',this.tdtype)
+
+      // 铸轧机1#
+      var zong = 'SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts between'
+      var qian = parseTime(this.beginformate)
+      var hou = parseTime(endFormate)
+      // 补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
+      axios
+        // params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        // .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .then((data) => {
+          console.log('日期', data.data[0])
+          console.log('值', data.data[1])
+          this.xData = data.data[0]
+          this.yData = data.data[1]
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     //查询前一段时间数据
     beforeList() {
@@ -402,6 +422,26 @@ export default {
       this.beginformate = moment(new Date(this.begin)).format('YYYY-MM-DD HH:mm:ss');
       console.log("前一段开始时间", this.beginformate);
       console.log("前一段结束时间", endTime);
+      console.log('打印是否为相应字段',this.tdtype)
+      // 铸轧机1#
+      var zong = 'SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts between'
+      var qian = parseTime(this.beginformate)
+      var hou = parseTime(endTime)
+      // 补全sql语句，并且将其添加限制查询条件
+      this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
+      axios
+        // params:可传递多个参数,固定写法,不能改,否则参数传递失败
+        .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        // .get('/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+        .then((data) => {
+          console.log('日期', data.data[0])
+          console.log('值', data.data[1])
+          this.xData = data.data[0]
+          this.yData = data.data[1]
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
 
     gettestMaxData() {
@@ -411,27 +451,27 @@ export default {
           dangerouslyUseHTMLString: true
         });
       } else {
-        gettestMaxData().then((response) => {
           console.log("开始", this.beginformate);
           console.log("结束", this.end);
-          // console.log("response", response.data);
-          var arr1 = [];
-          var arr2 = [];
-          this.CharList = response.data;
-          this.CharList.forEach(el => {
-            arr1.push(el.ts);
-            arr2.push(el.upRollMontorA);
-          });
-          console.log(arr1);
-          console.log(arr2);
-          this.xData = arr1
-          this.yData = arr2
-
-        });
+        //铸轧机1
+          var zong = 'SELECT * FROM t_26f7a000928d11ed8fbe65289e32d77e where ts between'
+          var qian = parseTime(this.beginformate)
+          var hou = parseTime(this.end)
+            // 补全sql语句，并且将其添加限制查询条件
+          this.tdts = zong + "'" + qian + "'" + ' and ' + "'" + hou + "'" + 'limit' + '  ' + 1000
+          axios
+             // params:可传递多个参数,固定写法,不能改,否则参数传递失败
+             .get('https://10.82.23.246:9528/td/castRoll/historyRange', { params: { sql: this.tdts, type: this.tdtype } })
+               .then((data) => {
+                console.log('日期', data.data[0])
+                console.log('值', data.data[1])
+                this.xData = data.data[0]
+                this.yData = data.data[1]
+              })
+              .catch((err) => {
+                console.log(err)
+              })
       }
-
-
-
     },
 
     // 查询tdengine上的数据
@@ -558,8 +598,6 @@ export default {
               this.maxData = this.rollingTableData1[11].chartData.maxData
             }
           })
-
-
         })
         addRead(row).then((res) => {
           // console.log("是否已读", res)
