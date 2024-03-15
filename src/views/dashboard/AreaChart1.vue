@@ -156,8 +156,11 @@ export default {
             data: y
           },
         ],
+        //在这里改
         dataZoom: { // 放大和缩放
+
           type: 'inside'
+
         },
         visualMap: [
           {

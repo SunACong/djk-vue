@@ -170,7 +170,6 @@ export default {
       // 报警状态 正常1 异常2
       ZT1: '',
       ZT2: '',
-
       value: '',
       ListDuringData: {},
       indicatorName: null,

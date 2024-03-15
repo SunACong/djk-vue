@@ -7,6 +7,7 @@
             <div style="display: flex;">
               <div style="font-size: 20px;color: blue;margin-right: 3px;"><i class="el-icon-s-help" si /></div>
               <span style="line-height: 20px;">1#铸轧机设备参数</span>
+              <el-button size="medium" type="text" @click="gettestMaxData">查询</el-button>
             </div>
           </div>
           <div>
@@ -133,15 +134,52 @@
     <el-dialog :visible.sync="dialogVisible">
       <div v-if="showWtich === 1">
 
-        <div display="flex" margin="5%">
+        <!-- <div display="flex" margin="5%">
           <el-row margin="5%">
             <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
               range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
               @change="getDate" />
+            <el-select v-model="endTimeOption" placeholder="选择结束时间">
+              <el-option label="15分钟后" value="15"></el-option>
+              <el-option label="30分钟后" value="30"></el-option>
+              <el-option label="1小时后" value="60"></el-option>
+            </el-select>
             <el-button size="medium" type="text" @click="getengineList">查询</el-button>
           </el-row>
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
+        </div> -->
+
+        <div display="flex" margin="5%">
+          <el-row margin="5%">
+            <!-- <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
+              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions"
+              @change="getDate" /> -->
+            <!-- <el-date-picker v-model="qualifyDateRange" type="datetime" placeholder="选择日期时间" @change="getDate">
+            </el-date-picker>
+            <el-select v-model="selectedInterval" placeholder="选择间隔">
+              <el-option v-for="interval in intervals" :key="interval.value" :label="interval.label"
+                :value="interval.value" />
+            </el-select>
+            <el-button size="medium" type="text" @click="testDate">测试时间</el-button>
+            <el-button size="medium" type="text" @click="getengineList">查询</el-button> -->
+
+            <el-date-picker v-model="qualifyDateRange" type="datetime" placeholder="选择日期时间" @change="getDate">
+            </el-date-picker>
+            <el-select v-model="selectedInterval" placeholder="选择间隔" @change="setEndTime">
+              <el-option v-for="interval in intervals" :key="interval.value" :label="interval.label"
+                :value="interval.value" />
+            </el-select>
+            <!-- <el-button size="medium" type="text" @click="getengineList">查询</el-button> -->
+            <el-button size="medium" type="text" @click="gettestMaxData">测试查询</el-button>
+            <!-- 显示结束时间 -->
+            <p>结束时间: {{ end }}</p>
+            <el-button size="mini" icon="el-icon-arrow-left" @click="beforeList"></el-button>
+            <el-button size="mini" @click="afterList"><i class="el-icon-arrow-right el-icon--right"></i></el-button>
+          </el-row>
+          <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
+
+
       </div>
 
       <div v-if="showWtich === 2">
@@ -156,13 +194,26 @@
 <script>
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
-import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } from '@/api/oneCastroll'
+import { getListNewData, getListSpecial, rollingOptions, rollingTableData1, gettestMaxData } from '@/api/oneCastroll'
 import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
+import moment from 'moment';
 export default {
   components: { AreaChart },
   data() {
     return {
+      //20231201添加
+      beginformate: null,
+      endpure: null,
+      endTimeOption: null,
+      selectedInterval: '', // 默认间隔为60分钟
+      intervals: [
+        { label: '15分钟后', value: 15 },
+        { label: '半小时后', value: 30 },
+        { label: '一小时后', value: 60 }
+      ],
+      //测试接口
+      CharList: [],
       //判断状态
       judge: "",
       judgeList: [],
@@ -176,32 +227,34 @@ export default {
       end: null,
       qualifyDateRange: '',
       pickerOptions: {
-        shortcuts: [{
-          text: '最近一周',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近一月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '本年至今',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 365)
-            // const start = new Date(new Date().getFullYear(), 0)
-            picker.$emit('pick', [start, end])
-          }
-        }]
+        shortcuts: [
+
+          {
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', [start, end])
+            }
+          }, {
+            text: '最近一月',
+            onClick(picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+              picker.$emit('pick', [start, end])
+            }
+          }, {
+            text: '本年至今',
+            onClick(picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 365)
+              // const start = new Date(new Date().getFullYear(), 0)
+              picker.$emit('pick', [start, end])
+            }
+          }]
       },
       rollingOptions,
       rollingTableData1,
@@ -228,6 +281,8 @@ export default {
     }
   },
   async created() {
+
+    // this.gettestMaxData();
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
@@ -318,10 +373,67 @@ export default {
     // 每次离开当前界面时，清除定时器
     clearInterval(this.timer)
     this.timer = null
-
   },
 
   methods: {
+    setEndTime(minutes) {
+      const startTime = new Date(this.begin);
+      startTime.setMinutes(startTime.getMinutes() + minutes);
+      this.endpure = startTime;
+
+      this.end = moment(startTime).format('YYYY-MM-DD HH:mm:ss');
+      console.log("this.end", this.end);
+    },
+    //查询后一段数据
+    afterList() {
+      const intervalMilliseconds = this.selectedInterval * 60 * 1000;
+      this.begin = new Date(this.begin.getTime() + intervalMilliseconds);
+      this.beginformate = moment(new Date(this.begin)).format('YYYY-MM-DD HH:mm:ss');
+      const end = new Date(this.begin.getTime() + intervalMilliseconds);
+      const endFormate = moment(new Date(end)).format('YYYY-MM-DD HH:mm:ss');
+      console.log("后一段开始时间", this.beginformate);
+      console.log("后一段结束时间", endFormate);
+    },
+    //查询前一段时间数据
+    beforeList() {
+      const intervalMilliseconds = this.selectedInterval * 60 * 1000;
+      const endTime = moment(new Date(this.begin.getTime())).format('YYYY-MM-DD HH:mm:ss');;
+      this.begin = new Date(this.begin.getTime() - intervalMilliseconds);
+      this.beginformate = moment(new Date(this.begin)).format('YYYY-MM-DD HH:mm:ss');
+      console.log("前一段开始时间", this.beginformate);
+      console.log("前一段结束时间", endTime);
+    },
+
+    gettestMaxData() {
+      if (this.beginformate == null) {
+        console.log("请选择日期");
+        this.$alert('<strong>请选择开始时间</strong>', {
+          dangerouslyUseHTMLString: true
+        });
+      } else {
+        gettestMaxData().then((response) => {
+          console.log("开始", this.beginformate);
+          console.log("结束", this.end);
+          // console.log("response", response.data);
+          var arr1 = [];
+          var arr2 = [];
+          this.CharList = response.data;
+          this.CharList.forEach(el => {
+            arr1.push(el.ts);
+            arr2.push(el.upRollMontorA);
+          });
+          console.log(arr1);
+          console.log(arr2);
+          this.xData = arr1
+          this.yData = arr2
+
+        });
+      }
+
+
+
+    },
+
     // 查询tdengine上的数据
     getengineList() {
       console.log('打印是否为相应字段', this.tdtype)
@@ -356,9 +468,11 @@ export default {
       console.log('指标名称', this.value)
     },
     getDate: function () {
-      this.begin = parseTime(this.qualifyDateRange[0])
-      this.end = parseTime(this.qualifyDateRange[1])
+      this.begin = this.qualifyDateRange; // 可以根据实际情况调整此行以正确解析日期
+      this.beginformate = moment(this.qualifyDateRange).format('YYYY-MM-DD HH:mm:ss');
+      console.log("this.beginformate", this.beginformate);
     },
+
     /**
      * 在历史报警记录表中，当点击事件发生时，去数据库查询相应时间段的数据
      */
