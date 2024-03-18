@@ -233,7 +233,7 @@ export default {
      */
     await getDevice({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
       this.currentWarnTable = res.data
-      console.log("currentWarnTable",this.currentWarnTable);
+      // console.log("currentWarnTable",this.currentWarnTable);
       // console.log(this.historyWarnTable);
     })
 
