@@ -89,6 +89,9 @@
             <span style="line-height: 20px;">历史报警记录</span>
           </div>
         </div>
+
+
+
         <div style="display: flex;">
           <div>
             <el-date-picker v-model="qualifyDateRange" size="medium" type="datetimerange" align="left" unlink-panels
@@ -106,6 +109,10 @@
             <el-button size="medium" type="text" @click="getMyHistoryData">查询</el-button>
           </div>
         </div>
+        
+
+
+
         <div>
           <!--历史报警记录刷新表-->
           <el-table :data="historyWarnTable" stripe style="width: 100%,display= flex;" height="300px" :show-header="true">
@@ -184,6 +191,18 @@
 
       <div v-if="showWtich === 2">
         <div>
+            <!-- <el-date-picker v-model="qualifyDateRange" type="datetime" placeholder="选择日期时间" @change="getDate">
+            </el-date-picker>
+            <el-select v-model="selectedInterval" placeholder="选择间隔" @change="setEndTime">
+              <el-option v-for="interval in intervals" :key="interval.value" :label="interval.label"
+                :value="interval.value" />
+            </el-select> -->
+            <!-- <el-button size="medium" type="text" @click="getengineList">查询</el-button> -->
+            <!-- <el-button size="medium" type="text" @click="gettestMaxData">测试查询</el-button> -->
+            <!-- 显示结束时间 -->
+            <!-- <p>结束时间: {{ end }}</p> -->
+            <!-- <el-button size="mini" icon="el-icon-arrow-left" @click="beforeList"></el-button>
+            <el-button size="mini" @click="afterList"><i class="el-icon-arrow-right el-icon--right"></i></el-button> -->
           <AreaChart :x-data="xData" :y-data="yData" :min-data="minData" :max-data="maxData" :r-name="rName" />
         </div>
       </div>
@@ -198,6 +217,8 @@ import { getListNewData, getListSpecial, rollingOptions, rollingTableData1 } fro
 import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead, getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 import moment from 'moment';
+import entityMap from '@/utils/chinese2english'
+
 export default {
   components: { AreaChart },
   data() {
@@ -294,7 +315,7 @@ export default {
      */
     await getDevice({ rollingDeviceNumber: '铸轧机1#' }).then((res) => {
       this.currentWarnTable = res.data
-      // console.log("historyWarnTable");
+      console.log("currentWarnTable",this.currentWarnTable);
       // console.log(this.historyWarnTable);
     })
     /**
@@ -361,8 +382,6 @@ export default {
               break
           }
         }
-        // console.log("下辊水压", this.rollingTableData1[5].chartData.maxData);
-        // console.log("传动侧预载力", this.rollingTableData1[11].chartData.maxData);
       })
 
     })
@@ -385,6 +404,7 @@ export default {
     },
     //查询后一段数据
     afterList() {
+      
       const intervalMilliseconds = this.selectedInterval * 60 * 1000;
       this.begin = new Date(this.begin.getTime() + intervalMilliseconds);
       this.beginformate = moment(new Date(this.begin)).format('YYYY-MM-DD HH:mm:ss');
@@ -509,7 +529,11 @@ export default {
     },
     getDate: function () {
       this.begin = this.qualifyDateRange; // 可以根据实际情况调整此行以正确解析日期
-      this.beginformate = moment(this.qualifyDateRange).format('YYYY-MM-DD HH:mm:ss');
+      if (this.qualifyDateRange instanceof Array) {
+        this.beginformate = moment(this.qualifyDateRange[0]).format('YYYY-MM-DD HH:mm:ss');
+      } else {
+        this.beginformate = moment(this.qualifyDateRange).format('YYYY-MM-DD HH:mm:ss');
+      }
       console.log("this.beginformate", this.beginformate);
     },
 
@@ -518,7 +542,10 @@ export default {
      */
     getMyHistoryData() {
       this.historyWarnTable = []
-      getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
+      console.log("dasd1");
+      var begin = moment(this.begin[0]).format('YYYY-MM-DD HH:mm:ss')
+      var end = moment(this.begin[1]).format('YYYY-MM-DD HH:mm:ss')
+      getListDuringWarnData({ rollingDeviceNumber: '铸轧机1#', rollingName: this.indicatorName, begin, end }).then((res) => {
         // console.log("特定时间范围内的数据", res)
         this.historyWarnTable = res.data
       })
@@ -544,6 +571,7 @@ export default {
       else if (index == 2) {
         // console.log(row);
         getListSpecial({ rollingName: row.rollingName, ts: row.rollingProduceTime }).then((res) => {
+          // console.log('返回的数据',res);
           this.wId = row.idNumber
           // console.log('报警数据前后的数据', res.data)
           this.myvisible = false

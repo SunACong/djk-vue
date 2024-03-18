@@ -157,7 +157,7 @@
 import AreaChart from '@/views/dashboard/AreaChart1'
 import { getAvaluateList } from '@/api/avaluate'
 import { getListNewData, getListSpecial, rollingOptions, rollingTableData3 } from '@/api/threeCastroll'
-import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead } from '@/api/warnTable'
+import { getListWarnNewData, getListWarnHistoryData, getListDuringWarnData, addRead,getDevice } from '@/api/warnTable'
 import { parseTime } from '@/utils/utils'
 export default {
   components: { AreaChart },
@@ -227,16 +227,26 @@ export default {
     }
   },
   async created() {
+
+    /**
+     * 获取一号铸轧机报警历史记录（30条）
+     */
+    await getDevice({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
+      this.currentWarnTable = res.data
+      console.log("currentWarnTable",this.currentWarnTable);
+      // console.log(this.historyWarnTable);
+    })
+
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     clearInterval(this.timer)
     this.timer = null
     this.ZT1 = "true";
     this.ZT2 = "";
     this.setTimer()
-    await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
-      // this.historyWarnTable = res.data
-      // console.log("3号设备参数", this.historyWarnTable);
-    })
+    // await getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
+    //   // this.historyWarnTable = res.data
+    //   // console.log("3号设备参数", this.historyWarnTable);
+    // })
     await getAvaluateList().then((res) => {
       this.avaluateList = res.data
       // console.log("上下限：",res.data)
@@ -433,7 +443,6 @@ export default {
     },
 
     // 定时查询铸轧机数据
-
     setTimer() {
       if (this.timer == null) {
         this.timer = setInterval(() => {
@@ -592,7 +601,7 @@ export default {
           })
 
 
-          getListWarnHistoryData({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
+          getDevice({ rollingDeviceNumber: '铸轧机3#' }).then((res) => {
             this.currentWarnTable = res.data
             this.judgeList = [];
 

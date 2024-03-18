@@ -1,0 +1,6 @@
+
+const entityMap = {
+  '上辊电机电流' : 'upRollMontorA',
+};
+
+export default entityMap;
