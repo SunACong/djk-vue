@@ -1,6 +1,18 @@
 
 const entityMap = {
+  //铸轧机
   '上辊电机电流' : 'upRollMontorA',
+  '下辊电机电流':'downRollMontorA',
+  '主水泵电机电流':'pumpA',
+  '卷取电机电流':'rollA',
+  '上辊水压':'upRollWaterFn',
+  '下辊水压':'downRollWaterFn',
+  '上辊水温':'upRollWaterT',
+  '下辊水温':'downRollWaterT',
+  '上辊流量':'upRollFlow',
+  '下辊流量':'downRollFlow',
+  '操作侧预载力':'operationPreloadForce',
+  '传动侧预载力':'transPreloadForce',    
 };
 
 export default entityMap;
