@@ -13,6 +13,14 @@ const entityMap = {
   '下辊流量':'downRollFlow',
   '操作侧预载力':'operationPreloadForce',
   '传动侧预载力':'transPreloadForce',    
+  //退火炉
+  '炉冷却水':'coolWaterUpLimit',
+  '炉压缩空气':'compressedAirOneLowPressure',
+  '金属料温温度曲线':'meterialT',
+  '1区炉气温度曲线':'zoneOneT',
+  '2区炉气温度曲线':'zoneTwoT',
+  '3区炉气温度曲线':'zoneThreeT',
+  '炉气设定温度':'setT',
 };
 
 export default entityMap;
