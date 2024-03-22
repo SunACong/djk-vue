@@ -594,6 +594,8 @@ export default {
 
       //从历史报警记录框内的数据，去查TD上的数据
       else if (index == 3) {
+        this.rName =  this.value
+        console.log(this.rName);
         this.selectedInterval= '',
         this.begin = null;
         this.beginformate = null;
@@ -627,13 +629,13 @@ export default {
                 this.xData = data.data[0]
                 this.yData = data.data[1]
                 
-                if (this.tdtype == '上辊电机电流') {
+                if (this.rName == '上辊电机电流') {
                   this.minData = this.rollingTableData1[0].chartData.minData
                   this.maxData = this.rollingTableData1[0].chartData.maxData
-                } else if (this.tdtype == '下辊电机电流') {
+                } else if (this.rName == '下辊电机电流') {
                   this.minData = this.rollingTableData1[1].chartData.minData
                   this.maxData = this.rollingTableData1[1].chartData.maxData
-                } else if (this.tdtype == '主水泵电机电流') {
+                } else if (this.rName == '主水泵电机电流') {
                   this.minData = this.rollingTableData1[2].chartData.minData
                   this.maxData = this.rollingTableData1[2].chartData.maxData
                 } else if
@@ -641,31 +643,31 @@ export default {
                   //   this.minData = this.rollingTableData1[3].chartData.minData
                   //   this.maxData = this.rollingTableData1[3].chartData.maxData
                   // } else if
-                  (this.tdtype == '卷取电机电流') {
+                  (this.rName == '卷取电机电流') {
                   this.minData = this.rollingTableData1[3].chartData.minData
                   this.maxData = this.rollingTableData1[3].chartData.maxData
-                } else if (this.tdtype == '上辊水压') {
+                } else if (this.rName == '上辊水压') {
                   this.minData = this.rollingTableData1[4].chartData.minData
                   this.maxData = this.rollingTableData1[4].chartData.maxData
-                } else if (this.tdtype == '下辊水压') {
+                } else if (this.rName == '下辊水压') {
                   this.minData = this.rollingTableData1[5].chartData.minData
                   this.maxData = this.rollingTableData1[5].chartData.maxData
-                } else if (this.tdtype == '上辊水温') {
+                } else if (this.rName == '上辊水温') {
                   this.minData = this.rollingTableData1[6].chartData.minData
                   this.maxData = this.rollingTableData1[6].chartData.maxData
-                } else if (this.tdtype == '下辊水温') {
+                } else if (this.rName == '下辊水温') {
                   this.minData = this.rollingTableData1[7].chartData.minData
                   this.maxData = this.rollingTableData1[7].chartData.maxData
-                } else if (this.tdtype == '上辊流量') {
+                } else if (this.rName == '上辊流量') {
                   this.minData = this.rollingTableData1[8].chartData.minData
                   this.maxData = this.rollingTableData1[8].chartData.maxData
-                } else if (this.tdtype == '下辊流量') {
+                } else if (this.rName == '下辊流量') {
                   this.minData = this.rollingTableData1[9].chartData.minData
                   this.maxData = this.rollingTableData1[9].chartData.maxData
-                } else if (this.tdtype == '操作侧预载力') {
+                } else if (this.rName == '操作侧预载力') {
                   this.minData = this.rollingTableData1[10].chartData.minData
                   this.maxData = this.rollingTableData1[10].chartData.maxData
-                } else if (this.tdtype == '传动侧预载力') {
+                } else if (this.rName == '传动侧预载力') {
                   this.minData = this.rollingTableData1[11].chartData.minData
                   this.maxData = this.rollingTableData1[11].chartData.maxData
 
