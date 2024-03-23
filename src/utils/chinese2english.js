@@ -12,7 +12,12 @@ const entityMap = {
   '上辊流量':'upRollFlow',
   '下辊流量':'downRollFlow',
   '操作侧预载力':'operationPreloadForce',
-  '传动侧预载力':'transPreloadForce',    
+  '传动侧预载力':'transPreloadForce', 
+  //铸轧机工艺参数
+  '上辊电机速度':'upRollMontorLineV',
+  '下辊电机速度':'downRollMontorLineV',
+  '卷取电机速度':'rollV',
+
   //退火炉
   '炉冷却水':'coolWaterUpLimit',
   '炉压缩空气':'compressedAirOneLowPressure',
@@ -21,6 +26,14 @@ const entityMap = {
   '2区炉气温度曲线':'zoneTwoT',
   '3区炉气温度曲线':'zoneThreeT',
   '炉气设定温度':'setT',
+  //重卷机工艺参数
+  '机列速度':'machineColsV',
+  '卷取卷径':'rollWindD',
+  '实际张力':'actualTension',
+  '带材长度':'stripL',
+  //重卷机设备参数
+  '开卷机电流曲线':'openRollA',
+  '卷取机电流曲线':'rollWindA', 
 };
 
 export default entityMap;
