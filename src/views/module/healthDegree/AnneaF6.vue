@@ -482,7 +482,7 @@ export default {
       console.log("dasd1");
       var begin = moment(this.begin[0]).format('YYYY-MM-DD HH:mm:ss')
       var end = moment(this.begin[1]).format('YYYY-MM-DD HH:mm:ss')
-     getListDuringWarnData({ rollingDeviceNumber: '退火炉6#', rollingName: this.indicatorName, begin: this.begin, end: this.end }).then((res) => {
+     getListDuringWarnData({ rollingDeviceNumber: '退火炉6#', rollingName: this.indicatorName, begin, end }).then((res) => {
         // console.log("特定时间范围内的数据", res)
         this.historyWarnTable = res.data
         console.log('数据库上来的数据',res.data);
