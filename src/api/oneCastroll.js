@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+// export function gettestMaxData(params) {
+//     return request({
+//         url: '/oneCastroll/testmoreMsg',
+//         method: 'get',
+//         params
+//     })
+// }
+
 export function getListNewData(params) {
     return request({
         url: '/oneCastroll/listNewData',

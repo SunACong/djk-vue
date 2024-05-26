@@ -59,6 +59,7 @@ export default {
     yData: {
       handler: function () {
         this.initChart()
+        
       },
       // immediate: true,
       // deep: true
@@ -66,13 +67,16 @@ export default {
     minData: {
       handler: function () {
         this.initChart()
+        console.log('阈值低：'+this.minData)
       },
+      
       // immediate: true,
       // deep: true
     },
     maxData: {
       handler: function () {
         this.initChart()
+        console.log('阈值高：'+this.maxData)
       },
       // immediate: true,
       // deep: true
@@ -156,8 +160,11 @@ export default {
             data: y
           },
         ],
+        //在这里改
         dataZoom: { // 放大和缩放
+
           type: 'inside'
+
         },
         visualMap: [
           {
