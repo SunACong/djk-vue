@@ -29,11 +29,6 @@
                     {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.qualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
                   </el-tag>
                 </el-descriptions-item>
-                <el-descriptions-item label="暂未判定">
-                  <el-tag type="info" size="mini">
-                    {{ rangeQualifyRate.tentative }}
-                  </el-tag>
-                </el-descriptions-item>
                 <el-descriptions-item label="不合格数">
                   <el-tag type="danger" size="mini">
                     {{ rangeQualifyRate.noQualified }}
@@ -42,6 +37,11 @@
                 <el-descriptions-item label="不合格率">
                   <el-tag type="danger" size="mini">
                     {{ (rangeQualifyRate.qualified+rangeQualifyRate.noQualified)===0? 0: (rangeQualifyRate.noQualified/(rangeQualifyRate.qualified+rangeQualifyRate.noQualified)*100).toFixed(2) }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="暂未判定">
+                  <el-tag type="info" size="mini">
+                    {{ rangeQualifyRate.tentative }}
                   </el-tag>
                 </el-descriptions-item>
               </el-descriptions>
@@ -105,53 +105,53 @@
             <el-table-column prop="shapeQc" label="板型" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.shapeQc === null ? 'info' : (scope.row.shapeQc === 'qualified' ? 'success' : 'danger')"
+                  :type="scope.row.shapeQc === '暂未判定' ? 'info' : (scope.row.shapeQc === '合格' ? 'success' : 'danger')"
                   @click="handleView(1, scope.row)">
-                  {{ scope.row.shapeQc === null? '暂未判定' : (scope.row.shapeQc === 'qualified' ? '合格' :  '不合格') }}
+                  {{ scope.row.shapeQc }}
                 </el-tag>
               </template>
             </el-table-column>
             <el-table-column prop="dimensionalDeviation" label="尺寸偏差" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.dimensionalDeviation === null ? 'info' : (scope.row.dimensionalDeviation === 'qualified' ? 'success' : 'danger')"
+                  :type="scope.row.dimensionalDeviation === '暂未判定' ? 'info' : (scope.row.dimensionalDeviation === '合格' ? 'success' : 'danger')"
                   @click="handleView(2, scope.row)">
-                  {{ scope.row.dimensionalDeviation === null? '暂未判定' : (scope.row.dimensionalDeviation === 'qualified' ? '合格' :  '不合格') }}
+                  {{ scope.row.dimensionalDeviation }}
                 </el-tag>
               </template>
             </el-table-column>
             <el-table-column prop="mechanicalProperty" label="力学性能" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.mechanicalProperty === null ? 'info' : (scope.row.mechanicalProperty === 'qualified' ? 'success' : 'danger')"
+                  :type="scope.row.mechanicalProperty === '暂未判定' ? 'info' : (scope.row.mechanicalProperty === '合格' ? 'success' : 'danger')"
                   @click="handleView(3, scope.row)">
-                  {{ scope.row.mechanicalProperty === null? '暂未判定' : (scope.row.mechanicalProperty === 'qualified' ? '合格' :  '不合格') }}
+                  {{ scope.row.mechanicalProperty }}
                 </el-tag>
               </template>
             </el-table-column>
             <el-table-column prop="surfaceQc" label="表面质量" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.surfaceQc === null ? 'info' : (scope.row.surfaceQc === 'qualified' ? 'success' : 'danger')"
+                  :type="scope.row.surfaceQc === '暂未判定' ? 'info' : (scope.row.surfaceQc === '合格' ? 'success' : 'danger')"
                   @click="handleView(4, scope.row)">
-                  {{ scope.row.surfaceQc === null? '暂未判定' : (scope.row.surfaceQc === 'qualified' ? '合格' :  '不合格') }}
+                  {{ scope.row.surfaceQc }}
                 </el-tag>
               </template>
             </el-table-column>
             <el-table-column prop="facadeQc" label="外观质量" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.facadeQc === null ? 'info' : (scope.row.facadeQc === 'qualified' ? 'success' : 'danger')"
+                  :type="scope.row.facadeQc === '暂未判定' ? 'info' : (scope.row.facadeQc === '合格' ? 'success' : 'danger')"
                   @click="handleView(5, scope.row)">
-                  {{ scope.row.facadeQc === null? '暂未判定' : (scope.row.facadeQc === 'qualified' ? '合格' :  '不合格') }}
+                  {{ scope.row.facadeQc }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="inspectorJudge" label="判定意见" min-width="20%">
+            <el-table-column prop="judgeResult" label="判定意见" min-width="20%">
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.inspectorJudge === null ? 'info' : (scope.row.inspectorJudge === 'qualified' ? 'success' : 'danger')">
-                  {{ scope.row.inspectorJudge === null? '暂未判定' : (scope.row.inspectorJudge === 'qualified' ? '合格' :  '不合格') }}
+                  :type="scope.row.judgeResult === '待确定' ? 'info' : 'success' ">
+                  {{ scope.row.judgeResult }}
                 </el-tag>
               </template>
             </el-table-column>
@@ -179,7 +179,7 @@
       <!-- 板型 -->
       <div v-if="showWtich === 1 || showWtich === 6">
         <el-descriptions title="板型" :column="2" border :size="size"
-          :label-style="dailogData.shapeQc !== 'unqualified' ? labelStyleNo : labelStyle">
+          :label-style="dailogData.shapeQc !== '异常' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="平直度">
             {{ dailogData.lmdpQcColdInspect.singleStraightness === null ?
               '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
@@ -201,7 +201,7 @@
       <!-- 尺寸偏差 -->
       <div v-if="showWtich === 2 || showWtich === 6" class="dialog-item">
         <el-descriptions title="尺寸偏差" :column="2" border :size="size"
-          :label-style="dailogData.dimensionalDeviation !== 'unqualified' ? labelStyleNo : labelStyle">
+          :label-style="dailogData.dimensionalDeviation !== '异常' ? labelStyleNo : labelStyle ">
           <el-descriptions-item label="宽度">
             {{ dailogData.lmdpQcColdInspect.singleWidth === null ?
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
@@ -234,7 +234,7 @@
       <!-- 力学性能 -->
       <div v-if="showWtich === 3 || showWtich === 6" class="dialog-item">
         <el-descriptions title="力学性能" :column="3" border :size="size"
-          :label-style="dailogData.mechanicalProperty !== 'unqualified' ? labelStyleNo : labelStyle">
+          :label-style="dailogData.mechanicalProperty !== '异常' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="抗拉强度">
             {{ dailogData.lmdpQcColdInspect.singleStrength === null ?
               '-' : dailogData.lmdpQcColdInspect.singleStrength }}
@@ -278,7 +278,7 @@
       <!-- 表面质量 -->
       <div v-if="showWtich === 4 || showWtich === 6" class="dialog-item">
         <el-descriptions title="表面质量" :column="1" border :size="size"
-          :label-style="dailogData.surfaceQc !== 'unqualified' ? labelStyleNo : labelStyle">
+          :label-style="dailogData.surfaceQc !== '异常' ? labelStyleNo : labelStyle">
           <el-descriptions-item label="表面质量描述">
             {{ dailogData.lmdpQcColdInspect.surfaceQuality ===
               null ? '-' :
@@ -297,7 +297,7 @@
       <!-- 外观质量 -->
       <div v-if="showWtich === 5 || showWtich === 6" class="dialog-item">
         <el-descriptions title="外观质量" :column="1" border :size="size"
-          :label-style="dailogData.facadeQc !== 'unqualified' ? labelStyleNo : labelStyle">
+          :label-style="dailogData.facadeQc !== '异常' ? labelStyleNo : labelStyle"> 
           <el-descriptions-item label="外观质量描述">
             {{ dailogData.lmdpQcColdInspect.appearanceQuality ===
               null ? '-' :
@@ -362,7 +362,7 @@ export default {
       reportDateRange: [],
       rollNumber: '',
       pageNum: 1,
-      pageSize: 5,
+      pageSize: 10,
       total: 100,
       pickerOptions: {
         shortcuts: [{
@@ -402,6 +402,7 @@ export default {
         mechanicalProperty: null,
         surfaceQc: null,
         facadeQc: null,
+        judgeResult: null,
         inspectorJudge: null,
         remark: null,
         lmdpQcColdInspect: {
@@ -416,6 +417,7 @@ export default {
         },
         slaveErpPlanColdreductionstrip: {
           flatness: null,
+          convexRate: null,
           tensileStrength: null,
           elongation: null,
           appearanceReq: null,
@@ -522,6 +524,7 @@ export default {
      */
     getList() {
       this.loading = true
+      this.queryParams.pageNum = 1
       getPlanAndInspectBackup(this.queryParams).then((res) => {
         console.log('res: ', res)
         this.tableData = res.data.records

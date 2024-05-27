@@ -93,7 +93,7 @@ export default {
           type: 'inside'
         },
         dataset: {
-          dimensions: ['inspectCreateTime', 'noQualified', 'qualified', 'tentativ'],
+          dimensions: ['inspectCreateTime', 'noQualified', 'qualified', 'tentative'],
           source: this.xydata
         },
         xAxis: [{
