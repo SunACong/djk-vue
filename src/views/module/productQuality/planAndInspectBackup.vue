@@ -175,26 +175,60 @@
     </div>
 
     <!-- 弹窗 -->
-    <el-dialog ref="dailog" :title="dailogData.planNum" :visible.sync="dialogFormVisible">
+    <el-dialog ref="dailog" title="" :visible.sync="dialogFormVisible">
       <!-- 板型 -->
+      <div style="margin-bottom: 20px">
+        <el-descriptions title="基本信息" :column="2" border :size="size">
+          <el-descriptions-item label="冷轧卷号">
+            {{ dailogData.batchNum}}
+          </el-descriptions-item>
+          <el-descriptions-item label="客户名称">
+            {{ dailogData.consumer }}
+          </el-descriptions-item>
+          <el-descriptions-item label="产品类型">
+            {{ dailogData.productType }}
+          </el-descriptions-item>
+          <el-descriptions-item label="冷轧日期">
+            {{ dailogData.reportTime }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
       <div v-if="showWtich === 1 || showWtich === 6">
         <el-descriptions title="板型" :column="2" border :size="size"
           :label-style="dailogData.shapeQc !== '异常' ? labelStyleNo : labelStyle">
-          <el-descriptions-item label="平直度">
-            {{ dailogData.lmdpQcColdInspect.singleStraightness === null ?
-              '-' : dailogData.lmdpQcColdInspect.singleStraightness }}
+
+          <el-descriptions-item label="卷径">
+            {{ dailogData.lmdpQcColdInspect.singleRollDiameter === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleRollDiameter }}
           </el-descriptions-item>
-          <el-descriptions-item label="平直度标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.flatness === null ?
-              '-' : dailogData.slaveErpPlanColdreductionstrip.flatness }}
+          <el-descriptions-item label="卷径标准">
+            {{ dailogData.erpPlanColdreductionstrip.productArea === null ?
+              '-' : dailogData.erpPlanColdreductionstrip.productArea }}
+          </el-descriptions-item>
+          <el-descriptions-item label="卷重">
+            {{ dailogData.lmdpQcColdInspect.singleRollWeight === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleRollWeight }}
+          </el-descriptions-item>
+          <el-descriptions-item label="卷重标准">
+            {{ dailogData.erpPlanColdreductionstrip.singleHeight === null ?
+              '-' : dailogData.erpPlanColdreductionstrip.singleHeight }}，单位：吨
+          </el-descriptions-item>
+
+          <el-descriptions-item label="楔形率">
+            {{ dailogData.lmdpQcColdInspect.singleWedgeRatio === null ?
+              '-' : dailogData.lmdpQcColdInspect.singleWedgeRatio }}
+          </el-descriptions-item>
+          <el-descriptions-item label="楔形率标准">
+            {{ dailogData.erpPlanColdreductionstrip.wedge === null ?
+              '-' : dailogData.erpPlanColdreductionstrip.wedge }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度">
             {{ dailogData.lmdpQcColdInspect.singleMediumConvexity === null ?
               '-' : dailogData.lmdpQcColdInspect.singleMediumConvexity }}
           </el-descriptions-item>
           <el-descriptions-item label="中凸度标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.convexRate === null ?
-              '-' : dailogData.slaveErpPlanColdreductionstrip.convexRate }}
+            {{ dailogData.erpPlanColdreductionstrip.convexRate === null ?
+              '-' : dailogData.erpPlanColdreductionstrip.convexRate }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -207,16 +241,16 @@
               '-' : dailogData.lmdpQcColdInspect.singleWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="宽度差标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.warpWidth ===
-              null ? '-' : dailogData.slaveErpPlanColdreductionstrip.warpWidth }}
+            {{ dailogData.erpPlanColdreductionstrip.warpWidth ===
+              null ? '-' : dailogData.erpPlanColdreductionstrip.warpWidth }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度">
             {{ dailogData.lmdpQcColdInspect.singleHeight === null ?
               '-' : dailogData.lmdpQcColdInspect.singleHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="厚度差标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.endwiseHeight ===
-              null ? '-' : dailogData.slaveErpPlanColdreductionstrip.endwiseHeight }}
+            {{ dailogData.erpPlanColdreductionstrip.endwiseHeight ===
+              null ? '-' : dailogData.erpPlanColdreductionstrip.endwiseHeight }}
           </el-descriptions-item>
           <el-descriptions-item label="成品规格">
             {{ dailogData.lmdpQcColdInspect.singleHeight === null ?
@@ -244,8 +278,8 @@
               '-' : dailogData.lmdpQcColdInspect.singleStrengthRe }}
           </el-descriptions-item>
           <el-descriptions-item label="抗拉强度标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.tensileStrength ===
-              null ? '-' : dailogData.slaveErpPlanColdreductionstrip.tensileStrength }}
+            {{ dailogData.erpPlanColdreductionstrip.tensileStrength ===
+              null ? '-' : dailogData.erpPlanColdreductionstrip.tensileStrength }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率">
             {{ dailogData.lmdpQcColdInspect.singleExtension === null ?
@@ -258,8 +292,8 @@
             }}
           </el-descriptions-item>
           <el-descriptions-item label="延伸率标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.elongation ===
-              null ? '-' : dailogData.slaveErpPlanColdreductionstrip.elongation }}
+            {{ dailogData.erpPlanColdreductionstrip.elongation ===
+              null ? '-' : dailogData.erpPlanColdreductionstrip.elongation }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能">
             {{ dailogData.lmdpQcColdInspect.bendingPerformanceRequirements ===
@@ -270,9 +304,8 @@
               null ? '-' : Dict.get(dailogData.lmdpQcColdInspect.bendingPerformanceRe) }}
           </el-descriptions-item>
           <el-descriptions-item label="弯折性能表标准">
-            {{ dailogData.slaveErpPlanColdreductionstrip.bendingPerformance ===
-              null ? '-' : Dict.get(dailogData.slaveErpPlanColdreductionstrip.bendingPerformance) }}
-          </el-descriptions-item>tableData
+            90°折弯无裂纹
+          </el-descriptions-item>
         </el-descriptions>
       </div>
       <!-- 表面质量 -->
@@ -286,11 +319,7 @@
                 Dict.get(dailogData.lmdpQcColdInspect.surfaceQuality) : dailogData.lmdpQcColdInspect.surfaceQualityRemark }}
           </el-descriptions-item>
           <el-descriptions-item label="产品外观质量及轧制要求">
-            1、产品外观质量：{{ dailogData.slaveErpPlanColdreductionstrip.appearanceReq }},
-            2、坯料粗糙度：{{ dailogData.slaveErpPlanColdreductionstrip.roughness }},
-            3、卷层端面串层：{{ dailogData.slaveErpPlanColdreductionstrip.stringLayer }},
-            4、卷材端面塔形：{{ dailogData.slaveErpPlanColdreductionstrip.dagoba }},
-            5、卷端面其他要求：{{ dailogData.slaveErpPlanColdreductionstrip.otherrequirement }}
+            {{ dailogData.erpPlanColdreductionstrip.appearanceReq }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -307,11 +336,10 @@
             }}
           </el-descriptions-item>
           <el-descriptions-item label="产品外观质量及轧制要求">
-            1、产品外观质量：{{ dailogData.slaveErpPlanColdreductionstrip.appearanceReq }},
-            2、坯料粗糙度：{{ dailogData.slaveErpPlanColdreductionstrip.roughness }},
-            3、卷层端面串层：{{ dailogData.slaveErpPlanColdreductionstrip.stringLayer }},
-            4、卷材端面塔形：{{ dailogData.slaveErpPlanColdreductionstrip.dagoba }},
-            5、卷端面其他要求：{{ dailogData.slaveErpPlanColdreductionstrip.otherrequirement }}
+            1、坯料粗糙度：{{ dailogData.erpPlanColdreductionstrip.roughness }},
+            2、卷层端面串层：{{ dailogData.erpPlanColdreductionstrip.stringLayer }},
+            3、卷材端面塔形：{{ dailogData.erpPlanColdreductionstrip.dagoba }},
+            4、卷端面其他要求：{{ dailogData.erpPlanColdreductionstrip.otherrequirement }}
           </el-descriptions-item>
         </el-descriptions>
       </div>
@@ -362,7 +390,7 @@ export default {
       reportDateRange: [],
       rollNumber: '',
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 5,
       total: 100,
       pickerOptions: {
         shortcuts: [{
@@ -415,7 +443,7 @@ export default {
           appearanceQuality: null,
           appearanceQualityRemark: null
         },
-        slaveErpPlanColdreductionstrip: {
+        erpPlanColdreductionstrip: {
           flatness: null,
           convexRate: null,
           tensileStrength: null,
