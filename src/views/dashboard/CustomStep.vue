@@ -6,7 +6,7 @@
           <el-step
             v-for="(d, i) in topSteps"
             :key="d.title"
-            :icon="i+1 !== active? 'el-icon-success':'el-icon-loading'"
+            :icon="i+1 !== active? 'el-icon-success':'el-icon-success'"
             :title="d.title"
             :description="d.description"
             :status="i+1<active && status[i] ? 'finish' : ''"
@@ -18,7 +18,7 @@
             <el-step
               v-for="(d, i) in bottomSteps"
               :key="i"
-              :icon="(stepsData.length - active) == i?'el-icon-loading':'el-icon-success'"
+              :icon="(stepsData.length - active) == i?'el-icon-success':'el-icon-success'"
               :title="d.title"
               :description="d.description"
               :status="status[stepsData.length-i-1]? 'finish' : ''"
@@ -32,7 +32,7 @@
       <div class="right-steps" @click="throwActive(6)">
         <div class="circle" :class="[status[6]? 'finish' : '']">
           <p class="icon">
-            <i :class="active==7? 'el-icon-loading':'el-icon-success'"></i>
+            <i :class="active==7? 'el-icon-success':'el-icon-success'"></i>
             <span class="tips">
               <span>{{ midSteps.title }}</span>
               <span>{{ midSteps.description }}</span>
