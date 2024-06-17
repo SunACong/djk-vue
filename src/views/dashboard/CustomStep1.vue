@@ -6,10 +6,10 @@
           <el-step
             v-for="(d, i) in topSteps"
             :key="d.title"
-            :icon="i+1 !== active? 'el-icon-success':'el-icon-loading'"
+            :icon="i !== active? 'el-icon-success':'el-icon-loading'"
             :title="d.title"
             :description="d.description"
-            :status="i+1<active && status[i] ? 'finish' : ''"
+            :status="i<active && status[i] ? 'finish' : ''"
             @click.native="throwActive(i)"
           />
         </el-steps>

@@ -27,7 +27,7 @@
     </div>
     <custom-step :steps-data="stepData" :active="active" @active="getActive" :status="status"/>
     </div>
-    
+ 
     <div class="bottom-form">
       <v-form-render ref="vFormRef"/>
     </div>

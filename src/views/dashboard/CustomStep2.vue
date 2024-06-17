@@ -2,14 +2,13 @@
   <div>
     <div class="custom-steps">
       <div class="left-steps">
-        <el-steps align-center>
-          <el-step
+        <el-step
             v-for="(d, i) in topSteps"
             :key="d.title"
-            :icon="i+1 !== active? 'el-icon-success':'el-icon-loading'"
+            :icon="i !== active? 'el-icon-success':'el-icon-loading'"
             :title="d.title"
             :description="d.description"
-            :status="i+1<active && status[i+6] ? 'finish' : ''"
+            :status="i<active && status[i] ? 'finish' : ''"
             @click.native="throwActive(i)"
           />
         </el-steps>
