@@ -15,7 +15,7 @@
           :value="item.value"
         />
       </el-select>
-      <el-select v-model="selectValue" filterable clearable :placeholder="'请选择'+typeOptions[type].label">
+      <el-select v-model="selectValue" filterable clearable :placeholder="'请选择'+typeOptions[type].label" :filter-method="dataFilter">
         <el-option
           v-for="(item, index) in valueOptions"
           :key="index"
@@ -129,6 +129,9 @@ export default {
     })
   },
   methods: {
+    dataFilter(val) {
+      this.selectValue = val
+    },
     changeType(type) {
     },
     getActive(val) {
